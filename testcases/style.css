@@ -1,0 +1,20 @@
+body {
+  font-family: Vollkorn, serif;
+  font-weight: 400;
+}
+.title {
+  font-size: 150%;
+  font-style: italic;
+  margin-top:1em;
+  margin-left:1em;
+  margin-bottom:.5em;
+}
+.desc {
+  margin-left:3em;
+  margin-bottom:.5em;
+}
+th { text-align:left;font-weight:400;font-style:italic}
+table {margin-top:1.5em;margin-left:3em;text-align:center;font-size:80%}
+td.status {color:#3c7}
+th.status {padding-right:1.5em;line-height:2.5em}
+svg { height:2.5em }
