@@ -45,7 +45,6 @@ static CFNumberRef CreateAxisID(const std::string& tag) {
       (static_cast<SInt32>(t[2]) << 8) |
       (static_cast<SInt32>(t[3]) << 0);
 
-  printf("***** ZEBRA %d\n", value);
   return CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &value);
 }
 
@@ -59,7 +58,7 @@ void CoreTextFont::GetGlyphOutline(int glyphID, const FontVariation& variation,
 
     CTFontDescriptorRef oldDesc = desc;
     CGFloat axisValue = static_cast<CGFloat>(iter->second);
-    printf("***** MOUSE %f\n", axisValue);
+    //printf("***** MOUSE %f\n", axisValue);
     desc = CTFontDescriptorCreateCopyWithVariation(desc, axisID, axisValue);
     CFRelease(oldDesc);
     CFRelease(axisID);
@@ -75,7 +74,7 @@ void CoreTextFont::GetGlyphOutline(int glyphID, const FontVariation& variation,
   CFDictionaryRef varDict = CTFontCopyVariation(ctFont);
   if (varDict) {
     NSString *s = [NSString stringWithFormat:@"%@", varDict];
-    printf("****** %s\n", [s UTF8String]);
+    //printf("****** %s\n", [s UTF8String]);
   }
 
   CGPathRef cgPath = NULL;
