@@ -24,6 +24,6 @@ int main(int argc, const char** argv) {
   }
 
   fonttest::TestHarness harness(args);
-  harness.RunTest();
+  harness.Run();
   return 0;
 }

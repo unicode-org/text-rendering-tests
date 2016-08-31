@@ -20,13 +20,35 @@
 #include <string>
 #include <vector>
 
-#include "fonttest/avar_test.h"
 #include "fonttest/font.h"
 #include "fonttest/font_engine.h"
-#include "fonttest/test_case.h"
 #include "fonttest/test_harness.h"
 
 namespace fonttest {
+
+// Helper methods for parsing command-line arguments.
+static void TrimWhitespace(std::string* str);
+static void SplitString(const std::string& text, char sep,
+                        std::vector<std::string>* result);
+
+static void ParseVariationSpec(const std::string& spec,
+                               FontVariation* variation) {
+  std::vector<std::string> v;
+  SplitString(spec, ';', &v);
+  for (const std::string& item : v) {
+    std::vector<std::string> keyValue;
+    SplitString(item, ':', &keyValue);
+    if (keyValue.size() != 2) {
+      std::cerr << "malformed --variation=" << spec << std::endl;
+      exit(1);
+    }
+    std::string key = keyValue[0];
+    std::string value = keyValue[1];
+    TrimWhitespace(&key);
+    TrimWhitespace(&value);
+    (*variation)[key] = std::atof(value.c_str());
+  }
+}
 
 TestHarness::TestHarness(const std::vector<std::string>& options)
   : options_(options),
@@ -34,37 +56,34 @@ TestHarness::TestHarness(const std::vector<std::string>& options)
   if (!engine_.get()) {
     PrintUsageAndExit();
   }
+
+  std::string fontPath = GetOption("--font=");
+  int fontIndex = 0;
+  if (!fontPath.empty()) {
+    font_.reset(engine_->LoadFont(fontPath, fontIndex));
+    if (!font_.get()) {
+      std::cerr << "failed to load font: " << fontPath << std::endl;
+      exit(1);
+    }
+  }
 }
 
 TestHarness::~TestHarness() {
 }
 
-void TestHarness::RunTest() {
-  std::unique_ptr<TestCase> testcase;
-  std::string name = GetOption("--testcase=");
-  if (name == "AVAR-1") {
-    testcase.reset(new AVARTest(this));
-  }
-  if (testcase.get()) {
-    testcase->Run();
-  } else {
-    std::cerr << "unknown --testcase=" << name << std::endl;
-    exit(1);
-  }
-}
+void TestHarness::Run() {
+  FontVariation variation;
+  const std::string variationSpec = GetOption("--variation=");
+  ParseVariationSpec(variationSpec, &variation);
 
-Font* TestHarness::LoadFont(const std::string& filename, int faceIndex) {
-  std::string path = GetOption("--fontdir=");
-  if (!path.empty()) {
-    path.append("/");
-  }  
-  path.append(filename);
-  Font* font = engine_->LoadFont(path, faceIndex);
-  if (!font) {
-    std::cerr << "failed to load font: " << path << std::endl;
-    exit(1);
-  }
-  return font;
+  // TODO: Run the rendered string through shaping.
+  // Currently, we always render one single glyph whose glyph ID is 1.
+  // const std::string render = GetOption("--render=");
+  std::string path, viewBox;
+  font_->GetGlyphOutline(/* glyph id */ 1, variation, &path, &viewBox);
+  std::cout << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << std::endl
+	    << "<svg viewBox=\"" << viewBox << "\"><g><path d=\"" << std::endl
+	    << path << std::endl << "\"></path></g></svg>" << std::endl;
 }
 
 const std::string TestHarness::GetOption(const std::string& flag) const {
@@ -79,74 +98,36 @@ const std::string TestHarness::GetOption(const std::string& flag) const {
 void TestHarness::PrintUsageAndExit() {
   std::cerr
     << "Usage: fonttest" << std::endl
-    << "  --testcase=avar" << std::endl
-    << "  --engine={FreeType/HarfBuzz, DirectWrite, CoreText}" << std::endl
-    << "  --fontdir=path/to/testfonts" << std::endl;
+    << "  --render=Text" << std::endl
+    << "  --variation=WGHT:700;WDTH:120" << std::endl
+    << "  --testcase=AVAR-1/789" << std::endl
+    << "  --engine={Free, DirectWrite, CoreText}" << std::endl
+    << "  --font=path/to/testfont.otf" << std::endl;
   exit(1);
 }
 
-void TestHarness::StartTestCase(const std::string& testCase) {
-  std::cout
-    << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << std::endl
-    << "<TestCase name=\"" << testCase << "\"" << std::endl
-    << "          xmlns=\"https://github.com/OpenType/fonttest\""
-    << std::endl
-    << "          xmlns:svg=\"http://www.w3.org/2000/svg\">"
-    << std::endl;
+void SplitString(const std::string& text, char sep,
+                 std::vector<std::string>* result) {
+  std::size_t start = 0, limit = 0;
+  while ((limit = text.find(sep, start)) != std::string::npos) {
+    result->push_back(text.substr(start, limit - start));
+    start = limit + 1;
+  }
+  result->push_back(text.substr(start));
 }
 
-void TestHarness::ReportGlyphOutline(Font* font,
-                                     const std::string& glyphName, int glyphID,
-                                     const FontVariation& variation) {
-  std::string path, viewBox;
-  font->GetGlyphOutline(glyphID, variation, &path, &viewBox);
-  int val = 400;
-  FontVariation::const_iterator it = variation.find("TEST");
-  if (it != variation.end()) {
-    val = it->second;
+void TrimWhitespace(std::string* str) {
+  static const char* whitespace = " \t\f\v\n\r";
+  const std::size_t start = str->find_first_not_of(whitespace);
+  if (start == std::string::npos) {
+    str->clear();
+    return;
   }
-
-#if 0
-  std::cout << "  <GlyphOutline";
-  if (!glyphName.empty()) {
-    std::cout << " glyphName=\"" << glyphName << "\"";
+  str->substr(start).swap(*str);
+  const std::size_t end = str->find_last_not_of(whitespace);
+  if (end != std::string::npos) {
+    str->erase(end + 1);
   }
-  std::cout << " glyphID=\"" << glyphID << "\"";
-  if (!variation.empty()) {
-    std::cout << " variation=\"";
-    bool firstAxis = true;
-    for (FontVariation::const_iterator iter = variation.begin();
-	 iter != variation.end(); ++iter) {
-      if (!firstAxis) {
-	std::cout << ",";
-      }
-      firstAxis = false;
-      std::cout << iter->first << ":" << iter->second;
-    }
-    std::cout << "\">" << std::endl;
-  }
-#endif
-
-  std::cout
-    << "    <td class=\"expected\" ft:id=\"AVAR-1/" << val
-    << "\"" << std::endl
-    << "        ft:render=\"⨁\" ft:font=\"TestAVAR.ttf\" ft:var=\"TEST:"
-    << val << "\"" << std::endl
-    << "      <svg viewBox=\"" << viewBox << "><g><path d=\"" << std::endl
-    << "        ";
-  for (auto iter = path.begin(); iter != path.end(); ++iter) {
-    if (*iter != '\n') {
-      std::cout << *iter;
-    } else {
-      std::cout << std::endl << "        ";
-    }
-  }
-  std::cout << std::endl << "      \"></path></g></svg>" << std::endl
-	    << "    </td>" << std::endl << std::endl;
-}
-
-void TestHarness::EndTestCase() {
-  std::cout << "</TestCase>" << std::endl;
 }
 
 }  // namespace fonttest

@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import argparse, codecs, difflib, os, re, subprocess, sys
+import argparse, os, re, subprocess
 import xml.etree.ElementTree as etree
 
 
@@ -52,67 +52,51 @@ FONTTEST_NAMESPACE = '{https://github.com/OpenType/fonttest}'
 FONTTEST_ID = FONTTEST_NAMESPACE + 'id'
 FONTTEST_FONT = FONTTEST_NAMESPACE + 'font'
 FONTTEST_RENDER = FONTTEST_NAMESPACE + 'render'
-FONTTEST_VAR = FONTTEST_NAMESPACE + 'var'
+FONTTEST_VARIATION = FONTTEST_NAMESPACE + 'var'
 
 
-def check(testfile, engine):
-    doc = etree.parse(testfile).getroot()
-    for e in doc.findall(".//*[@class='expected']"):
-        testcase = e.attrib[FONTTEST_ID]
-        font = os.path.join('fonts', e.attrib[FONTTEST_FONT])
-        render = e.attrib.get(FONTTEST_RENDER)
-        var = e.attrib.get(FONTTEST_VAR)
-        expected_svg = e.find('svg')
-        for path in expected_svg.findall(".//path[@d]"):
-            path.attrib['d'] = strip_svg_path(path.attrib['d'])
-        command = ['build/Default/out/fonttest', '--font=' + font,
-                   '--testcase=' + testcase]
-        if render: command.append('--render=' + render)
-        if var: command.append('--var=' + var)
-        print command
-        #print id, font, render, var, etree.tostring(expected_svg, encoding='utf-8')
-    pass
+class ConformanceChecker:
+    def __init__(self, engine):
+        self.engine = engine
 
+    def check(self, testfile):
+        doc = etree.parse(testfile).getroot()
+        for e in doc.findall(".//*[@class='expected']"):
+            testcase = e.attrib[FONTTEST_ID]
+            font = os.path.join('fonts', e.attrib[FONTTEST_FONT])
+            render = e.attrib.get(FONTTEST_RENDER)
+            variation = e.attrib.get(FONTTEST_VARIATION)
+            expected_svg = e.find('svg')
+            self.normalize_svg(expected_svg)
+            command = ['build/out/Default/fonttest', '--font=' + font,
+                       '--testcase=' + testcase, '--engine=' + self.engine]
+            if render: command.append('--render=' + render)
+            if variation: command.append('--variation=' + variation)
+            observed = subprocess.check_output(command)
+            observed_svg = etree.fromstring(observed)
+            self.normalize_svg(observed_svg)
+            expected_str = \
+                etree.tostring(expected_svg, encoding='utf-8').strip()
+            observed_str = \
+                etree.tostring(observed_svg, encoding='utf-8').strip()
+            print testcase, expected_str == observed_str
 
-def strip_svg_path(path):
-    return re.sub(r'\s+', ' ', path).strip()
+    def normalize_svg(self, svg):
+        strip_path = lambda p: re.sub(r'\s+', ' ', p).strip()
+        for path in svg.findall(".//path[@d]"):
+            path.attrib['d'] = strip_path(path.attrib['d'])
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--engine', choices=['free', 'coretext'],
-                        default='free')
+    parser.add_argument('--engine', choices=['Free', 'CoreText'],
+                        default='Free')
     args = parser.parse_args()
-    #build()
+    build()
+    checker = ConformanceChecker(engine=args.engine)
     for filename in os.listdir('testcases'):
         if not filename.endswith('.html'): continue
-        check(os.path.join('testcases', filename), args.engine)
-    return
-    build()
-    engines = ['FreeType/HarfBuzz']
-    native_engine = {'Darwin': 'CoreText'}.get(os.uname()[0])
-    if native_engine:
-        engines.append(native_engine)
-    successes, failures = set(), set()
-    for engine in engines:
-        for filename in os.listdir('expected'):
-            if not filename.endswith('.xml'):
-                continue
-            path = os.path.join('expected', filename)
-            expected_xml = etree.parse(path).getroot()
-            testcase = expected_xml.attrib['name']
-            if check(path, testcase, engine):
-                successes.add(testcase + ' ' + engine)
-            else:
-                failures.add(testcase + ' ' + engine)
-    for s in sorted(successes): print('PASS ' + s)
-    for f in sorted(failures):  print('FAIL ' + f)
-    if len(failures) == 0:
-        print('All tests have succeeded.')
-        sys.exit(0)
-    else:
-        print('%d tests have failed.' % len(failures))
-        sys.exit(1)
+        checker.check(os.path.join('testcases', filename))
 
 
 if __name__ == '__main__':

@@ -18,13 +18,11 @@
       'type': 'executable',
       'cflags': ['-std=c++11'],
       'sources': [
-        'avar_test.cpp',
         'main.cpp',
         'font_engine.cpp',
         'fthb_engine.cpp',
         'fthb_font.cpp',
         'fthb_path.cpp',
-        'test_case.cpp',
         'test_harness.cpp',
       ],
       'include_dirs': ['..'],

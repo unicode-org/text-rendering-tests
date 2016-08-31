@@ -32,22 +32,15 @@ class TestHarness {
  public:
   TestHarness(const std::vector<std::string>& options);
   ~TestHarness();
-  void RunTest();
-  Font* LoadFont(const std::string& filename, int faceIndex);
-  FontEngine* GetEngine() const { return engine_.get(); }
-
-  void StartTestCase(const std::string& testName);
-  void ReportGlyphOutline(Font* font,
-                          const std::string& glyphName, int glyphID,
-                          const FontVariation& variation);
-  void EndTestCase();
+  void Run();
 
  private:
   const std::string GetOption(const std::string& flag) const;
   void PrintUsageAndExit();
 
   const std::vector<std::string> options_;
-  std::unique_ptr<fonttest::FontEngine> engine_;
+  std::unique_ptr<FontEngine> engine_;
+  std::unique_ptr<Font> font_;
 };
 
 }  // namespace fonttest

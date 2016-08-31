@@ -23,7 +23,7 @@
 namespace fonttest {
 
 FontEngine* FontEngine::Create(const std::string& engineName) {
-  if (engineName == "FreeType/HarfBuzz") {
+  if (engineName == "Free") {
     return new FreeTypeHarfBuzzEngine();
   }
 
