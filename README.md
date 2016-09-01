@@ -1,21 +1,42 @@
 # FontTest
 
-This is an early sketch for how an OpenType test suite might look like.
+This is a very early draft for what might become some day an OpenType
+test suite. The purpose of this test suite is to make sure that all
+OpenType implementations render fonts in a reasonably similar
+way. Currently, the test suite is very much in its infancy, so please
+don’t be disappointed if you don’t find much. Of course you are more
+than welcome to help; just send a pull request.
 
 ```bash
 $ git clone --recursive https://github.com/brawer/fonttest.git && cd fonttest
-$ python check.py --output=report.html --engine=FreeStack
-PASS
+$ python check.py --output=[report.html](reports/) --engine=FreeStack
 ```
 
-With `--engine=FreeStack`, the tests are run on the free/libre
-open-source text rendering stack that consists of the FreeType, HarfBuzz,
-and Raqm. If you pass `--engine=CoreText`, the tests are run on Apple’s
-CoreText.
 
-If you pass `--output=report.html`, the test suite will generate a
-[test report](reports/fake-fail.html) that shows what was tested,
+## Supported Platforms
+
+Currently, the test suite supports only two OpenType implementations:
+
+* With `--engine=FreeStack`, the tests are run on the free/libre
+open-source text rendering stack with [FreeType](https://www.freetype.org/),
+[HarfBuzz](https://www.freedesktop.org/wiki/Software/HarfBuzz/),
+and [Raqm](https://github.com/HOST-Oman/libraqm). These libraries
+are used by Linux, Android, ChromeOS, and many other systems.
+
+* With `--engine=CoreText`, the tests are run on Apple’s CoreText.
+This option will work only if you run the test suite on MacOS X.
+
+If you’d like to test another OpenType implementation, please go ahead.
+
+
+## Generated Reports
+
+When you pass `--output=report.html`, the test suite will generate a
+[test report](reports/fake-fail.html) that explains what was tested,
 which tests have passed, and which ones have failed.
+
+
+## Test Cases
 
 The test cases are defined in the [testcases](testcases/) directory.
 It contains HTML snippets which describe each test, and define the
