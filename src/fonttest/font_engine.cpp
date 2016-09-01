@@ -14,7 +14,7 @@
  */
 
 #include "fonttest/font_engine.h"
-#include "fonttest/fthb_engine.h"
+#include "fonttest/freestack_engine.h"
 
 #ifdef HAVE_CORETEXT
 #  include "fonttest/coretext_engine.h"
@@ -23,8 +23,8 @@
 namespace fonttest {
 
 FontEngine* FontEngine::Create(const std::string& engineName) {
-  if (engineName == "Free") {
-    return new FreeTypeHarfBuzzEngine();
+  if (engineName == "FreeStack") {
+    return new FreeStackEngine();
   }
 
 #ifdef HAVE_CORETEXT
@@ -33,9 +33,11 @@ FontEngine* FontEngine::Create(const std::string& engineName) {
   }
 #endif  // HAVE_CORETEXT
 
+#ifdef HAVE_DIRECTWRITE
   if (engineName == "DirectWrite") {
-    // TODO: Implement a DirectWrite engine.
+    return new DirectWriteEngine();
   }
+#endif  // HAVE_DIRECTWRITE
 
   return NULL;
 }

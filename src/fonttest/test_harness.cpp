@@ -99,7 +99,7 @@ void TestHarness::PrintUsageAndExit() {
     << "  --render=Text" << std::endl
     << "  --variation=WGHT:700;WDTH:120" << std::endl
     << "  --testcase=AVAR-1/789" << std::endl
-    << "  --engine={Free, DirectWrite, CoreText}" << std::endl
+    << "  --engine={FreeStack, DirectWrite, CoreText}" << std::endl
     << "  --font=path/to/testfont.otf" << std::endl;
   exit(1);
 }

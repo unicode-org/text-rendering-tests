@@ -89,8 +89,9 @@ class ConformanceChecker:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--engine', choices=['Free', 'CoreText'],
-                        default='Free')
+    parser.add_argument('--engine',
+                        choices=['FreeStack', 'CoreText', 'DirectWrite'],
+                        default='FreeStack')
     args = parser.parse_args()
     build()
     checker = ConformanceChecker(engine=args.engine)

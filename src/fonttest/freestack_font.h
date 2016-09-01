@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef FONTTEST_FTHB_FONT_H_
-#define FONTTEST_FTHB_FONT_H_
+#ifndef FONTTEST_FREESTACK_FONT_H_
+#define FONTTEST_FREESTACK_FONT_H_
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -24,10 +24,10 @@
 
 namespace fonttest {
 
-class FreeTypeHarfBuzzFont : public Font {
+class FreeStackFont : public Font {
  public:
-  FreeTypeHarfBuzzFont(FT_Face face);
-  ~FreeTypeHarfBuzzFont();
+  FreeStackFont(FT_Face face);
+  ~FreeStackFont();
 
   virtual void GetGlyphOutline(int glyphID, const FontVariation& variation,
                                std::string* path, std::string* viewBox);
@@ -38,4 +38,4 @@ class FreeTypeHarfBuzzFont : public Font {
 
 }  // namespace fonttest
 
-#endif  // FONTTEST_FTHB_FONT_H_
+#endif  // FONTTEST_FREESTACK_FONT_H_

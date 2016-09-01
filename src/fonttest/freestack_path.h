@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef FONTTEST_FTHB_PATH_H_
-#define FONTTEST_FTHB_PATH_H_
+#ifndef FONTTEST_FREESTACK_PATH_H_
+#define FONTTEST_FREESTACK_PATH_H_
 
 #include <string>
 
@@ -52,4 +52,4 @@ class FreeTypePathConverter {
 
 }  // namespace fonttest
 
-#endif  // FONTTEST_FTHB_PATH_H_
+#endif  // FONTTEST_FREESTACK_PATH_H_

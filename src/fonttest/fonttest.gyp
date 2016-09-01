@@ -20,9 +20,9 @@
       'sources': [
         'main.cpp',
         'font_engine.cpp',
-        'fthb_engine.cpp',
-        'fthb_font.cpp',
-        'fthb_path.cpp',
+        'freestack_engine.cpp',
+        'freestack_font.cpp',
+        'freestack_path.cpp',
         'test_harness.cpp',
       ],
       'include_dirs': ['..'],

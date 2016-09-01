@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef FONTTEST_FTHB_ENGINE_H_
-#define FONTTEST_FTHB_ENGINE_H_
+#ifndef FONTTEST_FREESTACK_ENGINE_H_
+#define FONTTEST_FREESTACK_ENGINE_H_
 
 #include <map>
 #include <string>
@@ -25,15 +25,14 @@
 #include FT_TRUETYPE_TABLES_H
 #include FT_TYPES_H
 
+#include "fonttest/font.h"
+
 namespace fonttest {
 
-class Font;
-typedef std::map<std::string, double> FontVariation;  // "WGHT" -> 400.0
-
-class FreeTypeHarfBuzzEngine : public FontEngine {
+class FreeStackEngine : public FontEngine {
  public:
-  FreeTypeHarfBuzzEngine();
-  ~FreeTypeHarfBuzzEngine();
+  FreeStackEngine();
+  ~FreeStackEngine();
   virtual std::string GetName() const;
   virtual Font* LoadFont(const std::string& path, int faceIndex);
 
@@ -51,4 +50,4 @@ class FreeTypeHarfBuzzEngine : public FontEngine {
 }  // namespace fonttest
 
 
-#endif  // FONTTEST_FTHB_ENGINE_H_
+#endif  // FONTTEST_FREESTACK_ENGINE_H_

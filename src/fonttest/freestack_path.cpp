@@ -22,7 +22,7 @@
 #include FT_IMAGE_H
 #include FT_OUTLINE_H
 
-#include "fonttest/fthb_path.h"
+#include "fonttest/freestack_path.h"
 
 namespace fonttest {
 

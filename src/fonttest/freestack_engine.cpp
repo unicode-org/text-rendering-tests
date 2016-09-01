@@ -14,27 +14,27 @@
  */
 
 #include "fonttest/font_engine.h"
-#include "fonttest/fthb_engine.h"
-#include "fonttest/fthb_font.h"
+#include "fonttest/freestack_engine.h"
+#include "fonttest/freestack_font.h"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
 namespace fonttest {
 
-FreeTypeHarfBuzzEngine::FreeTypeHarfBuzzEngine() {
+FreeStackEngine::FreeStackEngine() {
   FT_Init_FreeType(&freeTypeLibrary_);
 }
 
-FreeTypeHarfBuzzEngine::~FreeTypeHarfBuzzEngine() {
+FreeStackEngine::~FreeStackEngine() {
   FT_Done_FreeType(freeTypeLibrary_);
 }
 
-std::string FreeTypeHarfBuzzEngine::GetName() const {
+std::string FreeStackEngine::GetName() const {
   return "FreeType/HarfBuzz";
 }
 
-Font* FreeTypeHarfBuzzEngine::LoadFont(
+Font* FreeStackEngine::LoadFont(
     const std::string& path, int faceIndex) {
   FT_Face face = NULL;
   FT_Error error = FT_New_Face(freeTypeLibrary_, path.c_str(),
@@ -43,14 +43,14 @@ Font* FreeTypeHarfBuzzEngine::LoadFont(
     return NULL;
   }
 
-  return new FreeTypeHarfBuzzFont(face);
+  return new FreeStackFont(face);
 }
 
-bool FreeTypeHarfBuzzEngine::RenderSVG(const std::string& text,
-                                       const std::string& textLanguage,
-                                       Font* font, double fontSize,
-                                       const FontVariation& fontVariation,
-                                       std::string* svg) {
+bool FreeStackEngine::RenderSVG(const std::string& text,
+                                const std::string& textLanguage,
+                                Font* font, double fontSize,
+                                const FontVariation& fontVariation,
+                                std::string* svg) {
   svg->clear();
   std::string path, viewBox;
   font->GetGlyphOutline(/* glyph id */ 1, fontVariation, &path, &viewBox);
