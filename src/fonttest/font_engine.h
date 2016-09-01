@@ -16,16 +16,25 @@
 #ifndef FONTTEST_FONT_ENGINE_H_
 #define FONTTEST_FONT_ENGINE_H_
 
+#include <map>
 #include <string>
 
 namespace fonttest {
 class Font;
+typedef std::map<std::string, double> FontVariation;  // "WGHT" -> 400.0
 
 class FontEngine {
  public:
   static FontEngine* Create(const std::string& engineName);
   virtual std::string GetName() const = 0;
   virtual Font* LoadFont(const std::string& path, int faceIndex) = 0;
+
+  // Renders a line of text into an SVG document.
+  virtual bool RenderSVG(const std::string& text,
+                         const std::string& textLanguage,
+                         Font* font, double fontSize,
+                         const FontVariation& fontVariation,
+                         std::string* svg) = 0;
 };
 
 }  // namespace fonttest

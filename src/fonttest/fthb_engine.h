@@ -16,6 +16,9 @@
 #ifndef FONTTEST_FTHB_ENGINE_H_
 #define FONTTEST_FTHB_ENGINE_H_
 
+#include <map>
+#include <string>
+
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include FT_MULTIPLE_MASTERS_H
@@ -24,12 +27,22 @@
 
 namespace fonttest {
 
+class Font;
+typedef std::map<std::string, double> FontVariation;  // "WGHT" -> 400.0
+
 class FreeTypeHarfBuzzEngine : public FontEngine {
  public:
   FreeTypeHarfBuzzEngine();
   ~FreeTypeHarfBuzzEngine();
   virtual std::string GetName() const;
   virtual Font* LoadFont(const std::string& path, int faceIndex);
+
+  // Renders a line of text into an SVG document.
+  virtual bool RenderSVG(const std::string& text,
+                         const std::string& textLanguage,
+                         Font* font, double fontSize,
+                         const FontVariation& fontVariation,
+                         std::string* svg);
 
  private:
   FT_Library freeTypeLibrary_;

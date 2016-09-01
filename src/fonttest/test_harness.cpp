@@ -72,18 +72,16 @@ TestHarness::~TestHarness() {
 }
 
 void TestHarness::Run() {
-  FontVariation variation;
+  FontVariation fontVariation;
   const std::string variationSpec = GetOption("--variation=");
-  ParseVariationSpec(variationSpec, &variation);
-
-  // TODO: Run the rendered string through shaping.
-  // Currently, we always render one single glyph whose glyph ID is 1.
-  // const std::string render = GetOption("--render=");
-  std::string path, viewBox;
-  font_->GetGlyphOutline(/* glyph id */ 1, variation, &path, &viewBox);
-  std::cout << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << std::endl
-	    << "<svg viewBox=\"" << viewBox << "\"><g><path d=\"" << std::endl
-	    << path << std::endl << "\"></path></g></svg>" << std::endl;
+  ParseVariationSpec(variationSpec, &fontVariation);
+  const std::string text = GetOption("--render=");
+  const std::string textLanguage = GetOption("--textLanguage=");
+  const double fontSize = 1000.0;
+  std::string svg;
+  engine_->RenderSVG(text, textLanguage, font_.get(), fontSize, fontVariation,
+                     &svg);
+  std::cout << svg;
 }
 
 const std::string TestHarness::GetOption(const std::string& flag) const {

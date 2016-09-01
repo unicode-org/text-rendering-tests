@@ -16,12 +16,14 @@
 #include <stdio.h>
 
 #include <CoreFoundation/CoreFoundation.h>
+#include <CoreGraphics/CoreGraphics.h>
 #include <CoreText/CoreText.h>
 #include <Foundation/Foundation.h>
 
 #include "fonttest/font_engine.h"
 #include "fonttest/coretext_engine.h"
 #include "fonttest/coretext_font.h"
+#include "fonttest/coretext_line.h"
 
 namespace fonttest {
 
@@ -36,10 +38,31 @@ std::string CoreTextEngine::GetName() const {
 }
 
 Font* CoreTextEngine::LoadFont(const std::string& path, int faceIndex) {
-  NSString* nsPath = [NSString stringWithUTF8String:path.c_str()];
-  NSURL* nsUrl = [NSURL fileURLWithPath:nsPath];
-  CFURLRef url = static_cast<CFURLRef>(nsUrl);
+  // Before MacOS 10.12, CoreText did not support variations on fonts
+  // loaded from memory unless the CTFont was converted from a CGFont.
+  // However, CGFonts can only be created from the first font in
+  // a font container file. Therefore, we go via CoreGraphics
+  // for faceIndex 0, and directly to CoreText for the others.
+  if (faceIndex == 0) {
+    CGDataProviderRef provider =
+        CGDataProviderCreateWithFilename(path.c_str());
+    if (!provider) {
+      return NULL;
+    }
 
+    CGFontRef font = CGFontCreateWithDataProvider(provider);
+    CGDataProviderRelease(provider);
+    if (font == NULL) {
+      return NULL;
+    }
+
+    return new CoreTextFont(font);
+  }
+
+  CFURLRef url = CFURLCreateFromFileSystemRepresentation(
+      kCFAllocatorDefault,
+      reinterpret_cast<const UInt8*>(path.c_str()), path.length(),
+      /* not a directory */ false);
   CFArrayRef fonts = CTFontManagerCreateFontDescriptorsFromURL(url);
   if (!fonts) {
     return NULL;
@@ -51,14 +74,36 @@ Font* CoreTextEngine::LoadFont(const std::string& path, int faceIndex) {
     return NULL;
   }
 
-  Font* font = NULL;
+  Font* result = NULL;
   CTFontDescriptorRef fontDesc = static_cast<CTFontDescriptorRef>(
       CFArrayGetValueAtIndex(fonts, faceIndex));
   if (fontDesc) {
-    font = new CoreTextFont(fontDesc);
+    result = new CoreTextFont(fontDesc);
   }
   CFRelease(fonts);
-  return font;
+  return result;
+}
+
+bool CoreTextEngine::RenderSVG(const std::string& text,
+                               const std::string& textLanguage,
+                               Font* font, double fontSize,
+                               const FontVariation& fontVariation,
+                               std::string* svg) {
+  CoreTextFont* myFont = static_cast<CoreTextFont*>(font);
+  CTFontRef ctFont = myFont->CreateFont(fontSize, fontVariation);
+  CoreTextLine line(text, textLanguage,
+                    myFont->CreateFont(fontSize, fontVariation));
+  line.RenderSVG(svg);
+  svg->clear();
+  std::string path, viewBox;
+  font->GetGlyphOutline(/* glyph id */ 1, fontVariation, &path, &viewBox);
+  svg->append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+	      "<svg viewBox=\"");
+  svg->append(viewBox);
+  svg->append("\"><g><path d=\"\n");
+  svg->append(path);
+  svg->append("\n\"></path></g></svg>\n");
+  return true;
 }
 
 }  // namespace fonttest

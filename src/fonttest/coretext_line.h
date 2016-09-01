@@ -13,29 +13,28 @@
  * limitations under the License.
  */
 
-#ifndef FONTTEST_CORETEXT_ENGINE_H_
-#define FONTTEST_CORETEXT_ENGINE_H_
+#ifndef FONTTEST_CORETEXT_LINE_H_
+#define FONTTEST_CORETEXT_LINE_H_
+
+#include <string>
+#include <CoreText/CoreText.h>
 
 #include "fonttest/font.h"
 
 namespace fonttest {
 
-class CoreTextEngine : public FontEngine {
+class CoreTextLine {
  public:
-  CoreTextEngine();
-  ~CoreTextEngine();
-  virtual std::string GetName() const;
-  virtual Font* LoadFont(const std::string& path, int faceIndex);
+  CoreTextLine(const std::string& text, const std::string& textLanguage,
+               CTFontRef font);
+  ~CoreTextLine();
+  bool RenderSVG(std::string* svg);
 
-  // Renders a line of text into an SVG document.
-  virtual bool RenderSVG(const std::string& text,
-                         const std::string& textLanguage,
-                         Font* font, double fontSize,
-                         const FontVariation& fontVariation,
-                         std::string* svg);
+ private:
+  CTFontRef font_;
+  CTLineRef line_;
 };
 
 }  // namespace fonttest
 
-
-#endif  // FONTTEST_CORETEXT_ENGINE_H_
+#endif  // FONTTEST_CORETEXT_LINE_H_

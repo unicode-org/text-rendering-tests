@@ -36,6 +36,7 @@
             'sources': [
               'coretext_engine.mm',
               'coretext_font.mm',
+              'coretext_line.mm',
               'coretext_path.mm',
             ],
             'link_settings': {

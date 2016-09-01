@@ -17,6 +17,7 @@
 #define FONTTEST_CORETEXT_FONT_H_
 
 #include <string>
+#include <CoreGraphics/CoreGraphics.h>
 #include <CoreText/CoreText.h>
 
 #include "fonttest/font.h"
@@ -26,15 +27,19 @@ namespace fonttest {
 class CoreTextFont : public Font {
  public:
   CoreTextFont(CTFontDescriptorRef fontDescriptor);
+  CoreTextFont(CGFontRef cgFont);
   ~CoreTextFont();
+
+  CTFontRef CreateFont(double size, const FontVariation& variation);
 
   virtual void GetGlyphOutline(int glyphID, const FontVariation& variation,
                                std::string* path, std::string* viewBox);
 
  private:
+  CGFontRef cgFont_;
   CTFontDescriptorRef fontDescriptor_;
 };
 
 }  // namespace fonttest
 
-#endif  // FONTTEST_FTHB_FONT_H_
+#endif  // FONTTEST_CORETEXT_FONT_H_

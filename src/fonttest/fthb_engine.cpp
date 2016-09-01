@@ -46,4 +46,21 @@ Font* FreeTypeHarfBuzzEngine::LoadFont(
   return new FreeTypeHarfBuzzFont(face);
 }
 
+bool FreeTypeHarfBuzzEngine::RenderSVG(const std::string& text,
+                                       const std::string& textLanguage,
+                                       Font* font, double fontSize,
+                                       const FontVariation& fontVariation,
+                                       std::string* svg) {
+  svg->clear();
+  std::string path, viewBox;
+  font->GetGlyphOutline(/* glyph id */ 1, fontVariation, &path, &viewBox);
+  svg->append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+	      "<svg viewBox=\"");
+  svg->append(viewBox);
+  svg->append("\"><g><path d=\"\n");
+  svg->append(path);
+  svg->append("\n\"></path></g></svg>\n");
+  return true;
+}
+
 }  // namespace fonttest

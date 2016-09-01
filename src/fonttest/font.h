@@ -21,7 +21,7 @@
 
 namespace fonttest {
 
-typedef std::map<std::string, double> FontVariation;  // WGHT -> 400.0
+typedef std::map<std::string, double> FontVariation;  // "WGHT" -> 400.0
 
 class Font {
  public:
