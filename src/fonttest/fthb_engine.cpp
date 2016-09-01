@@ -59,7 +59,7 @@ bool FreeTypeHarfBuzzEngine::RenderSVG(const std::string& text,
   svg->append(viewBox);
   svg->append("\"><g><path d=\"\n");
   svg->append(path);
-  svg->append("\n\"></path></g></svg>\n");
+  svg->append("\"></path></g></svg>\n");
   return true;
 }
 

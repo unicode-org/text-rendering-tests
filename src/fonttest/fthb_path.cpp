@@ -34,6 +34,9 @@ FreeTypePathConverter::~FreeTypePathConverter() {
 
 std::string FreeTypePathConverter::Convert(FT_Outline* outline) {
   path_.clear();
+  start_.x = start_.y = 0;
+  closed_ = true;
+
   FT_Outline_Funcs callbacks;
   callbacks.move_to = &FreeTypePathConverter::MoveToCallback;
   callbacks.line_to = &FreeTypePathConverter::LineToCallback;
@@ -48,51 +51,52 @@ std::string FreeTypePathConverter::Convert(FT_Outline* outline) {
 	      << std::endl;
     exit(1);
   }
-  if (!path_.empty()) {
-    path_.append("\nZ");
+  if (!closed_) {
+    path_.append("Z\n");
   }
   return path_;
 }
 
 void FreeTypePathConverter::MoveTo(const FT_Vector& to) {
-  if (!path_.empty()) {
-    path_.append("\nZ\n");
+  if (!closed_) {
+    path_.append("Z\n");
   }
   char buffer[200];
-  snprintf(buffer, sizeof(buffer), "M %ld,%ld", to.x, to.y);
+  snprintf(buffer, sizeof(buffer), "M %ld,%ld\n", to.x, to.y);
   path_.append(buffer);
+  start_ = to;
+  closed_ = false;
 }
 
 void FreeTypePathConverter::LineTo(const FT_Vector& to) {
-  if (!path_.empty()) {
-    path_.append("\n");
+  if (to.x == start_.x && to.y == start_.y) {
+    path_.append("Z\n");
+    closed_ = true;
+    return;
   }
   char buffer[200];
-  snprintf(buffer, sizeof(buffer), "L %ld,%ld", to.x, to.y);
+  snprintf(buffer, sizeof(buffer), "L %ld,%ld\n", to.x, to.y);
   path_.append(buffer);
+  closed_ = false;
 }
 
 void FreeTypePathConverter::QuadTo(const FT_Vector& control,
                                    const FT_Vector& to) {
-  if (!path_.empty()) {
-    path_.append("\n");
-  }
   char buffer[200];
-  snprintf(buffer, sizeof(buffer), "Q %ld,%ld %ld,%ld",
+  snprintf(buffer, sizeof(buffer), "Q %ld,%ld %ld,%ld\n",
 	   control.x, control.y, to.x, to.y);
   path_.append(buffer);
+  closed_ = false;
 }
 
 void FreeTypePathConverter::CurveTo(const FT_Vector& control1,
                                     const FT_Vector& control2,
                                     const FT_Vector& to) {
-  if (!path_.empty()) {
-    path_.append("\n");
-  }
   char buffer[200];
-  snprintf(buffer, sizeof(buffer), "C %ld,%ld %ld,%ld %ld,%ld",
+  snprintf(buffer, sizeof(buffer), "C %ld,%ld %ld,%ld %ld,%ld\n",
 	   control1.x, control1.y, control2.x, control2.y, to.x, to.y);
   path_.append(buffer);
+  closed_ = false;
 }
 
 

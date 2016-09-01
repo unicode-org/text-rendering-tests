@@ -46,6 +46,8 @@ class FreeTypePathConverter {
                              const FT_Vector* to, void* data);
 
   std::string path_;
+  FT_Vector start_;
+  bool closed_;
 };
 
 }  // namespace fonttest
