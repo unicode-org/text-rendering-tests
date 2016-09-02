@@ -33,6 +33,10 @@ static void SplitString(const std::string& text, char sep,
 
 static void ParseVariationSpec(const std::string& spec,
                                FontVariation* variation) {
+  if (spec.empty()) {
+    return;
+  }
+
   std::vector<std::string> v;
   SplitString(spec, ';', &v);
   for (const std::string& item : v) {
