@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ft="https://github.com/OpenType/fonttest">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn|Vollkorn:i"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<h3 id="KERN-1">KERN–1</h3>
+
+<div class="desc">
+  The font for this test case contains a <em>‘kern’</em> table of
+  format 0, which in turns contains a single format 0 subtable.
+  Without kerning, the glyphs for <em>T</em>, <em>u</em> and the
+  dotless <em>ı</em> will look like normal letters. However, if the
+  OpenType implementation correctly applies the font’s kerning data,
+  the shapes will join to form a geometric pattern.  If you can still
+  discern the original letters <em>ıTuTuTı</em> in the rendering,
+  it’s a sign that the implementation fails to correctly handle kerning.
+</div>
+
+<table>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="KERN-1/1"
+        ft:render="ıTuTuTı" ft:font="TestKERNOne.otf">
+      <svg viewBox="0 -201 1800 1201"><g><path d="M 50,0 L 150,0 L 150,500 L 50,500 Z M 50,500 L 150,500 L 150,600 L 250,600 L 250,0 L 350,0 L 350,600 L 450,600 L 450,500 L 550,500 L 550,700 L 50,700 Z M 450,0 L 750,0 L 750,500 L 650,500 L 650,100 L 550,100 L 550,500 L 450,500 Z M 650,500 L 750,500 L 750,600 L 850,600 L 850,0 L 950,0 L 950,600 L 1050,600 L 1050,500 L 1150,500 L 1150,700 L 650,700 Z M 1050,0 L 1350,0 L 1350,500 L 1250,500 L 1250,100 L 1150,100 L 1150,500 L 1050,500 Z M 1250,500 L 1350,500 L 1350,600 L 1450,600 L 1450,0 L 1550,0 L 1550,600 L 1650,600 L 1650,500 L 1750,500 L 1750,700 L 1250,700 Z M 1650,0 L 1750,0 L 1750,500 L 1650,500 Z" /></g></svg>
+    </td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="KERN-1/1"/>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="KERN-1/1"/>
+  </tr>
+
+</table>
+
+</body>
+</html>

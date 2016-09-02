@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ft="https://github.com/OpenType/fonttest">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn|Vollkorn:i"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<h3 id="KERN-2">KERN–2</h3>
+
+<div class="desc">
+  Although kerning is typically <em>reducing</em> space between
+  letter pairs, it’s entirely valid for a font to <em>increase</em> it.
+  This test verifies that an OpenType implementation can handle
+  such kerning tables. If the implementation works correctly,
+  you should see four groups separated by whitespace.
+</div>
+
+<table>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="KERN-2/1"
+        ft:render="uııTııTııu" ft:font="TestKERNOne.otf">
+      <svg viewBox="0 -201 3900 1201"><g><path d="M 50,0 L 350,0 L 350,500 L 250,500 L 250,100 L 150,100 L 150,500 L 50,500 Z M 450,0 L 550,0 L 550,500 L 450,500 Z M 1150,0 L 1250,0 L 1250,500 L 1150,500 Z M 1150,500 L 1250,500 L 1250,600 L 1350,600 L 1350,0 L 1450,0 L 1450,600 L 1550,600 L 1550,500 L 1650,500 L 1650,700 L 1150,700 Z M 1550,0 L 1650,0 L 1650,500 L 1550,500 Z M 2250,0 L 2350,0 L 2350,500 L 2250,500 Z M 2250,500 L 2350,500 L 2350,600 L 2450,600 L 2450,0 L 2550,0 L 2550,600 L 2650,600 L 2650,500 L 2750,500 L 2750,700 L 2250,700 Z M 2650,0 L 2750,0 L 2750,500 L 2650,500 Z M 3350,0 L 3450,0 L 3450,500 L 3350,500 Z M 3550,0 L 3850,0 L 3850,500 L 3750,500 L 3750,100 L 3650,100 L 3650,500 L 3550,500 Z" /></g></svg>
+    </td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="KERN-2/1"/>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="KERN-2/1"/>
+  </tr>
+
+</table>
+
+</body>
+</html>
