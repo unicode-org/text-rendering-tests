@@ -32,9 +32,6 @@ static CFAttributedStringRef CreateAttrString(CFStringRef string,
       &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
   CFAttributedStringRef attrString =
       CFAttributedStringCreate(kCFAllocatorDefault, string, attributes);
-
-  // TODO: We're seeing Lucida Grande here?!?!
-  // printf("*** %s\n", [[attributes description] UTF8String]);
   CFRelease(attributes);
   return attrString;
 }
@@ -57,13 +54,59 @@ CoreTextLine::~CoreTextLine() {
 }
 
 bool CoreTextLine::RenderSVG(std::string* svg) {
-  CFArrayRef glyphRuns = CTLineGetGlyphRuns(line_);
+  std::string svgPath;
   CGFloat ascent, descent, leading;
   double width =
       CTLineGetTypographicBounds(line_, &ascent, &descent, &leading);
-  // TODO: Why are we seeing Lucida Grande instead of our own font?!?!
-  // printf("*** %s\n", [[glyphRuns description] UTF8String]);
+  CFArrayRef runs = CTLineGetGlyphRuns(line_);
+  CFIndex numRuns = CFArrayGetCount(runs);
+  for (CFIndex runIndex = 0; runIndex < numRuns; ++runIndex) {
+    CTRunRef run =
+      static_cast<CTRunRef>(CFArrayGetValueAtIndex(runs, runIndex));
+    CFIndex numGlyphs = CTRunGetGlyphCount(run);
+    CFDictionaryRef attrs = CTRunGetAttributes(run);
+    if (numGlyphs == 0 || !attrs) {
+      continue;
+    }
+
+    CTFontRef font = static_cast<CTFontRef>(
+        CFDictionaryGetValue(attrs, kCTFontAttributeName));
+    if (!font) {
+      continue;
+    }
+
+    CGAffineTransform transform = CTRunGetTextMatrix(run);
+    CGGlyph glyphs[numGlyphs];
+    CGPoint pos[numGlyphs];
+    CFRange fullRange;
+    fullRange.location = 0;
+    fullRange.length = 0;  // length 0 means until end of run
+    CTRunGetGlyphs(run, fullRange, glyphs);
+    CTRunGetPositions(run, fullRange, pos);
+    for (CFIndex i = 0; i < numGlyphs; ++i) {
+      transform.tx = pos[i].x;
+      transform.ty = pos[i].y;
+      CGPathRef path =
+          CTFontCreatePathForGlyph(font, glyphs[i], &transform);
+      if (path) {
+        svgPath.append(CoreTextPath(path).ToSVGPath());
+        CGPathRelease(path);
+      }
+    }
+  }
+
   svg->clear();
+  svg->append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+	      "<svg viewBox=\"");
+  char viewBox[200];
+  descent = descent + 1;  // TODO
+  snprintf(viewBox, sizeof(viewBox), "%ld %ld %ld %ld",
+           static_cast<long>(0), static_cast<long>(-descent),
+           static_cast<long>(width), static_cast<long>(ascent + descent));
+  svg->append(viewBox);
+  svg->append("\"><g><path d=\"\n");
+  svg->append(svgPath);
+  svg->append("\n\"></path></g></svg>\n");
   return true;
 }
 

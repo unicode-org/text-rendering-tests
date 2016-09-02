@@ -91,19 +91,10 @@ bool CoreTextEngine::RenderSVG(const std::string& text,
                                std::string* svg) {
   CoreTextFont* myFont = static_cast<CoreTextFont*>(font);
   CTFontRef ctFont = myFont->CreateFont(fontSize, fontVariation);
-  CoreTextLine line(text, textLanguage,
-                    myFont->CreateFont(fontSize, fontVariation));
-  line.RenderSVG(svg);
-  svg->clear();
-  std::string path, viewBox;
-  font->GetGlyphOutline(/* glyph id */ 1, fontVariation, &path, &viewBox);
-  svg->append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-	      "<svg viewBox=\"");
-  svg->append(viewBox);
-  svg->append("\"><g><path d=\"\n");
-  svg->append(path);
-  svg->append("\n\"></path></g></svg>\n");
-  return true;
+  CoreTextLine line(text, textLanguage, ctFont);
+  bool ok = line.RenderSVG(svg);
+  CFRelease(ctFont);
+  return ok;
 }
 
 }  // namespace fonttest
