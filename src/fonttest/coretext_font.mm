@@ -182,7 +182,7 @@ void CoreTextFont::GetGlyphOutline(int glyphID, const FontVariation& variation,
   CGGlyph glyphs[1];
   glyphs[0] = static_cast<CGGlyph>(glyphID);
   CGSize advances[1];
-  CTFontGetAdvancesForGlyphs(font, kCTFontHorizontalOrientation, glyphs,
+  CTFontGetAdvancesForGlyphs(font, kCTFontOrientationHorizontal, glyphs,
                              advances, 1);
   char buffer[200];
   snprintf(buffer, sizeof(buffer), "%ld %ld %ld %ld",
