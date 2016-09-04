@@ -26,13 +26,14 @@ namespace fonttest {
 class CoreTextLine {
  public:
   CoreTextLine(const std::string& text, const std::string& textLanguage,
-               CTFontRef font);
+               CTFontRef font, double fontSize);
   ~CoreTextLine();
   bool RenderSVG(std::string* svg);
 
  private:
   CTFontRef font_;
   CTLineRef line_;
+  double fontSize_;
 };
 
 }  // namespace fonttest

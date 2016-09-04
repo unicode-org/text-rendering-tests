@@ -91,7 +91,7 @@ bool CoreTextEngine::RenderSVG(const std::string& text,
                                std::string* svg) {
   CoreTextFont* myFont = static_cast<CoreTextFont*>(font);
   CTFontRef ctFont = myFont->CreateFont(fontSize, fontVariation);
-  CoreTextLine line(text, textLanguage, ctFont);
+  CoreTextLine line(text, textLanguage, ctFont, fontSize);
   bool ok = line.RenderSVG(svg);
   CFRelease(ctFont);
   return ok;

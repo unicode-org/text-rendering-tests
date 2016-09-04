@@ -36,10 +36,26 @@ static CFAttributedStringRef CreateAttrString(CFStringRef string,
   return attrString;
 }
 
+static bool HasTable(CTFontRef font, CTFontTableTag tableTag) {
+  bool result = false;
+  CFArrayRef tables =
+      CTFontCopyAvailableTables(font, kCTFontTableOptionNoOptions);
+  CFIndex numTables =  CFArrayGetCount(tables);
+  for (CFIndex i = 0; i < numTables; ++i) {
+    if (reinterpret_cast<uintptr_t>(CFArrayGetValueAtIndex(tables, i))
+        == static_cast<uintptr_t>(tableTag)) {
+      result = true;
+      break;
+    }
+  }
+  CFRelease(tables);
+  return result;
+}
+
 CoreTextLine::CoreTextLine(const std::string& text,
                            const std::string& textLanguage,
-                           CTFontRef font)
-  : font_(font), line_(NULL) {
+                           CTFontRef font, double fontSize)
+  : font_(font), line_(NULL), fontSize_(fontSize) {
   CFRetain(font_);
   CFStringRef string = CFStringCreateWithCString(
       kCFAllocatorDefault, text.c_str(), kCFStringEncodingUTF8);
@@ -58,6 +74,17 @@ bool CoreTextLine::RenderSVG(std::string* svg) {
   CGFloat ascent, descent, leading;
   double width =
       CTLineGetTypographicBounds(line_, &ascent, &descent, &leading);
+
+  // CoreText seems to have a off-by-one error when converting typographic
+  // descents, but strangely it only happens with TrueType fonts.
+  // The problem has been reported to Apple. We’re working around it here
+  // because it would make very many test cases fail, which might arguably
+  // be the correct thing to do, but it would possibly hide other errors
+  // which can have a larger impact than a descent value that is of by 0.1%.
+  if (HasTable(font_, kCTFontTableGlyf)) {
+    descent = descent + (fontSize_ / CTFontGetUnitsPerEm(font_));
+  }
+
   CFArrayRef runs = CTLineGetGlyphRuns(line_);
   CFIndex numRuns = CFArrayGetCount(runs);
   for (CFIndex runIndex = 0; runIndex < numRuns; ++runIndex) {
@@ -99,7 +126,6 @@ bool CoreTextLine::RenderSVG(std::string* svg) {
   svg->append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 	      "<svg viewBox=\"");
   char viewBox[200];
-  descent = descent + 1;  // TODO
   snprintf(viewBox, sizeof(viewBox), "%ld %ld %ld %ld",
            static_cast<long>(0), static_cast<long>(-descent),
            static_cast<long>(width), static_cast<long>(ascent + descent));
