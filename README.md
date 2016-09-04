@@ -20,6 +20,7 @@ Currently, the test suite supports only two OpenType implementations:
 * With `--engine=FreeStack`, the tests are run on the free/libre
 open-source text rendering stack with [FreeType](https://www.freetype.org/),
 [HarfBuzz](https://www.freedesktop.org/wiki/Software/HarfBuzz/),
+[FriBidi](https://www.fribidi.org/),
 and [Raqm](https://github.com/HOST-Oman/libraqm). These libraries
 are used by Linux, Android, ChromeOS, and many other systems.
 
