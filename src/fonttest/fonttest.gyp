@@ -30,6 +30,7 @@
         '../third_party/freetype/freetype.gyp:freetype',
         '../third_party/fribidi/fribidi.gyp:fribidi',
         '../third_party/harfbuzz/harfbuzz.gyp:harfbuzz',
+        '../third_party/raqm/raqm.gyp:raqm',
       ],
       'conditions': [
         [
