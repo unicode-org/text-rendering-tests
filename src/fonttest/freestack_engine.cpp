@@ -16,6 +16,7 @@
 #include "fonttest/font_engine.h"
 #include "fonttest/freestack_engine.h"
 #include "fonttest/freestack_font.h"
+#include "fonttest/freestack_line.h"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -51,16 +52,10 @@ bool FreeStackEngine::RenderSVG(const std::string& text,
                                 Font* font, double fontSize,
                                 const FontVariation& fontVariation,
                                 std::string* svg) {
-  svg->clear();
-  std::string path, viewBox;
-  font->GetGlyphOutline(/* glyph id */ 1, fontVariation, &path, &viewBox);
-  svg->append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-	      "<svg viewBox=\"");
-  svg->append(viewBox);
-  svg->append("\"><g><path d=\"\n");
-  svg->append(path);
-  svg->append("\"></path></g></svg>\n");
-  return true;
+  FT_Face face =
+      static_cast<FreeStackFont*>(font)->GetFace(fontSize, fontVariation);
+  FreeStackLine line(text, textLanguage, face, fontSize);
+  return line.RenderSVG(svg);
 }
 
 }  // namespace fonttest

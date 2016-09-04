@@ -22,6 +22,7 @@
         'font_engine.cpp',
         'freestack_engine.cpp',
         'freestack_font.cpp',
+        'freestack_line.cpp',
         'freestack_path.cpp',
         'test_harness.cpp',
       ],

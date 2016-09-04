@@ -13,29 +13,31 @@
  * limitations under the License.
  */
 
-#ifndef FONTTEST_FREESTACK_FONT_H_
-#define FONTTEST_FREESTACK_FONT_H_
+#ifndef FONTTEST_FREESTACK_LINE_H_
+#define FONTTEST_FREESTACK_LINE_H_
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
-#include FT_TYPES_H
+
+#include "raqm.h"
 
 #include "fonttest/font.h"
 
 namespace fonttest {
 
-class FreeStackFont : public Font {
+class FreeStackLine {
  public:
-  FreeStackFont(FT_Face face);
-  ~FreeStackFont();
-  FT_Face GetFace(double size, const FontVariation& variation);
-  virtual void GetGlyphOutline(int glyphID, const FontVariation& variation,
-                               std::string* path, std::string* viewBox);
+  FreeStackLine(const std::string& text, const std::string& textLanguage,
+                FT_Face font, double fontSize);
+  ~FreeStackLine();
+  bool RenderSVG(std::string* svg);
 
  private:
-  FT_Face face_;
+  raqm_t* line_;
+  FT_Face font_;
+  double fontSize_;
 };
 
 }  // namespace fonttest
 
-#endif  // FONTTEST_FREESTACK_FONT_H_
+#endif  // FONTTEST_FREESTACK_LINE_H_

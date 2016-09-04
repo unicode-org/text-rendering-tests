@@ -26,7 +26,7 @@ namespace fonttest {
 
 class FreeTypePathConverter {
  public:
-  FreeTypePathConverter();
+  FreeTypePathConverter(const FT_Vector& transform);
   ~FreeTypePathConverter();
   std::string Convert(FT_Outline* outline);
 
@@ -46,7 +46,7 @@ class FreeTypePathConverter {
                              const FT_Vector* to, void* data);
 
   std::string path_;
-  FT_Vector start_;
+  FT_Vector start_, transform_;
   bool closed_;
 };
 

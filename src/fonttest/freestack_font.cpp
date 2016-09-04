@@ -54,12 +54,9 @@ static std::string TagToString(FT_ULong tag) {
   return std::string(s);
 }
 
-void FreeStackFont::GetGlyphOutline(int glyphID,
-                                    const FontVariation& variation,
-                                    std::string* path,
-                                    std::string* viewBox) {
-  FT_UShort upem = face_->units_per_EM;
-  FT_Error error = FT_Set_Char_Size(face_, upem, upem, 0, 0);
+FT_Face FreeStackFont::GetFace(double size, const FontVariation& variation) {
+  FT_Fixed fixedSize = static_cast<FT_Fixed>(size);
+  FT_Error error = FT_Set_Char_Size(face_, fixedSize, fixedSize, 0, 0);
   if (error) {
     std::cerr << "FT_Set_Char_Size() failed; error: " << error << std::endl;
     exit(1);
@@ -88,25 +85,36 @@ void FreeStackFont::GetGlyphOutline(int glyphID,
     free(static_cast<void*>(mmvar));
   }
 
-  error = FT_Load_Glyph(face_, glyphID, FT_LOAD_NO_HINTING|FT_LOAD_NO_BITMAP);
+  return face_;
+}
+
+void FreeStackFont::GetGlyphOutline(int glyphID,
+                                    const FontVariation& variation,
+                                    std::string* path,
+                                    std::string* viewBox) {
+  FT_Face face = GetFace(1000.0, variation);
+  FT_Error error =
+      FT_Load_Glyph(face, glyphID, FT_LOAD_NO_HINTING|FT_LOAD_NO_BITMAP);
   if (error) {
     std::cerr << "FT_Load_Glyph() failed; error: " << error << std::endl;
     exit(1);
   }
 
-  if (!face_->glyph) {
+  if (!face->glyph) {
     std::cerr << "FT_Load_Glyph() did not load a glyph" << std::endl;
     exit(1);
   }
 
-  FreeTypePathConverter converter;
-  path->assign(converter.Convert(&face_->glyph->outline));
+  FT_Vector transform;
+  transform.x = transform.y = 0;
+  FreeTypePathConverter converter(transform);
+  path->assign(converter.Convert(&face->glyph->outline));
   char buffer[200];
   snprintf(buffer, sizeof(buffer), "%ld %ld %ld %ld",
            static_cast<long>(0),
-           static_cast<long>(face_->descender),
-           static_cast<long>(face_->glyph->metrics.horiAdvance),
-           static_cast<long>(face_->height));
+           static_cast<long>(face->descender),
+           static_cast<long>(face->glyph->metrics.horiAdvance),
+           static_cast<long>(face->height));
   viewBox->assign(buffer);
 }
 

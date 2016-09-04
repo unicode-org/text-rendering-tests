@@ -26,7 +26,8 @@
 
 namespace fonttest {
 
-FreeTypePathConverter::FreeTypePathConverter() {
+FreeTypePathConverter::FreeTypePathConverter(const FT_Vector& transform)
+  : transform_(transform) {
 }
 
 FreeTypePathConverter::~FreeTypePathConverter() {
@@ -58,24 +59,28 @@ std::string FreeTypePathConverter::Convert(FT_Outline* outline) {
 }
 
 void FreeTypePathConverter::MoveTo(const FT_Vector& to) {
+  start_.x = to.x + transform_.x;
+  start_.y = to.y + transform_.y;
   if (!closed_) {
     path_.append("Z\n");
   }
   char buffer[200];
-  snprintf(buffer, sizeof(buffer), "M %ld,%ld\n", to.x, to.y);
+  snprintf(buffer, sizeof(buffer), "M %ld,%ld\n", start_.x, start_.y);
   path_.append(buffer);
-  start_ = to;
   closed_ = false;
 }
 
 void FreeTypePathConverter::LineTo(const FT_Vector& to) {
-  if (to.x == start_.x && to.y == start_.y) {
+  FT_Vector p;
+  p.x = to.x + transform_.x;
+  p.y = to.y + transform_.y;
+  if (p.x == start_.x && p.y == start_.y) {
     path_.append("Z\n");
     closed_ = true;
     return;
   }
   char buffer[200];
-  snprintf(buffer, sizeof(buffer), "L %ld,%ld\n", to.x, to.y);
+  snprintf(buffer, sizeof(buffer), "L %ld,%ld\n", p.x, p.y);
   path_.append(buffer);
   closed_ = false;
 }
@@ -84,7 +89,8 @@ void FreeTypePathConverter::QuadTo(const FT_Vector& control,
                                    const FT_Vector& to) {
   char buffer[200];
   snprintf(buffer, sizeof(buffer), "Q %ld,%ld %ld,%ld\n",
-	   control.x, control.y, to.x, to.y);
+	   control.x + transform_.x, control.y + transform_.y,
+           to.x + transform_.x, to.y + transform_.y);
   path_.append(buffer);
   closed_ = false;
 }
@@ -94,7 +100,9 @@ void FreeTypePathConverter::CurveTo(const FT_Vector& control1,
                                     const FT_Vector& to) {
   char buffer[200];
   snprintf(buffer, sizeof(buffer), "C %ld,%ld %ld,%ld %ld,%ld\n",
-	   control1.x, control1.y, control2.x, control2.y, to.x, to.y);
+	   control1.x + transform_.x, control1.y + transform_.y,
+           control2.x + transform_.x, control2.y + transform_.y,
+           to.x + transform_.x, to.y + transform_.y);
   path_.append(buffer);
   closed_ = false;
 }
