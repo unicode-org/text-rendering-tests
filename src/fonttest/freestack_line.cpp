@@ -77,8 +77,8 @@ bool FreeStackLine::RenderSVG(std::string* svg) {
     }
 
     FT_Vector transform;
-    transform.x = static_cast<FT_Fixed>(x);
-    transform.y = static_cast<FT_Fixed>(y);
+    transform.x = static_cast<FT_Fixed>(glyphX);
+    transform.y = static_cast<FT_Fixed>(glyphY);
     FreeTypePathConverter converter(transform);
     path.append(converter.Convert(&font->glyph->outline));
 
