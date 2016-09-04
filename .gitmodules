@@ -4,3 +4,6 @@
 [submodule "src/third_party/gyp"]
 	path = src/third_party/gyp
 	url = https://chromium.googlesource.com/external/gyp
+[submodule "src/third_party/harfbuzz/harfbuzz"]
+	path = src/third_party/harfbuzz/harfbuzz
+	url = https://github.com/behdad/harfbuzz.git
