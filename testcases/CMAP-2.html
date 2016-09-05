@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ft="https://github.com/OpenType/fonttest">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn|Vollkorn:i"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<h3 id="CMAP-2">CMAP–2: Unicode Variation Selectors</h3>
+
+<div class="desc">
+  Unicode
+  defines <a href="http://www.unicode.org/Public/UCD/latest/ucd/StandardizedVariants.txt"
+  >Standardized Variants</a> of certain characters, including some
+  <a href="http://www.unicode.org/reports/tr25/">Mathematical Symbols</a>.
+  The font for this test case contains a type 14 <em>‘cmap’</em> table
+  that implements both the regular symbol ≩ U+2269 GREATER-THAN BUT
+  NOT EQUAL TO, and its variant U+2269 U+FE00 GREATER-THAN BUT NOT
+  EQUAL TO WITH VERTICAL STROKE.  With a conformant OpenType
+  implementation, the two glyphs should look different. If the two
+  glyphs look the same, or if you see any black boxes in the
+  renderings, it’s a sign that your OpenType implementation is broken.
+</div>
+
+<table>
+  <tr>
+    <th></th>
+    <td>2269<br/>—</td>
+    <td>2269<br/>FE00</td>
+  </tr>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="CMAP-2/1"
+        ft:render="≩" ft:font="TestCMAP14.otf">
+      <svg viewBox="0 -120 723 1200"><g><path d="M 100,334 L 623,563 L 623,619 L 100,880 L 100,793 L 518,594 L 100,420 Z M 100,208 L 622,208 L 622,287 L 100,287 Z M 100,38 L 622,38 L 622,117 L 100,117 Z M 282,-93 L 508,379 L 436,413 L 211,-59 Z" /></g></svg>
+    </td>
+    <td class="expected" ft:id="CMAP-2/2"
+        ft:render="≩︀" ft:font="TestCMAP14.otf">
+      <svg viewBox="0 -120 723 1200"><g><path d="M 100,334 L 623,563 L 623,619 L 100,880 L 100,793 L 518,594 L 100,420 Z M 101,208 L 623,208 L 623,287 L 101,287 Z M 101,38 L 623,38 L 623,117 L 101,117 Z M 322,382 L 322,-58 L 390,-58 L 390,382 Z" /></g></svg>
+    </td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="CMAP-2/1"/>
+    <td class="observed" ft:id="CMAP-2/2"/>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="CMAP-2/1"/>
+    <td class="conformance" ft:id="CMAP-2/2"/>
+  </tr>
+</table>
+
+</body>
+</html>
