@@ -35,13 +35,13 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h2>September 5, 2016 · CoreText</h2>
 <h3>Overview</h3>
 <div class="desc" id="SummaryText">All tests have passed.</div>
-<h3 id="AVAR-1">AVAR–1</h3>
+<h3 id="AVAR-1">AVAR–1: Triangle Curve</h3>
 
 <div class="desc">
   The font for this test case is a variation font with a single axis.
   While the <em>‘gvar’</em> table does a regular interpolation without
   any special quirks, the font’s <em>‘avar’</em> tables defines
-  a <em>sawtooth mapping</em>.  A conformant rendering engine should
+  a <em>triangle curve</em>.  A conformant OpenType implementation should
   produce the test glyph in its maximally thin shape at axis value
   100. The resulting glyph should become bolder until 250,
   then <em>decrease</em> its weight again until to 650, then become
