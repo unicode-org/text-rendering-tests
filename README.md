@@ -33,10 +33,11 @@ If you’d like to test another OpenType implementation, please go ahead.
 ## Generated Reports
 
 When you pass `--output=report.html`, the test suite will generate a
-[test
-report](https://raw.githack.com/brawer/fonttest/master/reports/fake-fail.html)
-that explains what was tested, which tests have passed, and which ones
-have failed.
+test report that explains what was tested, which tests have passed,
+and which ones have failed. By clicking the following links, you can
+also just look at the reports
+for [FreeStack](https://raw.githack.com/brawer/fonttest/master/reports/FreeStack.html)
+and [CoreText](https://raw.githack.com/brawer/fonttest/master/reports/CoreText.html) without running the test suite yourself.
 
 
 ## Test Cases
