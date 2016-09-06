@@ -6,14 +6,16 @@
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-<h3 id="GVAR-1">GVAR–1</h3>
+<h3 id="GVAR-1">GVAR–1: Sharing All Points</h3>
 
 <div class="desc">
   The font for this test case uses <em>shared point numbers</em> in
   its <em>‘gvar’</em> table. In its <em>shared points set</em>, the
   font sets the number of points to zero. A correct OpenType
-  implementation should recognize this zero value, and interpret it
-  as “all points.”
+  implementation should interpret such an empty set as a compact
+  encoding of “all points.” If the glyphs in the rendering below
+  have all the same weight, of if some glyphs are missing entirely,
+  it’s a sign that your OpenType implementation is broken.
 </div>
 
 <table>

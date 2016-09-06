@@ -284,14 +284,16 @@ svg {height:2.5em;transform:scaleY(-1)}
   </tr>
 </table>
 
-<h3 id="GVAR-1">GVAR–1</h3>
+<h3 id="GVAR-1">GVAR–1: Sharing All Points</h3>
 
 <div class="desc">
   The font for this test case uses <em>shared point numbers</em> in
   its <em>‘gvar’</em> table. In its <em>shared points set</em>, the
   font sets the number of points to zero. A correct OpenType
-  implementation should recognize this zero value, and interpret it
-  as “all points.”
+  implementation should interpret such an empty set as a compact
+  encoding of “all points.” If the glyphs in the rendering below
+  have all the same weight, of if some glyphs are missing entirely,
+  it’s a sign that your OpenType implementation is broken.
 </div>
 
 <table>
@@ -364,7 +366,7 @@ svg {height:2.5em;transform:scaleY(-1)}
 
 </table>
 
-<h3 id="GVAR-2">GVAR–2</h3>
+<h3 id="GVAR-2">GVAR–2: Sharing Enumerated Points</h3>
 
 <div class="desc">
   Like in test case <a href="#GVAR-1">GVAR–1</a>, the font for this
@@ -448,14 +450,14 @@ svg {height:2.5em;transform:scaleY(-1)}
 
 </table>
 
-<h3 id="GVAR-3">GVAR–3</h3>
+<h3 id="GVAR-3">GVAR–3: Sharing No Points</h3>
 
 <div class="desc">
   Other than the fonts for test cases <a href="#GVAR-1">GVAR–1</a>
   and <a href="#GVAR-2">GVAR–2</a>, the font for this test does not
   use any <em>shared point numbers</em> in its <em>‘gvar’</em>
-  table. A correct OpenType implementation should render the glyphs
-  exactly the same, no matter what encoding has been used.
+  table. A correct OpenType implementation should still render the
+  glyphs in the exact same way, no matter what encoding has been used.
 </div>
 
 <table>
