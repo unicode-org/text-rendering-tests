@@ -32,9 +32,9 @@ svg {height:2.5em;transform:scaleY(-1)}
 </style></head>
 <body>
 <h1>OpenType Test Report</h1>
-<h2>September 6, 2016 · FreeStack</h2>
+<h2>September 7, 2016 · FreeStack</h2>
 <h3>Overview</h3>
-<div class="desc" id="SummaryText">All tests have passed.</div>
+<div class="desc" id="SummaryText">Some tests have failed. See <a href="#CMAP-3">CMAP-3</a> for details.</div>
 <h3 id="AVAR-1">AVAR–1: Triangle Curve</h3>
 
 <div class="desc">
@@ -282,6 +282,147 @@ svg {height:2.5em;transform:scaleY(-1)}
     <td class="conformance-pass" ns0:id="CMAP-2/1">✓</td>
     <td class="conformance-pass" ns0:id="CMAP-2/2">✓</td>
   </tr>
+</table>
+
+<h3 id="CMAP-3">CMAP–3: MacOS Turkish Encoding</h3>
+
+<div class="desc">
+  The font for this test case contains a <em>‘cmap’</em> table of
+  format 0, platform 1, encoding 0, language 18. Platform 1 means the
+  classic Macintosh up
+  to <a href="https://en.wikipedia.org/wiki/Mac_OS_9">MacOS 9</a>; the
+  combination of encoding 0 and language 18 indicates
+  the <a href="https://en.wikipedia.org/wiki/MacTurkish_encoding">MacOS
+  Turkish character encoding</a>.  Although Apple has deprecated the
+  Macintosh encodings in favor of Unicode in 2002, present-day renderers
+  may still encounter such fonts. For example, users sometimes want to open
+  electronic documents that were created a long time ago, and certain
+  file formats contain embedded fonts.
+</div>
+
+<div class="desc">
+  A correct OpenType implementation should be able to render Turkish
+  text with this test font, using Unicode’s
+  <a href="ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/APPLE/TURKISH.TXT">conversion table</a>.  If you see boxes, missing characters, or
+  glyphs from a different (fallback) font in the rendering below, it’s
+  a sign that your OpenType implementation cannot handle legacy fonts
+  that were built for MacOS.
+</div>
+
+<table>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/1" ns0:render="“">
+       <svg viewBox="0 -292 518 1360"><g><path d="M 159,390 Q 110,390 83,424 Q 56,458 56,517 Q 56,585 102,636 Q 148,688 246,713 L 246,654 Q 209,639 195,632 Q 181,626 172,615 Q 163,604 163,585 Q 163,576 169,570 Q 175,564 187,556 Q 210,540 223,522 Q 236,505 236,467 Q 236,431 214,410 Q 193,390 159,390 Z M 375,390 Q 326,390 299,424 Q 272,458 272,517 Q 272,585 318,636 Q 364,688 462,713 L 462,654 Q 425,639 411,632 Q 397,626 388,615 Q 379,604 379,585 Q 379,576 385,570 Q 391,564 403,556 Q 426,540 439,522 Q 452,505 452,467 Q 452,431 430,410 Q 409,390 375,390 Z" /></g></svg>
+    </td>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/2" ns0:render="A">
+      <svg viewBox="0 -292 788 1360"><g><path d="M 7,61 L 14,61 Q 42,61 62,75 Q 82,90 97,130 L 310,714 L 491,714 L 695,128 Q 719,61 777,61 L 788,61 L 788,0 L 418,0 L 418,61 L 458,61 Q 500,61 500,92 Q 500,112 489,141 L 458,232 L 230,232 L 207,160 Q 206,155 199,131 Q 193,108 193,93 Q 193,77 201,69 Q 210,61 230,61 L 279,61 L 279,0 L 7,0 Z M 436,301 L 379,492 Q 377,499 366,535 Q 356,572 349,610 Q 334,553 315,493 L 252,301 Z" /></g></svg>
+    </td>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/3" ns0:render="B">
+      <svg viewBox="0 -292 720 1360"><g><path d="M 21,61 L 73,61 Q 93,61 103,75 Q 113,90 113,116 L 113,598 Q 113,627 100,640 Q 87,653 70,653 L 21,653 L 21,714 L 349,714 Q 505,714 583,673 Q 661,632 661,540 Q 661,475 619,436 Q 578,398 511,381 L 511,376 Q 594,362 642,317 Q 690,273 690,198 Q 690,99 613,49 Q 536,0 379,0 L 21,0 Z M 340,408 Q 398,408 425,436 Q 453,465 453,530 Q 453,592 424,618 Q 395,645 338,645 L 312,645 L 312,408 Z M 364,69 Q 420,69 448,99 Q 477,130 477,201 Q 477,271 449,305 Q 422,339 366,339 L 312,339 L 312,69 Z" /></g></svg>
+    </td>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/4" ns0:render="Ç">
+      <svg viewBox="0 -292 708 1360"><g><path d="M 665,137 Q 665,80 612,36 Q 559,-7 431,-10 L 425,-34 Q 475,-38 507,-62 Q 539,-87 539,-126 Q 539,-178 497,-209 Q 455,-240 390,-240 Q 371,-240 341,-237 Q 311,-234 295,-229 L 295,-161 Q 333,-169 363,-169 Q 395,-169 409,-161 Q 424,-154 424,-130 Q 424,-104 406,-96 Q 389,-89 349,-86 L 366,-8 Q 213,7 133,104 Q 54,201 54,358 Q 54,467 95,549 Q 137,632 218,678 Q 300,724 417,724 Q 536,724 600,690 Q 664,657 664,605 Q 664,561 625,533 Q 586,506 511,506 Q 511,566 486,609 Q 461,652 406,652 Q 328,652 296,579 Q 264,507 264,358 Q 264,255 282,195 Q 300,135 341,107 Q 382,80 452,80 Q 524,80 570,109 Q 617,139 650,183 Q 656,177 660,163 Q 665,149 665,137 Z" /></g></svg>
+    </td>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/5" ns0:render="Ğ">
+      <svg viewBox="0 -292 810 1360"><g><path d="M 440,-10 Q 250,-10 152,88 Q 54,187 54,358 Q 54,467 98,549 Q 143,632 231,678 Q 319,724 444,724 Q 531,724 592,708 Q 653,693 684,666 Q 715,639 715,605 Q 715,564 675,536 Q 636,509 560,509 Q 560,579 529,615 Q 499,652 442,652 Q 348,652 306,578 Q 264,504 264,358 Q 264,212 308,139 Q 353,66 454,66 Q 476,66 504,69 L 504,206 Q 504,244 490,261 Q 476,279 441,279 L 422,279 L 422,340 L 765,340 L 765,279 L 756,279 Q 725,279 714,261 Q 704,244 704,202 L 704,50 Q 575,-10 440,-10 Z M 407,798 Q 354,798 314,824 Q 275,851 254,890 Q 233,930 232,970 L 313,970 Q 329,902 407,902 Q 485,902 501,970 L 581,970 Q 580,930 559,890 Q 538,851 499,824 Q 460,798 407,798 Z" /></g></svg>
+    </td>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/6" ns0:render="I">
+      <svg viewBox="0 -292 426 1360"><g><path d="M 21,61 L 74,61 Q 89,61 101,74 Q 113,87 113,108 L 113,600 Q 113,625 101,639 Q 89,653 74,653 L 21,653 L 21,714 L 406,714 L 406,653 L 351,653 Q 313,653 313,599 L 313,110 Q 313,89 324,75 Q 336,61 351,61 L 406,61 L 406,0 L 21,0 Z" /></g></svg>
+    </td>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/7" ns0:render="İ">
+      <svg viewBox="0 -292 426 1360"><g><path d="M 21,61 L 74,61 Q 89,61 101,74 Q 113,87 113,108 L 113,600 Q 113,625 101,639 Q 89,653 74,653 L 21,653 L 21,714 L 406,714 L 406,653 L 351,653 Q 313,653 313,599 L 313,110 Q 313,89 324,75 Q 336,61 351,61 L 406,61 L 406,0 L 21,0 Z M 210,811 Q 163,811 133,832 Q 104,853 104,890 Q 104,929 133,949 Q 163,969 210,969 Q 256,969 286,948 Q 317,928 317,890 Q 317,853 286,832 Q 255,811 210,811 Z" /></g></svg>
+    </td>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/8" ns0:render="Ö">
+      <svg viewBox="0 -292 820 1360"><g><path d="M 411,-10 Q 236,-10 145,89 Q 54,188 54,359 Q 54,530 145,627 Q 236,725 412,725 Q 524,725 603,680 Q 683,635 724,552 Q 766,469 766,358 Q 766,247 724,164 Q 683,81 603,35 Q 523,-10 411,-10 Z M 411,63 Q 488,63 522,137 Q 556,212 556,358 Q 556,504 522,578 Q 489,652 412,652 Q 334,652 299,577 Q 264,503 264,358 Q 264,213 298,138 Q 333,63 411,63 Z M 307,806 Q 276,806 255,824 Q 234,842 234,880 Q 234,918 255,936 Q 276,954 307,954 Q 338,954 360,936 Q 382,918 382,880 Q 382,842 360,824 Q 338,806 307,806 Z M 525,806 Q 493,806 471,824 Q 450,842 450,880 Q 450,918 471,936 Q 492,954 525,954 Q 555,954 576,936 Q 598,918 598,880 Q 598,843 576,824 Q 555,806 525,806 Z" /></g></svg>
+    </td>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/9" ns0:render="Ş">
+      <svg viewBox="0 -292 605 1360"><g><path d="M 575,212 Q 575,151 543,103 Q 512,55 453,25 Q 395,-4 317,-9 L 311,-34 Q 361,-38 393,-62 Q 426,-87 426,-126 Q 426,-178 383,-209 Q 341,-240 276,-240 Q 258,-240 228,-237 Q 198,-234 182,-229 L 182,-161 Q 220,-169 250,-169 Q 282,-169 296,-161 Q 311,-154 311,-130 Q 311,-104 293,-96 Q 276,-89 236,-86 L 253,-9 Q 166,-5 115,17 Q 64,40 44,70 Q 24,100 24,129 Q 24,190 61,215 Q 99,241 157,241 Q 157,147 201,102 Q 245,58 306,58 Q 356,58 386,87 Q 416,116 416,153 Q 416,184 395,207 Q 375,230 339,248 Q 303,267 240,293 Q 132,337 89,391 Q 46,446 46,518 Q 46,581 81,627 Q 116,674 177,699 Q 239,724 315,724 Q 392,724 444,706 Q 497,688 522,659 Q 547,630 547,598 Q 547,557 512,533 Q 478,509 402,509 Q 402,544 388,577 Q 375,611 350,633 Q 325,655 291,655 Q 252,655 227,636 Q 203,617 203,579 Q 203,545 240,512 Q 277,480 380,438 Q 489,394 532,340 Q 575,287 575,212 Z" /></g></svg>
+    </td>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/10" ns0:render="Ü">
+      <svg viewBox="0 -292 769 1360"><g><path d="M 396,-10 Q 263,-10 186,45 Q 110,101 110,219 L 110,597 Q 110,631 93,642 Q 77,653 46,653 L 17,653 L 17,714 L 402,714 L 402,653 L 373,653 Q 342,653 326,641 Q 310,629 310,593 L 310,210 Q 310,132 343,100 Q 377,69 446,69 Q 503,69 538,105 Q 574,141 574,219 L 574,597 Q 574,631 558,642 Q 543,653 512,653 L 483,653 L 483,714 L 753,714 L 753,653 L 723,653 Q 691,653 675,641 Q 659,629 659,593 L 659,217 Q 659,111 595,50 Q 532,-10 396,-10 Z M 307,806 Q 276,806 255,824 Q 234,842 234,880 Q 234,918 255,936 Q 276,954 307,954 Q 338,954 360,936 Q 382,918 382,880 Q 382,842 360,824 Q 338,806 307,806 Z M 525,806 Q 493,806 471,824 Q 450,842 450,880 Q 450,918 471,936 Q 492,954 525,954 Q 555,954 576,936 Q 598,918 598,880 Q 598,843 576,824 Q 555,806 525,806 Z" /></g></svg>
+    </td>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/11" ns0:render="”">
+      <svg viewBox="0 -292 518 1360"><g><path d="M 56,450 Q 91,464 106,471 Q 121,478 130,489 Q 139,501 139,520 Q 139,529 133,535 Q 127,541 115,549 Q 92,563 79,581 Q 66,600 66,638 Q 66,674 87,694 Q 109,714 143,714 Q 192,714 219,680 Q 246,646 246,587 Q 246,519 200,467 Q 154,416 56,391 Z M 272,450 Q 307,464 322,471 Q 337,478 346,489 Q 355,501 355,520 Q 355,529 349,535 Q 343,541 331,549 Q 308,563 295,581 Q 282,600 282,638 Q 282,674 303,694 Q 325,714 359,714 Q 408,714 435,680 Q 462,646 462,587 Q 462,519 416,467 Q 370,416 272,391 Z" /></g></svg>
+    </td>
+    <td width="1em" />
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/12" ns0:render="a">
+      <svg viewBox="0 -292 626 1360"><g><path d="M 199,-10 Q 130,-10 85,32 Q 41,75 41,155 Q 41,237 95,276 Q 150,316 262,320 L 343,323 L 343,375 Q 343,430 330,456 Q 317,482 291,482 Q 267,482 253,454 Q 239,427 239,375 Q 158,375 120,391 Q 83,407 83,445 Q 83,499 145,525 Q 208,551 308,551 Q 426,551 482,512 Q 538,474 538,383 L 538,131 Q 538,91 550,76 Q 563,61 597,61 L 601,61 L 601,0 L 378,0 L 353,56 L 343,56 Q 309,17 280,3 Q 252,-10 199,-10 Z M 278,71 Q 308,71 326,103 Q 344,136 344,191 L 344,262 L 313,259 Q 272,256 255,230 Q 239,205 239,152 Q 239,71 278,71 Z" /></g></svg>
+    </td>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/13" ns0:render="b">
+      <svg viewBox="0 -292 675 1360"><g><path d="M 428,-10 Q 322,-10 273,78 L 265,78 L 228,0 L 16,0 L 16,61 L 22,61 Q 53,61 73,75 Q 94,90 94,130 L 94,633 Q 94,671 75,685 Q 56,699 20,699 L 16,699 L 16,760 L 289,760 L 289,599 Q 289,542 280,484 L 287,484 Q 336,549 435,549 Q 533,549 583,481 Q 633,413 633,271 Q 633,127 581,58 Q 530,-10 428,-10 Z M 367,73 Q 404,73 421,123 Q 438,174 438,272 Q 438,372 421,420 Q 404,468 366,468 Q 322,468 305,422 Q 289,376 289,271 Q 289,169 306,121 Q 323,73 367,73 Z" /></g></svg>
+    </td>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/14" ns0:render="ç">
+      <svg viewBox="0 -292 553 1360"><g><path d="M 486,161 Q 501,153 508,139 Q 515,125 515,110 Q 515,82 494,55 Q 473,29 428,10 Q 384,-8 318,-10 L 312,-34 Q 362,-38 394,-62 Q 427,-87 427,-126 Q 427,-178 384,-209 Q 342,-240 277,-240 Q 259,-240 229,-237 Q 199,-234 183,-229 L 183,-161 Q 221,-169 251,-169 Q 283,-169 297,-161 Q 312,-154 312,-130 Q 312,-104 294,-96 Q 277,-89 237,-86 L 254,-8 Q 151,3 96,67 Q 41,132 41,267 Q 41,551 302,551 Q 415,551 466,520 Q 518,489 518,444 Q 518,403 484,373 Q 451,343 359,343 Q 359,404 347,443 Q 336,482 309,482 Q 274,482 255,434 Q 237,386 237,268 Q 237,169 259,120 Q 282,72 332,72 Q 386,72 427,97 Q 468,122 486,161 Z" /></g></svg>
+    </td>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/15" ns0:render="ğ">
+      <svg viewBox="0 -292 576 1360"><g><path d="M 239,-233 Q -14,-233 -14,-103 Q -14,-56 24,-25 Q 63,6 128,10 Q 89,24 65,44 Q 42,64 42,98 Q 42,131 69,156 Q 96,181 149,208 Q 94,223 61,262 Q 28,302 28,366 Q 28,551 262,551 Q 302,551 331,545 Q 361,540 390,527 Q 418,558 444,572 Q 470,587 507,587 Q 540,587 559,569 Q 579,551 579,524 Q 579,495 560,476 Q 542,458 501,458 Q 501,482 489,493 Q 478,505 465,505 Q 452,505 443,501 Q 434,498 432,497 Q 493,449 493,371 Q 493,285 435,236 Q 378,187 262,187 Q 219,187 204,191 Q 193,188 183,174 Q 173,160 173,146 Q 173,132 185,125 Q 197,119 216,119 L 336,119 Q 548,119 548,-37 Q 548,-130 470,-181 Q 393,-233 239,-233 Z M 260,254 Q 298,254 311,282 Q 324,311 324,365 Q 324,421 311,452 Q 298,483 260,483 Q 223,483 209,450 Q 195,418 195,364 Q 195,313 209,283 Q 223,254 260,254 Z M 242,-165 Q 317,-165 358,-144 Q 400,-123 400,-84 Q 400,-64 383,-50 Q 367,-36 335,-36 L 206,-36 Q 179,-36 155,-52 Q 132,-69 132,-104 Q 132,-136 162,-150 Q 193,-165 242,-165 Z M 256,606 Q 203,606 163,632 Q 124,659 103,698 Q 82,738 81,778 L 162,778 Q 178,710 256,710 Q 334,710 350,778 L 430,778 Q 429,738 408,698 Q 387,659 348,632 Q 309,606 256,606 Z" /></g></svg>
+    </td>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/16" ns0:render="ı">
+      <svg viewBox="0 -292 376 1360"><g><path d="M 12,61 L 24,61 Q 54,61 70,78 Q 87,95 87,135 L 87,409 Q 87,475 24,475 L 5,475 L 5,536 L 281,536 L 281,131 Q 281,61 344,61 L 355,61 L 355,0 L 12,0 Z" /></g></svg>
+    </td>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/17" ns0:render="i"> 
+      <svg viewBox="0 -292 376 1360"><g><path d="M 179,619 Q 132,619 102,640 Q 73,661 73,698 Q 73,737 102,757 Q 132,777 179,777 Q 225,777 255,756 Q 286,736 286,698 Q 286,661 255,640 Q 224,619 179,619 Z M 12,61 L 24,61 Q 54,61 70,78 Q 87,95 87,135 L 87,409 Q 87,475 24,475 L 5,475 L 5,536 L 281,536 L 281,131 Q 281,61 344,61 L 355,61 L 355,0 L 12,0 Z" /></g></svg>
+    </td>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/18" ns0:render="ö">
+      <svg viewBox="0 -292 640 1360"><g><path d="M 318,-10 Q 186,-10 113,61 Q 41,132 41,271 Q 41,551 321,551 Q 453,551 525,480 Q 598,409 598,271 Q 598,131 527,60 Q 457,-10 318,-10 Z M 320,61 Q 364,61 382,113 Q 401,165 401,271 Q 401,377 382,428 Q 363,479 319,479 Q 275,479 257,428 Q 239,378 239,271 Q 239,165 257,113 Q 276,61 320,61 Z M 211,614 Q 180,614 159,632 Q 138,650 138,688 Q 138,726 159,744 Q 180,762 211,762 Q 242,762 264,744 Q 286,726 286,688 Q 286,650 264,632 Q 242,614 211,614 Z M 429,614 Q 397,614 375,632 Q 354,650 354,688 Q 354,726 375,744 Q 396,762 429,762 Q 459,762 480,744 Q 502,726 502,688 Q 502,651 480,632 Q 459,614 429,614 Z" /></g></svg>
+    </td>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/19" ns0:render="ş">
+      <svg viewBox="0 -292 502 1360"><g><path d="M 478,174 Q 478,95 425,46 Q 373,-2 273,-9 L 267,-34 Q 317,-38 349,-62 Q 382,-87 382,-126 Q 382,-178 339,-209 Q 297,-240 232,-240 Q 214,-240 184,-237 Q 154,-234 138,-229 L 138,-161 Q 176,-169 206,-169 Q 238,-169 252,-161 Q 267,-154 267,-130 Q 267,-104 249,-96 Q 232,-89 192,-86 L 209,-9 Q 25,0 25,109 Q 25,150 54,169 Q 83,188 130,188 Q 130,122 161,91 Q 192,61 246,61 Q 291,61 312,77 Q 333,93 333,117 Q 333,144 305,161 Q 278,179 213,197 Q 117,225 74,264 Q 31,304 31,378 Q 31,464 93,507 Q 156,550 266,550 Q 361,550 408,521 Q 455,493 455,453 Q 455,417 428,399 Q 402,381 346,381 Q 346,428 318,454 Q 291,481 249,481 Q 217,481 197,468 Q 178,456 178,432 Q 178,413 188,400 Q 199,387 224,375 Q 249,364 297,350 Q 388,323 433,285 Q 478,247 478,174 Z" /></g></svg>
+    </td>
+    <td class="expected" ns0:font="TestCMAPMacTurkish.ttf" ns0:id="CMAP-3/20" ns0:render="ü">
+      <svg viewBox="0 -292 691 1360"><g><path d="M 257,-10 Q 167,-10 127,38 Q 87,87 87,189 L 87,402 Q 87,434 83,448 Q 80,462 69,468 Q 58,475 32,475 L 28,475 L 28,536 L 282,536 L 282,234 Q 282,165 294,127 Q 306,90 336,90 Q 402,90 402,235 L 402,417 Q 402,454 389,464 Q 377,475 348,475 L 344,475 L 344,536 L 596,536 L 596,121 Q 596,94 602,81 Q 609,68 620,64 Q 631,61 652,61 L 664,61 L 664,0 L 435,0 L 407,64 L 402,64 Q 354,-10 257,-10 Z M 221,614 Q 190,614 169,632 Q 148,650 148,688 Q 148,726 169,744 Q 190,762 221,762 Q 252,762 274,744 Q 296,726 296,688 Q 296,650 274,632 Q 252,614 221,614 Z M 439,614 Q 407,614 385,632 Q 364,650 364,688 Q 364,726 385,744 Q 406,762 439,762 Q 469,762 490,744 Q 512,726 512,688 Q 512,651 490,632 Q 469,614 439,614 Z" /></g></svg>
+    </td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ns0:id="CMAP-3/1"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td class="observed" ns0:id="CMAP-3/2"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td class="observed" ns0:id="CMAP-3/3"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td class="observed" ns0:id="CMAP-3/4"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td class="observed" ns0:id="CMAP-3/5"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td class="observed" ns0:id="CMAP-3/6"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td class="observed" ns0:id="CMAP-3/7"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td class="observed" ns0:id="CMAP-3/8"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td class="observed" ns0:id="CMAP-3/9"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td class="observed" ns0:id="CMAP-3/10"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td class="observed" ns0:id="CMAP-3/11"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td width="1em" />
+    <td class="observed" ns0:id="CMAP-3/12"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td class="observed" ns0:id="CMAP-3/13"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td class="observed" ns0:id="CMAP-3/14"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td class="observed" ns0:id="CMAP-3/15"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td class="observed" ns0:id="CMAP-3/16"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td class="observed" ns0:id="CMAP-3/17"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td class="observed" ns0:id="CMAP-3/18"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td class="observed" ns0:id="CMAP-3/19"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+    <td class="observed" ns0:id="CMAP-3/20"><svg viewBox="0 -292 600 1360"><g><path d="M 85,714 L 496,714 L 496,0 L 85,0 Z M 445,51 L 445,663 L 136,663 L 136,51 Z" /></g></svg></td>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance-fail" ns0:id="CMAP-3/1">✖</td>
+    <td class="conformance-fail" ns0:id="CMAP-3/2">✖</td>
+    <td class="conformance-fail" ns0:id="CMAP-3/3">✖</td>
+    <td class="conformance-fail" ns0:id="CMAP-3/4">✖</td>
+    <td class="conformance-fail" ns0:id="CMAP-3/5">✖</td>
+    <td class="conformance-fail" ns0:id="CMAP-3/6">✖</td>
+    <td class="conformance-fail" ns0:id="CMAP-3/7">✖</td>
+    <td class="conformance-fail" ns0:id="CMAP-3/8">✖</td>
+    <td class="conformance-fail" ns0:id="CMAP-3/9">✖</td>
+    <td class="conformance-fail" ns0:id="CMAP-3/10">✖</td>
+    <td class="conformance-fail" ns0:id="CMAP-3/11">✖</td>
+    <td width="1em" />
+    <td class="conformance-fail" ns0:id="CMAP-3/12">✖</td>
+    <td class="conformance-fail" ns0:id="CMAP-3/13">✖</td>
+    <td class="conformance-fail" ns0:id="CMAP-3/14">✖</td>
+    <td class="conformance-fail" ns0:id="CMAP-3/15">✖</td>
+    <td class="conformance-fail" ns0:id="CMAP-3/16">✖</td>
+    <td class="conformance-fail" ns0:id="CMAP-3/17">✖</td>
+    <td class="conformance-fail" ns0:id="CMAP-3/18">✖</td>
+    <td class="conformance-fail" ns0:id="CMAP-3/19">✖</td>
+    <td class="conformance-fail" ns0:id="CMAP-3/20">✖</td>
+  </tr>
+
 </table>
 
 <h3 id="GVAR-1">GVAR–1: Sharing All Points</h3>
