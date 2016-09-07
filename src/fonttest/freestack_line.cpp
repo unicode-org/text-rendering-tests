@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+#include <cmath>
 #include <cstdlib>
 #include <cstdio>
 #include <iostream>
@@ -94,8 +95,7 @@ bool FreeStackLine::RenderSVG(std::string* svg) {
 	      "<svg viewBox=\"");
   char viewBox[200];
   snprintf(viewBox, sizeof(viewBox), "%ld %ld %ld %ld",
-           static_cast<long>(0), static_cast<long>(descender),
-           static_cast<long>(x), static_cast<long>(ascender - descender));
+           0L, lround(descender), lround(x), lround(ascender - descender));
   svg->append(viewBox);
   svg->append("\"><g><path d=\"\n");
   svg->append(path);

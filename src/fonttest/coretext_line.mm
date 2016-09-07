@@ -75,16 +75,6 @@ bool CoreTextLine::RenderSVG(std::string* svg) {
   double width =
       CTLineGetTypographicBounds(line_, &ascent, &descent, &leading);
 
-  // CoreText seems to have a off-by-one error when converting typographic
-  // descents, but strangely it only happens with TrueType fonts.
-  // The problem has been reported to Apple. We’re working around it here
-  // because it would make very many test cases fail, which might arguably
-  // be the correct thing to do, but it would possibly hide other errors
-  // which can have a larger impact than a descent value that is of by 0.1%.
-  if (HasTable(font_, kCTFontTableGlyf)) {
-    descent = descent + (fontSize_ / CTFontGetUnitsPerEm(font_));
-  }
-
   CFArrayRef runs = CTLineGetGlyphRuns(line_);
   CFIndex numRuns = CFArrayGetCount(runs);
   for (CFIndex runIndex = 0; runIndex < numRuns; ++runIndex) {
@@ -127,8 +117,7 @@ bool CoreTextLine::RenderSVG(std::string* svg) {
 	      "<svg viewBox=\"");
   char viewBox[200];
   snprintf(viewBox, sizeof(viewBox), "%ld %ld %ld %ld",
-           static_cast<long>(0), static_cast<long>(-descent),
-           static_cast<long>(width), static_cast<long>(ascent + descent));
+           0L, lround(-descent), lround(width), lround(ascent + descent));
   svg->append(viewBox);
   svg->append("\"><g><path d=\"\n");
   svg->append(svgPath);
