@@ -14,10 +14,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
+
 from __future__ import unicode_literals
-import argparse, datetime, os, re, subprocess, time
+import argparse, datetime, itertools, os, re, subprocess, time
 import xml.etree.ElementTree as etree
+import svgutil
 
 
 FONTTEST_NAMESPACE = '{https://github.com/OpenType/fonttest}'
@@ -57,13 +58,8 @@ class ConformanceChecker:
             observed_svg = etree.fromstring(observed)
             self.normalize_svg(observed_svg)
             self.observed[testcase] = observed_svg
-            expected_str = \
-                etree.tostring(expected_svg, encoding='utf-8').strip()
-            observed_str = \
-                etree.tostring(observed_svg, encoding='utf-8').strip()
-            ok = (expected_str == observed_str)
+            ok = svgutil.is_similar(expected_svg, observed_svg, maxDelta=1.0)
             self.conformance[testcase] = ok
-            # print testcase, 'PASS' if ok else 'FAIL'
             groups = testcase.split('/')
             for i in range(len(groups)):
                 group = '/'.join(groups[:i])
