@@ -6,20 +6,62 @@
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-<h3 id="GPOS-1">GPOS–1: Pair Positioning, Format 1</h3>
+<h3 id="GPOS-1">GPOS–1: Pair Adjustment Positioning</h3>
 
 <div class="desc">
   The font for this test case contains a <em>‘GPOS’</em> table whose
   <em>‘kern’</em> feature enables a lookup of type 2
   for <a href="https://www.microsoft.com/typography/otspec/gpos.htm#PP">Pair
-  Adjustment Positioning</a>.  The test lookup contains
-  a <em>PairPos format 1</em> subtable to adjust the spacing between
-  certain letter pairs, for example <em>Ą</em> and <em>J</em>.  When an
-  OpenType implementation renders the test strings, it should adjust
-  the letter spacing accoording to the data in this subtable. If
-  you see any overlapping glyphs, it’s a sign that your OpenType
-  implementation fails to correctly interpret <em>GPOS type 2</em>
-  lookups with <em>PairPos format 1</em> subtables.
+  Adjustment Positioning</a>.  The lookup contains <em>two</em> subtables:
+</div>
+
+
+<ul style="margin-left:4em;margin-right:4em">
+  <li style="margin-bottom:.5em">
+    First, a <em>PairPos format 1</em> subtable that adjusts the
+    spacing between pairs of <em>individual letters</em>.
+    For example, when <em>Ą</em> and <em>J</em>
+    stand next to each other, their shapes would overlap. From
+    a typographic perspective, this would look rather terrible,
+    so this subtable puts them further apart.
+  </li>
+
+  <li>
+    Second, a <em>PairPos format 2</em> subtable that adjusts the
+    spacing betwen <em>glyph classes</em>. For example, when
+    they appear on the left-hand side of a letter pair, this subtable
+    categorizes the letters <em>A Á Ą</em> into one particular class,
+    <em>G Ģ</em> into another, and <em>V</em> into yet another class.
+    The same happens for the right-hand side: <em>a á ą</em> are put
+    into one glyph class, <em>f ﬁ ﬂ</em> into another, and so on.
+    Finally, the subtable contains a table how to change the spacing
+    for each combination of classes. Compared to format 1, this
+    encoding can be more compact.
+  </li>
+</ul>
+
+<div class="desc">
+  If <em>all</em> the pairs in the rendering are badly spaced
+  (eg. touching or overlapping), it’s a sign that your OpenType
+  implementation does not handle ‘GPOS’ tables at all, or that
+  it fails to process ‘GPOS’ tables with type 2 lookups.
+</div>
+
+<div class="desc">
+  If only <em>some</em> of the pairs are badly spaced, it
+  could be a sign of a different problem. When an OpenType
+  implementation processes a lookup, it should walk its subtables
+  in the same order as listed in the font file. When a subtable matches,
+  the implementation must use it to reposition the current glyph pair, and then
+  it should continue with the next <em>lookup</em>. In other words,
+  if the current lookup contains additional subtables beyond the
+  one that matched, they should be ignored. In case your implementation
+  fails to break its inner loop, thus continuing with the next
+  <em>subtable</em> instead of the next <em>lookup</em>, it will
+  wrongly position any glyph pairs that appear in multiple subtables
+  of the same lookup. For example, in our test font, the pair <em>Ąģ</em>
+  appears in both subtables of lookup #0. A correct OpenType implementation
+  should only use the positioning from the first subtable.
 </div>
 
 <table>
@@ -77,6 +119,31 @@
         ft:render="vȷ" ft:font="TestGPOSOne.ttf">
       <svg viewBox="0 -455 826 1383"><g><path d="M 268,-2 L 80,457 L 22,457 Q 6,457 6,471 Q 6,477 10,492 L 12,500 L 207,500 Q 210,493 210,486 Q 210,478 204,467 L 136,459 L 292,71 L 445,457 L 387,457 Q 371,457 371,471 Q 371,477 375,492 L 377,500 L 569,500 Q 572,493 572,486 Q 572,478 566,467 L 498,459 L 310,-2 Q 302,-4 289,-4 Q 276,-4 268,-2 Z M 687,134 L 687,453 L 606,453 Q 603,461 603,467 Q 603,476 609,486 L 713,505 Q 730,496 741,483 L 741,151 Q 741,27 700,-49 Q 659,-126 556,-192 Q 538,-179 532,-158 Q 622,-92 654,-30 Q 687,31 687,134 Z" /></g></svg>
     </td>
+
+    <td class="expected" ft:id="GPOS-1/14"
+        ft:render="Va" ft:font="TestGPOSOne.ttf">
+      <svg viewBox="0 -455 1117 1383"><g><path d="M 300,-2 L 77,599 L 19,599 Q 3,599 3,613 Q 3,620 8,637 L 10,645 L 206,645 Q 210,639 210,629 Q 210,618 203,609 L 136,601 L 325,82 L 514,599 L 456,599 Q 440,599 440,613 Q 440,620 445,637 L 447,645 L 638,645 Q 642,639 642,629 Q 642,618 635,609 L 568,601 L 344,-2 Q 334,-4 322,-4 Q 310,-4 300,-2 Z M 1090,14 L 991,-5 Q 974,4 963,17 L 968,89 Q 902,-10 787,-10 Q 718,-10 675,29 Q 633,68 633,130 Q 633,201 689,240 Q 746,280 849,280 Q 899,280 965,271 L 965,311 Q 965,465 826,465 Q 747,465 675,417 Q 656,432 656,454 Q 737,510 826,510 Q 1017,510 1017,311 L 1017,47 L 1093,47 Q 1096,40 1096,33 Q 1096,25 1090,14 Z M 965,188 L 965,228 Q 933,232 903,234 Q 873,237 849,237 Q 688,237 688,132 Q 688,88 716,61 Q 745,34 792,34 Q 858,34 911,81 Q 965,129 965,188 Z" /></g></svg>
+    </td>
+    <td class="expected" ft:id="GPOS-1/15"
+        ft:render="Vá" ft:font="TestGPOSOne.ttf">
+      <svg viewBox="0 -455 1117 1383"><g><path d="M 300,-2 L 77,599 L 19,599 Q 3,599 3,613 Q 3,620 8,637 L 10,645 L 206,645 Q 210,639 210,629 Q 210,618 203,609 L 136,601 L 325,82 L 514,599 L 456,599 Q 440,599 440,613 Q 440,620 445,637 L 447,645 L 638,645 Q 642,639 642,629 Q 642,618 635,609 L 568,601 L 344,-2 Q 334,-4 322,-4 Q 310,-4 300,-2 Z M 1090,14 L 991,-5 Q 974,4 963,17 L 968,89 Q 902,-10 787,-10 Q 718,-10 675,29 Q 633,68 633,130 Q 633,201 689,240 Q 746,280 849,280 Q 899,280 965,271 L 965,311 Q 965,465 826,465 Q 747,465 675,417 Q 656,432 656,454 Q 737,510 826,510 Q 1017,510 1017,311 L 1017,47 L 1093,47 Q 1096,40 1096,33 Q 1096,25 1090,14 Z M 965,188 L 965,228 Q 933,232 903,234 Q 873,237 849,237 Q 688,237 688,132 Q 688,88 716,61 Q 745,34 792,34 Q 858,34 911,81 Q 965,129 965,188 Z M 907,644 L 808,556 Q 790,568 781,581 L 868,683 L 919,735 Q 944,715 958,697 Z" /></g></svg>
+    </td>
+    <td class="expected" ft:id="GPOS-1/16"
+        ft:render="Vą" ft:font="TestGPOSOne.ttf">
+      <svg viewBox="0 -455 1117 1383"><g><path d="M 300,-2 L 77,599 L 19,599 Q 3,599 3,613 Q 3,620 8,637 L 10,645 L 206,645 Q 210,639 210,629 Q 210,618 203,609 L 136,601 L 325,82 L 514,599 L 456,599 Q 440,599 440,613 Q 440,620 445,637 L 447,645 L 638,645 Q 642,639 642,629 Q 642,618 635,609 L 568,601 L 344,-2 Q 334,-4 322,-4 Q 310,-4 300,-2 Z M 1090,14 L 991,-5 Q 974,4 963,17 L 968,89 Q 902,-10 787,-10 Q 718,-10 675,29 Q 633,68 633,130 Q 633,201 689,240 Q 746,280 849,280 Q 899,280 965,271 L 965,311 Q 965,465 826,465 Q 747,465 675,417 Q 656,432 656,454 Q 737,510 826,510 Q 1017,510 1017,311 L 1017,47 L 1093,47 Q 1096,40 1096,33 Q 1096,25 1090,14 Z M 965,188 L 965,228 Q 933,232 903,234 Q 873,237 849,237 Q 688,237 688,132 Q 688,88 716,61 Q 745,34 792,34 Q 858,34 911,81 Q 965,129 965,188 Z M 1024,14 L 1060,14 Q 979,-50 979,-95 Q 979,-134 1025,-134 Q 1043,-134 1056,-130 Q 1065,-145 1065,-163 Q 1038,-178 1001,-178 Q 929,-178 929,-107 Q 929,-38 1024,14 Z" /></g></svg>
+    </td>
+    <td class="expected" ft:id="GPOS-1/17"
+        ft:render="Vf" ft:font="TestGPOSOne.ttf">
+      <svg viewBox="0 -455 996 1383"><g><path d="M 300,-2 L 77,599 L 19,599 Q 3,599 3,613 Q 3,620 8,637 L 10,645 L 206,645 Q 210,639 210,629 Q 210,618 203,609 L 136,601 L 325,82 L 514,599 L 456,599 Q 440,599 440,613 Q 440,620 445,637 L 447,645 L 638,645 Q 642,639 642,629 Q 642,618 635,609 L 568,601 L 344,-2 Q 334,-4 322,-4 Q 310,-4 300,-2 Z M 911,0 L 678,0 Q 675,8 675,14 Q 675,23 681,33 L 749,41 L 749,456 L 673,456 Q 670,464 670,470 Q 670,480 676,490 L 749,499 L 749,520 Q 749,592 791,636 Q 833,680 908,680 Q 963,680 1010,662 Q 1008,640 999,624 Q 956,633 919,633 Q 803,633 803,520 L 803,500 L 941,500 Q 957,500 957,486 Q 957,480 953,465 L 951,456 L 803,456 L 803,43 L 901,43 Q 917,43 917,29 Q 917,23 913,8 Z" /></g></svg>
+    </td>
+    <td class="expected" ft:id="GPOS-1/18"
+        ft:render="Vﬂ" ft:font="TestGPOSOne.ttf">
+      <svg viewBox="0 -455 1239 1383"><g><path d="M 300,-2 L 77,599 L 19,599 Q 3,599 3,613 Q 3,620 8,637 L 10,645 L 206,645 Q 210,639 210,629 Q 210,618 203,609 L 136,601 L 325,82 L 514,599 L 456,599 Q 440,599 440,613 Q 440,620 445,637 L 447,645 L 638,645 Q 642,639 642,629 Q 642,618 635,609 L 568,601 L 344,-2 Q 334,-4 322,-4 Q 310,-4 300,-2 Z M 1192,0 L 999,0 Q 996,8 996,14 Q 996,23 1002,33 L 1070,41 L 1070,594 Q 1003,633 929,633 Q 803,633 803,520 L 803,500 L 941,500 Q 957,500 957,486 Q 957,480 953,465 L 951,456 L 803,456 L 803,43 L 861,43 Q 877,43 877,29 Q 877,23 873,8 L 871,0 L 678,0 Q 675,8 675,14 Q 675,23 681,33 L 749,41 L 749,456 L 673,456 Q 670,464 670,470 Q 670,480 676,490 L 749,499 L 749,520 Q 749,597 796,638 Q 844,680 922,680 Q 963,680 998,670 Q 1034,660 1064,644 L 1096,675 Q 1113,666 1124,653 L 1124,43 L 1182,43 Q 1198,43 1198,29 Q 1198,23 1194,8 Z" /></g></svg>
+    </td>
+    <td class="expected" ft:id="GPOS-1/19"
+        ft:render="V." ft:font="TestGPOSOne.ttf">
+      <svg viewBox="0 -455 724 1383"><g><path d="M 300,-2 L 77,599 L 19,599 Q 3,599 3,613 Q 3,620 8,637 L 10,645 L 206,645 Q 210,639 210,629 Q 210,618 203,609 L 136,601 L 325,82 L 514,599 L 456,599 Q 440,599 440,613 Q 440,620 445,637 L 447,645 L 638,645 Q 642,639 642,629 Q 642,618 635,609 L 568,601 L 344,-2 Q 334,-4 322,-4 Q 310,-4 300,-2 Z M 664,37 Q 664,-10 614,-10 Q 564,-10 564,37 Q 564,84 614,84 Q 664,84 664,37 Z" /></g></svg>
+    </td>
   </tr>
 
   <tr>
@@ -94,6 +161,12 @@
     <td class="observed" ft:id="GPOS-1/11"/>
     <td class="observed" ft:id="GPOS-1/12"/>
     <td class="observed" ft:id="GPOS-1/13"/>
+    <td class="observed" ft:id="GPOS-1/14"/>
+    <td class="observed" ft:id="GPOS-1/15"/>
+    <td class="observed" ft:id="GPOS-1/16"/>
+    <td class="observed" ft:id="GPOS-1/17"/>
+    <td class="observed" ft:id="GPOS-1/18"/>
+    <td class="observed" ft:id="GPOS-1/19"/>
   </tr>
 
   <tr>
@@ -111,6 +184,12 @@
     <td class="conformance" ft:id="GPOS-1/11"/>
     <td class="conformance" ft:id="GPOS-1/12"/>
     <td class="conformance" ft:id="GPOS-1/13"/>
+    <td class="conformance" ft:id="GPOS-1/14"/>
+    <td class="conformance" ft:id="GPOS-1/15"/>
+    <td class="conformance" ft:id="GPOS-1/16"/>
+    <td class="conformance" ft:id="GPOS-1/17"/>
+    <td class="conformance" ft:id="GPOS-1/18"/>
+    <td class="conformance" ft:id="GPOS-1/19"/>
   </tr>
 
 </table>
