@@ -32,7 +32,7 @@ svg {height:2.5em;transform:scaleY(-1)}
 </style></head>
 <body>
 <h1>OpenType Test Report</h1>
-<h2>September 9, 2016 · CoreText</h2>
+<h2>September 12, 2016 · CoreText</h2>
 <h3>Overview</h3>
 <div class="desc" id="SummaryText">Some tests have failed. See <a href="#CMAP-3">CMAP-3</a>, <a href="#GPOS-1">GPOS-1</a>, <a href="#GVAR-1">GVAR-1</a>, <a href="#GVAR-2">GVAR-2</a>, <a href="#GVAR-3">GVAR-3</a>, <a href="#GVAR-5">GVAR-5</a>, and <a href="#GVAR-6">GVAR-6</a> for details.</div>
 <h3 id="AVAR-1">AVAR–1: Weight Flattening</h3>
@@ -477,27 +477,10 @@ svg {height:2.5em;transform:scaleY(-1)}
 </ul>
 
 <div class="desc">
-  If <em>all</em> the pairs in the rendering are badly spaced
-  (eg. touching or overlapping), it’s a sign that your OpenType
-  implementation does not handle ‘GPOS’ tables at all, or that
-  it fails to process ‘GPOS’ tables with type 2 lookups.
-</div>
-
-<div class="desc">
-  If only <em>some</em> of the pairs are badly spaced, it
-  could be a sign of a different problem. When an OpenType
-  implementation processes a lookup, it should walk its subtables
-  in the same order as listed in the font file. When a subtable matches,
-  the implementation must use it to reposition the current glyph pair, and then
-  it should continue with the next <em>lookup</em>. In other words,
-  if the current lookup contains additional subtables beyond the
-  one that matched, they should be ignored. In case your implementation
-  fails to break its inner loop, thus continuing with the next
-  <em>subtable</em> instead of the next <em>lookup</em>, it will
-  wrongly position any glyph pairs that appear in multiple subtables
-  of the same lookup. For example, in our test font, the pair <em>Ąģ</em>
-  appears in both subtables of lookup #0. A correct OpenType implementation
-  should only use the positioning from the first subtable.
+  If you see touching or overlapping glyph pairs in the rendering,
+  it’s a sign that your OpenType implementation fails to handle
+  <em>‘GPOS’</em> tables with type 2 lookups for <em>Pair Adjustment
+  Positioning.</em>
 </div>
 
 <table>
@@ -954,7 +937,8 @@ svg {height:2.5em;transform:scaleY(-1)}
 
 <div class="desc">
   If your OpenType implementation is correct, 🌝 U+1F31D FULL MOON WITH
-  FACE should wax and wane in sync with the font’s variation axis <i>M</i>₁.
+  FACE from <em>Zycon</em> should wax and wane in sync with the font’s
+  variation axis <i>M</i>₁.
 </div>
 
 <table>
@@ -1042,12 +1026,12 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h3 id="GVAR-6">GVAR–6: Timid Turtle</h3>
 
 <div class="desc">
-  In this test case, axis <i>T</i>₁ controls the timidity of
-  🐢 U+1F422 TURTLE. If your OpenType implementation is correct,
-  the turtle should fully stick its head, legs and tail out of the shell
-  at <i>T</i>₁ = 0.0. As the axis value goes up, the turtle should
-  become increasingly timid. At <i>T</i>₁ = 1.0, it should be
-  fully hidden inside the shell.
+  In this test case, axis <i>T</i>₁ controls the timidity of 🐢 U+1F422
+  TURTLE. If your OpenType implementation is correct,
+  the <em>Zycon</em> turtle should fully stick its head, legs and tail
+  out of the shell at <i>T</i>₁ = 0.0. As the axis value goes up, the
+  turtle should become increasingly timid. At <i>T</i>₁ = 1.0, it
+  should be fully hidden inside the shell.
 </div>
 
 <table>
