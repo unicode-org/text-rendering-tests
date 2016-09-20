@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ft="https://github.com/OpenType/fonttest">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn|Vollkorn:i"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<h3 id="GLYF-1">GLYF–1: Composite Glyphs</h3>
+
+<div class="desc">
+  The font for this test case has a <em>‘glyf’</em> table whose entry
+  for U+0123 LATIN SMALL LETTER G WITH CEDILLA is a <em>composite
+  glyph</em>. It has two components: one for the base glyph, and
+  another one for the accent. A correct OpenType implementation
+  must place the accent on top of the g.
+</div>
+
+<table>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="GLYF-1/1"
+        ft:render="ģ" ft:font="TestGLYFOne.ttf">
+      <svg viewBox="0 -455 533 1383"><g><path d="M 199,97 L 313,97 Q 396,97 444,61 Q 493,25 493,-36 Q 493,-108 428,-151 Q 363,-195 255,-195 Q 150,-195 90,-156 Q 30,-117 30,-49 Q 30,25 117,74 Q 92,94 92,129 Q 92,177 141,220 Q 86,266 86,345 Q 86,419 134,464 Q 183,510 262,510 Q 330,510 375,476 L 482,489 Q 498,490 498,475 Q 498,469 494,454 L 491,443 L 408,443 Q 438,400 438,345 Q 438,271 389,225 Q 341,180 262,180 Q 211,180 171,200 Q 143,175 143,141 Q 143,97 199,97 Z M 313,53 L 178,53 Q 165,53 151,56 Q 85,13 85,-46 Q 85,-94 131,-122 Q 177,-151 255,-151 Q 338,-151 388,-119 Q 438,-88 438,-36 Q 438,53 313,53 Z M 387,345 Q 387,401 353,434 Q 319,467 262,467 Q 205,467 171,434 Q 137,401 137,345 Q 137,289 171,256 Q 205,223 262,223 Q 319,223 353,256 Q 387,289 387,345 Z M 268,671 L 302,650 Q 306,640 306,631 Q 306,590 262,590 Q 214,590 214,645 Q 214,669 230,707 Q 246,746 271,780 Q 292,777 304,765 Q 272,707 268,671 Z" /></g></svg>
+    </td>
+  </tr>
+
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="GLYF-1/1"/>
+  </tr>
+
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="GLYF-1/1"/>
+  </tr>
+
+</table>
+</body>
+</html>
