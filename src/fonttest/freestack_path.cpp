@@ -65,7 +65,8 @@ void FreeTypePathConverter::MoveTo(const FT_Vector& to) {
     path_.append("Z\n");
   }
   char buffer[200];
-  snprintf(buffer, sizeof(buffer), "M %ld,%ld\n", start_.x, start_.y);
+  snprintf(buffer, sizeof(buffer), "M %ld,%ld\n",
+           start_.x / 64, start_.y / 64);
   path_.append(buffer);
   closed_ = false;
 }
@@ -80,7 +81,7 @@ void FreeTypePathConverter::LineTo(const FT_Vector& to) {
     return;
   }
   char buffer[200];
-  snprintf(buffer, sizeof(buffer), "L %ld,%ld\n", p.x, p.y);
+  snprintf(buffer, sizeof(buffer), "L %ld,%ld\n", p.x / 64, p.y / 64);
   path_.append(buffer);
   closed_ = false;
 }
@@ -89,8 +90,8 @@ void FreeTypePathConverter::QuadTo(const FT_Vector& control,
                                    const FT_Vector& to) {
   char buffer[200];
   snprintf(buffer, sizeof(buffer), "Q %ld,%ld %ld,%ld\n",
-	   control.x + transform_.x, control.y + transform_.y,
-           to.x + transform_.x, to.y + transform_.y);
+	   (control.x + transform_.x) / 64, (control.y + transform_.y) / 64,
+           (to.x + transform_.x) / 64, (to.y + transform_.y) / 64);
   path_.append(buffer);
   closed_ = false;
 }
@@ -100,9 +101,9 @@ void FreeTypePathConverter::CurveTo(const FT_Vector& control1,
                                     const FT_Vector& to) {
   char buffer[200];
   snprintf(buffer, sizeof(buffer), "C %ld,%ld %ld,%ld %ld,%ld\n",
-	   control1.x + transform_.x, control1.y + transform_.y,
-           control2.x + transform_.x, control2.y + transform_.y,
-           to.x + transform_.x, to.y + transform_.y);
+           (control1.x + transform_.x) / 64, (control1.y + transform_.y) / 64,
+           (control2.x + transform_.x) / 64, (control2.y + transform_.y) / 64,
+           (to.x + transform_.x) / 64, (to.y + transform_.y) / 64);
   path_.append(buffer);
   closed_ = false;
 }

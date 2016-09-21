@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+#include <cmath>
 #include <cstdlib>
 #include <cstdio>
 #include <iostream>
@@ -55,7 +56,7 @@ static std::string TagToString(FT_ULong tag) {
 }
 
 FT_Face FreeStackFont::GetFace(double size, const FontVariation& variation) {
-  FT_Fixed fixedSize = static_cast<FT_Fixed>(size);
+  FT_Fixed fixedSize = static_cast<FT_Fixed>(size * 64 + 0.5);
   FT_Error error = FT_Set_Char_Size(face_, fixedSize, fixedSize, 0, 0);
   if (error) {
     std::cerr << "FT_Set_Char_Size() failed; error: " << error << std::endl;
@@ -111,10 +112,9 @@ void FreeStackFont::GetGlyphOutline(int glyphID,
   path->assign(converter.Convert(&face->glyph->outline));
   char buffer[200];
   snprintf(buffer, sizeof(buffer), "%ld %ld %ld %ld",
-           static_cast<long>(0),
-           static_cast<long>(face->descender),
-           static_cast<long>(face->glyph->metrics.horiAdvance),
-           static_cast<long>(face->height));
+           0L, lround(face->descender),
+           lround(face->glyph->metrics.horiAdvance / 64),
+           lround(face->height));
   viewBox->assign(buffer);
 }
 

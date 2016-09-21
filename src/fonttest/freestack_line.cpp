@@ -87,15 +87,13 @@ bool FreeStackLine::RenderSVG(std::string* svg) {
     y -= glyphs[i].y_advance;
   }
 
-  //std::string path, viewBox;
-  //font->GetGlyphOutline(/* glyph id */ 1, fontVariation, &path, &viewBox);
-
   svg->clear();
   svg->append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 	      "<svg viewBox=\"");
   char viewBox[200];
   snprintf(viewBox, sizeof(viewBox), "%ld %ld %ld %ld",
-           0L, lround(descender), lround(x), lround(ascender - descender));
+           0L, lround(descender), lround(x / 64),
+           lround(ascender - descender));
   svg->append(viewBox);
   svg->append("\"><g><path d=\"\n");
   svg->append(path);
