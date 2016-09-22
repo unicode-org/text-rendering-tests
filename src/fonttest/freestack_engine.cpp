@@ -51,11 +51,12 @@ bool FreeStackEngine::RenderSVG(const std::string& text,
                                 const std::string& textLanguage,
                                 Font* font, double fontSize,
                                 const FontVariation& fontVariation,
+                                const std::string& idPrefix,
                                 std::string* svg) {
   FT_Face face =
       static_cast<FreeStackFont*>(font)->GetFace(fontSize, fontVariation);
   FreeStackLine line(text, textLanguage, face, fontSize);
-  return line.RenderSVG(svg);
+  return line.RenderSVG(idPrefix, svg);
 }
 
 }  // namespace fonttest

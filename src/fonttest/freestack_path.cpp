@@ -53,7 +53,7 @@ std::string FreeTypePathConverter::Convert(FT_Outline* outline) {
     exit(1);
   }
   if (!closed_) {
-    path_.append("Z\n");
+    path_.append(" Z");
   }
   return path_;
 }
@@ -62,11 +62,11 @@ void FreeTypePathConverter::MoveTo(const FT_Vector& to) {
   start_.x = to.x + transform_.x;
   start_.y = to.y + transform_.y;
   if (!closed_) {
-    path_.append("Z\n");
+    path_.append(" Z");
   }
   char buffer[200];
-  snprintf(buffer, sizeof(buffer), "M %ld,%ld\n",
-           start_.x / 64, start_.y / 64);
+  snprintf(buffer, sizeof(buffer), "%sM%ld,%ld",
+           path_.empty() ? "" : " ", start_.x / 64, start_.y / 64);
   path_.append(buffer);
   closed_ = false;
 }
@@ -76,12 +76,13 @@ void FreeTypePathConverter::LineTo(const FT_Vector& to) {
   p.x = to.x + transform_.x;
   p.y = to.y + transform_.y;
   if (p.x == start_.x && p.y == start_.y) {
-    path_.append("Z\n");
+    path_.append(" Z");
     closed_ = true;
     return;
   }
   char buffer[200];
-  snprintf(buffer, sizeof(buffer), "L %ld,%ld\n", p.x / 64, p.y / 64);
+  snprintf(buffer, sizeof(buffer), "%sL%ld,%ld",
+           path_.empty() ? "" : " ", p.x / 64, p.y / 64);
   path_.append(buffer);
   closed_ = false;
 }
@@ -89,7 +90,8 @@ void FreeTypePathConverter::LineTo(const FT_Vector& to) {
 void FreeTypePathConverter::QuadTo(const FT_Vector& control,
                                    const FT_Vector& to) {
   char buffer[200];
-  snprintf(buffer, sizeof(buffer), "Q %ld,%ld %ld,%ld\n",
+  snprintf(buffer, sizeof(buffer), "%sQ%ld,%ld %ld,%ld",
+           path_.empty() ? "" : " ",
 	   (control.x + transform_.x) / 64, (control.y + transform_.y) / 64,
            (to.x + transform_.x) / 64, (to.y + transform_.y) / 64);
   path_.append(buffer);
@@ -100,7 +102,8 @@ void FreeTypePathConverter::CurveTo(const FT_Vector& control1,
                                     const FT_Vector& control2,
                                     const FT_Vector& to) {
   char buffer[200];
-  snprintf(buffer, sizeof(buffer), "C %ld,%ld %ld,%ld %ld,%ld\n",
+  snprintf(buffer, sizeof(buffer), "%sC%ld,%ld %ld,%ld %ld,%ld",
+           path_.empty() ? "" : " ",
            (control1.x + transform_.x) / 64, (control1.y + transform_.y) / 64,
            (control2.x + transform_.x) / 64, (control2.y + transform_.y) / 64,
            (to.x + transform_.x) / 64, (to.y + transform_.y) / 64);

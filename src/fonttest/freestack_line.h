@@ -30,7 +30,7 @@ class FreeStackLine {
   FreeStackLine(const std::string& text, const std::string& textLanguage,
                 FT_Face font, double fontSize);
   ~FreeStackLine();
-  bool RenderSVG(std::string* svg);
+  bool RenderSVG(const std::string& idPrefix, std::string* svg);
 
  private:
   raqm_t* line_;

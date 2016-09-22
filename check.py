@@ -41,6 +41,7 @@ class ConformanceChecker:
         return '%s %d, %d' % (time.strftime("%B"), now.day, now.year)
 
     def check(self, testfile):
+        print testfile
         doc = etree.parse(testfile).getroot()
         self.reports[testfile] = doc
         for e in doc.findall(".//*[@class='expected']"):
@@ -55,6 +56,9 @@ class ConformanceChecker:
             if render: command.append('--render=' + render)
             if variation: command.append('--variation=' + variation)
             observed = subprocess.check_output(command)
+            observed = re.sub(r'>\s+<', '><', observed)
+            observed = observed.replace(
+                'xmlns="http://www.w3.org/2000/svg"', '')
             observed_svg = etree.fromstring(observed)
             self.normalize_svg(observed_svg)
             self.observed[testcase] = observed_svg
@@ -68,7 +72,7 @@ class ConformanceChecker:
 
     def normalize_svg(self, svg):
         strip_path = lambda p: re.sub(r'\s+', ' ', p).strip()
-        for path in svg.findall(".//path[@d]"):
+        for path in svg.findall('.//path[@d]'):
             path.attrib['d'] = strip_path(path.attrib['d'])
 
     def write_report(self, path):
@@ -113,7 +117,9 @@ class ConformanceChecker:
                 report.find('body').append(subElement)
 
         with open(path, 'w') as outfile:
-            outfile.write(etree.tostring(report, encoding='utf-8'))
+            xml = etree.tostring(report, encoding='utf-8')
+            xml = xml.replace(b'svg:', b'')  # work around browser bugs
+            outfile.write(xml)
 
 
 def build():
@@ -124,6 +130,8 @@ def build():
 
 
 def main():
+    etree.register_namespace('svg', 'http://www.w3.org/2000/svg')
+    etree.register_namespace('xlink', 'http://www.w3.org/1999/xlink')
     parser = argparse.ArgumentParser()
     parser.add_argument('--engine',
                         choices=['FreeStack', 'CoreText', 'DirectWrite'],

@@ -41,6 +41,7 @@ class FreeStackEngine : public FontEngine {
                          const std::string& textLanguage,
                          Font* font, double fontSize,
                          const FontVariation& fontVariation,
+                         const std::string& idPrefix,
                          std::string* svg);
 
  private:

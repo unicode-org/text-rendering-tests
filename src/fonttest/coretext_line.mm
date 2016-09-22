@@ -15,6 +15,7 @@
 
 #include <cstdint>
 #include <CoreFoundation/CoreFoundation.h>
+#include <CoreGraphics/CoreGraphics.h>
 #include <CoreText/CoreText.h>
 
 #include "fonttest/coretext_line.h"
@@ -69,12 +70,23 @@ CoreTextLine::~CoreTextLine() {
   CFRelease(font_);
 }
 
-bool CoreTextLine::RenderSVG(std::string* svg) {
-  std::string svgPath;
+static std::string GetGlyphName(CGFontRef font, CGGlyph glyph) {
+  CFStringRef cfGlyphName = CGFontCopyGlyphNameForGlyph(font, glyph);
+  char glyphName[512];
+  if (!CFStringGetCString(cfGlyphName, glyphName, sizeof(glyphName),
+                          kCFStringEncodingUTF8)) {
+    snprintf(glyphName, sizeof(glyphName), "gid%u", glyph);
+  }
+  CFRelease(cfGlyphName);
+  return std::string(glyphName);
+}
+
+bool CoreTextLine::RenderSVG(const std::string& idPrefix, std::string* svg) {
   CGFloat ascent, descent, leading;
   double width =
       CTLineGetTypographicBounds(line_, &ascent, &descent, &leading);
 
+  std::string symbols, uses;
   CFArrayRef runs = CTLineGetGlyphRuns(line_);
   CFIndex numRuns = CFArrayGetCount(runs);
   for (CFIndex runIndex = 0; runIndex < numRuns; ++runIndex) {
@@ -92,6 +104,7 @@ bool CoreTextLine::RenderSVG(std::string* svg) {
       continue;
     }
 
+    CGFontRef cgFont = CTFontCopyGraphicsFont(font, NULL);
     CGAffineTransform transform = CTRunGetTextMatrix(run);
     CGGlyph glyphs[numGlyphs];
     CGPoint pos[numGlyphs];
@@ -100,28 +113,49 @@ bool CoreTextLine::RenderSVG(std::string* svg) {
     fullRange.length = 0;  // length 0 means until end of run
     CTRunGetGlyphs(run, fullRange, glyphs);
     CTRunGetPositions(run, fullRange, pos);
+    std::map<CGGlyph, std::string> glyphNames;
     for (CFIndex i = 0; i < numGlyphs; ++i) {
-      transform.tx = pos[i].x;
-      transform.ty = pos[i].y;
-      CGPathRef path =
-          CTFontCreatePathForGlyph(font, glyphs[i], &transform);
-      if (path) {
-        svgPath.append(CoreTextPath(path).ToSVGPath());
-        CGPathRelease(path);
+      if (glyphNames.find(glyphs[i]) != glyphNames.end()) {
+        continue;
       }
+      std::string glyphName = GetGlyphName(cgFont, glyphs[i]);
+      glyphNames[glyphs[i]] = glyphName;
+      symbols.append("  <symbol id=\"");
+      symbols.append(idPrefix);
+      symbols.append(".");
+      symbols.append(glyphName);
+      symbols.append("\" overflow=\"visible\"><path d=\"");
+      CGPathRef path = CTFontCreatePathForGlyph(font, glyphs[i], NULL);
+      symbols.append(CoreTextPath(path).ToSVGPath());
+      CGPathRelease(path);
+      symbols.append("\"/></symbol>\n");
     }
+
+    for (CFIndex i = 0; i < numGlyphs; ++i) {
+      char buffer[1024];
+      snprintf(buffer, sizeof(buffer),
+               "  <use xlink:href=\"#%s.%s\" x=\"%ld\" y=\"%ld\"/>\n",
+               idPrefix.c_str(), glyphNames[glyphs[i]].c_str(),
+               lround(pos[i].x), lround(pos[i].y));
+      uses.append(buffer);
+    }
+    CGFontRelease(cgFont);
   }
 
   svg->clear();
   svg->append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-	      "<svg viewBox=\"");
+	      "<svg version=\"1.1\"\n"
+              "    xmlns=\"http://www.w3.org/2000/svg\"\n"
+              "    xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n"
+              "    viewBox=\"");
   char viewBox[200];
   snprintf(viewBox, sizeof(viewBox), "%ld %ld %ld %ld",
            0L, lround(-descent), lround(width), lround(ascent + descent));
   svg->append(viewBox);
-  svg->append("\"><g><path d=\"\n");
-  svg->append(svgPath);
-  svg->append("\n\"></path></g></svg>\n");
+  svg->append("\">\n");
+  svg->append(symbols);
+  svg->append(uses);
+  svg->append("</svg>\n");
   return true;
 }
 

@@ -77,6 +77,7 @@ TestHarness::~TestHarness() {
 
 void TestHarness::Run() {
   FontVariation fontVariation;
+  const std::string testcase = GetOption("--testcase=");
   const std::string variationSpec = GetOption("--variation=");
   ParseVariationSpec(variationSpec, &fontVariation);
   const std::string text = GetOption("--render=");
@@ -84,7 +85,7 @@ void TestHarness::Run() {
   const double fontSize = 1000.0;
   std::string svg;
   engine_->RenderSVG(text, textLanguage, font_.get(), fontSize, fontVariation,
-                     &svg);
+                     testcase, &svg);
   std::cout << svg;
 }
 

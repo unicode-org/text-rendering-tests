@@ -35,20 +35,24 @@ void CoreTextPath::VisitPathElement(void* data, const CGPathElement* element) {
   CoreTextPath* self = static_cast<CoreTextPath*>(data);
   std::string* svg = &self->svgPath_;
 
+  if (!svg->empty()) {
+    svg->append(" ");
+  }
+
   char buffer[100];
   long x, y, ax, ay, bx, by;
   switch (element->type) {
   case kCGPathElementMoveToPoint:
     x = static_cast<long>(element->points[0].x);
     y = static_cast<long>(element->points[0].y);
-    snprintf(buffer, sizeof(buffer), "M %ld,%ld\n", x, y);
+    snprintf(buffer, sizeof(buffer), "M%ld,%ld", x, y);
     svg->append(buffer);
     break;
 
   case kCGPathElementAddLineToPoint:
     x = static_cast<long>(element->points[0].x);
     y = static_cast<long>(element->points[0].y);
-    snprintf(buffer, sizeof(buffer), "L %ld,%ld\n", x, y);
+    snprintf(buffer, sizeof(buffer), "L%ld,%ld", x, y);
     svg->append(buffer);
     break;
 
@@ -57,7 +61,7 @@ void CoreTextPath::VisitPathElement(void* data, const CGPathElement* element) {
     ay = static_cast<long>(element->points[0].y);
     x = static_cast<long>(element->points[1].x);
     y = static_cast<long>(element->points[1].y);
-    snprintf(buffer, sizeof(buffer), "Q %ld,%ld %ld,%ld\n", ax, ay, x, y);
+    snprintf(buffer, sizeof(buffer), "Q%ld,%ld %ld,%ld", ax, ay, x, y);
     svg->append(buffer);
     break;
 
@@ -68,13 +72,13 @@ void CoreTextPath::VisitPathElement(void* data, const CGPathElement* element) {
     by = static_cast<long>(element->points[1].y);
     x = static_cast<long>(element->points[2].x);
     y = static_cast<long>(element->points[2].y);
-    snprintf(buffer, sizeof(buffer), "C %ld,%ld %ld,%ld %ld,%ld\n",
+    snprintf(buffer, sizeof(buffer), "C%ld,%ld %ld,%ld %ld,%ld",
              ax, ay, bx, by, x, y);
     svg->append(buffer);
     break;
 
   case kCGPathElementCloseSubpath:
-    svg->append("Z\n");
+    svg->append("Z");
     break;
   }
 }

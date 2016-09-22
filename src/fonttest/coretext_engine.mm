@@ -88,11 +88,12 @@ bool CoreTextEngine::RenderSVG(const std::string& text,
                                const std::string& textLanguage,
                                Font* font, double fontSize,
                                const FontVariation& fontVariation,
+                               const std::string& idPrefix,
                                std::string* svg) {
   CoreTextFont* myFont = static_cast<CoreTextFont*>(font);
   CTFontRef ctFont = myFont->CreateFont(fontSize, fontVariation);
   CoreTextLine line(text, textLanguage, ctFont, fontSize);
-  bool ok = line.RenderSVG(svg);
+  bool ok = line.RenderSVG(idPrefix, svg);
   CFRelease(ctFont);
   return ok;
 }

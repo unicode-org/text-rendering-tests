@@ -28,7 +28,7 @@ class CoreTextLine {
   CoreTextLine(const std::string& text, const std::string& textLanguage,
                CTFontRef font, double fontSize);
   ~CoreTextLine();
-  bool RenderSVG(std::string* svg);
+  bool RenderSVG(const std::string& idPrefix, std::string* svg);
 
  private:
   CTFontRef font_;
