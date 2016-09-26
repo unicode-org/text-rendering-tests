@@ -1,14 +1,16 @@
-# FontTest
+# Text rendering tests
 
-This is a very early draft for what might become some day an OpenType
-test suite. The purpose of this test suite is to make sure that all
-OpenType implementations render fonts in a reasonably similar
-way. Currently, the test suite is very much in its infancy, so please
-don’t be disappointed if you don’t find much. Of course you are more
-than welcome to help; just send a pull request.
+This is a very early draft for a test suite for text rendering.
+
+It is not easy to correctly display text, so we founded this project
+to help implementations to get this right.  Currently, the test suite
+is still very much in its infancy, so please don’t be disappointed if
+you don’t find much. Of course you are more than welcome to help; just
+send a pull request.
 
 ```bash
-$ git clone --recursive https://github.com/brawer/fonttest.git && cd fonttest
+$ git clone --recursive https://github.com/icu-project/text-rendering-tests.git
+$ cd text-rendering-tests
 $ python check.py --output=report.html --engine=FreeStack
 ```
 
@@ -36,8 +38,8 @@ When you pass `--output=report.html`, the test suite will generate a
 test report that explains what was tested, which tests have passed,
 and which ones have failed. By clicking the following links, you can
 also just look at the reports
-for [FreeStack](https://raw.githack.com/brawer/fonttest/master/reports/FreeStack.html)
-and [CoreText](https://raw.githack.com/brawer/fonttest/master/reports/CoreText.html) without running the test suite yourself.
+for [FreeStack](https://raw.githack.com/icu-project/text-rendering-tests/master/reports/FreeStack.html)
+and [CoreText](https://raw.githack.com/icu-project/text-rendering-tests/master/reports/CoreText.html) without running the test suite yourself.
 
 
 ## Test Cases
@@ -51,5 +53,5 @@ extract the rendering parameters. Then, it runs a sub-process (written
 in C++ and Objective C) that writes the observed rendering in SVG
 format to Standard Output. Finally, the script checks whether the
 expected rendering matches the observed result.  Currently, “matching”
-is implemented as exact string equality on the SVG file; if needed,
-this could of course be made resilient to small rounding differences.
+is implemented by iterating over SVG paths, allowing for maximally
+1 font design unit of difference.
