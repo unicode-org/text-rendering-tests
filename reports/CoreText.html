@@ -31,7 +31,7 @@ th.conformance {padding-right:1.5em;line-height:2.5em}
 svg {height:2.5em;transform:scaleY(-1)}
 </style></head>
 <body>
-<h1>OpenType Test Report</h1>
+<h1>Text Rendering Test Report</h1>
 <h2>September 26, 2016 · CoreText</h2>
 <h3>Overview</h3>
 <div class="desc" id="SummaryText">Some tests have failed. See <a href="#CMAP-3">CMAP-3</a>, <a href="#GPOS-1">GPOS-1</a>, <a href="#GVAR-1">GVAR-1</a>, <a href="#GVAR-2">GVAR-2</a>, <a href="#GVAR-3">GVAR-3</a>, <a href="#GVAR-5">GVAR-5</a>, <a href="#GVAR-6">GVAR-6</a>, <a href="#SHBALI-1">SHBALI-1</a>, <a href="#SHBALI-2">SHBALI-2</a>, and <a href="#SHBALI-3">SHBALI-3</a> for details.</div>
@@ -43,7 +43,7 @@ svg {height:2.5em;transform:scaleY(-1)}
   any special quirks, the font’s <em>‘avar’</em> table defines a
   mapping that modifies the variation axis.
 </div>
-<div class="desc">A conformant OpenType implementation should
+<div class="desc">A correct implementation should
   produce the test glyph in its maximally thin shape at axis value
   100. The resulting glyph should become bolder until 250,
   then <em>stay at the exact same weight</em> until 650, then become
@@ -177,13 +177,13 @@ svg {height:2.5em;transform:scaleY(-1)}
   ideographs. For example, Unicode supports two slightly different
   variants when rendering U+82A6 in Japanese; the font for this test
   case contains a type 14 <em>‘cmap’</em> table that implements them.
-  With a conforming OpenType implementation, you should see four
+  With a conforming implementation, you should see four
   glyphs below. In the third glyph (U+82A6 U+E0101), the top stroke
   below the radical should be <em>attached and slanting up.</em>
   But in the first, second, and fourth glyph, that stroke should be
   <em>detached and horizontal</em>.  If all four glyphs look the
   same, or if you see any black boxes in the renderings, it’s a sign
-  that your OpenType implementation is broken.
+  that your implementation is broken.
 </div>
 
 <table>
@@ -231,10 +231,10 @@ svg {height:2.5em;transform:scaleY(-1)}
   The font for this test case contains a type 14 <em>‘cmap’</em> table
   that implements both the regular symbol ≩ U+2269 GREATER-THAN BUT
   NOT EQUAL TO, and its variant U+2269 U+FE00 GREATER-THAN BUT NOT
-  EQUAL TO WITH VERTICAL STROKE.  With a conformant OpenType
+  EQUAL TO WITH VERTICAL STROKE.  With a correct
   implementation, the two glyphs should look different. If the two
   glyphs look the same, or if you see any black boxes in the
-  renderings, it’s a sign that your OpenType implementation is broken.
+  renderings, it’s a sign that your implementation is broken.
 </div>
 
 <table>
@@ -280,11 +280,11 @@ svg {height:2.5em;transform:scaleY(-1)}
 </div>
 
 <div class="desc">
-  A correct OpenType implementation should be able to render Turkish
+  A correct implementation should be able to render Turkish
   text with this test font, using Unicode’s
   <a href="ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/APPLE/TURKISH.TXT">conversion table</a>.  If you see boxes, missing characters, or
   glyphs from a different (fallback) font in the rendering below, it’s
-  a sign that your OpenType implementation cannot handle legacy fonts
+  a sign that your implementation cannot handle legacy fonts
   that were built for MacOS.
 </div>
 
@@ -387,7 +387,7 @@ svg {height:2.5em;transform:scaleY(-1)}
   The font for this test case has a <em>‘glyf’</em> table whose entry
   for U+0123 LATIN SMALL LETTER G WITH CEDILLA is a <em>composite
   glyph</em>. It has two components: one for the base glyph, and
-  another one for the accent. A correct OpenType implementation
+  another one for the accent. A correct implementation
   must place the accent on top of the g.
 </div>
 
@@ -444,7 +444,7 @@ svg {height:2.5em;transform:scaleY(-1)}
 
 <div class="desc">
   If you see touching or overlapping glyph pairs in the rendering,
-  it’s a sign that your OpenType implementation fails to handle
+  it’s a sign that your implementation fails to handle
   <em>‘GPOS’</em> tables with type 2 lookups for <em>Pair Adjustment
   Positioning.</em>
 </div>
@@ -544,11 +544,11 @@ svg {height:2.5em;transform:scaleY(-1)}
 <div class="desc">
   The font for this test case uses <em>shared point numbers</em> in
   its <em>‘gvar’</em> table. In its <em>shared points set</em>, the
-  font sets the number of points to zero. A correct OpenType
+  font sets the number of points to zero. A correct
   implementation should interpret such an empty set as a compact
   encoding of “all points.” If the glyphs in the rendering below
   have all the same weight, of if some glyphs are missing entirely,
-  it’s a sign that your OpenType implementation is broken.
+  it’s a sign that your implementation is broken.
 </div>
 
 <table>
@@ -620,7 +620,7 @@ svg {height:2.5em;transform:scaleY(-1)}
   table. However, this font does not simply state an empty set for
   indicating that “all points” should be affected by the variation
   record. Instead, it gives an explicit enumeration of point numbers
-  in its <em>shared points set</em>.  A correct OpenType
+  in its <em>shared points set</em>.  A correct 
   implementation should render the glyphs in the exact same way as
   in <a href="#GVAR-1">GVAR–1</a>, although the font uses a
   less compact encoding.
@@ -692,7 +692,7 @@ svg {height:2.5em;transform:scaleY(-1)}
   Other than the fonts for test cases <a href="#GVAR-1">GVAR–1</a>
   and <a href="#GVAR-2">GVAR–2</a>, the font for this test does not
   use any <em>shared point numbers</em> in its <em>‘gvar’</em>
-  table. A correct OpenType implementation should still render the
+  table. A correct implementation should still render the
   glyphs in the exact same way, no matter what encoding has been used.
 </div>
 
@@ -764,7 +764,7 @@ svg {height:2.5em;transform:scaleY(-1)}
   David Berlow at Font Bureau Inc. The font was developed for
   illustrating the capabilities of TrueType GX. The glyph ids and the
   font have been updated to OpenType 1.8.  The new version supports a
-  small number of Emoji such as 🦎 U+1F98E LIZARD.  If your OpenType
+  small number of Emoji such as 🦎 U+1F98E LIZARD.  If your
   implementation is correct, the lizard should crawl.  Variation
   axis <i>M</i>₁ moves its legs while axis <i>T</i>₁ bobs the head.
 </div>
@@ -844,7 +844,7 @@ svg {height:2.5em;transform:scaleY(-1)}
 
 <div class="desc">
   The font for this test case is the same <em>Zycon</em> as in
-  <a href="#GVAR-4">GVAR–4</a>. If your OpenType implementation is
+  <a href="#GVAR-4">GVAR–4</a>. If your implementation is
   correct, 🌝 U+1F31D FULL MOON WITH FACE should wax and wane in sync
   with to variation axis <i>M</i>₁.
 </div>
@@ -925,7 +925,7 @@ svg {height:2.5em;transform:scaleY(-1)}
 <div class="desc">
   The font for this test case is again the same <em>Zycon</em> as in
   <a href="#GVAR-4">GVAR–4</a>. Here, axis <i>T</i>₁ controls the
-  timidity of 🐢 U+1F422 TURTLE. If your OpenType implementation is
+  timidity of 🐢 U+1F422 TURTLE. If your implementation is
   correct, the turtle should fully stick its head, legs and tail out
   of the shell at <i>T</i>₁ = 0.0. As the axis value goes up, the
   turtle should become increasingly timid. At <i>T</i>₁ = 1.0, it
@@ -1009,11 +1009,11 @@ svg {height:2.5em;transform:scaleY(-1)}
   The font for this test case contains a <em>‘kern’</em> table of
   format 0, which in turns contains a single format 0 subtable.
   Without kerning, the glyphs for <em>T</em>, <em>u</em> and the
-  dotless <em>ı</em> will look like normal letters. However, if the
-  OpenType implementation correctly applies the font’s kerning data,
+  dotless <em>ı</em> will look like normal letters. However, if your
+  implementation correctly applies the font’s kerning data,
   the shapes will join to form a geometric pattern.  If you can still
   discern the original letters <em>ıTuTuTı</em> in the rendering,
-  it’s a sign that the implementation fails to correctly handle kerning.
+  it’s a sign that your implementation fails to correctly handle kerning.
 </div>
 
 <table>
@@ -1037,8 +1037,8 @@ svg {height:2.5em;transform:scaleY(-1)}
 <div class="desc">
   Although kerning is typically <em>reducing</em> space between
   letter pairs, it’s entirely valid for a font to <em>increase</em> it.
-  This test verifies that an OpenType implementation can handle
-  such kerning tables. If the implementation works correctly,
+  This test verifies that an implementation can handle
+  such kerning tables. If your implementation works correctly,
   you should see four groups separated by whitespace.
 </div>
 
