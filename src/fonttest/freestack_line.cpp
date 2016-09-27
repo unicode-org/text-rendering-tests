@@ -106,7 +106,7 @@ bool FreeStackLine::RenderSVG(const std::string& idPrefix, std::string* svg) {
   for (size_t i = 0; i < numGlyphs; ++i) {
     const raqm_glyph_t& glyph = glyphs[i];
     const double glyphX = x + glyph.x_offset;
-    const double glyphY = y - glyph.y_offset;
+    const double glyphY = y + glyph.y_offset;
     char buffer[1024];
     snprintf(buffer, sizeof(buffer),
              "  <use xlink:href=\"#%s.%s\" x=\"%ld\" y=\"%ld\"/>\n",
@@ -114,7 +114,7 @@ bool FreeStackLine::RenderSVG(const std::string& idPrefix, std::string* svg) {
              lround(glyphX / 64), lround(glyphY / 64));
     uses.append(buffer);
     x += glyph.x_advance;
-    y -= glyph.y_advance;
+    y += glyph.y_advance;
   }
 
   svg->clear();
