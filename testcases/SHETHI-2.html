@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html
+    xmlns:ft="https://github.com/OpenType/fonttest"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn|Vollkorn:i"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<h3 id="SHETHI-2">SHETHI–2: Ethiopic Diacritics</h3>
+
+<div class="desc">
+  In its <a href="https://www.microsoft.com/typography/otspec/gpos.htm">Glyph
+  Positioning</a> table, the font for this test case defines a
+  <a href="https://www.microsoft.com/typography/otspec/features_ko.htm#mark">Mark
+  Positioning</a> feature.  The feature uses
+  a <a href="https://www.microsoft.com/typography/otspec/gpos.htm#MBP">MarkToBase
+  Attachment Positioning Subtable</a> for placing Ethiopic diacritics
+  on top of a base glyph.  If your text rendering engine is correctly,
+  the dots (which mean <em>“long vowel”, “long consonant”,</em>
+  and <em>“long consonant plus long vowel”</em>) should be placed on
+  top of the base syllable (<em>“la”</em>). If the dots appear to the
+  right of the syllable, or if they are missing entirely, it’s a sign
+  that your text rendering system is broken.
+</div>
+
+<table>
+  <tr>
+    <th></th>
+    <td>U+1308<br/>—</td>
+    <td>U+1308<br/>U+135E</td>
+    <td>U+1308<br/>U+135F</td>
+    <td>U+1308<br/>U+135D</td>
+  </tr>
+
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="SHETHI-2/1"
+        ft:render="ለ" ft:font="TestShapeEthi.ttf"><svg version="1.1" viewBox="0 -293 606 1362"><symbol id="SHETHI-2/1.uni1208" overflow="visible"><path d="M565,0 L471,0 L306,487 Q258,473 228,418 Q199,363 178,262 Q157,162 141,0 L49,0 Q66,184 94,302 Q122,419 165,482 Q208,544 279,562 L227,713 L321,713 Z" /></symbol><use x="0" y="0" xlink:href="#SHETHI-2/1.uni1208" /></svg></td>
+
+    <td class="expected" ft:id="SHETHI-2/2"
+        ft:render="ለ፞" ft:font="TestShapeEthi.ttf"><svg version="1.1" viewBox="0 -293 606 1362"><symbol id="SHETHI-2/2.uni1208" overflow="visible"><path d="M565,0 L471,0 L306,487 Q258,473 228,418 Q199,363 178,262 Q157,162 141,0 L49,0 Q66,184 94,302 Q122,419 165,482 Q208,544 279,562 L227,713 L321,713 Z" /></symbol><symbol id="SHETHI-2/2.uni135E" overflow="visible"><path d="M-62,876 Q-62,911 -45,927 Q-29,944 0,944 Q29,944 45,927 Q62,909 62,876 Q62,844 45,826 Q28,809 0,809 Q-28,809 -45,826 Q-62,843 -62,876 Z" /></symbol><use x="0" y="0" xlink:href="#SHETHI-2/2.uni1208" /><use x="303" y="0" xlink:href="#SHETHI-2/2.uni135E" /></svg></td>
+
+    <td class="expected" ft:id="SHETHI-2/3"
+        ft:render="ለ፟" ft:font="TestShapeEthi.ttf"><svg version="1.1" viewBox="0 -293 606 1362"><symbol id="SHETHI-2/3.uni1208" overflow="visible"><path d="M565,0 L471,0 L306,487 Q258,473 228,418 Q199,363 178,262 Q157,162 141,0 L49,0 Q66,184 94,302 Q122,419 165,482 Q208,544 279,562 L227,713 L321,713 Z" /></symbol><symbol id="SHETHI-2/3.uni135F" overflow="visible"><path d="M-181,876 Q-181,909 -165,927 Q-149,944 -119,944 Q-89,944 -73,927 Q-57,909 -57,876 Q-57,844 -73,826 Q-90,809 -119,809 Q-148,809 -165,827 Q-181,845 -181,876 Z M57,876 Q57,911 73,927 Q89,944 119,944 Q148,944 165,927 Q181,909 181,876 Q181,844 164,826 Q147,809 119,809 Q90,809 73,826 Q57,843 57,876 Z" /></symbol><use x="0" y="0" xlink:href="#SHETHI-2/3.uni1208" /><use x="303" y="0" xlink:href="#SHETHI-2/3.uni135F" /></svg></td>
+
+    <td class="expected" ft:id="SHETHI-2/4"
+        ft:render="ለ፝" ft:font="TestShapeEthi.ttf"><svg version="1.1" viewBox="0 -293 606 1362"><symbol id="SHETHI-2/4.uni1208" overflow="visible"><path d="M565,0 L471,0 L306,487 Q258,473 228,418 Q199,363 178,262 Q157,162 141,0 L49,0 Q66,184 94,302 Q122,419 165,482 Q208,544 279,562 L227,713 L321,713 Z" /></symbol><symbol id="SHETHI-2/4.uni135D" overflow="visible"><path d="M-62,876 Q-62,911 -45,927 Q-29,944 0,944 Q29,944 45,927 Q62,909 62,876 Q62,844 45,826 Q28,809 0,809 Q-28,809 -45,826 Q-62,843 -62,876 Z M165,876 Q165,911 181,927 Q197,944 227,944 Q256,944 272,927 Q289,909 289,876 Q289,844 272,826 Q255,809 227,809 Q198,809 181,826 Q165,843 165,876 Z M-289,876 Q-289,911 -272,927 Q-256,944 -227,944 Q-197,944 -181,927 Q-165,909 -165,876 Q-165,844 -181,826 Q-198,809 -227,809 Q-255,809 -272,826 Q-289,843 -289,876 Z" /></symbol><use x="0" y="0" xlink:href="#SHETHI-2/4.uni1208" /><use x="303" y="0" xlink:href="#SHETHI-2/4.uni135D" /></svg></td>
+  </tr>
+
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="SHETHI-2/1"/>
+    <td class="observed" ft:id="SHETHI-2/2"/>
+    <td class="observed" ft:id="SHETHI-2/3"/>
+    <td class="observed" ft:id="SHETHI-2/4"/>
+  </tr>
+
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="SHETHI-2/1"/>
+    <td class="conformance" ft:id="SHETHI-2/2"/>
+    <td class="conformance" ft:id="SHETHI-2/3"/>
+    <td class="conformance" ft:id="SHETHI-2/4"/>
+  </tr>
+</table>
+</body>
+</html>
+
+
+
+  
