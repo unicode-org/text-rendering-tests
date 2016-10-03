@@ -26,7 +26,7 @@ def is_similar(a, b, maxDelta):
         return False
     for name, valueA in a.attrib.items():
         valueB = b.attrib.get(name)
-        if name in ('d', 'viewBox'):
+        if name in ('d', 'viewBox', 'x', 'y'):
             if not is_similar_path(valueA, valueB, maxDelta):
                 return False
         else:
