@@ -55,3 +55,12 @@ format to Standard Output. Finally, the script checks whether the
 expected rendering matches the observed result.  Currently, “matching”
 is implemented by iterating over SVG paths, allowing for maximally
 1 font design unit of difference.
+
+
+## Contributing
+
+Your contributions are very welcome; simply send pull requests via
+GitHub.  Before your changes can be merged into this repository, the
+Unicode Consortium requests that you sign a [Contributor License
+Agreement](unicode_cla.pdf); please follow the instructions in that
+document.
