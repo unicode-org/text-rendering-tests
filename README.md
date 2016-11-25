@@ -9,7 +9,7 @@ you don’t find much. Of course you are more than welcome to help; just
 send a pull request.
 
 ```bash
-$ git clone --recursive https://github.com/icu-project/text-rendering-tests.git
+$ git clone --recursive https://github.com/unicode-org/text-rendering-tests.git
 $ cd text-rendering-tests
 $ python check.py --output=report.html --engine=FreeStack
 ```
@@ -38,8 +38,8 @@ When you pass `--output=report.html`, the test suite will generate a
 test report that explains what was tested, which tests have passed,
 and which ones have failed. By clicking the following links, you can
 also just look at the reports
-for [FreeStack](https://raw.githack.com/icu-project/text-rendering-tests/master/reports/FreeStack.html)
-and [CoreText](https://raw.githack.com/icu-project/text-rendering-tests/master/reports/CoreText.html) without running the test suite yourself.
+for [FreeStack](https://raw.githack.com/unicode-org/text-rendering-tests/master/reports/FreeStack.html)
+and [CoreText](https://raw.githack.com/unicode-org/text-rendering-tests/master/reports/CoreText.html) without running the test suite yourself.
 
 
 ## Test Cases
