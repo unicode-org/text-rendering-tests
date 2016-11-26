@@ -60,7 +60,7 @@ is implemented by iterating over SVG paths, allowing for maximally
 ## Contributing
 
 Your contributions are very welcome; simply send pull requests via
-GitHub.  Before your changes can be merged into this repository, the
-Unicode Consortium requests that you sign a [Contributor License
-Agreement](unicode_cla.pdf); please follow the instructions in that
-document.
+GitHub.  A bot will ask you (on the GitHub review thread) to accept
+[Unicode’s Contributor License Agreement](unicode_cla.pdf) by clicking
+on a web form. Alternatively, if you prefer paper, you can also send a
+signed paper copy of the agreement to Unicode.
