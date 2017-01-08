@@ -55,7 +55,10 @@ class ConformanceChecker:
                        '--testcase=' + testcase, '--engine=' + self.engine]
             if render: command.append('--render=' + render)
             if variation: command.append('--variation=' + variation)
-            observed = subprocess.check_output(command)
+            try:
+                observed = subprocess.check_output(command)
+            except subprocess.CalledProcessError:
+                observed = '<error/>'
             observed = re.sub(r'>\s+<', '><', observed)
             observed = observed.replace(
                 'xmlns="http://www.w3.org/2000/svg"', '')
