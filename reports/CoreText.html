@@ -32,7 +32,7 @@ svg {height:2.5em;transform:scaleY(-1)}
 </style></head>
 <body>
 <h1>Text Rendering Test Report</h1>
-<h2>January 10, 2017 · CoreText</h2>
+<h2>January 11, 2017 · CoreText</h2>
 <h3>Overview</h3>
 <div class="desc" id="SummaryText">Some tests have failed. See <a href="#AVAR-1">AVAR-1</a>, <a href="#CFF-1">CFF-1</a>, <a href="#CFF2-1">CFF2-1</a>, <a href="#CMAP-3">CMAP-3</a>, <a href="#GVAR-1">GVAR-1</a>, <a href="#GVAR-2">GVAR-2</a>, <a href="#GVAR-3">GVAR-3</a>, <a href="#SHARAN-1">SHARAN-1</a>, <a href="#SHBALI-1">SHBALI-1</a>, <a href="#SHBALI-2">SHBALI-2</a>, <a href="#SHBALI-3">SHBALI-3</a>, and <a href="#SHKNDA-2">SHKNDA-2</a> for details.</div>
 <h3 id="AVAR-1">AVAR–1: Weight Flattening</h3>
@@ -169,28 +169,33 @@ svg {height:2.5em;transform:scaleY(-1)}
 
 </table>
 
-<h3 id="CFF2-1">CFF2–1: FDArray with 256 Elements</h3>
+<h3 id="CFF-1">CFF–1: FDArray with 256 Elements</h3>
 
 <div class="desc">
   The font for this test case
   is <a href="https://github.com/adobe-fonts/fdarray-test/">FDArray
   Test 257</a>, a test font by Adobe. The font has been engineered
-  to map Unicode codepoints to a CFF <em>FDArray</em> with 256 elements.
-  Each glyph shows the final two hexadecimal digits of the input codepoint.
-  For a more detailed description please see
+  to map Unicode codepoints with a <a href="http://wwwimages.adobe.com/content/dam/Adobe/en/devnet/font/pdfs/5176.CFF.pdf">CFF</a> <em>font dictionary array</em>
+  of 256 elements. If your implementation is correct, each glyph
+  should show the last two hexadecimal digits of the Unicode codepoint
+  being rendered. For a more detailed description of this test, please see
   <a href="https://github.com/adobe-fonts/fdarray-test/blob/master/README.md">Adobe’s README file</a>.
 </div>
 
 <table>
   <tr>
     <th />
-    <td>⓪<br />U+24EA</td>
-    <td>①<br />U+2460</td>
-    <td>②<br />U+2461</td>
-    <td>③<br />U+2462</td>
-    <td>④<br />U+2463</td>
-    <td>⑤<br />U+2464</td>
-    <td>⑩<br />U+2469</td>
+    <td><div style="padding:0 .5em">⓪</div>U+24EA</td>
+    <td style="padding:0 .5em">①<br />U+2460</td>
+    <td style="padding:0 .5em">②<br />U+2461</td>
+    <td style="padding:0 .5em">③<br />U+2462</td>
+    <td style="padding:0 .5em">④<br />U+2463</td>
+    <td style="padding:0 .5em">⑤<br />U+2464</td>
+    <td style="padding:0 .5em">⑩<br />U+2469</td>
+    <td style="padding:0 .5em">🌺<br />U+1F33A</td>
+    <td style="padding:0 .5em">🌻<br />U+1F33B</td>
+    <td style="padding:0 .5em">💧<br />U+1F4A7</td>
+    <td style="padding:0 .5em">🥝<br />U+1F95D</td>
   </tr>
   <tr>
     <th>Expected</th>
@@ -201,7 +206,17 @@ svg {height:2.5em;transform:scaleY(-1)}
     <td class="expected" ns0:font="FDArrayTest257.otf" ns0:id="CFF-1/4" ns0:render="④"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-1/4.gid100" overflow="visible"><path d="M741,-12 C846,-12 926,64 926,184 C926,286 858,352 784,370 L784,374 C852,398 906,456 906,550 C906,656 837,716 741,716 C673,716 617,678 577,630 L601,606 C635,650 687,682 741,682 C815,682 868,630 868,546 C868,462 812,386 674,386 L674,352 C822,352 888,286 888,182 C888,84 822,22 741,22 C660,22 606,64 570,110 L546,86 C582,40 648,-12 741,-12 Z M269,22 C171,22 116,127 109,279 C164,360 223,388 268,388 C358,388 402,320 402,204 C402,102 346,22 269,22 Z M428,650 C394,690 350,716 290,716 C174,716 70,616 70,316 C70,108 149,-12 269,-12 C361,-12 440,78 440,204 C440,344 376,422 272,422 C212,422 153,382 108,323 C110,592 195,682 290,682 C334,682 374,664 404,624 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-1/4.gid100" /></svg></td>
     <td class="expected" ns0:font="FDArrayTest257.otf" ns0:id="CFF-1/5" ns0:render="⑤"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-1/5.gid101" overflow="visible"><path d="M582,248 L766,554 C784,584 802,614 818,644 L822,644 C820,600 820,576 820,542 L820,248 Z M950,248 L856,248 L856,704 L821,704 L534,236 L534,216 L820,216 L820,0 L856,0 L856,216 L950,216 Z M269,22 C171,22 116,127 109,279 C164,360 223,388 268,388 C358,388 402,320 402,204 C402,102 346,22 269,22 Z M428,650 C394,690 350,716 290,716 C174,716 70,616 70,316 C70,108 149,-12 269,-12 C361,-12 440,78 440,204 C440,344 376,422 272,422 C212,422 153,382 108,323 C110,592 195,682 290,682 C334,682 374,664 404,624 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-1/5.gid101" /></svg></td>
     <td class="expected" ns0:font="FDArrayTest257.otf" ns0:id="CFF-1/10" ns0:render="⑩"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-1/10.gid106" overflow="visible"><path d="M732,316 C642,316 598,384 598,500 C598,602 654,682 731,682 C829,682 884,577 891,425 C836,344 777,316 732,316 Z M572,54 C606,14 650,-12 710,-12 C826,-12 930,88 930,388 C930,596 851,716 731,716 C639,716 560,626 560,500 C560,360 624,282 728,282 C788,282 847,322 892,381 C890,112 805,22 710,22 C666,22 626,40 596,80 Z M269,22 C171,22 116,127 109,279 C164,360 223,388 268,388 C358,388 402,320 402,204 C402,102 346,22 269,22 Z M428,650 C394,690 350,716 290,716 C174,716 70,616 70,316 C70,108 149,-12 269,-12 C361,-12 440,78 440,204 C440,344 376,422 272,422 C212,422 153,382 108,323 C110,592 195,682 290,682 C334,682 374,664 404,624 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-1/10.gid106" /></svg></td>
+
+    <td class="expected" ns0:font="FDArrayTest257.otf" ns0:id="CFF-1/1F33A" ns0:render="🌺"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-1/1F33A.gid59" overflow="visible"><path d="M646,290 L684,434 C707,522 728,596 748,686 L752,686 C772,596 793,522 816,434 L853,290 Z M928,0 L966,0 L773,726 L727,726 L534,0 L570,0 L637,256 L862,256 Z M241,-12 C346,-12 426,64 426,184 C426,286 358,352 284,370 L284,374 C352,398 406,456 406,550 C406,656 337,716 241,716 C173,716 117,678 77,630 L101,606 C135,650 187,682 241,682 C315,682 368,630 368,546 C368,462 312,386 174,386 L174,352 C322,352 388,286 388,182 C388,84 322,22 241,22 C160,22 106,64 70,110 L46,86 C82,40 148,-12 241,-12 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-1/1F33A.gid59" /></svg></td>
+
+    <td class="expected" ns0:font="FDArrayTest257.otf" ns0:id="CFF-1/1F33B" ns0:render="🌻"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-1/1F33B.gid60" overflow="visible"><path d="M596,0 L718,0 C868,0 948,72 948,210 C948,326 886,372 810,386 L810,392 C881,414 912,472 912,550 C912,668 848,726 716,726 L596,726 Z M632,402 L632,692 L700,692 C824,692 874,654 874,546 C874,458 832,402 694,402 Z M632,32 L632,370 L716,370 C850,370 910,318 910,208 C910,86 842,32 706,32 Z M241,-12 C346,-12 426,64 426,184 C426,286 358,352 284,370 L284,374 C352,398 406,456 406,550 C406,656 337,716 241,716 C173,716 117,678 77,630 L101,606 C135,650 187,682 241,682 C315,682 368,630 368,546 C368,462 312,386 174,386 L174,352 C322,352 388,286 388,182 C388,84 322,22 241,22 C160,22 106,64 70,110 L46,86 C82,40 148,-12 241,-12 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-1/1F33B.gid60" /></svg></td>
+
+    <td class="expected" ns0:font="FDArrayTest257.otf" ns0:id="CFF-1/1F4A7" ns0:render="💧"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-1/1F4A7.gid168" overflow="visible"><path d="M706,0 L744,0 C752,278 798,456 942,682 L942,704 L562,704 L562,672 L899,672 C774,466 714,290 706,0 Z M146,290 L184,434 C207,522 228,596 248,686 L252,686 C272,596 293,522 316,434 L353,290 Z M428,0 L466,0 L273,726 L227,726 L34,0 L70,0 L137,256 L362,256 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-1/1F4A7.gid168" /></svg></td>
+
+    <td class="expected" ns0:font="FDArrayTest257.otf" ns0:id="CFF-1/1F95D" ns0:render="🥝"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-1/1F95D.gid94" overflow="visible"><path d="M578,0 L682,0 C864,0 956,148 956,366 C956,582 864,726 682,726 L578,726 Z M616,34 L616,692 L676,692 C840,692 916,558 916,366 C916,174 840,34 676,34 Z M228,-12 C330,-12 430,71 430,220 C430,374 344,442 242,442 C190,442 159,426 124,402 L148,670 L412,670 L412,704 L116,704 L90,376 L120,360 C157,388 188,408 238,408 C330,408 392,334 392,218 C392,101 316,22 230,22 C146,22 100,63 64,106 L40,80 C78,37 132,-12 228,-12 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-1/1F95D.gid94" /></svg></td>
+
   </tr>
+  
   <tr>
     <th>Observed</th>
     <td class="observed" ns0:id="CFF-1/0"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-1/0.cid235" overflow="visible"><path d="M646,290 L684,434 C707,522 728,596 748,686 L752,686 C772,596 793,522 816,434 L853,290 Z M928,0 L966,0 L773,726 L727,726 L534,0 L570,0 L637,256 L862,256 Z M104,0 L442,0 L442,34 L142,34 L142,370 L384,370 L384,404 L142,404 L142,692 L432,692 L432,726 L104,726 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-1/0.cid235" /></svg></td>
@@ -211,7 +226,12 @@ svg {height:2.5em;transform:scaleY(-1)}
     <td class="observed" ns0:id="CFF-1/4"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-1/4.cid100" overflow="visible"><path d="M741,-12 C846,-12 926,64 926,184 C926,286 858,352 784,370 L784,374 C852,398 906,456 906,550 C906,656 837,716 741,716 C673,716 617,678 577,630 L601,606 C635,650 687,682 741,682 C815,682 868,630 868,546 C868,462 812,386 674,386 L674,352 C822,352 888,286 888,182 C888,84 822,22 741,22 C660,22 606,64 570,110 L546,86 C582,40 648,-12 741,-12 Z M269,22 C171,22 116,127 109,279 C164,360 223,388 268,388 C358,388 402,320 402,204 C402,102 346,22 269,22 Z M428,650 C394,690 350,716 290,716 C174,716 70,616 70,316 C70,108 149,-12 269,-12 C361,-12 440,78 440,204 C440,344 376,422 272,422 C212,422 153,382 108,323 C110,592 195,682 290,682 C334,682 374,664 404,624 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-1/4.cid100" /></svg></td>
     <td class="observed" ns0:id="CFF-1/5"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-1/5.cid101" overflow="visible"><path d="M582,248 L766,554 C784,584 802,614 818,644 L822,644 C820,600 820,576 820,542 L820,248 Z M950,248 L856,248 L856,704 L821,704 L534,236 L534,216 L820,216 L820,0 L856,0 L856,216 L950,216 Z M269,22 C171,22 116,127 109,279 C164,360 223,388 268,388 C358,388 402,320 402,204 C402,102 346,22 269,22 Z M428,650 C394,690 350,716 290,716 C174,716 70,616 70,316 C70,108 149,-12 269,-12 C361,-12 440,78 440,204 C440,344 376,422 272,422 C212,422 153,382 108,323 C110,592 195,682 290,682 C334,682 374,664 404,624 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-1/5.cid101" /></svg></td>
     <td class="observed" ns0:id="CFF-1/10"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-1/10.cid106" overflow="visible"><path d="M732,316 C642,316 598,384 598,500 C598,602 654,682 731,682 C829,682 884,577 891,425 C836,344 777,316 732,316 Z M572,54 C606,14 650,-12 710,-12 C826,-12 930,88 930,388 C930,596 851,716 731,716 C639,716 560,626 560,500 C560,360 624,282 728,282 C788,282 847,322 892,381 C890,112 805,22 710,22 C666,22 626,40 596,80 Z M269,22 C171,22 116,127 109,279 C164,360 223,388 268,388 C358,388 402,320 402,204 C402,102 346,22 269,22 Z M428,650 C394,690 350,716 290,716 C174,716 70,616 70,316 C70,108 149,-12 269,-12 C361,-12 440,78 440,204 C440,344 376,422 272,422 C212,422 153,382 108,323 C110,592 195,682 290,682 C334,682 374,664 404,624 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-1/10.cid106" /></svg></td>
+    <td class="observed" ns0:id="CFF-1/1F33A"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-1/1F33A.cid59" overflow="visible"><path d="M646,290 L684,434 C707,522 728,596 748,686 L752,686 C772,596 793,522 816,434 L853,290 Z M928,0 L966,0 L773,726 L727,726 L534,0 L570,0 L637,256 L862,256 Z M241,-12 C346,-12 426,64 426,184 C426,286 358,352 284,370 L284,374 C352,398 406,456 406,550 C406,656 337,716 241,716 C173,716 117,678 77,630 L101,606 C135,650 187,682 241,682 C315,682 368,630 368,546 C368,462 312,386 174,386 L174,352 C322,352 388,286 388,182 C388,84 322,22 241,22 C160,22 106,64 70,110 L46,86 C82,40 148,-12 241,-12 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-1/1F33A.cid59" /></svg></td>
+    <td class="observed" ns0:id="CFF-1/1F33B"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-1/1F33B.cid60" overflow="visible"><path d="M596,0 L718,0 C868,0 948,72 948,210 C948,326 886,372 810,386 L810,392 C881,414 912,472 912,550 C912,668 848,726 716,726 L596,726 Z M632,402 L632,692 L700,692 C824,692 874,654 874,546 C874,458 832,402 694,402 Z M632,32 L632,370 L716,370 C850,370 910,318 910,208 C910,86 842,32 706,32 Z M241,-12 C346,-12 426,64 426,184 C426,286 358,352 284,370 L284,374 C352,398 406,456 406,550 C406,656 337,716 241,716 C173,716 117,678 77,630 L101,606 C135,650 187,682 241,682 C315,682 368,630 368,546 C368,462 312,386 174,386 L174,352 C322,352 388,286 388,182 C388,84 322,22 241,22 C160,22 106,64 70,110 L46,86 C82,40 148,-12 241,-12 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-1/1F33B.cid60" /></svg></td>
+    <td class="observed" ns0:id="CFF-1/1F4A7"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-1/1F4A7.cid168" overflow="visible"><path d="M706,0 L744,0 C752,278 798,456 942,682 L942,704 L562,704 L562,672 L899,672 C774,466 714,290 706,0 Z M146,290 L184,434 C207,522 228,596 248,686 L252,686 C272,596 293,522 316,434 L353,290 Z M428,0 L466,0 L273,726 L227,726 L34,0 L70,0 L137,256 L362,256 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-1/1F4A7.cid168" /></svg></td>
+    <td class="observed" ns0:id="CFF-1/1F95D"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-1/1F95D.cid94" overflow="visible"><path d="M578,0 L682,0 C864,0 956,148 956,366 C956,582 864,726 682,726 L578,726 Z M616,34 L616,692 L676,692 C840,692 916,558 916,366 C916,174 840,34 676,34 Z M228,-12 C330,-12 430,71 430,220 C430,374 344,442 242,442 C190,442 159,426 124,402 L148,670 L412,670 L412,704 L116,704 L90,376 L120,360 C157,388 188,408 238,408 C330,408 392,334 392,218 C392,101 316,22 230,22 C146,22 100,63 64,106 L40,80 C78,37 132,-12 228,-12 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-1/1F95D.cid94" /></svg></td>
   </tr>
+  
   <tr>
     <th class="conformance-header">Conformance</th>
     <td class="conformance-fail" ns0:id="CFF-1/0">✖</td>
@@ -221,6 +241,10 @@ svg {height:2.5em;transform:scaleY(-1)}
     <td class="conformance-fail" ns0:id="CFF-1/4">✖</td>
     <td class="conformance-fail" ns0:id="CFF-1/5">✖</td>
     <td class="conformance-fail" ns0:id="CFF-1/10">✖</td>
+    <td class="conformance-fail" ns0:id="CFF-1/1F33A">✖</td>
+    <td class="conformance-fail" ns0:id="CFF-1/1F33B">✖</td>
+    <td class="conformance-fail" ns0:id="CFF-1/1F4A7">✖</td>
+    <td class="conformance-fail" ns0:id="CFF-1/1F95D">✖</td>
   </tr>
 
 </table>
