@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html
+    xmlns:ft="https://github.com/OpenType/fonttest"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn|Vollkorn:i"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<h3 id="HVAR-1">HVAR–1: No Advance Width Mapping</h3>
+
+<div class="desc">
+  The font for this test case contains
+  a <a href="https://www.microsoft.com/typography/otspec/hvar.htm"
+  >Horizontal Metrics Variation Table</a>
+  whose <em>offsetToAdvanceWidthMapping</em> field is zero.  The font,
+  which was kindly contributed by Adobe Systems, had triggered a bug
+  in one version of
+  the <a href="https://www.freetype.org/" >FreeType</a> library;
+  see <a href="https://savannah.nongnu.org/bugs/?50170">FreeType
+  bug 50170</a>. If your implementation is correct, the advance
+  width should grow as the weight increases. The letters A and B
+  should never overlap.
+</div>
+
+<div class="desc">
+  <b>TODO:</b> This test will currently fail on all platforms
+  because we don’t have a single working implementation.
+  Once <a href="https://savannah.nongnu.org/bugs/?50196">FreeType
+  bug 50196</a> is fixed, we can generate expectations with FreeType.
+</div>
+
+<table>
+  <tr>
+    <th>Expected</th>
+
+    <td class="expected" ft:id="HVAR-1/0" ft:render="ABC"
+        ft:font="TestHVAROne.otf" ft:var="wght:0"><svg/></td>
+
+    <td class="expected" ft:id="HVAR-1/200" ft:render="ABC"
+        ft:font="TestHVAROne.otf" ft:var="wght:200"><svg/></td>
+
+    <td class="expected" ft:id="HVAR-1/400" ft:render="ABC"
+        ft:font="TestHVAROne.otf" ft:var="wght:400"><svg/></td>
+
+    <td class="expected" ft:id="HVAR-1/600" ft:render="ABC"
+        ft:font="TestHVAROne.otf" ft:var="wght:600"><svg/></td>
+
+    <td class="expected" ft:id="HVAR-1/800" ft:render="ABC"
+        ft:font="TestHVAROne.otf" ft:var="wght:800"><svg/></td>
+
+    <td class="expected" ft:id="HVAR-1/1000" ft:render="ABC"
+        ft:font="TestHVAROne.otf" ft:var="wght:1000"><svg/></td>
+
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="HVAR-1/0"/>
+    <td class="observed" ft:id="HVAR-1/200"/>
+    <td class="observed" ft:id="HVAR-1/400"/>
+    <td class="observed" ft:id="HVAR-1/600"/>
+    <td class="observed" ft:id="HVAR-1/800"/>
+    <td class="observed" ft:id="HVAR-1/1000"/>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="HVAR-1/0"/>
+    <td class="conformance" ft:id="HVAR-1/200"/>
+    <td class="conformance" ft:id="HVAR-1/400"/>
+    <td class="conformance" ft:id="HVAR-1/600"/>
+    <td class="conformance" ft:id="HVAR-1/800"/>
+    <td class="conformance" ft:id="HVAR-1/1000"/>
+  </tr>
+
+</table>
+
+</body>
+</html>
