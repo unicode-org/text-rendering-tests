@@ -43,6 +43,7 @@
                 'harfbuzz/src/hb-ot-shape-normalize.cc',
                 'harfbuzz/src/hb-ot-shape.cc',
                 'harfbuzz/src/hb-ot-tag.cc',
+                'harfbuzz/src/hb-ot-var.cc',
                 'harfbuzz/src/hb-set.cc',
                 'harfbuzz/src/hb-shape-plan.cc',
                 'harfbuzz/src/hb-shape.cc',
