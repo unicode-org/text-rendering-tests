@@ -32,7 +32,7 @@ svg {height:2.5em;transform:scaleY(-1)}
 </style></head>
 <body>
 <h1>Text Rendering Test Report</h1>
-<h2>January 17, 2017 · FreeStack</h2>
+<h2>February 1, 2017 · FreeStack</h2>
 <h3>Overview</h3>
 <div class="desc" id="SummaryText">Some tests have failed. See <a href="#CMAP-1">CMAP-1</a>, and <a href="#CMAP-3">CMAP-3</a> for details.</div>
 <h3 id="AVAR-1">AVAR–1: Weight Flattening</h3>
@@ -1344,6 +1344,72 @@ svg {height:2.5em;transform:scaleY(-1)}
     <td class="conformance-pass" ns0:id="GVAR-6/9">✓</td>
     <td class="conformance-pass" ns0:id="GVAR-6/10">✓</td>
     <td class="conformance-pass" ns0:id="GVAR-6/11">✓</td>
+  </tr>
+
+</table>
+
+<h3 id="HVAR-1">HVAR–1: No Advance Width Mapping</h3>
+
+<div class="desc">
+  The font for this test case contains
+  a <a href="https://www.microsoft.com/typography/otspec/hvar.htm">Horizontal Metrics Variation Table</a>
+  whose <em>offsetToAdvanceWidthMapping</em> field is zero.  The font,
+  which was kindly contributed by Adobe Systems, had triggered a bug
+  in an unreleased version of
+  the <a href="https://www.freetype.org/">FreeType</a> library;
+  see <a href="https://savannah.nongnu.org/bugs/?50170">FreeType
+  bug 50170</a>. If your implementation is correct, the advance
+  width should grow as the weight increases. In particular, the
+  letters A and B should not overlap, not even in the boldest weights.
+  If you see any overlapping glyphs, your implementation
+  fails to compute advance widths for fonts whose <em>HVAR</em> table
+  contains no <em>advance width mapping.</em>
+</div>
+
+<table>
+  <tr>
+    <th />
+    <td>0</td>
+    <td>200</td>
+    <td>400</td>
+    <td>600</td>
+    <td>800</td>
+    <td>1000</td>
+  </tr>
+
+  <tr>
+    <th>Expected</th>
+
+    <td class="expected" ns0:font="TestHVAROne.otf" ns0:id="HVAR-1/0" ns0:render="ABC" ns0:var="wght:0"><svg version="1.1" viewBox="0 -273 1656 1257"><symbol id="HVAR-1/0.A" overflow="visible"><path d="M10,0 L42,0 L182,396 C210,476 234,544 258,626 L262,626 C286,544 310,476 338,396 L476,0 L510,0 L274,660 L246,660 Z M112,236 L405,236 L405,264 L112,264 Z" /></symbol><symbol id="HVAR-1/0.B" overflow="visible"><path d="M100,0 L284,0 C434,0 528,66 528,192 C528,284 470,338 382,352 L382,356 C450,376 486,430 486,500 C486,608 404,660 272,660 L100,660 Z M132,366 L132,632 L258,632 C386,632 454,596 454,498 C454,416 396,366 252,366 Z M132,28 L132,338 L272,338 C414,338 496,290 496,190 C496,78 410,28 272,28 Z" /></symbol><symbol id="HVAR-1/0.C" overflow="visible"><path d="M328,-12 C414,-12 472,24 522,82 L502,102 C452,46 400,18 330,18 C182,18 90,142 90,332 C90,522 182,642 334,642 C396,642 446,614 482,572 L502,594 C468,634 410,672 334,672 C166,672 56,540 56,332 C56,124 166,-12 328,-12 Z" /></symbol><use x="0" y="0" xlink:href="#HVAR-1/0.A" /><use x="520" y="0" xlink:href="#HVAR-1/0.B" /><use x="1094" y="0" xlink:href="#HVAR-1/0.C" /></svg></td>
+
+    <td class="expected" ns0:font="TestHVAROne.otf" ns0:id="HVAR-1/200" ns0:render="ABC" ns0:var="wght:200"><svg version="1.1" viewBox="0 -273 1682 1257"><symbol id="HVAR-1/200.A" overflow="visible"><path d="M6,0 L66,0 L193,380 C219,456 241,526 263,605 L267,605 C290,526 312,456 338,380 L463,0 L526,0 L298,658 L234,658 Z M116,216 L414,216 L414,265 L116,265 Z" /></symbol><symbol id="HVAR-1/200.B" overflow="visible"><path d="M94,0 L292,0 C440,0 538,64 538,192 C538,282 482,335 399,350 L399,354 C464,374 499,430 499,497 C499,609 411,658 278,658 L94,658 Z M154,372 L154,609 L266,609 C380,609 440,577 440,490 C440,417 388,372 262,372 Z M154,48 L154,324 L280,324 C407,324 479,282 479,192 C479,93 404,48 280,48 Z" /></symbol><symbol id="HVAR-1/200.C" overflow="visible"><path d="M333,-12 C418,-12 480,23 531,82 L497,120 C451,69 402,41 336,41 C200,41 116,154 116,330 C116,506 202,616 339,616 C398,616 444,590 479,550 L513,590 C477,631 416,670 338,670 C171,670 53,539 53,329 C53,118 170,-12 333,-12 Z" /></symbol><use x="0" y="0" xlink:href="#HVAR-1/200.A" /><use x="533" y="0" xlink:href="#HVAR-1/200.B" /><use x="1115" y="0" xlink:href="#HVAR-1/200.C" /></svg></td>
+
+    <td class="expected" ns0:font="TestHVAROne.otf" ns0:id="HVAR-1/400" ns0:render="ABC" ns0:var="wght:400"><svg version="1.1" viewBox="0 -273 1707 1257"><symbol id="HVAR-1/400.A" overflow="visible"><path d="M2,0 L91,0 L205,364 C228,436 249,508 269,584 L273,584 C294,509 314,436 338,364 L450,0 L543,0 L322,656 L222,656 Z M120,196 L423,196 L423,266 L120,266 Z" /></symbol><symbol id="HVAR-1/400.B" overflow="visible"><path d="M88,0 L300,0 C446,0 549,62 549,192 C549,281 494,333 417,348 L417,352 C478,372 512,430 512,495 C512,611 419,656 285,656 L88,656 Z M176,378 L176,586 L275,586 C374,586 426,558 426,483 C426,418 380,378 272,378 Z M176,69 L176,310 L288,310 C401,310 463,274 463,195 C463,109 398,69 288,69 Z" /></symbol><symbol id="HVAR-1/400.C" overflow="visible"><path d="M338,-12 C423,-12 488,22 540,82 L492,137 C451,92 404,65 342,65 C219,65 141,166 141,329 C141,490 223,590 345,590 C400,590 442,566 477,529 L525,586 C486,629 423,668 343,668 C177,668 51,539 51,327 C51,113 174,-12 338,-12 Z" /></symbol><use x="0" y="0" xlink:href="#HVAR-1/400.A" /><use x="546" y="0" xlink:href="#HVAR-1/400.B" /><use x="1135" y="0" xlink:href="#HVAR-1/400.C" /></svg></td>
+
+    <td class="expected" ns0:font="TestHVAROne.otf" ns0:id="HVAR-1/600" ns0:render="ABC" ns0:var="wght:600"><svg version="1.1" viewBox="0 -273 1731 1257"><symbol id="HVAR-1/600.A" overflow="visible"><path d="M-2,0 L116,0 L216,348 C237,417 256,491 274,563 L278,563 C298,491 317,417 338,348 L437,0 L560,0 L347,654 L211,654 Z M124,177 L432,177 L432,268 L124,268 Z" /></symbol><symbol id="HVAR-1/600.B" overflow="visible"><path d="M83,0 L309,0 C453,0 560,61 560,192 C560,280 507,330 434,347 L434,351 C492,371 525,431 525,492 C525,612 426,654 292,654 L83,654 Z M199,384 L199,563 L284,563 C369,563 412,539 412,476 C412,419 373,384 282,384 Z M199,90 L199,297 L297,297 C394,297 446,267 446,198 C446,124 393,90 297,90 Z" /></symbol><symbol id="HVAR-1/600.C" overflow="visible"><path d="M343,-12 C428,-12 496,21 549,83 L487,156 C450,115 406,88 348,88 C238,88 168,179 168,328 C168,475 244,565 350,565 C402,565 441,541 474,508 L536,583 C495,626 430,666 348,666 C182,666 48,538 48,324 C48,108 179,-12 343,-12 Z" /></symbol><use x="0" y="0" xlink:href="#HVAR-1/600.A" /><use x="558" y="0" xlink:href="#HVAR-1/600.B" /><use x="1155" y="0" xlink:href="#HVAR-1/600.C" /></svg></td>
+
+    <td class="expected" ns0:font="TestHVAROne.otf" ns0:id="HVAR-1/800" ns0:render="ABC" ns0:var="wght:800"><svg version="1.1" viewBox="0 -273 1756 1257"><symbol id="HVAR-1/800.A" overflow="visible"><path d="M-6,0 L141,0 L228,332 C246,397 264,473 280,542 L284,542 C302,474 319,397 338,332 L424,0 L577,0 L371,652 L199,652 Z M128,157 L441,157 L441,269 L128,269 Z" /></symbol><symbol id="HVAR-1/800.B" overflow="visible"><path d="M77,0 L317,0 C459,0 571,59 571,192 C571,279 519,328 452,345 L452,349 C506,369 538,431 538,490 C538,614 434,652 299,652 L77,652 Z M221,390 L221,540 L293,540 C363,540 398,520 398,469 C398,420 365,390 292,390 Z M221,111 L221,283 L305,283 C388,283 430,259 430,201 C430,140 387,111 305,111 Z" /></symbol><symbol id="HVAR-1/800.C" overflow="visible"><path d="M348,-12 C433,-12 504,20 558,83 L482,174 C450,138 408,112 354,112 C257,112 194,191 194,327 C194,459 265,539 356,539 C404,539 439,518 472,487 L548,579 C504,624 437,664 353,664 C188,664 46,538 46,322 C46,103 183,-12 348,-12 Z" /></symbol><use x="0" y="0" xlink:href="#HVAR-1/800.A" /><use x="571" y="0" xlink:href="#HVAR-1/800.B" /><use x="1175" y="0" xlink:href="#HVAR-1/800.C" /></svg></td>
+
+    <td class="expected" ns0:font="TestHVAROne.otf" ns0:id="HVAR-1/1000" ns0:render="ABC" ns0:var="wght:1000"><svg version="1.1" viewBox="0 -273 1782 1257"><symbol id="HVAR-1/1000.A" overflow="visible"><path d="M-10,0 L166,0 L240,316 C256,378 272,456 286,522 L290,522 C306,457 322,378 338,316 L412,0 L594,0 L396,650 L188,650 Z M132,138 L450,138 L450,271 L132,271 Z" /></symbol><symbol id="HVAR-1/1000.B" overflow="visible"><path d="M72,0 L326,0 C466,0 582,58 582,192 C582,278 532,326 470,344 L470,348 C520,368 552,432 552,488 C552,616 442,650 306,650 L72,650 Z M244,396 L244,518 L302,518 C358,518 384,502 384,462 C384,422 358,396 302,396 Z M244,132 L244,270 L314,270 C382,270 414,252 414,204 C414,156 382,132 314,132 Z" /></symbol><symbol id="HVAR-1/1000.C" overflow="visible"><path d="M354,-12 C438,-12 513,20 568,84 L478,192 C450,162 410,136 360,136 C276,136 220,204 220,326 C220,444 286,514 362,514 C406,514 438,494 470,466 L560,576 C514,622 444,662 358,662 C194,662 44,538 44,320 C44,98 188,-12 354,-12 Z" /></symbol><use x="0" y="0" xlink:href="#HVAR-1/1000.A" /><use x="584" y="0" xlink:href="#HVAR-1/1000.B" /><use x="1196" y="0" xlink:href="#HVAR-1/1000.C" /></svg></td>
+
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ns0:id="HVAR-1/0"><svg version="1.1" viewBox="0 -273 1656 1257"><symbol id="HVAR-1/0.A" overflow="visible"><path d="M10,0 L42,0 L182,396 C210,476 234,544 258,626 L262,626 C286,544 310,476 338,396 L476,0 L510,0 L274,660 L246,660 Z M112,236 L405,236 L405,264 L112,264 Z" /></symbol><symbol id="HVAR-1/0.B" overflow="visible"><path d="M100,0 L284,0 C434,0 528,66 528,192 C528,284 470,338 382,352 L382,356 C450,376 486,430 486,500 C486,608 404,660 272,660 L100,660 Z M132,366 L132,632 L258,632 C386,632 454,596 454,498 C454,416 396,366 252,366 Z M132,28 L132,338 L272,338 C414,338 496,290 496,190 C496,78 410,28 272,28 Z" /></symbol><symbol id="HVAR-1/0.C" overflow="visible"><path d="M328,-12 C414,-12 472,24 522,82 L502,102 C452,46 400,18 330,18 C182,18 90,142 90,332 C90,522 182,642 334,642 C396,642 446,614 482,572 L502,594 C468,634 410,672 334,672 C166,672 56,540 56,332 C56,124 166,-12 328,-12 Z" /></symbol><use x="0" y="0" xlink:href="#HVAR-1/0.A" /><use x="520" y="0" xlink:href="#HVAR-1/0.B" /><use x="1094" y="0" xlink:href="#HVAR-1/0.C" /></svg></td>
+    <td class="observed" ns0:id="HVAR-1/200"><svg version="1.1" viewBox="0 -273 1682 1257"><symbol id="HVAR-1/200.A" overflow="visible"><path d="M6,0 L66,0 L193,380 C219,456 241,526 263,605 L267,605 C290,526 312,456 338,380 L463,0 L526,0 L298,658 L234,658 Z M116,216 L414,216 L414,265 L116,265 Z" /></symbol><symbol id="HVAR-1/200.B" overflow="visible"><path d="M94,0 L292,0 C440,0 538,64 538,192 C538,282 482,335 399,350 L399,354 C464,374 499,430 499,497 C499,609 411,658 278,658 L94,658 Z M154,372 L154,609 L266,609 C380,609 440,577 440,490 C440,417 388,372 262,372 Z M154,48 L154,324 L280,324 C407,324 479,282 479,192 C479,93 404,48 280,48 Z" /></symbol><symbol id="HVAR-1/200.C" overflow="visible"><path d="M333,-12 C418,-12 480,23 531,82 L497,120 C451,69 402,41 336,41 C200,41 116,154 116,330 C116,506 202,616 339,616 C398,616 444,590 479,550 L513,590 C477,631 416,670 338,670 C171,670 53,539 53,329 C53,118 170,-12 333,-12 Z" /></symbol><use x="0" y="0" xlink:href="#HVAR-1/200.A" /><use x="533" y="0" xlink:href="#HVAR-1/200.B" /><use x="1115" y="0" xlink:href="#HVAR-1/200.C" /></svg></td>
+    <td class="observed" ns0:id="HVAR-1/400"><svg version="1.1" viewBox="0 -273 1707 1257"><symbol id="HVAR-1/400.A" overflow="visible"><path d="M2,0 L91,0 L205,364 C228,436 249,508 269,584 L273,584 C294,509 314,436 338,364 L450,0 L543,0 L322,656 L222,656 Z M120,196 L423,196 L423,266 L120,266 Z" /></symbol><symbol id="HVAR-1/400.B" overflow="visible"><path d="M88,0 L300,0 C446,0 549,62 549,192 C549,281 494,333 417,348 L417,352 C478,372 512,430 512,495 C512,611 419,656 285,656 L88,656 Z M176,378 L176,586 L275,586 C374,586 426,558 426,483 C426,418 380,378 272,378 Z M176,69 L176,310 L288,310 C401,310 463,274 463,195 C463,109 398,69 288,69 Z" /></symbol><symbol id="HVAR-1/400.C" overflow="visible"><path d="M338,-12 C423,-12 488,22 540,82 L492,137 C451,92 404,65 342,65 C219,65 141,166 141,329 C141,490 223,590 345,590 C400,590 442,566 477,529 L525,586 C486,629 423,668 343,668 C177,668 51,539 51,327 C51,113 174,-12 338,-12 Z" /></symbol><use x="0" y="0" xlink:href="#HVAR-1/400.A" /><use x="546" y="0" xlink:href="#HVAR-1/400.B" /><use x="1135" y="0" xlink:href="#HVAR-1/400.C" /></svg></td>
+    <td class="observed" ns0:id="HVAR-1/600"><svg version="1.1" viewBox="0 -273 1731 1257"><symbol id="HVAR-1/600.A" overflow="visible"><path d="M-2,0 L116,0 L216,348 C237,417 256,491 274,563 L278,563 C298,491 317,417 338,348 L437,0 L560,0 L347,654 L211,654 Z M124,177 L432,177 L432,268 L124,268 Z" /></symbol><symbol id="HVAR-1/600.B" overflow="visible"><path d="M83,0 L309,0 C453,0 560,61 560,192 C560,280 507,330 434,347 L434,351 C492,371 525,431 525,492 C525,612 426,654 292,654 L83,654 Z M199,384 L199,563 L284,563 C369,563 412,539 412,476 C412,419 373,384 282,384 Z M199,90 L199,297 L297,297 C394,297 446,267 446,198 C446,124 393,90 297,90 Z" /></symbol><symbol id="HVAR-1/600.C" overflow="visible"><path d="M343,-12 C428,-12 496,21 549,83 L487,156 C450,115 406,88 348,88 C238,88 168,179 168,328 C168,475 244,565 350,565 C402,565 441,541 474,508 L536,583 C495,626 430,666 348,666 C182,666 48,538 48,324 C48,108 179,-12 343,-12 Z" /></symbol><use x="0" y="0" xlink:href="#HVAR-1/600.A" /><use x="558" y="0" xlink:href="#HVAR-1/600.B" /><use x="1155" y="0" xlink:href="#HVAR-1/600.C" /></svg></td>
+    <td class="observed" ns0:id="HVAR-1/800"><svg version="1.1" viewBox="0 -273 1756 1257"><symbol id="HVAR-1/800.A" overflow="visible"><path d="M-6,0 L141,0 L228,332 C246,397 264,473 280,542 L284,542 C302,474 319,397 338,332 L424,0 L577,0 L371,652 L199,652 Z M128,157 L441,157 L441,269 L128,269 Z" /></symbol><symbol id="HVAR-1/800.B" overflow="visible"><path d="M77,0 L317,0 C459,0 571,59 571,192 C571,279 519,328 452,345 L452,349 C506,369 538,431 538,490 C538,614 434,652 299,652 L77,652 Z M221,390 L221,540 L293,540 C363,540 398,520 398,469 C398,420 365,390 292,390 Z M221,111 L221,283 L305,283 C388,283 430,259 430,201 C430,140 387,111 305,111 Z" /></symbol><symbol id="HVAR-1/800.C" overflow="visible"><path d="M348,-12 C433,-12 504,20 558,83 L482,174 C450,138 408,112 354,112 C257,112 194,191 194,327 C194,459 265,539 356,539 C404,539 439,518 472,487 L548,579 C504,624 437,664 353,664 C188,664 46,538 46,322 C46,103 183,-12 348,-12 Z" /></symbol><use x="0" y="0" xlink:href="#HVAR-1/800.A" /><use x="571" y="0" xlink:href="#HVAR-1/800.B" /><use x="1175" y="0" xlink:href="#HVAR-1/800.C" /></svg></td>
+    <td class="observed" ns0:id="HVAR-1/1000"><svg version="1.1" viewBox="0 -273 1782 1257"><symbol id="HVAR-1/1000.A" overflow="visible"><path d="M-10,0 L166,0 L240,316 C256,378 272,456 286,522 L290,522 C306,457 322,378 338,316 L412,0 L594,0 L396,650 L188,650 Z M132,138 L450,138 L450,271 L132,271 Z" /></symbol><symbol id="HVAR-1/1000.B" overflow="visible"><path d="M72,0 L326,0 C466,0 582,58 582,192 C582,278 532,326 470,344 L470,348 C520,368 552,432 552,488 C552,616 442,650 306,650 L72,650 Z M244,396 L244,518 L302,518 C358,518 384,502 384,462 C384,422 358,396 302,396 Z M244,132 L244,270 L314,270 C382,270 414,252 414,204 C414,156 382,132 314,132 Z" /></symbol><symbol id="HVAR-1/1000.C" overflow="visible"><path d="M354,-12 C438,-12 513,20 568,84 L478,192 C450,162 410,136 360,136 C276,136 220,204 220,326 C220,444 286,514 362,514 C406,514 438,494 470,466 L560,576 C514,622 444,662 358,662 C194,662 44,538 44,320 C44,98 188,-12 354,-12 Z" /></symbol><use x="0" y="0" xlink:href="#HVAR-1/1000.A" /><use x="584" y="0" xlink:href="#HVAR-1/1000.B" /><use x="1196" y="0" xlink:href="#HVAR-1/1000.C" /></svg></td>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance-pass" ns0:id="HVAR-1/0">✓</td>
+    <td class="conformance-pass" ns0:id="HVAR-1/200">✓</td>
+    <td class="conformance-pass" ns0:id="HVAR-1/400">✓</td>
+    <td class="conformance-pass" ns0:id="HVAR-1/600">✓</td>
+    <td class="conformance-pass" ns0:id="HVAR-1/800">✓</td>
+    <td class="conformance-pass" ns0:id="HVAR-1/1000">✓</td>
   </tr>
 
 </table>
