@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html
+    xmlns:ft="https://github.com/OpenType/fonttest"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn|Vollkorn:i"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<h3 id="GPOS-2">GPOS–2: Coverage in Pair Adjustment Positioning</h3>
+
+<div class="desc">
+  This test case exercises the handling of the <em>Coverage</em> field
+  in <a href="https://www.microsoft.com/typography/otspec/gpos.htm#PP">Pair
+  Adjustment Positioning</a> subtables. The font contains a <em>‘GPOS’</em>
+  table whose <em>‘kern’</em> feature enables a single lookup of type 2.
+  This lookup contains three <em>PairPos format 1</em> subtables.
+  All three subtables specify  ◯ U+25EF LARGE CIRCLE as their <em>Coverage</em>,
+  but no other glyphs.
+</div>
+
+<ul style="margin-left:4em;margin-right:4em">
+  <li style="margin-bottom:.5em">
+    The first subtable contains a single PairSet for kerning ◯ U+25EF
+    LARGE CIRCLE and U+0020 SPACE. When rendering the string ◯☼, an
+    OpenType implementation should decode this subtable because the
+    first glyph ◯ is in its Coverage.  However, because there’s no
+    match for the second glyph ☼, a correct implementation
+    should <em>proceed</em> to the second subtable.
+  </li>
+
+  <li style="margin-bottom:.5em">
+    The second subtable has two PairSets, <em>both</em> kerning
+    ◯ U+25EF LARGE CIRCLE and ☼ U+263C WHITE SUN WITH RAYS. The first
+    PairSet applies kerning so that the two symbols will exactly
+    overlap. If the second PairSet was applied, it would add spacing
+    to move the two symbols away from each other.  But a correct text
+    rendering engine should walk the PairSets in the order given by
+    the font, and <em>stop processing</em> after finding the first
+    match.
+  </li>
+
+  <li style="margin-bottom:.5em">
+    The third subtable has yet another PairSet for kerning ◯ U+25EF
+    LARGE CIRCLE and ☼ U+263C WHITE SUN WITH RAYS. A correct
+    implementation should have found a matching PairSet in the second
+    subtable and then stopped processing. Therefore, the implementation
+    should <em>ignore</em> the pair adjustment positioning data in
+    the third subtable.
+  </li>
+</ul>
+
+<div class="desc">
+  If your implementation is correct, the two symbols ◯ and ☼ should
+  exactly overlap when drawn next to each other. If you see two
+  separate symbols in the rightmost column below, your text rendering engine
+  fails to correctly handle <em>Coverage</em> inside GPOS pair
+  adjustment positioning subtables.
+</div>
+
+<table>
+  <tr>
+    <th></th>
+    <td>◯</td>
+    <td>☼</td>
+    <td>◯☼</td>
+  </tr>
+
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="GPOS-2/1" ft:font="TestGPOSTwo.otf" ft:render="◯"
+      ><svg version="1.1" viewBox="0 -200 800 1200"><symbol id="GPOS-2/1.uni25EF" overflow="visible"><path d="M399,-71 C608,-71 770,92 770,299 C770,508 608,670 399,670 C192,670 30,508 30,299 C30,92 192,-71 399,-71 Z M399,-34 C213,-34 67,112 67,299 C67,481 213,633 399,633 C586,633 733,481 733,299 C733,112 586,-34 399,-34 Z" /></symbol><use x="0" y="0" xlink:href="#GPOS-2/1.uni25EF" /></svg></td>
+    <td class="expected" ft:id="GPOS-2/2" ft:font="TestGPOSTwo.otf" ft:render="☼"
+      ><svg version="1.1" viewBox="0 -200 800 1200"><symbol id="GPOS-2/2.sun" overflow="visible"><path d="M384,-39 L416,-39 L416,107 C470,115 491,126 526,152 L635,43 L659,64 L549,176 C574,207 588,243 594,284 L739,284 L739,314 L594,314 C592,352 577,389 549,426 L659,536 L637,558 L526,449 C487,478 459,489 416,493 L416,639 L384,639 L384,493 C347,489 311,474 275,449 L163,558 L143,534 L251,424 C225,393 210,357 206,315 L61,315 L61,285 L206,285 C212,244 227,208 252,175 L143,65 L164,43 L276,151 C309,127 344,112 384,107 Z M400,137 C312,137 238,211 238,299 C238,387 310,462 400,462 C488,462 563,387 563,299 C563,211 490,137 400,137 Z" /></symbol><use x="0" y="0" xlink:href="#GPOS-2/2.sun" /></svg></td>
+    <td class="expected" ft:id="GPOS-2/3" ft:font="TestGPOSTwo.otf" ft:render="◯☼">
+      <svg version="1.1" viewBox="0 -200 800 1200"><symbol id="GPOS-2/3.uni25EF" overflow="visible"><path d="M399,-71 C608,-71 770,92 770,299 C770,508 608,670 399,670 C192,670 30,508 30,299 C30,92 192,-71 399,-71 Z M399,-34 C213,-34 67,112 67,299 C67,481 213,633 399,633 C586,633 733,481 733,299 C733,112 586,-34 399,-34 Z" /></symbol><symbol id="GPOS-2/3.sun" overflow="visible"><path d="M384,-39 L416,-39 L416,107 C470,115 491,126 526,152 L635,43 L659,64 L549,176 C574,207 588,243 594,284 L739,284 L739,314 L594,314 C592,352 577,389 549,426 L659,536 L637,558 L526,449 C487,478 459,489 416,493 L416,639 L384,639 L384,493 C347,489 311,474 275,449 L163,558 L143,534 L251,424 C225,393 210,357 206,315 L61,315 L61,285 L206,285 C212,244 227,208 252,175 L143,65 L164,43 L276,151 C309,127 344,112 384,107 Z M400,137 C312,137 238,211 238,299 C238,387 310,462 400,462 C488,462 563,387 563,299 C563,211 490,137 400,137 Z" /></symbol><use x="0" y="0" xlink:href="#GPOS-2/3.uni25EF" /><use x="0" y="0" xlink:href="#GPOS-2/3.sun" /></svg>
+    </td>
+  </tr>
+
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="GPOS-2/1"/>
+    <td class="observed" ft:id="GPOS-2/2"/>
+    <td class="observed" ft:id="GPOS-2/3"/>
+  </tr>
+
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="GPOS-2/1"/>
+    <td class="conformance" ft:id="GPOS-2/2"/>
+    <td class="conformance" ft:id="GPOS-2/3"/>
+  </tr>
+
+</table>
+</body>
+</html>

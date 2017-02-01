@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html
+    xmlns:ft="https://github.com/OpenType/fonttest"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn|Vollkorn:i"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<h3 id="CFF-2">CFF–2: Hexing the Second Last Byte</h3>
+
+<div class="desc">
+  The font for this test case is Adobe’s <a
+  href="https://github.com/adobe-fonts/fdarray-test/" >FDArray Test 65535</a>,
+  which complements test case <a href="#CFF-1">CFF-1</a>.
+  If your implementation is correct, each rendered glyph should show a hexadecimal
+  number with the <em>second least significant byte</em> of the Unicode codepoint
+  being rendered. For a more detailed explanation of this test, please refer to <a
+  href="https://github.com/adobe-fonts/fdarray-test/blob/master/README.md" >Adobe’s
+  description</a>.
+</div>
+
+<table>
+  <tr style="font-variant-numeric:lining-nums">
+    <th></th>
+    <td style="padding:0 .5em"><div style="font-size:150%">A</div><div>U+<span style="text-decoration:underline">00</span>41</div></td>
+    <td style="padding:0 .5em"><div style="font-size:150%">ℝ</div><div>U+<span style="text-decoration:underline">21</span>1D</div></td>
+    <td style="padding:0 .5em"><div style="font-size:150%">⓪</div><div>U+<span style="text-decoration:underline">24</span>EA</div></td>
+    <td style="padding:0 .5em"><div style="font-size:150%">①</div><div>U+<span style="text-decoration:underline">24</span>60</div></td>
+    <td style="padding:0 .5em"><div style="font-size:150%">②</div><div>U+<span style="text-decoration:underline">24</span>61</div></td>
+    <td style="padding:0 .5em"><div style="font-size:150%">仿</div><div>U+<span style="text-decoration:underline">4E</span>FF</div></td>
+    <td style="padding:0 .5em"><div style="font-size:150%">Ａ</div><div>U+<span style="text-decoration:underline">FF</span>21</div></td>
+    <td style="padding:0 .5em"><div style="font-size:150%">𐄳</div><div>U+1<span style="text-decoration:underline">01</span>33</div></td>
+    <td style="padding:0 .5em"><div style="font-size:150%">𝓐</div><div>U+1<span style="text-decoration:underline">D4</span>D0</div></td>
+    <td style="padding:0 .5em"><div style="font-size:150%">🌺</div><div>U+1<span style="text-decoration:underline">F3</span>3A</div></td>
+    <td style="padding:0 .5em"><div style="font-size:150%">🌻</div><div>U+1<span style="text-decoration:underline">F3</span>3B</div></td>
+    <td style="padding:0 .5em"><div style="font-size:150%">💧</div><div>U+1<span style="text-decoration:underline">F4</span>A7</div></td>
+    <td style="padding:0 .5em"><div style="font-size:150%">🥝</div><div>U+1<span style="text-decoration:underline">F9</span>5D</div></td>
+  </tr>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="CFF-2/0041" ft:render="A"
+        ft:font="FDArrayTest65535.otf"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-2/0041.gid66" overflow="visible"><path d="M750,-12 C857,-12 934,113 934,356 C934,597 857,716 750,716 C643,716 566,597 566,356 C566,113 643,-12 750,-12 Z M750,22 C663,22 604,135 604,356 C604,577 663,682 750,682 C837,682 896,577 896,356 C896,135 837,22 750,22 Z M250,-12 C357,-12 434,113 434,356 C434,597 357,716 250,716 C143,716 66,597 66,356 C66,113 143,-12 250,-12 Z M250,22 C163,22 104,135 104,356 C104,577 163,682 250,682 C337,682 396,577 396,356 C396,135 337,22 250,22 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-2/0041.gid66" /></svg></td>
+
+    <td class="expected" ft:id="CFF-2/211D" ft:render="ℝ"
+        ft:font="FDArrayTest65535.otf"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-2/211D.gid8478" overflow="visible"><path d="M582,0 L940,0 L940,32 L784,32 L784,704 L754,704 C722,686 678,670 622,662 L622,636 L748,636 L748,32 L582,32 Z M56,0 L440,0 L440,32 L228,32 C188,32 150,30 110,28 C290,244 404,380 404,522 C404,640 342,716 230,716 C154,716 99,670 55,614 L82,592 C118,644 171,682 228,682 C324,682 366,611 366,522 C366,398 264,266 56,22 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-2/211D.gid8478" /></svg></td>
+
+    <td class="expected" ft:id="CFF-2/24EA" ft:render="⓪"
+        ft:font="FDArrayTest65535.otf"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-2/24EA.gid9451" overflow="visible"><path d="M582,248 L766,554 C784,584 802,614 818,644 L822,644 C820,600 820,576 820,542 L820,248 Z M950,248 L856,248 L856,704 L821,704 L534,236 L534,216 L820,216 L820,0 L856,0 L856,216 L950,216 Z M56,0 L440,0 L440,32 L228,32 C188,32 150,30 110,28 C290,244 404,380 404,522 C404,640 342,716 230,716 C154,716 99,670 55,614 L82,592 C118,644 171,682 228,682 C324,682 366,611 366,522 C366,398 264,266 56,22 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-2/24EA.gid9451" /></svg></td>
+
+    <td class="expected" ft:id="CFF-2/2460" ft:render="①"
+        ft:font="FDArrayTest65535.otf"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-2/2460.gid9313" overflow="visible"><path d="M582,248 L766,554 C784,584 802,614 818,644 L822,644 C820,600 820,576 820,542 L820,248 Z M950,248 L856,248 L856,704 L821,704 L534,236 L534,216 L820,216 L820,0 L856,0 L856,216 L950,216 Z M56,0 L440,0 L440,32 L228,32 C188,32 150,30 110,28 C290,244 404,380 404,522 C404,640 342,716 230,716 C154,716 99,670 55,614 L82,592 C118,644 171,682 228,682 C324,682 366,611 366,522 C366,398 264,266 56,22 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-2/2460.gid9313" /></svg></td>
+
+    <td class="expected" ft:id="CFF-2/2461" ft:render="②"
+        ft:font="FDArrayTest65535.otf"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-2/2461.gid9314" overflow="visible"><path d="M582,248 L766,554 C784,584 802,614 818,644 L822,644 C820,600 820,576 820,542 L820,248 Z M950,248 L856,248 L856,704 L821,704 L534,236 L534,216 L820,216 L820,0 L856,0 L856,216 L950,216 Z M56,0 L440,0 L440,32 L228,32 C188,32 150,30 110,28 C290,244 404,380 404,522 C404,640 342,716 230,716 C154,716 99,670 55,614 L82,592 C118,644 171,682 228,682 C324,682 366,611 366,522 C366,398 264,266 56,22 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-2/2461.gid9314" /></svg></td>
+
+    <td class="expected" ft:id="CFF-2/4EFF" ft:render="仿"
+        ft:font="FDArrayTest65535.otf"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-2/4EFF.gid20224" overflow="visible"><path d="M604,0 L942,0 L942,34 L642,34 L642,370 L884,370 L884,404 L642,404 L642,692 L932,692 L932,726 L604,726 Z M82,248 L266,554 C284,584 302,614 318,644 L322,644 C320,600 320,576 320,542 L320,248 Z M450,248 L356,248 L356,704 L321,704 L34,236 L34,216 L320,216 L320,0 L356,0 L356,216 L450,216 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-2/4EFF.gid20224" /></svg></td>
+
+    <td class="expected" ft:id="CFF-2/FF21" ft:render="Ａ"
+        ft:font="FDArrayTest65535.otf"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-2/FF21.gid65314" overflow="visible"><path d="M624,0 L662,0 L662,356 L900,356 L900,390 L662,390 L662,692 L944,692 L944,726 L624,726 Z M124,0 L162,0 L162,356 L400,356 L400,390 L162,390 L162,692 L444,692 L444,726 L124,726 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-2/FF21.gid65314" /></svg></td>
+
+    <td class="expected" ft:id="CFF-2/10133" ft:render="𐄳"
+        ft:font="FDArrayTest65535.otf"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-2/10133.gid308" overflow="visible"><path d="M582,0 L940,0 L940,32 L784,32 L784,704 L754,704 C722,686 678,670 622,662 L622,636 L748,636 L748,32 L582,32 Z M250,-12 C357,-12 434,113 434,356 C434,597 357,716 250,716 C143,716 66,597 66,356 C66,113 143,-12 250,-12 Z M250,22 C163,22 104,135 104,356 C104,577 163,682 250,682 C337,682 396,577 396,356 C396,135 337,22 250,22 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-2/10133.gid308" /></svg></td>
+
+    <td class="expected" ft:id="CFF-2/1D4D0" ft:render="𝓐"
+        ft:font="FDArrayTest65535.otf"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-2/1D4D0.gid54481" overflow="visible"><path d="M582,248 L766,554 C784,584 802,614 818,644 L822,644 C820,600 820,576 820,542 L820,248 Z M950,248 L856,248 L856,704 L821,704 L534,236 L534,216 L820,216 L820,0 L856,0 L856,216 L950,216 Z M78,0 L182,0 C364,0 456,148 456,366 C456,582 364,726 182,726 L78,726 Z M116,34 L116,692 L176,692 C340,692 416,558 416,366 C416,174 340,34 176,34 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-2/1D4D0.gid54481" /></svg></td>
+
+    <td class="expected" ft:id="CFF-2/1F33A" ft:render="🌺"
+        ft:font="FDArrayTest65535.otf"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-2/1F33A.gid62267" overflow="visible"><path d="M741,-12 C846,-12 926,64 926,184 C926,286 858,352 784,370 L784,374 C852,398 906,456 906,550 C906,656 837,716 741,716 C673,716 617,678 577,630 L601,606 C635,650 687,682 741,682 C815,682 868,630 868,546 C868,462 812,386 674,386 L674,352 C822,352 888,286 888,182 C888,84 822,22 741,22 C660,22 606,64 570,110 L546,86 C582,40 648,-12 741,-12 Z M124,0 L162,0 L162,356 L400,356 L400,390 L162,390 L162,692 L444,692 L444,726 L124,726 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-2/1F33A.gid62267" /></svg></td>
+
+    <td class="expected" ft:id="CFF-2/1F33B" ft:render="🌻"
+        ft:font="FDArrayTest65535.otf"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-2/1F33B.gid62268" overflow="visible"><path d="M741,-12 C846,-12 926,64 926,184 C926,286 858,352 784,370 L784,374 C852,398 906,456 906,550 C906,656 837,716 741,716 C673,716 617,678 577,630 L601,606 C635,650 687,682 741,682 C815,682 868,630 868,546 C868,462 812,386 674,386 L674,352 C822,352 888,286 888,182 C888,84 822,22 741,22 C660,22 606,64 570,110 L546,86 C582,40 648,-12 741,-12 Z M124,0 L162,0 L162,356 L400,356 L400,390 L162,390 L162,692 L444,692 L444,726 L124,726 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-2/1F33B.gid62268" /></svg></td>
+
+    <td class="expected" ft:id="CFF-2/1F4A7" ft:render="💧"
+        ft:font="FDArrayTest65535.otf"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-2/1F4A7.gid62632" overflow="visible"><path d="M582,248 L766,554 C784,584 802,614 818,644 L822,644 C820,600 820,576 820,542 L820,248 Z M950,248 L856,248 L856,704 L821,704 L534,236 L534,216 L820,216 L820,0 L856,0 L856,216 L950,216 Z M124,0 L162,0 L162,356 L400,356 L400,390 L162,390 L162,692 L444,692 L444,726 L124,726 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-2/1F4A7.gid62632" /></svg></td>
+
+    <td class="expected" ft:id="CFF-2/1F95D" ft:render="🥝"
+        ft:font="FDArrayTest65535.otf"><svg version="1.1" viewBox="0 -320 1000 1480"><symbol id="CFF-2/1F95D.gid63838" overflow="visible"><path d="M732,316 C642,316 598,384 598,500 C598,602 654,682 731,682 C829,682 884,577 891,425 C836,344 777,316 732,316 Z M572,54 C606,14 650,-12 710,-12 C826,-12 930,88 930,388 C930,596 851,716 731,716 C639,716 560,626 560,500 C560,360 624,282 728,282 C788,282 847,322 892,381 C890,112 805,22 710,22 C666,22 626,40 596,80 Z M124,0 L162,0 L162,356 L400,356 L400,390 L162,390 L162,692 L444,692 L444,726 L124,726 Z" /></symbol><use x="0" y="0" xlink:href="#CFF-2/1F95D.gid63838" /></svg></td>
+
+  </tr>
+  
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="CFF-2/0041"/>
+    <td class="observed" ft:id="CFF-2/211D"/>
+    <td class="observed" ft:id="CFF-2/24EA"/>
+    <td class="observed" ft:id="CFF-2/2460"/>
+    <td class="observed" ft:id="CFF-2/2461"/>
+    <td class="observed" ft:id="CFF-2/4EFF"/>
+    <td class="observed" ft:id="CFF-2/FF21"/>
+    <td class="observed" ft:id="CFF-2/10133"/>
+    <td class="observed" ft:id="CFF-2/1D4D0"/>
+    <td class="observed" ft:id="CFF-2/1F33A"/>
+    <td class="observed" ft:id="CFF-2/1F33B"/>
+    <td class="observed" ft:id="CFF-2/1F4A7"/>
+    <td class="observed" ft:id="CFF-2/1F95D"/>
+  </tr>
+  
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="CFF-2/0041"/>
+    <td class="conformance" ft:id="CFF-2/211D"/>
+    <td class="conformance" ft:id="CFF-2/24EA"/>
+    <td class="conformance" ft:id="CFF-2/2460"/>
+    <td class="conformance" ft:id="CFF-2/2461"/>
+    <td class="conformance" ft:id="CFF-2/4EFF"/>
+    <td class="conformance" ft:id="CFF-2/FF21"/>
+    <td class="conformance" ft:id="CFF-2/10133"/>
+    <td class="conformance" ft:id="CFF-2/1D4D0"/>
+    <td class="conformance" ft:id="CFF-2/1F33A"/>
+    <td class="conformance" ft:id="CFF-2/1F33B"/>
+    <td class="conformance" ft:id="CFF-2/1F4A7"/>
+    <td class="conformance" ft:id="CFF-2/1F95D"/>
+  </tr>
+
+</table>
+
+</body>
+</html>
+

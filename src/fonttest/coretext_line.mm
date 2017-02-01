@@ -70,6 +70,25 @@ CoreTextLine::~CoreTextLine() {
   CFRelease(font_);
 }
 
+// For CID-keyed fonts, CoreText returns glyph names like "cid1234".
+// Other rendering engines (eg. HarfBuzz) do not make this distinction.
+// Since the OpenType specification is silent on expected glyph names,
+// it is undefined what the correct behavior should be. We rewrite
+// "cid1234" to "gid1234" here, so that the test suite does not
+// have to support multiple permitted glyph names per test case.
+static void RewriteCIDToGID(char* glyphName) {
+  if (glyphName[0] != 'c' || glyphName[1] != 'i' || glyphName[2] != 'd') {
+    return;
+  }
+  const char* p = glyphName + 2;
+  while (*++p) {
+    if (*p < '0' || *p > '9') {
+      return;
+    }
+  }
+  glyphName[0] = 'g';
+}
+
 static std::string GetGlyphName(CGFontRef font, CGGlyph glyph) {
   CFStringRef cfGlyphName = CGFontCopyGlyphNameForGlyph(font, glyph);
   char glyphName[512];
@@ -78,6 +97,7 @@ static std::string GetGlyphName(CGFontRef font, CGGlyph glyph) {
     snprintf(glyphName, sizeof(glyphName), "gid%u", glyph);
   }
   CFRelease(cfGlyphName);
+  RewriteCIDToGID(glyphName);
   return std::string(glyphName);
 }
 

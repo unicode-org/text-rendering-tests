@@ -5,6 +5,7 @@
             'type': 'static_library',
 	    'defines': [
 	        'HAVE_FREETYPE',
+                'HAVE_FT_GET_VAR_BLEND_COORDINATES',
                 'HAVE_INTEL_ATOMIC_PRIMITIVES',
 		'HAVE_OT',
                 'HAVE_UCDN',
@@ -42,6 +43,7 @@
                 'harfbuzz/src/hb-ot-shape-normalize.cc',
                 'harfbuzz/src/hb-ot-shape.cc',
                 'harfbuzz/src/hb-ot-tag.cc',
+                'harfbuzz/src/hb-ot-var.cc',
                 'harfbuzz/src/hb-set.cc',
                 'harfbuzz/src/hb-shape-plan.cc',
                 'harfbuzz/src/hb-shape.cc',
