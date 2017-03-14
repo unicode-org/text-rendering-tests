@@ -1,0 +1,13 @@
+language: cpp
+sudo: false
+
+os:
+  - linux
+  - osx
+
+compiler:
+  - clang
+
+script:
+  - python2.7 check.py --output=reports/FreeStack.html --engine=FreeStack
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then python2.7 check.py --output=reports/CoreText.html --engine=CoreText ; fi

@@ -41,7 +41,7 @@ class ConformanceChecker:
         return '%s %d, %d' % (time.strftime("%B"), now.day, now.year)
 
     def check(self, testfile):
-        print testfile
+        all_ok = True
         doc = etree.parse(testfile).getroot()
         self.reports[testfile] = doc
         for e in doc.findall(".//*[@class='expected']"):
@@ -66,12 +66,14 @@ class ConformanceChecker:
             self.normalize_svg(observed_svg)
             self.observed[testcase] = observed_svg
             ok = svgutil.is_similar(expected_svg, observed_svg, maxDelta=1.0)
+            all_ok = all_ok and ok
             self.conformance[testcase] = ok
             groups = testcase.split('/')
             for i in range(len(groups)):
                 group = '/'.join(groups[:i])
                 self.conformance[group] = (ok and
                                            self.conformance.get(group, True))
+        print "%s %s" % ("PASS" if all_ok else "FAIL", testfile)
 
     def normalize_svg(self, svg):
         strip_path = lambda p: re.sub(r'\s+', ' ', p).strip()

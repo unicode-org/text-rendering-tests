@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/unicode-org/text-rendering-tests.svg)](https://travis-ci.org/unicode-org/text-rendering-tests)
+
 # Text rendering tests
 
 This is a very early draft for a test suite for text rendering.
