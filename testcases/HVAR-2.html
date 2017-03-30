@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html
+    xmlns:ft="https://github.com/OpenType/fonttest"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn|Vollkorn:i"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<h3 id="HVAR-2">HVAR–2: Last entry</h3>
+
+<div class="desc">
+  The font for this test case contains an
+  <a href="https://www.microsoft.com/typography/otspec/hvar.htm">HVAR table</a>
+  with fewer entries than glyphs in the font. According to the
+  OpenType HVAR specification, “if a given glyph ID is greater than
+  <em>mapCount</em> – 1, then the last entry is used.” If your
+  implementation is correct, the two glyphs should not crisscross. If
+  they overlap, your implementation is faulty. See also
+  <a href="https://savannah.nongnu.org/bugs/index.php?50678">FreeType
+  bug 50678</a>.
+</div>
+
+<table>
+  <tr>
+    <th></th>
+    <td>0</td>
+    <td>200</td>
+    <td>400</td>
+    <td>600</td>
+    <td>800</td>
+    <td>1000</td>
+  </tr>
+
+  <tr>
+    <th>Expected</th>
+
+    <td class="expected" ft:id="HVAR-2/0" ft:render="AB"
+        ft:font="TestHVARTwo.ttf" ft:var="wght:0"><svg version="1.1" viewBox="0 -335 900 1253"><symbol id="HVAR-2/0.uni0041" overflow="visible"><path d="M0,0 L0,450 L50,450 L50,0 Z M100,0 L100,450 L150,450 L150,0 Z M200,0 L200,450 L250,450 L250,0 Z M300,0 L300,450 L350,450 L350,0 Z M400,0 L400,450 L450,450 L450,0 Z" /></symbol><symbol id="HVAR-2/0.uni0042" overflow="visible"><path d="M450,0 L0,0 L0,50 L450,50 Z M450,100 L0,100 L0,150 L450,150 Z M450,200 L0,200 L0,250 L450,250 Z M450,300 L0,300 L0,350 L450,350 Z M450,400 L0,400 L0,450 L450,450 Z" /></symbol><use x="0" y="0" xlink:href="#HVAR-2/0.uni0041" /><use x="450" y="0" xlink:href="#HVAR-2/0.uni0042" /></svg></td>
+
+    <td class="expected" ft:id="HVAR-2/200" ft:render="AB"
+        ft:font="TestHVARTwo.ttf" ft:var="wght:200"><svg version="1.1" viewBox="0 -335 1030 1253"><symbol id="HVAR-2/200.uni0041" overflow="visible"><path d="M0,0 L0,450 L50,450 L50,0 Z M116,0 L116,450 L166,450 L166,0 Z M233,0 L233,450 L283,450 L283,0 Z M349,0 L349,450 L399,450 L399,0 Z M465,0 L465,450 L515,450 L515,0 Z" /></symbol><symbol id="HVAR-2/200.uni0042" overflow="visible"><path d="M515,0 L0,0 L0,50 L515,50 Z M515,100 L0,100 L0,150 L515,150 Z M515,200 L0,200 L0,250 L515,250 Z M515,300 L0,300 L0,350 L515,350 Z M515,400 L0,400 L0,450 L515,450 Z" /></symbol><use x="0" y="0" xlink:href="#HVAR-2/200.uni0041" /><use x="515" y="0" xlink:href="#HVAR-2/200.uni0042" /></svg></td>
+
+    <td class="expected" ft:id="HVAR-2/400" ft:render="AB"
+        ft:font="TestHVARTwo.ttf" ft:var="wght:400"><svg version="1.1" viewBox="0 -335 1168 1253"><symbol id="HVAR-2/400.uni0041" overflow="visible"><path d="M0,0 L0,450 L50,450 L50,0 Z M133,0 L133,450 L183,450 L183,0 Z M267,0 L267,450 L317,450 L317,0 Z M400,0 L400,450 L450,450 L450,0 Z M534,0 L534,450 L584,450 L584,0 Z" /></symbol><symbol id="HVAR-2/400.uni0042" overflow="visible"><path d="M584,0 L0,0 L0,50 L584,50 Z M584,100 L0,100 L0,150 L584,150 Z M584,200 L0,200 L0,250 L584,250 Z M584,300 L0,300 L0,350 L584,350 Z M584,400 L0,400 L0,450 L584,450 Z" /></symbol><use x="0" y="0" xlink:href="#HVAR-2/400.uni0041" /><use x="584" y="0" xlink:href="#HVAR-2/400.uni0042" /></svg></td>
+
+    <td class="expected" ft:id="HVAR-2/600" ft:render="AB"
+        ft:font="TestHVARTwo.ttf" ft:var="wght:600"><svg version="1.1" viewBox="0 -335 1346 1253"><symbol id="HVAR-2/600.uni0041" overflow="visible"><path d="M0,0 L0,450 L50,450 L50,0 Z M156,0 L156,450 L206,450 L206,0 Z M311,0 L311,450 L361,450 L361,0 Z M467,0 L467,450 L517,450 L517,0 Z M623,0 L623,450 L673,450 L673,0 Z" /></symbol><symbol id="HVAR-2/600.uni0042" overflow="visible"><path d="M673,0 L0,0 L0,50 L673,50 Z M673,100 L0,100 L0,150 L673,150 Z M673,200 L0,200 L0,250 L673,250 Z M673,300 L0,300 L0,350 L673,350 Z M673,400 L0,400 L0,450 L673,450 Z" /></symbol><use x="0" y="0" xlink:href="#HVAR-2/600.uni0041" /><use x="673" y="0" xlink:href="#HVAR-2/600.uni0042" /></svg></td>
+
+    <td class="expected" ft:id="HVAR-2/800" ft:render="AB"
+        ft:font="TestHVARTwo.ttf" ft:var="wght:800"><svg version="1.1" viewBox="0 -335 1522 1253"><symbol id="HVAR-2/800.uni0041" overflow="visible"><path d="M0,0 L0,450 L50,450 L50,0 Z M177,0 L177,450 L227,450 L227,0 Z M356,0 L356,450 L406,450 L406,0 Z M533,0 L533,450 L583,450 L583,0 Z M711,0 L711,450 L761,450 L761,0 Z" /></symbol><symbol id="HVAR-2/800.uni0042" overflow="visible"><path d="M761,0 L0,0 L0,50 L761,50 Z M761,100 L0,100 L0,150 L761,150 Z M761,200 L0,200 L0,250 L761,250 Z M761,300 L0,300 L0,350 L761,350 Z M761,400 L0,400 L0,450 L761,450 Z" /></symbol><use x="0" y="0" xlink:href="#HVAR-2/800.uni0041" /><use x="761" y="0" xlink:href="#HVAR-2/800.uni0042" /></svg></td>
+
+    <td class="expected" ft:id="HVAR-2/1000" ft:render="AB"
+        ft:font="TestHVARTwo.ttf" ft:var="wght:1000"><svg version="1.1" viewBox="0 -335 1700 1253"><symbol id="HVAR-2/1000.uni0041" overflow="visible"><path d="M0,0 L0,450 L50,450 L50,0 Z M200,0 L200,450 L250,450 L250,0 Z M400,0 L400,450 L450,450 L450,0 Z M600,0 L600,450 L650,450 L650,0 Z M800,0 L800,450 L850,450 L850,0 Z" /></symbol><symbol id="HVAR-2/1000.uni0042" overflow="visible"><path d="M850,0 L0,0 L0,50 L850,50 Z M850,100 L0,100 L0,150 L850,150 Z M850,200 L0,200 L0,250 L850,250 Z M850,300 L0,300 L0,350 L850,350 Z M850,400 L0,400 L0,450 L850,450 Z" /></symbol><use x="0" y="0" xlink:href="#HVAR-2/1000.uni0041" /><use x="850" y="0" xlink:href="#HVAR-2/1000.uni0042" /></svg></td>
+  </tr>
+
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="HVAR-2/0"/>
+    <td class="observed" ft:id="HVAR-2/200"/>
+    <td class="observed" ft:id="HVAR-2/400"/>
+    <td class="observed" ft:id="HVAR-2/600"/>
+    <td class="observed" ft:id="HVAR-2/800"/>
+    <td class="observed" ft:id="HVAR-2/1000"/>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="HVAR-2/0"/>
+    <td class="conformance" ft:id="HVAR-2/200"/>
+    <td class="conformance" ft:id="HVAR-2/400"/>
+    <td class="conformance" ft:id="HVAR-2/600"/>
+    <td class="conformance" ft:id="HVAR-2/800"/>
+    <td class="conformance" ft:id="HVAR-2/1000"/>
+  </tr>
+
+</table>
+
+</body>
+</html>
