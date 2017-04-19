@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html
+    xmlns:ft="https://github.com/OpenType/fonttest"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn|Vollkorn:i"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<h3 id="GSUB-1">GSUB–1: Space Isn’t Nothing</h3>
+
+<div class="desc">
+  The font for this test case has a <em>contextual alternates</em>
+  feature in its GSUB table that substitutes <em>a</em>
+  by <em>a.alt</em> if followed by a space. Some versions of Adobe
+  InDesign had a bug where space was treated like an empty
+  substitution context.  If your implementation is correct, you should
+  see two different glyphs in the rendering: the first letter
+  should have an overbar, the second letter should not.
+</div>
+
+<table>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="GSUB-1/1"
+        ft:render="a a" ft:font="TestGSUBOne.otf"><svg version="1.1" viewBox="0 -250 1500 1000"><symbol id="GSUB-1/1.a.alt" overflow="visible"><path d="M28,484 L233,536 L433,447 L431,111 L492,40 L311,-21 L301,74 L214,-8 L35,-8 L8,195 L131,281 L284,307 L284,362 L144,391 L43,371 Z M283,229 L159,208 L163,142 L287,146 Z M36,695 L236,723 L457,694 L446,617 L236,626 L49,624 Z" /></symbol><symbol id="GSUB-1/1.space" overflow="visible"><path d="" /></symbol><symbol id="GSUB-1/1.a" overflow="visible"><path d="M28,484 L233,536 L433,447 L431,111 L492,40 L311,-21 L301,74 L214,-8 L35,-8 L8,195 L131,281 L284,307 L284,362 L144,391 L43,371 Z M283,229 L159,208 L163,142 L287,146 Z" /></symbol><use x="0" y="0" xlink:href="#GSUB-1/1.a.alt" /><use x="500" y="0" xlink:href="#GSUB-1/1.space" /><use x="1000" y="0" xlink:href="#GSUB-1/1.a" /></svg></td>
+  </tr>
+
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="GSUB-1/1"/>
+  </tr>
+
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="GSUB-1/1"/>
+  </tr>
+
+</table>
+</body>
+</html>
