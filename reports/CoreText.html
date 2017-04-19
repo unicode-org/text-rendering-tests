@@ -38,10 +38,11 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h3 id="AVAR-1">AVAR–1: Weight Flattening</h3>
 
 <div class="desc">
-  The font for this test case is a variation font with a single axis.
-  While the <em>‘gvar’</em> table does a regular interpolation without
-  any special quirks, the font’s <em>‘avar’</em> table defines a
-  mapping that modifies the variation axis.
+  The <a href="../fonts/TestAVAR.ttf">font</a> for this test case is a
+  variation font with a single axis.  While the <em>‘gvar’</em> table
+  does a regular interpolation without any special quirks, the
+  font’s <em>‘avar’</em> table defines a mapping that modifies the
+  variation axis.
 </div>
 <div class="desc">A correct implementation should
   produce the test glyph in its maximally thin shape at axis value
@@ -360,8 +361,8 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h3 id="CFF2-1">CFF2–1: Variations</h3>
 
 <div class="desc">
-  The font for this test
-  is <a href="https://github.com/adobe-fonts/adobe-variable-font-prototype/tree/unicode-test-repo-subset">subset</a>
+  The <a href="../fonts/AdobeVFPrototype-Subset.otf">font</a> for this test
+  case is a subset
   of <a href="https://github.com/adobe-fonts/adobe-variable-font-prototype">Adobe’s Variable Font Prototype</a>, a variable font in the
   <a href="https://www.microsoft.com/typography/otspec/cff2.htm">Compact
   Font Format (CFF) Version 2</a>. If your implementation is correct,
@@ -437,7 +438,7 @@ svg {height:2.5em;transform:scaleY(-1)}
   The <a href="http://www.unicode.org/reports/tr37/">Unicode
   Ideographic Variation Database</a> defines glyph variants for Han
   ideographs. For example, Unicode supports two slightly different
-  variants when rendering U+82A6 in Japanese; the font for this test
+  variants when rendering U+82A6 in Japanese; the <a href="../fonts/TestCMAP14.otf">font</a> for this test
   case contains a type 14 <em>‘cmap’</em> table that implements them.
   With a conforming implementation, you should see four
   glyphs below. In the third glyph (U+82A6 U+E0101), the top stroke
@@ -487,16 +488,16 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h3 id="CMAP-2">CMAP–2: Unicode Variation Selectors</h3>
 
 <div class="desc">
-  Unicode
-  defines <a href="http://www.unicode.org/Public/UCD/latest/ucd/StandardizedVariants.txt">Standardized Variants</a> of certain characters, including some
-  <a href="http://www.unicode.org/reports/tr25/">Mathematical Symbols</a>.
-  The font for this test case contains a type 14 <em>‘cmap’</em> table
-  that implements both the regular symbol ≩ U+2269 GREATER-THAN BUT
-  NOT EQUAL TO, and its variant U+2269 U+FE00 GREATER-THAN BUT NOT
-  EQUAL TO WITH VERTICAL STROKE.  With a correct
-  implementation, the two glyphs should look different. If the two
-  glyphs look the same, or if you see any black boxes in the
-  renderings, it’s a sign that your implementation is broken.
+  Unicode defines <a href="http://www.unicode.org/Public/UCD/latest/ucd/StandardizedVariants.txt">Standardized Variants</a> of certain characters, including some
+  <a href="http://www.unicode.org/reports/tr25/">Mathematical
+  Symbols</a>.  The <a href="../fonts/TestCMAP14.otf">font</a> for
+  this test case contains a type 14 <em>‘cmap’</em> table that
+  implements both the regular symbol ≩ U+2269 GREATER-THAN BUT NOT
+  EQUAL TO, and its variant U+2269 U+FE00 GREATER-THAN BUT NOT EQUAL
+  TO WITH VERTICAL STROKE.  With a correct implementation, the two
+  glyphs should look different. If the two glyphs look the same, or if
+  you see any black boxes in the renderings, it’s a sign that your
+  implementation is broken.
 </div>
 
 <table>
@@ -528,17 +529,17 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h3 id="CMAP-3">CMAP–3: MacOS Turkish Encoding</h3>
 
 <div class="desc">
-  The font for this test case contains a <em>‘cmap’</em> table of
-  format 0, platform 1, encoding 0, language 18. Platform 1 means the
-  classic Macintosh up
+  The <a href="../fonts/TestCMAPMacTurkish.ttf">font</a> for this test
+  case contains a <em>‘cmap’</em> table of format 0, platform 1,
+  encoding 0, language 18. Platform 1 means the classic Macintosh up
   to <a href="https://en.wikipedia.org/wiki/Mac_OS_9">MacOS 9</a>; the
   combination of encoding 0 and language 18 indicates
   the <a href="https://en.wikipedia.org/wiki/MacTurkish_encoding">MacOS
   Turkish character encoding</a>.  Although Apple has deprecated the
-  Macintosh encodings in favor of Unicode in 2002, present-day renderers
-  may still encounter such fonts. For example, users sometimes want to open
-  electronic documents that were created a long time ago, and certain
-  file formats contain embedded fonts.
+  Macintosh encodings in favor of Unicode in 2002, present-day
+  renderers may still encounter such fonts. For example, users
+  sometimes want to open electronic documents that were created a long
+  time ago, and certain file formats contain embedded fonts.
 </div>
 
 <div class="desc">
@@ -646,11 +647,12 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h3 id="GLYF-1">GLYF–1: Composite Glyphs</h3>
 
 <div class="desc">
-  The font for this test case has a <em>‘glyf’</em> table whose entry
-  for U+0123 LATIN SMALL LETTER G WITH CEDILLA is a <em>composite
-  glyph</em>. It has two components: one for the base glyph, and
-  another one for the accent. A correct implementation
-  must place the accent on top of the g.
+  The <a href="../fonts/TestGLYFOne.ttf">font</a> for this test case
+  has a <em>‘glyf’</em> table whose entry for U+0123 LATIN SMALL
+  LETTER G WITH CEDILLA is a <em>composite glyph</em>. It has two
+  components: one for the base glyph, and another one for the
+  accent. A correct implementation must place the accent on top of the
+  g.
 </div>
 
 <table>
@@ -673,8 +675,9 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h3 id="GPOS-1">GPOS–1: Pair Adjustment Positioning</h3>
 
 <div class="desc">
-  The font for this test case contains a <em>‘GPOS’</em> table whose
-  <em>‘kern’</em> feature enables a lookup of type 2
+  The <a href="../fonts/TestGPOSOne.ttf">font</a> for this test case
+  contains a <em>‘GPOS’</em> table whose <em>‘kern’</em> feature enables
+  a lookup of type 2
   for <a href="https://www.microsoft.com/typography/otspec/gpos.htm#PP">Pair
   Adjustment Positioning</a>.  The lookup contains <em>two</em> subtables:
 </div>
@@ -806,11 +809,12 @@ svg {height:2.5em;transform:scaleY(-1)}
 <div class="desc">
   This test case exercises the handling of the <em>Coverage</em> field
   in <a href="https://www.microsoft.com/typography/otspec/gpos.htm#PP">Pair
-  Adjustment Positioning</a> subtables. The font contains a <em>‘GPOS’</em>
-  table whose <em>‘kern’</em> feature enables a single lookup of type 2.
-  This lookup contains three <em>PairPos format 1</em> subtables.
-  All three subtables specify  ◯ U+25EF LARGE CIRCLE as their <em>Coverage</em>,
-  but no other glyphs.
+  Adjustment Positioning</a>
+  subtables. The <a href="../fonts/TestGPOSTwo.otf">font</a> contains
+  a <em>‘GPOS’</em> table whose <em>‘kern’</em> feature enables a
+  single lookup of type 2.  This lookup contains three <em>PairPos
+  format 1</em> subtables.  All three subtables specify ◯ U+25EF LARGE
+  CIRCLE as their <em>Coverage</em>, but no other glyphs.
 </div>
 
 <ul style="margin-left:4em;margin-right:4em">
@@ -887,13 +891,14 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h3 id="GSUB-1">GSUB–1: Space Isn’t Nothing</h3>
 
 <div class="desc">
-  The font for this test case has a <em>contextual alternates</em>
-  feature in its GSUB table that substitutes <em>a</em>
-  by <em>a.alt</em> if followed by a space. Some versions of Adobe
-  InDesign had a bug where space was treated like an empty
-  substitution context.  If your implementation is correct, you should
-  see two different glyphs in the rendering: the first letter
-  should have an overbar, the second letter should not.
+  The <a href="../fonts/TestGSUBOne.otf">font</a> for this test case
+  has a <em>contextual alternates</em> feature in its GSUB table that
+  substitutes <em>a</em> by <em>a.alt</em> if followed by a
+  space. Some versions of Adobe InDesign had a bug where space was
+  treated like an empty substitution context.  If your implementation
+  is correct, you should see two different glyphs in the rendering:
+  the first letter should have an overbar, the second letter should
+  not.
 </div>
 
 <table>
@@ -916,13 +921,13 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h3 id="GVAR-1">GVAR–1: Sharing All Points</h3>
 
 <div class="desc">
-  The font for this test case uses <em>shared point numbers</em> in
-  its <em>‘gvar’</em> table. In its <em>shared points set</em>, the
-  font sets the number of points to zero. A correct
-  implementation should interpret such an empty set as a compact
-  encoding of “all points.” If the glyphs in the rendering below
-  have all the same weight, of if some glyphs are missing entirely,
-  it’s a sign that your implementation is broken.
+  The <a href="../fonts/TestGVAROne.ttf">font</a> for this test case
+  uses <em>shared point numbers</em> in its <em>‘gvar’</em> table. In
+  its <em>shared points set</em>, the font sets the number of points
+  to zero. A correct implementation should interpret such an empty set
+  as a compact encoding of “all points.” If the glyphs in the
+  rendering below have all the same weight, of if some glyphs are
+  missing entirely, it’s a sign that your implementation is broken.
 </div>
 
 <table>
@@ -989,15 +994,16 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h3 id="GVAR-2">GVAR–2: Sharing Enumerated Points</h3>
 
 <div class="desc">
-  Like in test case <a href="#GVAR-1">GVAR–1</a>, the font for this
-  test uses <em>shared point numbers</em> in its <em>‘gvar’</em>
+  Like in test case <a href="#GVAR-1">GVAR–1</a>,
+  the <a href="../fonts/TestGVARTwo.ttf">font</a> for this test
+  uses <em>shared point numbers</em> in its <em>‘gvar’</em>
   table. However, this font does not simply state an empty set for
   indicating that “all points” should be affected by the variation
   record. Instead, it gives an explicit enumeration of point numbers
-  in its <em>shared points set</em>.  A correct 
-  implementation should render the glyphs in the exact same way as
-  in <a href="#GVAR-1">GVAR–1</a>, although the font uses a
-  less compact encoding.
+  in its <em>shared points set</em>.  A correct implementation should
+  render the glyphs in the exact same way as
+  in <a href="#GVAR-1">GVAR–1</a>, although the font uses a less
+  compact encoding.
 </div>
 
 <table>
@@ -1064,10 +1070,10 @@ svg {height:2.5em;transform:scaleY(-1)}
 
 <div class="desc">
   Other than the fonts for test cases <a href="#GVAR-1">GVAR–1</a>
-  and <a href="#GVAR-2">GVAR–2</a>, the font for this test does not
-  use any <em>shared point numbers</em> in its <em>‘gvar’</em>
-  table. A correct implementation should still render the
-  glyphs in the exact same way, no matter what encoding has been used.
+  and <a href="#GVAR-2">GVAR–2</a>, the <a href="../fonts/TestGVARThree.ttf">font</a> for this test does not use any <em>shared point numbers</em>
+  in its <em>‘gvar’</em> table. A correct implementation should still
+  render the glyphs in the exact same way, no matter what encoding
+  has been used.
 </div>
 
 <table>
@@ -1134,13 +1140,14 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h3 id="GVAR-4">GVAR–4: Crawling Lizard</h3>
 
 <div class="desc">
-  The font for this test case is <em>Zycon</em>, designed in 1993, by
-  David Berlow at Font Bureau Inc. The font was developed for
-  illustrating the capabilities of TrueType GX. The glyph ids and the
-  font have been updated to OpenType 1.8.  The new version supports a
-  small number of Emoji such as 🦎 U+1F98E LIZARD.  If your
-  implementation is correct, the lizard should crawl.  Variation
-  axis <i>M</i>₁ moves its legs while axis <i>T</i>₁ bobs the head.
+  The <a href="../fonts/Zycon.ttf">font</a> for this test case
+  is <em>Zycon</em>, designed in 1993, by David Berlow at Font Bureau
+  Inc. The font was developed for illustrating the capabilities of
+  TrueType GX. The glyph ids and the font have been updated to
+  OpenType 1.8.  The new version supports a small number of Emoji such
+  as 🦎 U+1F98E LIZARD.  If your implementation is correct, the lizard
+  should crawl.  Variation axis <i>M</i>₁ moves its legs while
+  axis <i>T</i>₁ bobs the head.
 </div>
 
 <table>
@@ -1217,7 +1224,8 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h3 id="GVAR-5">GVAR–5: Lunar Phases</h3>
 
 <div class="desc">
-  The font for this test case is the same <em>Zycon</em> as in
+  The <a href="../fonts/Zycon.ttf">font</a> for this test case
+  is the same <em>Zycon</em> as in
   <a href="#GVAR-4">GVAR–4</a>. If your implementation is
   correct, 🌝 U+1F31D FULL MOON WITH FACE should wax and wane in sync
   with to variation axis <i>M</i>₁.
@@ -1297,13 +1305,14 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h3 id="GVAR-6">GVAR–6: Timid Turtle</h3>
 
 <div class="desc">
-  The font for this test case is again the same <em>Zycon</em> as in
-  <a href="#GVAR-4">GVAR–4</a>. Here, axis <i>T</i>₁ controls the
-  timidity of 🐢 U+1F422 TURTLE. If your implementation is
-  correct, the turtle should fully stick its head, legs and tail out
-  of the shell at <i>T</i>₁ = 0.0. As the axis value goes up, the
-  turtle should become increasingly timid. At <i>T</i>₁ = 1.0, it
-  should be fully hidden inside the shell.
+  The <a href="../fonts/Zycon.ttf">font</a> for this test case is
+  again the same <em>Zycon</em> as in <a href="#GVAR-4">GVAR–4</a>.
+  Here, axis <i>T</i>₁ controls the timidity of 🐢 U+1F422 TURTLE. If
+  your implementation is correct, the turtle should fully stick its
+  head, legs and tail out of the shell at <i>T</i>₁ = 0.0. As the axis
+  value goes up, the turtle should become increasingly
+  timid. At <i>T</i>₁ = 1.0, it should be fully hidden inside the
+  shell.
 </div>
 
 <table>
@@ -1380,12 +1389,13 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h3 id="GVAR-7">GVAR–7: Stemming Digits</h3>
 
 <div class="desc">
-  With one particular OpenType implementation, the font for this test
-  case triggered an etched look where the glyphs were distorted.
-  If your implementation is correct, you see
-  normal-looking glyphs whose weight is smoothly increasing.  All the
-  “I” letters should have visible stems, and there should not be
-  anything unusual about the “O” letters either.
+  With one particular OpenType implementation,
+  the <a href="../fonts/TestGVARFour.ttf">font</a> for this test case
+  triggered an etched look where the glyphs were distorted.  If your
+  implementation is correct, you see normal-looking glyphs whose
+  weight is smoothly increasing.  All the “I” letters should have
+  visible stems, and there should not be anything unusual about the
+  “O” letters either.
 </div>
 
 <table>
@@ -1504,7 +1514,7 @@ Apple’s, FreeType’s and Monotype’s implementations.
 <h3 id="HVAR-1">HVAR–1: No Advance Width Mapping</h3>
 
 <div class="desc">
-  The font for this test case contains
+  The <a href="../fonts/TestHVAROne.otf">font</a> for this test case contains
   a <a href="https://www.microsoft.com/typography/otspec/hvar.htm">Horizontal Metrics Variation Table</a>
   whose <em>offsetToAdvanceWidthMapping</em> field is zero.  The font,
   which was kindly contributed by Adobe Systems, had triggered a bug
@@ -1570,15 +1580,17 @@ Apple’s, FreeType’s and Monotype’s implementations.
 <h3 id="HVAR-2">HVAR–2: Last entry</h3>
 
 <div class="desc">
-  The font for this test case contains an
-  <a href="https://www.microsoft.com/typography/otspec/hvar.htm">HVAR table</a>
-  with fewer entries than glyphs in the font. According to the
-  OpenType HVAR specification, “if a given glyph ID is greater than
+  The <a href="../fonts/TestHVARTwo.ttf">font</a> for this test case
+  contains an
+  <a href="https://www.microsoft.com/typography/otspec/hvar.htm">HVAR
+  table</a> with fewer entries than glyphs in the font. According to
+  the OpenType HVAR specification, “if a given glyph ID is greater
+  than
   <em>mapCount</em> – 1, then the last entry is used.” If your
   implementation is correct, the two glyphs should not crisscross. If
   they overlap, your implementation is faulty. See also
   <a href="https://savannah.nongnu.org/bugs/index.php?50678">FreeType
-  bug 50678</a>.
+  bug 50678</a>.
 </div>
 
 <table>
@@ -1632,14 +1644,15 @@ Apple’s, FreeType’s and Monotype’s implementations.
 <h3 id="KERN-1">KERN–1</h3>
 
 <div class="desc">
-  The font for this test case contains a <em>‘kern’</em> table of
-  format 0, which in turns contains a single format 0 subtable.
-  Without kerning, the glyphs for <em>T</em>, <em>u</em> and the
-  dotless <em>ı</em> will look like normal letters. However, if your
-  implementation correctly applies the font’s kerning data,
-  the shapes will join to form a geometric pattern.  If you can still
-  discern the original letters <em>ıTuTuTı</em> in the rendering,
-  it’s a sign that your implementation fails to correctly handle kerning.
+  The <a href="../fonts/TestKERNOne.otf">font</a> for this test case
+  contains a <em>‘kern’</em> table of format 0, which in turns
+  contains a single format 0 subtable.  Without kerning, the glyphs
+  for <em>T</em>, <em>u</em> and the dotless <em>ı</em> will look like
+  normal letters. However, if your implementation correctly applies
+  the font’s kerning data, the shapes will join to form a geometric
+  pattern.  If you can still discern the original
+  letters <em>ıTuTuTı</em> in the rendering, it’s a sign that your
+  implementation fails to correctly handle kerning.
 </div>
 
 <table>
@@ -1687,7 +1700,7 @@ Apple’s, FreeType’s and Monotype’s implementations.
 <h3 id="SHARAN-1">SHARAN–1: Nasta‘līq</h3>
 
 <div class="desc">
-  The font for this test case supports
+  The <a href="../fonts/TestShapeAran.ttf">font</a> for this test case supports
   the <a href="https://en.wikipedia.org/wiki/Nasta%CA%BFl%C4%ABq_script">Nasta‘līq</a>
   script with letterforms for
   the <a href="https://en.wikipedia.org/wiki/Urdu">Urdu</a> language.
@@ -2001,16 +2014,17 @@ Apple’s, FreeType’s and Monotype’s implementations.
 <h3 id="SHETHI-1">SHETHI–1: Ethiopic Numbers</h3>
 
 <div class="desc">
-  The font for this test case supports the “joining style”
+  The <a href="../fonts/TestShapeEthi.ttf">font</a> for this test case
+  supports the “joining style”
   of <a href="https://w3c.github.io/elreq/#ethiopic_numeral_bars">Ethiopic
   numerals</a>.  It contains distinct glyphs for the the <em>initial,
   medial,</em> and <em>final</em> form of every digit, plus
   an <em>isolated</em> form which gets used when a digit stands
-  alone. In its <a href="https://www.microsoft.com/typography/otspec/gsub.htm">Glyph
+  alone. In
+  its <a href="https://www.microsoft.com/typography/otspec/gsub.htm">Glyph
   Substitution</a> table, the test font uses
-  a <a href="https://www.microsoft.com/typography/otspec/features_ae.htm#ccmp">Glyph
-  Composition/Decomposition</a> feature to select the correct shape
-  depending on its context. To achieve this effect, the feature
+  a <a href="https://www.microsoft.com/typography/otspec/features_ae.htm#ccmp">Glyph Composition/Decomposition</a> feature to select the correct
+  shape depending on its context. To achieve this effect, the feature
   invokes lookups for
   <a href="https://www.microsoft.com/typography/otspec/gsub.htm#CC">Chaining
   Contextual Substitution</a>.  In the test rendering, you
@@ -2096,18 +2110,18 @@ Apple’s, FreeType’s and Monotype’s implementations.
 <h3 id="SHETHI-2">SHETHI–2: Ethiopic Diacritics</h3>
 
 <div class="desc">
-  In its <a href="https://www.microsoft.com/typography/otspec/gpos.htm">Glyph
-  Positioning</a> table, the font for this test case defines a
-  <a href="https://www.microsoft.com/typography/otspec/features_ko.htm#mark">Mark
-  Positioning</a> feature.  The feature uses
-  a <a href="https://www.microsoft.com/typography/otspec/gpos.htm#MBP">MarkToBase
-  Attachment Positioning Subtable</a> for placing Ethiopic diacritics
-  on top of a base glyph.  If your text rendering engine is correctly,
-  the dots (which mean <em>“long vowel”, “long consonant”,</em>
-  and <em>“long consonant plus long vowel”</em>) should be placed on
-  top of the base syllable (<em>“la”</em>). If the dots appear to the
-  right of the syllable, or if they are missing entirely, it’s a sign
-  that your text rendering system is broken.
+  The <a href="../fonts/TestShapeEthi.ttf">font</a> font for this test
+  case defines
+  a <a href="https://www.microsoft.com/typography/otspec/features_ko.htm#mark">Mark Positioning</a> feature in
+  its <a href="https://www.microsoft.com/typography/otspec/gpos.htm">Glyph
+  Positioning</a> table. The feature uses
+  a <a href="https://www.microsoft.com/typography/otspec/gpos.htm#MBP">MarkToBase Attachment Positioning Subtable</a> for placing Ethiopic
+  diacritics on top of a base glyph.  If your text rendering engine is
+  correctly, the dots (which mean <em>“long vowel”, “long
+  consonant”,</em> and <em>“long consonant plus long vowel”</em>)
+  should be placed on top of the base syllable (<em>“la”</em>). If the
+  dots appear to the right of the syllable, or if they are missing
+  entirely, it’s a sign that your text rendering system is broken.
 </div>
 
 <table>
