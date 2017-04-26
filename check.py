@@ -31,6 +31,10 @@ FONTTEST_VARIATION = FONTTEST_NAMESPACE + 'var'
 class ConformanceChecker:
     def __init__(self, engine):
         self.engine = engine
+        if self.engine == 'OpenType.js':
+            self.command = 'src/third_party/opentypejs/opentype.js/bin/test-render'
+        else:
+            self.command = 'build/out/Default/fonttest'
         self.datestr = self.make_datestr()
         self.reports = {}  # filename --> HTML ElementTree
         self.conformance = {}  # testcase -> True|False
@@ -51,7 +55,7 @@ class ConformanceChecker:
             variation = e.attrib.get(FONTTEST_VARIATION)
             expected_svg = e.find('svg')
             self.normalize_svg(expected_svg)
-            command = ['build/out/Default/fonttest', '--font=' + font,
+            command = [self.command, '--font=' + font,
                        '--testcase=' + testcase, '--engine=' + self.engine]
             if render: command.append('--render=' + render)
             if variation: command.append('--variation=' + variation)
@@ -127,11 +131,14 @@ class ConformanceChecker:
             outfile.write(xml)
 
 
-def build():
-    subprocess.check_call(
-        './src/third_party/gyp/gyp -f make --depth . '
-        '--generator-output build  src/fonttest/fonttest.gyp'.split())
-    subprocess.check_call(['make', '-s', '--directory', 'build'])
+def build(engine):
+    if engine == 'OpenType.js':
+        subprocess.check_call(['npm', 'install'], cwd='./src/third_party/opentypejs/opentype.js')
+    else:
+        subprocess.check_call(
+            './src/third_party/gyp/gyp -f make --depth . '
+            '--generator-output build  src/fonttest/fonttest.gyp'.split())
+        subprocess.check_call(['make', '-s', '--directory', 'build'])
 
 
 def main():
@@ -139,11 +146,11 @@ def main():
     etree.register_namespace('xlink', 'http://www.w3.org/1999/xlink')
     parser = argparse.ArgumentParser()
     parser.add_argument('--engine',
-                        choices=['FreeStack', 'CoreText', 'DirectWrite'],
+                        choices=['FreeStack', 'CoreText', 'DirectWrite', 'OpenType.js'],
                         default='FreeStack')
     parser.add_argument('--output', help='path to report file being written')
     args = parser.parse_args()
-    build()
+    build(engine=args.engine)
     checker = ConformanceChecker(engine=args.engine)
     for filename in os.listdir('testcases'):
         if (filename == 'index.html'
