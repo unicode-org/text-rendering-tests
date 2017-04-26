@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html
+    xmlns:ft="https://github.com/OpenType/fonttest"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn|Vollkorn:i"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<h3 id="GVAR-9">GVAR–9: IUP, again</h3>
+
+<div class="desc">
+The <a href="../fonts/TestGVARNine.ttf">font</a> for this test case
+has one axis, TEST, that runs from –1.0 to 1.0 with default 0.0. It
+has one glyph, A, which contains 4 square contours, all identical
+apart from their x position. The top edge of each contour contains 5
+points, with 3 extra points spaced evenly between the top-left and
+top-right points. It has one gvar variation tuple, value 1 on axis
+TEST. This tuple only moves points that lie on the top of each
+contour. Note that in each contour moved by the gvar tuple, there are
+TWO runs of interpolated points. Thus: contour #0 has points 0–6;
+contour #1 has points 7–13; contour #2 has points 14–20; contour #3
+has points 21–27.
+</div>
+
+<table>
+  <tr>
+    <th/>
+    <td>–1.0</td>
+    <td>–0.5</td>
+    <td>±0.0</td>
+    <td>+0.5</td>
+    <td>+1.0</td>
+  </tr>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="GVAR-9/1" ft:render="A"
+      ft:font="TestGVARNine.ttf" ft:var="TEST:-1.0"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="GVAR-9/1.A" overflow="visible"><path d="M0,250 L50,250 L100,250 L150,250 L200,250 L200,50 L0,50 Z M250,250 L300,250 L350,250 L400,250 L450,250 L450,50 L250,50 Z M500,250 L550,250 L600,250 L650,250 L700,250 L700,50 L500,50 Z M750,250 L800,250 L850,250 L900,250 L950,250 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#GVAR-9/1.A" /></svg></td>
+
+    <td class="expected" ft:id="GVAR-9/2" ft:render="A"
+      ft:font="TestGVARNine.ttf" ft:var="TEST:-0.5"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="GVAR-9/2.A" overflow="visible"><path d="M0,250 L50,250 L100,250 L150,250 L200,250 L200,50 L0,50 Z M250,250 L300,250 L350,250 L400,250 L450,250 L450,50 L250,50 Z M500,250 L550,250 L600,250 L650,250 L700,250 L700,50 L500,50 Z M750,250 L800,250 L850,250 L900,250 L950,250 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#GVAR-9/2.A" /></svg></td>
+
+    <td class="expected" ft:id="GVAR-9/3" ft:render="A"
+      ft:font="TestGVARNine.ttf" ft:var="TEST:0.0"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="GVAR-9/3.A" overflow="visible"><path d="M0,250 L50,250 L100,250 L150,250 L200,250 L200,50 L0,50 Z M250,250 L300,250 L350,250 L400,250 L450,250 L450,50 L250,50 Z M500,250 L550,250 L600,250 L650,250 L700,250 L700,50 L500,50 Z M750,250 L800,250 L850,250 L900,250 L950,250 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#GVAR-9/3.A" /></svg></td>
+
+    <td class="expected" ft:id="GVAR-9/4" ft:render="A"
+      ft:font="TestGVARNine.ttf" ft:var="TEST:0.5"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="GVAR-9/4.A" overflow="visible"><path d="M0,300 L50,250 L100,250 L150,250 L200,300 L200,100 L0,100 Z M250,300 L300,300 L350,300 L400,300 L450,300 L450,100 L250,100 Z M500,300 L550,300 L600,300 L650,300 L700,300 L700,100 L500,100 Z M750,300 L800,250 L850,250 L900,250 L950,200 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#GVAR-9/4.A" /></svg></td>
+
+    <td class="expected" ft:id="GVAR-9/5" ft:render="A"
+      ft:font="TestGVARNine.ttf" ft:var="TEST:1.0"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="GVAR-9/5.A" overflow="visible"><path d="M0,350 L50,250 L100,250 L150,250 L200,350 L200,150 L0,150 Z M250,350 L300,350 L350,350 L400,350 L450,350 L450,150 L250,150 Z M500,350 L550,250 L600,250 L650,250 L700,349 L700,50 L500,50 Z M750,350 L800,250 L850,250 L900,250 L950,150 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#GVAR-9/5.A" /></svg></td>
+
+  </tr>
+
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="GVAR-9/1"/>
+    <td class="observed" ft:id="GVAR-9/2"/>
+    <td class="observed" ft:id="GVAR-9/3"/>
+    <td class="observed" ft:id="GVAR-9/4"/>
+    <td class="observed" ft:id="GVAR-9/5"/>
+  </tr>
+
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="GVAR-9/1"/>
+    <td class="conformance" ft:id="GVAR-9/2"/>
+    <td class="conformance" ft:id="GVAR-9/3"/>
+    <td class="conformance" ft:id="GVAR-9/4"/>
+    <td class="conformance" ft:id="GVAR-9/5"/>
+  </tr>
+
+</table>
+
+</body>
+</html>
