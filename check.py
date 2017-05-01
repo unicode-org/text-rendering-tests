@@ -68,10 +68,11 @@ class ConformanceChecker:
                 'xmlns="http://www.w3.org/2000/svg"', '')
             observed_svg = etree.fromstring(observed)
             self.normalize_svg(observed_svg)
-            self.observed[testcase] = observed_svg
             ok = svgutil.is_similar(expected_svg, observed_svg, maxDelta=1.0)
             all_ok = all_ok and ok
             self.conformance[testcase] = ok
+            self.add_prefix_to_svg_ids(observed_svg, 'OBSERVED')
+            self.observed[testcase] = observed_svg
             groups = testcase.split('/')
             for i in range(len(groups)):
                 group = '/'.join(groups[:i])
@@ -83,6 +84,17 @@ class ConformanceChecker:
         strip_path = lambda p: re.sub(r'\s+', ' ', p).strip()
         for path in svg.findall('.//path[@d]'):
             path.attrib['d'] = strip_path(path.attrib['d'])
+
+    def add_prefix_to_svg_ids(self, svg, prefix):
+        # The 'id' attribute needs to be globally unique in the HTML document,
+        # so we add a prefix to distinguish identifiers in the expected versus
+        # observed SVG image.
+        for symbol in svg.findall('.//symbol[@id]'):
+            symbol.attrib['id'] = '%s/%s' % (prefix, symbol.attrib['id'])
+        href = '{http://www.w3.org/1999/xlink}href'
+        for use in svg.findall('.//use[@%s]' % href):
+            assert use.attrib[href][0] == '#', use.attrib[href]
+            use.attrib[href] = '#%s/%s' % (prefix, use.attrib[href][1:])
 
     def write_report(self, path):
         report = etree.parse('testcases/index.html').getroot()
