@@ -34,7 +34,7 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h1>Text Rendering Test Report</h1>
 <h2>May 2, 2017 · CoreText</h2>
 <h3>Overview</h3>
-<div class="desc" id="SummaryText">Some tests have failed. See <a href="#AVAR-1">AVAR-1</a>, <a href="#CFF2-1">CFF2-1</a>, <a href="#CMAP-3">CMAP-3</a>, <a href="#GVAR-7">GVAR-7</a>, <a href="#HVAR-1">HVAR-1</a>, <a href="#SHARAN-1">SHARAN-1</a>, <a href="#SHBALI-1">SHBALI-1</a>, <a href="#SHBALI-2">SHBALI-2</a>, <a href="#SHBALI-3">SHBALI-3</a>, <a href="#SHKNDA-2">SHKNDA-2</a>, and <a href="#SHKNDA-3">SHKNDA-3</a> for details.</div>
+<div class="desc" id="SummaryText">Some tests have failed. See <a href="#AVAR-1">AVAR-1</a>, <a href="#CFF2-1">CFF2-1</a>, <a href="#CMAP-3">CMAP-3</a>, <a href="#GVAR-7">GVAR-7</a>, <a href="#GVAR-9">GVAR-9</a>, <a href="#HVAR-1">HVAR-1</a>, <a href="#SHARAN-1">SHARAN-1</a>, <a href="#SHBALI-1">SHBALI-1</a>, <a href="#SHBALI-2">SHBALI-2</a>, <a href="#SHBALI-3">SHBALI-3</a>, <a href="#SHKNDA-2">SHKNDA-2</a>, and <a href="#SHKNDA-3">SHKNDA-3</a> for details.</div>
 <h3 id="AVAR-1">AVAR–1: Weight Flattening</h3>
 
 <div class="desc">
@@ -1677,6 +1677,17 @@ contour #1 has points 7–13; contour #2 has points 14–20; contour #3
 has points 21–27.
 </div>
 
+<div class="desc">
+An early version of Apple’s CoreText library had a bug which prevented
+the third contour from getting interpolated at <em>TEST</em> = +0.944444
+An early version of FreeType had a different problem; see
+<a href="https://savannah.nongnu.org/bugs/?50832">FreeType bug 50832</a>.
+If your implementation is correct, you should see four
+square contours for values of <em>TEST</em> ≤ 0. As the value
+increases towards +1.0, the first, third and fourth contour should
+look increasingly distorted.
+</div>
+
 <table>
   <tr>
     <th />
@@ -1684,6 +1695,11 @@ has points 21–27.
     <td>–0.5</td>
     <td>±0.0</td>
     <td>+0.5</td>
+    <td>+0.6</td>
+    <td>+0.7</td>
+    <td>+0.8</td>
+    <td>+0.9</td>
+    <td>+0.944444</td>
     <td>+1.0</td>
   </tr>
   <tr>
@@ -1696,7 +1712,17 @@ has points 21–27.
 
     <td class="expected" ns0:font="TestGVARNine.ttf" ns0:id="GVAR-9/4" ns0:render="A" ns0:var="TEST:0.5"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="GVAR-9/4.A" overflow="visible"><path d="M0,300 L50,250 L100,250 L150,250 L200,300 L200,100 L0,100 Z M250,300 L300,300 L350,300 L400,300 L450,300 L450,100 L250,100 Z M500,300 L550,300 L600,300 L650,300 L700,300 L700,100 L500,100 Z M750,300 L800,250 L850,250 L900,250 L950,200 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#GVAR-9/4.A" /></svg></td>
 
-    <td class="expected" ns0:font="TestGVARNine.ttf" ns0:id="GVAR-9/5" ns0:render="A" ns0:var="TEST:1.0"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="GVAR-9/5.A" overflow="visible"><path d="M0,350 L50,250 L100,250 L150,250 L200,350 L200,150 L0,150 Z M250,350 L300,350 L350,350 L400,350 L450,350 L450,150 L250,150 Z M500,350 L550,250 L600,250 L650,250 L700,349 L700,50 L500,50 Z M750,350 L800,250 L850,250 L900,250 L950,150 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#GVAR-9/5.A" /></svg></td>
+    <td class="expected" ns0:font="TestGVARNine.ttf" ns0:id="GVAR-9/5" ns0:render="A" ns0:var="TEST:0.6"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="GVAR-9/5.A" overflow="visible"><path d="M0,310 L50,250 L100,250 L150,250 L200,310 L200,110 L0,110 Z M250,310 L300,310 L350,310 L400,310 L450,310 L450,110 L250,110 Z M500,310 L550,250 L600,250 L650,250 L700,309 L700,50 L500,50 Z M750,310 L800,250 L850,250 L900,250 L950,190 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#GVAR-9/5.A" /></svg></td>
+
+    <td class="expected" ns0:font="TestGVARNine.ttf" ns0:id="GVAR-9/6" ns0:render="A" ns0:var="TEST:0.7"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="GVAR-9/6.A" overflow="visible"><path d="M0,320 L50,250 L100,250 L150,250 L200,320 L200,120 L0,120 Z M250,320 L300,320 L350,320 L400,320 L450,320 L450,120 L250,120 Z M500,320 L550,250 L600,250 L650,250 L700,319 L700,50 L500,50 Z M750,320 L800,250 L850,250 L900,250 L950,180 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#GVAR-9/6.A" /></svg></td>
+
+    <td class="expected" ns0:font="TestGVARNine.ttf" ns0:id="GVAR-9/7" ns0:render="A" ns0:var="TEST:0.8"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="GVAR-9/7.A" overflow="visible"><path d="M0,330 L50,250 L100,250 L150,250 L200,330 L200,130 L0,130 Z M250,330 L300,330 L350,330 L400,330 L450,330 L450,130 L250,130 Z M500,330 L550,250 L600,250 L650,250 L700,329 L700,50 L500,50 Z M750,330 L800,250 L850,250 L900,250 L950,170 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#GVAR-9/7.A" /></svg></td>
+
+    <td class="expected" ns0:font="TestGVARNine.ttf" ns0:id="GVAR-9/8" ns0:render="A" ns0:var="TEST:0.9"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="GVAR-9/8.A" overflow="visible"><path d="M0,340 L50,250 L100,250 L150,250 L200,340 L200,140 L0,140 Z M250,340 L300,340 L350,340 L400,340 L450,340 L450,140 L250,140 Z M500,340 L550,250 L600,250 L650,250 L700,339 L700,50 L500,50 Z M750,340 L800,250 L850,250 L900,250 L950,160 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#GVAR-9/8.A" /></svg></td>
+
+    <td class="expected" ns0:font="TestGVARNine.ttf" ns0:id="GVAR-9/9" ns0:render="A" ns0:var="TEST:0.944444"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="GVAR-9/9.A" overflow="visible"><path d="M0,344 L50,250 L100,250 L150,250 L200,344 L200,144 L0,144 Z M250,344 L300,344 L350,344 L400,344 L450,344 L450,144 L250,144 Z M500,344 L550,250 L600,250 L650,250 L700,343 L700,50 L500,50 Z M750,344 L800,250 L850,250 L900,250 L950,156 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#GVAR-9/9.A" /></svg></td>
+
+    <td class="expected" ns0:font="TestGVARNine.ttf" ns0:id="GVAR-9/10" ns0:render="A" ns0:var="TEST:1.0"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="GVAR-9/10.A" overflow="visible"><path d="M0,350 L50,250 L100,250 L150,250 L200,350 L200,150 L0,150 Z M250,350 L300,350 L350,350 L400,350 L450,350 L450,150 L250,150 Z M500,350 L550,250 L600,250 L650,250 L700,349 L700,50 L500,50 Z M750,350 L800,250 L850,250 L900,250 L950,150 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#GVAR-9/10.A" /></svg></td>
 
   </tr>
 
@@ -1706,7 +1732,12 @@ has points 21–27.
     <td class="observed" ns0:id="GVAR-9/2"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="OBSERVED/GVAR-9/2.A" overflow="visible"><path d="M0,250 L50,250 L100,250 L150,250 L200,250 L200,50 L0,50 Z M250,250 L300,250 L350,250 L400,250 L450,250 L450,50 L250,50 Z M500,250 L550,250 L600,250 L650,250 L700,250 L700,50 L500,50 Z M750,250 L800,250 L850,250 L900,250 L950,250 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/GVAR-9/2.A" /></svg></td>
     <td class="observed" ns0:id="GVAR-9/3"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="OBSERVED/GVAR-9/3.A" overflow="visible"><path d="M0,250 L50,250 L100,250 L150,250 L200,250 L200,50 L0,50 Z M250,250 L300,250 L350,250 L400,250 L450,250 L450,50 L250,50 Z M500,250 L550,250 L600,250 L650,250 L700,250 L700,50 L500,50 Z M750,250 L800,250 L850,250 L900,250 L950,250 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/GVAR-9/3.A" /></svg></td>
     <td class="observed" ns0:id="GVAR-9/4"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="OBSERVED/GVAR-9/4.A" overflow="visible"><path d="M0,300 L50,250 L100,250 L150,250 L200,300 L200,100 L0,100 Z M250,300 L300,300 L350,300 L400,300 L450,300 L450,100 L250,100 Z M500,300 L550,300 L600,300 L650,300 L700,300 L700,100 L500,100 Z M750,300 L800,250 L850,250 L900,250 L950,200 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/GVAR-9/4.A" /></svg></td>
-    <td class="observed" ns0:id="GVAR-9/5"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="OBSERVED/GVAR-9/5.A" overflow="visible"><path d="M0,350 L50,250 L100,250 L150,250 L200,350 L200,150 L0,150 Z M250,350 L300,350 L350,350 L400,350 L450,350 L450,150 L250,150 Z M500,350 L550,250 L600,250 L650,250 L700,349 L700,50 L500,50 Z M750,350 L800,250 L850,250 L900,250 L950,150 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/GVAR-9/5.A" /></svg></td>
+    <td class="observed" ns0:id="GVAR-9/5"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="OBSERVED/GVAR-9/5.A" overflow="visible"><path d="M0,310 L50,250 L100,250 L150,250 L200,310 L200,110 L0,110 Z M250,310 L300,310 L350,310 L400,310 L450,310 L450,110 L250,110 Z M500,310 L550,250 L600,250 L650,250 L700,309 L700,50 L500,50 Z M750,310 L800,250 L850,250 L900,250 L950,190 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/GVAR-9/5.A" /></svg></td>
+    <td class="observed" ns0:id="GVAR-9/6"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="OBSERVED/GVAR-9/6.A" overflow="visible"><path d="M0,320 L50,250 L100,250 L150,250 L200,320 L200,120 L0,120 Z M250,320 L300,320 L350,320 L400,320 L450,320 L450,120 L250,120 Z M500,320 L550,250 L600,250 L650,250 L700,319 L700,50 L500,50 Z M750,320 L800,250 L850,250 L900,250 L950,180 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/GVAR-9/6.A" /></svg></td>
+    <td class="observed" ns0:id="GVAR-9/7"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="OBSERVED/GVAR-9/7.A" overflow="visible"><path d="M0,330 L50,250 L100,250 L150,250 L200,330 L200,130 L0,130 Z M250,330 L300,330 L350,330 L400,330 L450,330 L450,130 L250,130 Z M500,330 L550,250 L600,250 L650,250 L700,329 L700,50 L500,50 Z M750,330 L800,250 L850,250 L900,250 L950,170 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/GVAR-9/7.A" /></svg></td>
+    <td class="observed" ns0:id="GVAR-9/8"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="OBSERVED/GVAR-9/8.A" overflow="visible"><path d="M0,340 L50,250 L100,250 L150,250 L200,340 L200,140 L0,140 Z M250,340 L300,340 L350,340 L400,340 L450,340 L450,140 L250,140 Z M500,340 L550,250 L600,250 L650,250 L700,339 L700,50 L500,50 Z M750,340 L800,250 L850,250 L900,250 L950,160 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/GVAR-9/8.A" /></svg></td>
+    <td class="observed" ns0:id="GVAR-9/9"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="OBSERVED/GVAR-9/9.A" overflow="visible"><path d="M0,344 L50,250 L100,250 L150,250 L200,344 L200,144 L0,144 Z M250,344 L300,344 L350,344 L400,344 L450,344 L450,144 L250,144 Z M500,344 L550,344 L600,344 L650,344 L700,344 L700,144 L500,144 Z M750,344 L800,250 L850,250 L900,250 L950,156 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/GVAR-9/9.A" /></svg></td>
+    <td class="observed" ns0:id="GVAR-9/10"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="OBSERVED/GVAR-9/10.A" overflow="visible"><path d="M0,350 L50,250 L100,250 L150,250 L200,350 L200,150 L0,150 Z M250,350 L300,350 L350,350 L400,350 L450,350 L450,150 L250,150 Z M500,350 L550,250 L600,250 L650,250 L700,349 L700,50 L500,50 Z M750,350 L800,250 L850,250 L900,250 L950,150 L950,50 L750,50 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/GVAR-9/10.A" /></svg></td>
   </tr>
 
   <tr>
@@ -1716,6 +1747,11 @@ has points 21–27.
     <td class="conformance-pass" ns0:id="GVAR-9/3">✓</td>
     <td class="conformance-pass" ns0:id="GVAR-9/4">✓</td>
     <td class="conformance-pass" ns0:id="GVAR-9/5">✓</td>
+    <td class="conformance-pass" ns0:id="GVAR-9/6">✓</td>
+    <td class="conformance-pass" ns0:id="GVAR-9/7">✓</td>
+    <td class="conformance-pass" ns0:id="GVAR-9/8">✓</td>
+    <td class="conformance-fail" ns0:id="GVAR-9/9">✖</td>
+    <td class="conformance-pass" ns0:id="GVAR-9/10">✓</td>
   </tr>
 
 </table>
