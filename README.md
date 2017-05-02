@@ -2,18 +2,14 @@
 
 # Text rendering tests
 
-This is a very early draft for a test suite for text rendering.
-
-It is not easy to correctly display text, so we founded this project
-to help implementations to get this right.  Currently, the test suite
-is still very much in its infancy, so please don’t be disappointed if
-you don’t find much. Of course you are more than welcome to help; just
-send a pull request.
+This is a test suite for text rendering. It is not easy to correctly
+display text, so we founded this project to help implementations to
+get this right.
 
 ```bash
 $ git clone --recursive https://github.com/unicode-org/text-rendering-tests.git
 $ cd text-rendering-tests
-$ python check.py --output=report.html --engine=FreeStack
+$ for engine in CoreText FreeStack fontkit OpenType.js ; do python check.py --engine=$engine --out=reports/$engine.html  ; done
 ```
 
 
@@ -27,28 +23,18 @@ open-source text rendering stack with [FreeType](https://www.freetype.org/),
 [FriBidi](https://www.fribidi.org/),
 and [Raqm](https://github.com/HOST-Oman/libraqm). These libraries
 are used by Linux, Android, ChromeOS, and many other systems.
+— [Test report for FreeStack](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/FreeStack.html).
 
 * With `--engine=CoreText`, the tests are run on Apple’s CoreText.
 This option will work only if you run the test suite on MacOS X.
-
-* With `--engine=OpenType.js`, the tests are run using [OpenType.js](https://github.com/nodebox/opentype.js).
+— [Test report for CoreText](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/CoreText.html).
 
 * With `--engine=fontkit`, the tests are run on
 [fontkit](http://github.com/devongovett/fontkit), a JavaScript font engine.
+— [Test report for fontkit](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/fontkit.html).
 
-If you’d like to test another OpenType implementation, please go ahead.
-
-
-## Generated Reports
-
-When you pass `--output=report.html`, the test suite will generate a
-test report that explains what was tested, which tests have passed,
-and which ones have failed. By clicking the following links, you can
-also just look at the reports
-for [FreeStack](https://raw.githack.com/unicode-org/text-rendering-tests/master/reports/FreeStack.html),
-[CoreText](https://raw.githack.com/unicode-org/text-rendering-tests/master/reports/CoreText.html),
-and [OpenType.js](https://raw.githack.com/unicode-org/text-rendering-tests/master/reports/OpenType.js.html)
-without running the test suite yourself.
+* With `--engine=OpenType.js`, the tests are run using [OpenType.js](https://github.com/nodebox/opentype.js), another JavaScript font engine.
+— [Test report for OpenType.js](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/OpenType.js.html).
 
 
 ## Test Cases
@@ -59,11 +45,12 @@ rendering parameters together with the expected result.
 
 For each test case, the `check.py` script parses the HTML snippet to
 extract the rendering parameters. Then, it runs a sub-process (written
-in C++ and Objective C) that writes the observed rendering in SVG
-format to Standard Output. Finally, the script checks whether the
-expected rendering matches the observed result.  Currently, “matching”
-is implemented by iterating over SVG paths, allowing for maximally
-1 font design unit of difference.
+in C++, Objective C or JavaScript depending on the tested
+implementation) that writes the observed rendering in SVG format to
+Standard Output. Finally, the script checks whether the expected
+rendering matches the observed result.  Currently, “matching” is
+implemented by iterating over SVG paths, allowing for maximally 1 font
+design unit of difference.
 
 
 ## Contributing
