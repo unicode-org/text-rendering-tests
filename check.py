@@ -32,7 +32,9 @@ class ConformanceChecker:
     def __init__(self, engine):
         self.engine = engine
         if self.engine == 'OpenType.js':
-            self.command = 'src/third_party/opentypejs/opentype.js/bin/test-render'
+            self.command = 'node_modules/opentype.js/bin/test-render'
+        elif self.engine == 'fontkit':
+            self.command = 'src/third_party/fontkit/render'
         else:
             self.command = 'build/out/Default/fonttest'
         self.datestr = self.make_datestr()
@@ -144,8 +146,8 @@ class ConformanceChecker:
 
 
 def build(engine):
-    if engine == 'OpenType.js':
-        subprocess.check_call(['npm', 'install'], cwd='./src/third_party/opentypejs/opentype.js')
+    if engine == 'OpenType.js' or engine == 'fontkit':
+        subprocess.check_call(['npm', 'install'])
     else:
         subprocess.check_call(
             './src/third_party/gyp/gyp -f make --depth . '
@@ -158,7 +160,7 @@ def main():
     etree.register_namespace('xlink', 'http://www.w3.org/1999/xlink')
     parser = argparse.ArgumentParser()
     parser.add_argument('--engine',
-                        choices=['FreeStack', 'CoreText', 'DirectWrite', 'OpenType.js'],
+                        choices=['FreeStack', 'CoreText', 'DirectWrite', 'OpenType.js', 'fontkit'],
                         default='FreeStack')
     parser.add_argument('--output', help='path to report file being written')
     args = parser.parse_args()

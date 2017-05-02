@@ -1,0 +1,76 @@
+#!/usr/bin/env node
+
+let fontkit = require('fontkit');
+
+// Poor man's argument parser
+let argv = {};
+for (let arg of process.argv) {
+  let match = arg.match(/^--(.+)=(.+)$/);
+  if (match) {
+    argv[match[1]] = match[2];
+  }
+}
+
+function render() {
+  let font = fontkit.openSync(argv.font);
+
+  if (argv.variation) {
+    let settings = {};
+    argv.variation.split(';').forEach(setting => {
+      let parts = setting.split(':');
+      settings[parts[0]] = parts[1];
+    });
+
+    font = font.getVariation(settings);
+  }
+
+  let run = font.layout(argv.render);
+  let gids = {};
+
+  let glyphs = run.glyphs.map(glyph => {
+    if (gids[glyph.id]) return;
+    gids[glyph.id] = true;
+
+    // Get path and normalize
+    let path = glyph.getScaledPath(1000).mapPoints((x, y) => [Math.floor(x), Math.floor(y)]);
+    let svgPath = path.toSVG()
+      .replace(/(\d+) (-?\d+)/g, '$1,$2')
+      .replace(/(\d)([A-Z])/g, '$1 $2')
+      .replace(/Z([^\s])/g, 'Z $1');
+
+    return (
+      `<symbol id="${argv.testcase}.${glyph.name || `gid${glyph.id}`}" overflow="visible">` +
+        `<path d="${svgPath}" />` +
+      `</symbol>`
+    );
+  });
+
+  let scale = 1 / font.unitsPerEm * 1000;
+  let x = 0, y = 0;
+  let svg = run.glyphs.map((glyph, index) => {
+    let pos = run.positions[index];
+    let xPos = Math.round(x + pos.xOffset * scale);
+    let yPos = Math.round(y + pos.yOffset * scale);
+    let use = `<use x="${xPos}" y="${yPos}" xlink:href="#${argv.testcase}.${glyph.name || `gid${glyph.id}`}" />`;
+    x += Math.round(pos.xAdvance * scale);
+    y += Math.round(pos.yAdvance * scale);
+    return use;
+  });
+
+  let bbox = [0, font.descent, run.advanceWidth, font.ascent - font.descent].map(x => Math.round(x * scale));
+
+  console.log(
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    `<svg version="1.1" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="${bbox.join(' ')}">`,
+      glyphs.join('\n'),
+      svg.join('\n'),
+    '</svg>'
+  );
+}
+
+try {
+  render();
+} catch (e) {
+  console.error(e.stack);
+  process.exit(1);
+}
