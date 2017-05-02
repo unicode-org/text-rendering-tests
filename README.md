@@ -19,7 +19,7 @@ $ python check.py --output=report.html --engine=FreeStack
 
 ## Supported Platforms
 
-Currently, the test suite supports only three OpenType implementations:
+Currently, the test suite supports four OpenType implementations:
 
 * With `--engine=FreeStack`, the tests are run on the free/libre
 open-source text rendering stack with [FreeType](https://www.freetype.org/),
@@ -32,7 +32,9 @@ are used by Linux, Android, ChromeOS, and many other systems.
 This option will work only if you run the test suite on MacOS X.
 
 * With `--engine=OpenType.js`, the tests are run using [OpenType.js](https://github.com/nodebox/opentype.js).
-This option requires Node.js to be installed.
+
+* With `--engine=fontkit`, the tests are run on
+[fontkit](http://github.com/devongovett/fontkit), a JavaScript font engine.
 
 If you’d like to test another OpenType implementation, please go ahead.
 

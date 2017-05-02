@@ -13,6 +13,3 @@
 [submodule "src/third_party/raqm/libraqm"]
 	path = src/third_party/raqm/libraqm
 	url = https://github.com/HOST-Oman/libraqm.git
-[submodule "src/third_party/opentypejs/opentype.js"]
-	path = src/third_party/opentypejs/opentype.js
-	url = https://github.com/nodebox/opentype.js.git
