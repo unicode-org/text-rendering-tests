@@ -3,7 +3,7 @@
 # Text rendering tests
 
 This is a very early draft for a test suite for text rendering.
-
+ 
 It is not easy to correctly display text, so we founded this project
 to help implementations to get this right.  Currently, the test suite
 is still very much in its infancy, so please don’t be disappointed if
