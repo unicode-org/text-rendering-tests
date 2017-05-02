@@ -36,6 +36,13 @@ This option will work only if you run the test suite on MacOS X.
 * With `--engine=OpenType.js`, the tests are run using [OpenType.js](https://github.com/nodebox/opentype.js), another JavaScript font engine.
 — [Test report for OpenType.js](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/OpenType.js.html).
 
+It’s trivial to test other implementations; simply write a small
+wrapper tool. For the [Go font
+library](https://godoc.org/golang.org/x/image/font/sfnt), see
+[here](https://github.com/golang/go/issues/20208). For the [Rust font
+library](https://github.com/google/font-rs), see
+[here](https://github.com/google/font-rs/issues/17).
+
 
 ## Test Cases
 
