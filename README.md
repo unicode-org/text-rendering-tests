@@ -9,7 +9,7 @@ get this right.
 ```bash
 $ git clone --recursive https://github.com/unicode-org/text-rendering-tests.git
 $ cd text-rendering-tests
-$ for engine in CoreText FreeStack fontkit OpenType.js ; do python check.py --engine=$engine --out=reports/$engine.html  ; done
+$ for engine in CoreText FreeStack fontkit OpenType.js ; do python check.py --engine=$engine --output=reports/$engine.html  ; done
 ```
 
 
