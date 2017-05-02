@@ -9,5 +9,5 @@ compiler:
   - clang
 
 script:
-  - python2.7 check.py --output=reports/FreeStack.html --engine=FreeStack
+  - for engine in FreeStack fontkit OpenType.js ; do python2.7 check.py --output=reports/$engine.html --engine=$engine ; done
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then python2.7 check.py --output=reports/CoreText.html --engine=CoreText ; fi
