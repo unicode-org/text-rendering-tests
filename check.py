@@ -107,7 +107,7 @@ class ConformanceChecker:
         if len(fails) == 0:
             summary.text = 'All tests have passed.'
         else:
-            summary.text = 'Some tests have failed. See '
+            summary.text = 'Some tests have failed. For details, see '
             for f in fails:
                 if f is not fails[0]:
                     if f is fails[-1]:
@@ -116,7 +116,7 @@ class ConformanceChecker:
                         etree.SubElement(summary, None).text = ', '
                 link = etree.SubElement(summary, 'a')
                 link.text, link.attrib['href'] = f, '#' + f
-            etree.SubElement(summary, None).text = ' for details.'
+            etree.SubElement(summary, None).text = '.'
 
         head = report.find("./head")
         for sheet in list(head.findall("./link[@rel='stylesheet']")):
