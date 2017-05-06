@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "OpenType test suite",
   "dependencies": {
-    "fontkit": "^1.5.6",
+    "fontkit": "^1.6.0",
     "iconv-lite": "^0.4.17",
     "opentype.js": "^0.7.1"
   },
