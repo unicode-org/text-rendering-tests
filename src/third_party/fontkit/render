@@ -33,7 +33,21 @@ function render() {
 
     // Get path and normalize
     var path = glyph.getScaledPath(1000).mapPoints(function (x, y) {
-      return [Math.floor(x), Math.floor(y)]
+      return [Math.floor(x), Math.floor(y)];
+    });
+
+    // Filter out lines back to the starting point of a contour
+    var startX = 0, startY = 0;
+    var closed = false;
+    path.commands = path.commands.filter(function (c) {
+      if (c.command === 'moveTo') {
+        startX = c.args[0];
+        startY = c.args[1];
+      } else if (c.command === 'lineTo') {
+        return Math.abs(c.args[0] - startX) > 1 || Math.abs(c.args[1] - startY) > 1;
+      }
+
+      return true;
     });
 
     var svgPath = path.toSVG()
