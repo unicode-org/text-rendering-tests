@@ -32,9 +32,9 @@ svg {height:2.5em;transform:scaleY(-1)}
 </style></head>
 <body>
 <h1>Text Rendering Test Report</h1>
-<h2>May 30, 2017 · CoreText</h2>
+<h2>June 23, 2017 · CoreText</h2>
 <h3>Overview</h3>
-<div class="desc" id="SummaryText">Some tests have failed. For details, see <a href="#AVAR-1">AVAR-1</a>, <a href="#CFF2-1">CFF2-1</a>, <a href="#CMAP-3">CMAP-3</a>, <a href="#GVAR-7">GVAR-7</a>, <a href="#GVAR-9">GVAR-9</a>, <a href="#HVAR-1">HVAR-1</a>, <a href="#SHARAN-1">SHARAN-1</a>, <a href="#SHBALI-1">SHBALI-1</a>, <a href="#SHBALI-2">SHBALI-2</a>, <a href="#SHBALI-3">SHBALI-3</a>, <a href="#SHKNDA-2">SHKNDA-2</a>, and <a href="#SHKNDA-3">SHKNDA-3</a>.</div>
+<div class="desc" id="SummaryText">Some tests have failed. For details, see <a href="#AVAR-1">AVAR-1</a>, <a href="#CFF2-1">CFF2-1</a>, <a href="#CMAP-3">CMAP-3</a>, <a href="#GPOS-4">GPOS-4</a>, <a href="#GVAR-7">GVAR-7</a>, <a href="#GVAR-9">GVAR-9</a>, <a href="#HVAR-1">HVAR-1</a>, <a href="#SHARAN-1">SHARAN-1</a>, <a href="#SHBALI-1">SHBALI-1</a>, <a href="#SHBALI-2">SHBALI-2</a>, <a href="#SHBALI-3">SHBALI-3</a>, <a href="#SHKNDA-2">SHKNDA-2</a>, and <a href="#SHKNDA-3">SHKNDA-3</a>.</div>
 <h3 id="AVAR-1">AVAR–1: Weight Flattening</h3>
 
 <div class="desc">
@@ -940,6 +940,42 @@ svg {height:2.5em;transform:scaleY(-1)}
     <td class="conformance-pass" ns0:id="GPOS-3/2">✓</td>
     <td class="conformance-pass" ns0:id="GPOS-3/3">✓</td>
     <td class="conformance-pass" ns0:id="GPOS-3/4">✓</td>
+  </tr>
+</table>
+<h3 id="GPOS-4">GPOS–4: Mark-to-Mark Attachment for Stacked Accents</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestGPOSThree.ttf">font</a> for this test case
+  uses a <a href="https://www.microsoft.com/typography/otspec/gpos.htm#MMP">MarkToMark Attachment Positioning Subtable</a> for stacking
+  accents.  If your text rendering engine is correct, the accents
+  should be positioned on top each other.  If the accents appear to
+  the right of the base glyph, or if they are missing entirely, it’s a
+  sign that your text rendering system is broken.
+</div>
+
+<table>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ns0:font="TestGPOSThree.ttf" ns0:id="GPOS-4/1" ns0:render="ǘ"><svg version="1.1" viewBox="0 -200 640 1300"><symbol id="GPOS-4/1.u" overflow="visible"><path d="M265,-4 Q175,-4 127,50 Q80,104 80,201 L80,500 L185,500 L185,231 Q185,168 218,128 Q252,88 309,88 Q354,89 387,114 Q420,139 437,180 Q455,221 455,270 L455,500 L560,500 L560,0 L455,0 L455,109 Q426,51 380,24 Q334,-3 265,-4 Z" /></symbol><symbol id="GPOS-4/1.uni0308" overflow="visible"><path d="M-288,742 Q-262,742 -245,725 Q-228,708 -228,682 Q-228,656 -245,638 Q-263,621 -288,621 Q-314,621 -331,638 Q-349,656 -349,682 Q-349,708 -331,725 Q-314,742 -288,742 Z M-110,742 Q-84,742 -67,725 Q-50,708 -50,682 Q-50,656 -67,638 Q-85,621 -110,621 Q-136,621 -153,638 Q-171,656 -171,682 Q-171,708 -153,725 Q-136,742 -110,742 Z" /></symbol><symbol id="GPOS-4/1.acutecomb" overflow="visible"><path d="M-50,706 L-152,607 L-267,620 L-168,755 Z" /></symbol><use x="0" y="0" xlink:href="#GPOS-4/1.u" /><use x="529" y="-31" xlink:href="#GPOS-4/1.uni0308" /><use x="537" y="138" xlink:href="#GPOS-4/1.acutecomb" /></svg></td>
+    <td class="expected" ns0:font="TestGPOSThree.ttf" ns0:id="GPOS-4/2" ns0:render="ǖ"><svg version="1.1" viewBox="0 -200 640 1300"><symbol id="GPOS-4/2.u" overflow="visible"><path d="M265,-4 Q175,-4 127,50 Q80,104 80,201 L80,500 L185,500 L185,231 Q185,168 218,128 Q252,88 309,88 Q354,89 387,114 Q420,139 437,180 Q455,221 455,270 L455,500 L560,500 L560,0 L455,0 L455,109 Q426,51 380,24 Q334,-3 265,-4 Z" /></symbol><symbol id="GPOS-4/2.uni0308" overflow="visible"><path d="M-288,742 Q-262,742 -245,725 Q-228,708 -228,682 Q-228,656 -245,638 Q-263,621 -288,621 Q-314,621 -331,638 Q-349,656 -349,682 Q-349,708 -331,725 Q-314,742 -288,742 Z M-110,742 Q-84,742 -67,725 Q-50,708 -50,682 Q-50,656 -67,638 Q-85,621 -110,621 Q-136,621 -153,638 Q-171,656 -171,682 Q-171,708 -153,725 Q-136,742 -110,742 Z" /></symbol><symbol id="GPOS-4/2.uni0304" overflow="visible"><path d="M-50,676 L-50,608 L-345,608 L-345,676 Z" /></symbol><use x="0" y="0" xlink:href="#GPOS-4/2.u" /><use x="529" y="-31" xlink:href="#GPOS-4/2.uni0308" /><use x="526" y="138" xlink:href="#GPOS-4/2.uni0304" /></svg></td>
+    <td class="expected" ns0:font="TestGPOSThree.ttf" ns0:id="GPOS-4/3" ns0:render="ü̈"><svg version="1.1" viewBox="0 -200 640 1300"><symbol id="GPOS-4/3.u" overflow="visible"><path d="M265,-4 Q175,-4 127,50 Q80,104 80,201 L80,500 L185,500 L185,231 Q185,168 218,128 Q252,88 309,88 Q354,89 387,114 Q420,139 437,180 Q455,221 455,270 L455,500 L560,500 L560,0 L455,0 L455,109 Q426,51 380,24 Q334,-3 265,-4 Z" /></symbol><symbol id="GPOS-4/3.uni0308" overflow="visible"><path d="M-288,742 Q-262,742 -245,725 Q-228,708 -228,682 Q-228,656 -245,638 Q-263,621 -288,621 Q-314,621 -331,638 Q-349,656 -349,682 Q-349,708 -331,725 Q-314,742 -288,742 Z M-110,742 Q-84,742 -67,725 Q-50,708 -50,682 Q-50,656 -67,638 Q-85,621 -110,621 Q-136,621 -153,638 Q-171,656 -171,682 Q-171,708 -153,725 Q-136,742 -110,742 Z" /></symbol><use x="0" y="0" xlink:href="#GPOS-4/3.u" /><use x="529" y="-31" xlink:href="#GPOS-4/3.uni0308" /><use x="529" y="138" xlink:href="#GPOS-4/3.uni0308" /></svg></td>
+    <td class="expected" ns0:font="TestGPOSThree.ttf" ns0:id="GPOS-4/4" ns0:render="ü̈̈"><svg version="1.1" viewBox="0 -200 640 1300"><symbol id="GPOS-4/4.u" overflow="visible"><path d="M265,-4 Q175,-4 127,50 Q80,104 80,201 L80,500 L185,500 L185,231 Q185,168 218,128 Q252,88 309,88 Q354,89 387,114 Q420,139 437,180 Q455,221 455,270 L455,500 L560,500 L560,0 L455,0 L455,109 Q426,51 380,24 Q334,-3 265,-4 Z" /></symbol><symbol id="GPOS-4/4.uni0308" overflow="visible"><path d="M-288,742 Q-262,742 -245,725 Q-228,708 -228,682 Q-228,656 -245,638 Q-263,621 -288,621 Q-314,621 -331,638 Q-349,656 -349,682 Q-349,708 -331,725 Q-314,742 -288,742 Z M-110,742 Q-84,742 -67,725 Q-50,708 -50,682 Q-50,656 -67,638 Q-85,621 -110,621 Q-136,621 -153,638 Q-171,656 -171,682 Q-171,708 -153,725 Q-136,742 -110,742 Z" /></symbol><use x="0" y="0" xlink:href="#GPOS-4/4.u" /><use x="529" y="-31" xlink:href="#GPOS-4/4.uni0308" /><use x="529" y="138" xlink:href="#GPOS-4/4.uni0308" /><use x="529" y="307" xlink:href="#GPOS-4/4.uni0308" /></svg></td>
+  </tr>
+
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ns0:id="GPOS-4/1"><svg version="1.1" viewBox="0 -200 640 1300"><symbol id="OBSERVED/GPOS-4/1.u" overflow="visible"><path d="M127,50 Q80,104 80,201 L80,500 L185,500 L185,231 Q185,168 218,128 Q252,88 309,88 Q354,89 387,114 Q420,139 437,180 Q455,221 455,270 L455,500 L560,500 L560,0 L455,0 L455,109 Q426,51 380,24 Q334,-3 265,-4 Q175,-4 127,50 Z" /></symbol><symbol id="OBSERVED/GPOS-4/1.uni0308" overflow="visible"><path d="M-245,725 Q-228,708 -228,682 Q-228,656 -245,638 Q-263,621 -288,621 Q-314,621 -331,638 Q-349,656 -349,682 Q-349,708 -331,725 Q-314,742 -288,742 Q-262,742 -245,725 Z M-67,725 Q-50,708 -50,682 Q-50,656 -67,638 Q-85,621 -110,621 Q-136,621 -153,638 Q-171,656 -171,682 Q-171,708 -153,725 Q-136,742 -110,742 Q-84,742 -67,725 Z" /></symbol><symbol id="OBSERVED/GPOS-4/1.acutecomb" overflow="visible"><path d="M-50,706 L-152,607 L-267,620 L-168,755 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/GPOS-4/1.u" /><use x="529" y="-31" xlink:href="#OBSERVED/GPOS-4/1.uni0308" /><use x="537" y="138" xlink:href="#OBSERVED/GPOS-4/1.acutecomb" /></svg></td>
+    <td class="observed" ns0:id="GPOS-4/2"><svg version="1.1" viewBox="0 -200 640 1300"><symbol id="OBSERVED/GPOS-4/2.u" overflow="visible"><path d="M127,50 Q80,104 80,201 L80,500 L185,500 L185,231 Q185,168 218,128 Q252,88 309,88 Q354,89 387,114 Q420,139 437,180 Q455,221 455,270 L455,500 L560,500 L560,0 L455,0 L455,109 Q426,51 380,24 Q334,-3 265,-4 Q175,-4 127,50 Z" /></symbol><symbol id="OBSERVED/GPOS-4/2.uni0308" overflow="visible"><path d="M-245,725 Q-228,708 -228,682 Q-228,656 -245,638 Q-263,621 -288,621 Q-314,621 -331,638 Q-349,656 -349,682 Q-349,708 -331,725 Q-314,742 -288,742 Q-262,742 -245,725 Z M-67,725 Q-50,708 -50,682 Q-50,656 -67,638 Q-85,621 -110,621 Q-136,621 -153,638 Q-171,656 -171,682 Q-171,708 -153,725 Q-136,742 -110,742 Q-84,742 -67,725 Z" /></symbol><symbol id="OBSERVED/GPOS-4/2.uni0304" overflow="visible"><path d="M-50,676 L-50,608 L-345,608 L-345,676 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/GPOS-4/2.u" /><use x="529" y="-31" xlink:href="#OBSERVED/GPOS-4/2.uni0308" /><use x="526" y="138" xlink:href="#OBSERVED/GPOS-4/2.uni0304" /></svg></td>
+    <td class="observed" ns0:id="GPOS-4/3"><svg version="1.1" viewBox="0 -200 640 1300"><symbol id="OBSERVED/GPOS-4/3.u" overflow="visible"><path d="M127,50 Q80,104 80,201 L80,500 L185,500 L185,231 Q185,168 218,128 Q252,88 309,88 Q354,89 387,114 Q420,139 437,180 Q455,221 455,270 L455,500 L560,500 L560,0 L455,0 L455,109 Q426,51 380,24 Q334,-3 265,-4 Q175,-4 127,50 Z" /></symbol><symbol id="OBSERVED/GPOS-4/3.uni0308" overflow="visible"><path d="M-245,725 Q-228,708 -228,682 Q-228,656 -245,638 Q-263,621 -288,621 Q-314,621 -331,638 Q-349,656 -349,682 Q-349,708 -331,725 Q-314,742 -288,742 Q-262,742 -245,725 Z M-67,725 Q-50,708 -50,682 Q-50,656 -67,638 Q-85,621 -110,621 Q-136,621 -153,638 Q-171,656 -171,682 Q-171,708 -153,725 Q-136,742 -110,742 Q-84,742 -67,725 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/GPOS-4/3.u" /><use x="529" y="-31" xlink:href="#OBSERVED/GPOS-4/3.uni0308" /><use x="529" y="138" xlink:href="#OBSERVED/GPOS-4/3.uni0308" /></svg></td>
+    <td class="observed" ns0:id="GPOS-4/4"><svg version="1.1" viewBox="0 -200 640 1300"><symbol id="OBSERVED/GPOS-4/4.u" overflow="visible"><path d="M127,50 Q80,104 80,201 L80,500 L185,500 L185,231 Q185,168 218,128 Q252,88 309,88 Q354,89 387,114 Q420,139 437,180 Q455,221 455,270 L455,500 L560,500 L560,0 L455,0 L455,109 Q426,51 380,24 Q334,-3 265,-4 Q175,-4 127,50 Z" /></symbol><symbol id="OBSERVED/GPOS-4/4.uni0308" overflow="visible"><path d="M-245,725 Q-228,708 -228,682 Q-228,656 -245,638 Q-263,621 -288,621 Q-314,621 -331,638 Q-349,656 -349,682 Q-349,708 -331,725 Q-314,742 -288,742 Q-262,742 -245,725 Z M-67,725 Q-50,708 -50,682 Q-50,656 -67,638 Q-85,621 -110,621 Q-136,621 -153,638 Q-171,656 -171,682 Q-171,708 -153,725 Q-136,742 -110,742 Q-84,742 -67,725 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/GPOS-4/4.u" /><use x="529" y="-31" xlink:href="#OBSERVED/GPOS-4/4.uni0308" /><use x="529" y="138" xlink:href="#OBSERVED/GPOS-4/4.uni0308" /><use x="529" y="307" xlink:href="#OBSERVED/GPOS-4/4.uni0308" /></svg></td>
+  </tr>
+
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance-fail" ns0:id="GPOS-4/1">✖</td>
+    <td class="conformance-fail" ns0:id="GPOS-4/2">✖</td>
+    <td class="conformance-fail" ns0:id="GPOS-4/3">✖</td>
+    <td class="conformance-fail" ns0:id="GPOS-4/4">✖</td>
   </tr>
 </table>
 <h3 id="GSUB-1">GSUB–1: Space Isn’t Nothing</h3>
