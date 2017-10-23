@@ -3,12 +3,24 @@
         {
             'target_name': 'harfbuzz',
             'type': 'static_library',
+            'cflags': ['-std=c++11'],
 	    'defines': [
+		'HAVE_OT',
 	        'HAVE_FREETYPE',
                 'HAVE_FT_GET_VAR_BLEND_COORDINATES',
+                'HAVE_GETPAGESIZE',
                 'HAVE_INTEL_ATOMIC_PRIMITIVES',
-		'HAVE_OT',
+                'HAVE_INTTYPES_H',
+                'HAVE_MEMORY_H',
+                'HAVE_MMAP',
+                'HAVE_PTHREAD',
+                'HAVE_STDINT_H',
+                'HAVE_STDLIB_H',
+                'HAVE_STRING_H',
+                'HAVE_SYS_STAT_H',
+                'HAVE_SYS_TYPES_H',
                 'HAVE_UCDN',
+                'HAVE_UNISTD_H',
 	    ],
             'sources': [
                 'harfbuzz/src/hb-blob.cc',
@@ -91,5 +103,12 @@
                 '../ragel/ragel.gyp:ragel',
 	    ],
         },
-    ]
+    ],
+    'target_defaults': {
+        'xcode_settings': {
+            'GCC_VERSION': 'com.apple.compilers.llvm.clang.1_0',
+            'CLANG_CXX_LANGUAGE_STANDARD': 'c++11',
+            'CLANG_CXX_LIBRARY': 'libc++',
+        },
+    },
 }
