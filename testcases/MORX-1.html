@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html
+    xmlns:ft="https://github.com/OpenType/fonttest"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn|Vollkorn:i"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<h3 id="MORX-1">MORX–1: Non-Contextual Glyph Substitution</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXOne.ttf">font</a> for this test case contains
+  an <a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html"
+  >AAT Extended Glyph Metamorphosis Table</a>
+  with a single <em>Non-Contextual Glyph Substitution Subtable</em>,
+  replacing the glyphs <em>A</em> and <em>C</em> by alternate forms.
+  If your renderer supports
+  <a href="https://en.wikipedia.org/wiki/Apple_Advanced_Typography">Apple
+  Advanced Typography</a>,
+  the letters A and C should be white on black whereas the letter B
+  should appear inside a stroked circle.
+</div>
+
+<table>
+
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="MORX-1/1" ft:render="ABC"
+        ft:font="TestMORXOne.ttf"><svg version="1.1" viewBox="0 -200 3000 1200"><symbol id="MORX-1/1.A.alt" overflow="visible"><path d="M500,-89 Q378,-89 276,-29 Q174,31 114,133 Q54,235 54,357 Q54,479 114,581 Q174,683 276,743 Q378,803 500,803 Q622,803 724,743 Q826,683 886,581 Q946,479 946,357 Q946,235 886,133 Q826,31 724,-29 Q622,-89 500,-89 Z M426,163 L446,236 L571,236 L591,163 L706,163 L577,552 L438,552 L310,163 Z M484,386 Q499,442 508,490 Q512,472 526,412 Q533,387 533,386 L549,322 L468,322 Z" /></symbol><symbol id="MORX-1/1.B" overflow="visible"><path d="M500,-89 Q378,-89 276,-29 Q174,31 114,133 Q54,235 54,357 Q54,479 114,581 Q174,683 276,743 Q378,803 500,803 Q622,803 724,743 Q826,683 886,581 Q946,479 946,357 Q946,235 886,133 Q826,31 724,-29 Q622,-89 500,-89 Z M500,21 Q592,21 669,66 Q746,111 791,188 Q836,265 836,357 Q836,449 791,526 Q746,603 669,648 Q592,693 500,693 Q408,693 331,648 Q254,603 209,526 Q164,449 164,357 Q164,265 209,188 Q254,111 331,66 Q408,21 500,21 Z M374,550 L509,550 Q591,550 627,526 Q664,502 664,454 Q664,419 646,397 Q629,376 603,369 L603,366 Q633,359 652,339 Q672,319 672,277 Q672,224 632,193 Q593,163 524,163 L374,163 Z M510,402 Q535,402 546,412 Q557,422 557,439 Q557,472 508,472 L478,472 L478,402 Z M515,244 Q564,244 564,285 Q564,303 552,314 Q540,326 514,326 L478,326 L478,244 Z" /></symbol><symbol id="MORX-1/1.C.alt" overflow="visible"><path d="M500,-89 Q378,-89 276,-29 Q174,31 114,133 Q54,235 54,357 Q54,479 114,581 Q174,683 276,743 Q378,803 500,803 Q622,803 724,743 Q826,683 886,581 Q946,479 946,357 Q946,235 886,133 Q826,31 724,-29 Q622,-89 500,-89 Z M509,158 Q570,158 618,180 L618,267 Q587,255 564,249 Q542,243 520,243 Q434,243 434,355 Q434,409 455,440 Q477,471 514,471 Q537,471 557,465 Q578,459 603,447 L635,529 Q578,557 514,557 Q426,557 376,501 Q327,446 327,356 Q327,264 372,211 Q417,158 509,158 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-1/1.A.alt" /><use x="1000" y="0" xlink:href="#MORX-1/1.B" /><use x="2000" y="0" xlink:href="#MORX-1/1.C.alt" /></svg></td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="MORX-1/1"/>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="MORX-1/1"/>
+  </tr>
+
+</table>
+
+</body>
+</html>
