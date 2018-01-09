@@ -2519,9 +2519,9 @@ look increasingly distorted.
 
 <div class="desc">
   The test strings are crafted to trigger rearrangements on sequences
-  whose variable-length part is empty. If your rendering engine
-  implements <em>Apple Advanced Typography</em>, the output should
-  should match the expectations.
+  whose variable-length part is empty <em>(x = ε)</em>.  If your
+  rendering engine implements <em>Apple Advanced Typography</em>, the
+  output should should match the expectations.
 </div>
 
 <table>
@@ -2529,9 +2529,9 @@ look increasingly distorted.
   <tr>
     <th />
     <th style="text-align:center">0: No change</th>
-    <th style="text-align:center">1: Ax ⇒ xA</th>
-    <th style="text-align:center">2: xD ⇒ Dx</th>
-    <th style="text-align:center">3: AxD ⇒ DxA</th>
+    <th style="text-align:center">1: Aε ⇒ εA</th>
+    <th style="text-align:center">2: εA ⇒ Aε</th>
+    <th style="text-align:center">3: AεD ⇒ DεA</th>
   </tr>
   <tr>
     <th>Expected</th>
@@ -2560,10 +2560,10 @@ look increasingly distorted.
   <tr><td> </td></tr>
   <tr>
     <th />
-    <th style="text-align:center">4: ABx ⇒ xAB</th>
-    <th style="text-align:center">5: ABx ⇒ xBA</th>
-    <th style="text-align:center">6: xCD ⇒ CDx</th>
-    <th style="text-align:center">7: xCD ⇒ DCx</th>
+    <th style="text-align:center">4: ABε ⇒ εAB</th>
+    <th style="text-align:center">5: ABε ⇒ εBA</th>
+    <th style="text-align:center">6: εAB ⇒ ABε</th>
+    <th style="text-align:center">7: εAB ⇒ BAε</th>
   </tr>
   <tr>
     <th>Expected</th>
@@ -2594,10 +2594,10 @@ look increasingly distorted.
   <tr><td> </td></tr>
   <tr>
     <th />
-    <th style="text-align:center">8: AxCD ⇒ CDxA</th>
-    <th style="text-align:center">9: AxCD ⇒ DCxA</th>
-    <th style="text-align:center">10: ABxD ⇒ DxAB</th>
-    <th style="text-align:center">11: ABxD ⇒ DxBA</th>
+    <th style="text-align:center">8: AεCD ⇒ CDεA</th>
+    <th style="text-align:center">9: AεCD ⇒ DCεA</th>
+    <th style="text-align:center">10: ABεD ⇒ DεAB</th>
+    <th style="text-align:center">11: ABεD ⇒ DεBA</th>
   </tr>
   <tr>
     <th>Expected</th>
@@ -2628,10 +2628,10 @@ look increasingly distorted.
   <tr><td> </td></tr>
   <tr>
     <th />
-    <th style="text-align:center">12: ABxCD ⇒ CDxAB</th>
-    <th style="text-align:center">13: ABxCD ⇒ CDxBA</th>
-    <th style="text-align:center">14: ABxCD ⇒ DCxAB</th>
-    <th style="text-align:center">15: ABxCD ⇒ DCxBA</th>
+    <th style="text-align:center">12: ABεCD ⇒ CDεAB</th>
+    <th style="text-align:center">13: ABεCD ⇒ CDεBA</th>
+    <th style="text-align:center">14: ABεCD ⇒ DCεAB</th>
+    <th style="text-align:center">15: ABεCD ⇒ DCεBA</th>
   </tr>
   <tr>
     <th>Expected</th>
