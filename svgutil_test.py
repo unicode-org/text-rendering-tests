@@ -37,6 +37,11 @@ SVG_C = etree.fromstring('''
         <g><path d="M 83,424 Q 56,458 57.7,517 Z"/></g>
     </svg>''')
 
+SVG_D = etree.fromstring('''
+    <svg viewBox="0 -292 518 1360">
+        <g><path d="M 42,237 0,0 Z M 83,424 Q 56,458 56,517 Z M 37,0 Z"/></g>
+    </svg>''')
+
 
 class TestSVGHandling(unittest.TestCase):
     def test_is_similar(self):
@@ -45,6 +50,8 @@ class TestSVGHandling(unittest.TestCase):
         self.assertTrue(svgutil.is_similar(SVG_A, SVG_B, maxDelta=5.0))
         self.assertFalse(svgutil.is_similar(SVG_A, SVG_C, maxDelta=1.0))
         self.assertTrue(svgutil.is_similar(SVG_A, SVG_C, maxDelta=5.0))
+        self.assertTrue(svgutil.is_similar(SVG_A, SVG_D, maxDelta=0.0))
+        self.assertTrue(svgutil.is_similar(SVG_D, SVG_A, maxDelta=0.0))
 
     def test_is_similar_path(self):
         self.assertTrue(svgutil.is_similar_path('M1,2 L3,4', 'M1,2 L4,4', 1))

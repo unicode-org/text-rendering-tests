@@ -40,7 +40,7 @@ def is_similar(a, b, maxDelta):
 
 
 def is_similar_path(a, b, maxDelta):
-    for itemA, itemB in itertools.izip_longest(parse_path(a), parse_path(b)):
+    for itemA, itemB in itertools.izip_longest(simplified_path(a), simplified_path(b)):
         if (itemA is None or itemB is None):
             return False
         try:
@@ -90,3 +90,39 @@ def parse_path(path_data):
                 entity += char
     if entity:
         yield entity
+
+
+# Iterate path entities, removing subpaths consisting of only "moveto" commands.
+class simplified_path:
+    def __init__(self, path_data):
+        self.path = parse_path(path_data)
+        self.subpath = []
+
+    def __iter__(self):
+        return self
+
+    def next(self):
+        # Exhaust the current subpath before proceeding.
+        if len(self.subpath):
+            return self.subpath.pop(0)
+
+        # Buffer the current subpath.
+        for entity in self.path:
+            self.subpath.append(entity)
+            if entity in 'Zz':
+                only_moves = True
+                for subentity in iter(self.subpath):
+                    if subentity in 'MmZz':
+                        pass
+                    elif subentity in 'LlHhVvCcSsQqTtAa':
+                        only_moves = False
+                        break
+                if only_moves:
+                    self.subpath = []
+                else:
+                    break
+
+        if len(self.subpath):
+            return self.subpath.pop(0)
+        else:
+            raise StopIteration
