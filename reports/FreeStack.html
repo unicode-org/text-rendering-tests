@@ -34,7 +34,7 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h1>Text Rendering Test Report</h1>
 <h2>January 10, 2018 · FreeStack</h2>
 <h3>Overview</h3>
-<div class="desc" id="SummaryText">Some tests have failed. For details, see <a href="#CMAP-1">CMAP-1</a>, <a href="#CMAP-3">CMAP-3</a>, <a href="#MORX-1">MORX-1</a>, <a href="#MORX-2">MORX-2</a>, <a href="#MORX-4">MORX-4</a>, and <a href="#MORX-6">MORX-6</a>.</div>
+<div class="desc" id="SummaryText">Some tests have failed. For details, see <a href="#CMAP-1">CMAP-1</a>, <a href="#CMAP-3">CMAP-3</a>, <a href="#MORX-1">MORX-1</a>, <a href="#MORX-2">MORX-2</a>, <a href="#MORX-4">MORX-4</a>, <a href="#MORX-6">MORX-6</a>, and <a href="#MORX-7">MORX-7</a>.</div>
 <h3 id="AVAR-1">AVAR–1: Weight Flattening</h3>
 
 <div class="desc">
@@ -2978,6 +2978,34 @@ look increasingly distorted.
   <tr>
     <th class="conformance-header">Conformance</th>
     <td class="conformance-fail" ns0:id="MORX-6/1">✖</td>
+  </tr>
+</table>
+<h3 id="MORX-7">MORX–7: Unstarted Rearrangement</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXTwo.ttf">font</a> for this test case
+  is the same as in <a href="#MORX-2">MORX–2</a>. When rendering the
+  string <em>OBCD1</em>, we set the end of the marked glyph sequence
+  to <em>B</em>; then we change it to <em>C</em>; finally, to <em>D</em>.
+  However, we never set the <em>start</em> of the marked glyph sequence.
+  If your rendering engine is correctly implemented, it should implicitly
+  start the marked glyph range at the beginning of the string,
+  and move the <em>O</em> after the <em>D</em> when executing the
+  rearrangement for <em>1</em>.
+</div>
+
+<table>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ns0:font="TestMORXTwo.ttf" ns0:id="MORX-7/1" ns0:render="OBCD1"><svg version="1.1" viewBox="0 -200 3758 1200"><symbol id="MORX-7/1.B" overflow="visible"><path d="M151,-28 Q30,-28 30,94 L30,620 Q30,742 151,742 L678,742 Q800,742 800,620 L800,94 Q800,-28 678,-28 Z M439,163 Q508,163 547,193 Q587,224 587,277 Q587,319 567,339 Q548,359 518,366 L518,369 Q544,376 561,397 Q579,419 579,454 Q579,502 542,526 Q506,550 424,550 L289,550 L289,163 Z M393,472 L423,472 Q472,472 472,439 Q472,422 461,412 Q450,402 425,402 L393,402 Z M393,326 L429,326 Q455,326 467,314 Q479,303 479,285 Q479,244 430,244 L393,244 Z" /></symbol><symbol id="MORX-7/1.C" overflow="visible"><path d="M151,-28 Q30,-28 30,94 L30,620 Q30,742 151,742 L678,742 Q800,742 800,620 L800,94 Q800,-28 678,-28 Z M424,158 Q485,158 533,180 L533,267 Q498,254 477,248 Q457,243 434,243 Q349,243 349,355 Q349,409 370,440 Q391,471 428,471 Q451,471 471,465 Q491,459 518,447 L550,529 Q491,557 429,557 Q341,557 291,501 Q241,446 241,356 Q241,264 286,211 Q331,158 424,158 Z" /></symbol><symbol id="MORX-7/1.D" overflow="visible"><path d="M151,-28 Q30,-28 30,94 L30,620 Q30,742 151,742 L678,742 Q800,742 800,620 L800,94 Q800,-28 678,-28 Z M398,163 Q493,163 547,215 Q602,267 602,365 Q602,455 551,502 Q500,550 406,550 L271,550 L271,163 Z M377,466 L407,466 Q450,466 471,440 Q492,415 492,362 Q492,304 470,276 Q448,249 400,249 L377,249 Z" /></symbol><symbol id="MORX-7/1.O" overflow="visible"><path d="M209,158 Q305,158 351,210 Q398,263 398,358 Q398,452 352,504 Q306,557 209,557 Q114,557 67,504 Q20,452 20,358 Q20,264 67,211 Q114,158 209,158 Z M209,245 Q131,245 131,358 Q131,472 209,472 Q287,472 287,358 Q287,303 268,274 Q250,245 209,245 Z" /></symbol><symbol id="MORX-7/1.one" overflow="visible"><path d="M171,-28 Q50,-28 50,94 L50,620 Q50,742 171,742 L698,742 Q820,742 820,620 L820,94 Q820,-28 698,-28 Z M507,181 L507,532 L423,532 L302,434 L351,374 Q359,380 371,388 Q384,397 391,405 Q403,419 413,429 Q412,403 412,355 L412,181 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-7/1.B" /><use x="830" y="0" xlink:href="#MORX-7/1.C" /><use x="1660" y="0" xlink:href="#MORX-7/1.D" /><use x="2490" y="0" xlink:href="#MORX-7/1.O" /><use x="2908" y="0" xlink:href="#MORX-7/1.one" /></svg></td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ns0:id="MORX-7/1"><svg version="1.1" viewBox="0 -200 3758 1200"><symbol id="OBSERVED/MORX-7/1.O" overflow="visible"><path d="M209,158 Q305,158 351,210 Q398,263 398,358 Q398,452 352,504 Q306,557 209,557 Q114,557 67,504 Q20,452 20,358 Q20,264 67,211 Q114,158 209,158 Z M209,245 Q131,245 131,358 Q131,472 209,472 Q287,472 287,358 Q287,303 268,274 Q250,245 209,245 Z" /></symbol><symbol id="OBSERVED/MORX-7/1.B" overflow="visible"><path d="M151,-28 Q30,-28 30,94 L30,620 Q30,742 151,742 L678,742 Q800,742 800,620 L800,94 Q800,-28 678,-28 Z M439,163 Q508,163 547,193 Q587,224 587,277 Q587,319 567,339 Q548,359 518,366 L518,369 Q544,376 561,397 Q579,419 579,454 Q579,502 542,526 Q506,550 424,550 L289,550 L289,163 Z M393,472 L423,472 Q472,472 472,439 Q472,422 461,412 Q450,402 425,402 L393,402 Z M393,326 L429,326 Q455,326 467,314 Q479,303 479,285 Q479,244 430,244 L393,244 Z" /></symbol><symbol id="OBSERVED/MORX-7/1.C" overflow="visible"><path d="M151,-28 Q30,-28 30,94 L30,620 Q30,742 151,742 L678,742 Q800,742 800,620 L800,94 Q800,-28 678,-28 Z M424,158 Q485,158 533,180 L533,267 Q498,254 477,248 Q457,243 434,243 Q349,243 349,355 Q349,409 370,440 Q391,471 428,471 Q451,471 471,465 Q491,459 518,447 L550,529 Q491,557 429,557 Q341,557 291,501 Q241,446 241,356 Q241,264 286,211 Q331,158 424,158 Z" /></symbol><symbol id="OBSERVED/MORX-7/1.D" overflow="visible"><path d="M151,-28 Q30,-28 30,94 L30,620 Q30,742 151,742 L678,742 Q800,742 800,620 L800,94 Q800,-28 678,-28 Z M398,163 Q493,163 547,215 Q602,267 602,365 Q602,455 551,502 Q500,550 406,550 L271,550 L271,163 Z M377,466 L407,466 Q450,466 471,440 Q492,415 492,362 Q492,304 470,276 Q448,249 400,249 L377,249 Z" /></symbol><symbol id="OBSERVED/MORX-7/1.one" overflow="visible"><path d="M171,-28 Q50,-28 50,94 L50,620 Q50,742 171,742 L698,742 Q820,742 820,620 L820,94 Q820,-28 698,-28 Z M507,181 L507,532 L423,532 L302,434 L351,374 Q359,380 371,388 Q384,397 391,405 Q403,419 413,429 Q412,403 412,355 L412,181 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/MORX-7/1.O" /><use x="418" y="0" xlink:href="#OBSERVED/MORX-7/1.B" /><use x="1248" y="0" xlink:href="#OBSERVED/MORX-7/1.C" /><use x="2078" y="0" xlink:href="#OBSERVED/MORX-7/1.D" /><use x="2908" y="0" xlink:href="#OBSERVED/MORX-7/1.one" /></svg></td>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance-fail" ns0:id="MORX-7/1">✖</td>
   </tr>
 </table>
 <h3 id="SHARAN-1">SHARAN–1: Nasta‘līq</h3>
