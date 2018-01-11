@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html
+    xmlns:ft="https://github.com/OpenType/fonttest"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn|Vollkorn:i"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<h3 id="MORX-10">MORX–10: “End of Text” Rearrangement</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXTen.ttf">font</a> for this test case has
+  an <a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html"
+  >AAT Extended Glyph Metamorphosis Table</a>
+  with a single <em>Rearrangement Subtable</em>. Its fine-state machine
+  contains one single state with the following transitions:
+</div>
+
+<ul class="desc">
+  <li>For glyph <em>A</em>, the machine sets both <em>start</em>
+  and <em>end</em> of the <em>marked glyph sequence</em> to the current
+  glyph position.</li>
+
+  <li>For glyph <em>B</em>, the machine changes the <em>end</em> of the
+  <em>marked glyph sequence</em> to the current position.</li>
+
+  <li>For “end of text”, the machine executes a rearrangement action.</li>
+</ul>
+
+<div class="desc">
+  If your rendering system correctly implements <em>Apple Advanced
+  Typography,</em> it should swap the last two letters in <em>ABABAB</em>
+  when taking the final end-of-text transition.
+</div>
+
+<table>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="MORX-10/1" ft:render="ABABAB"
+        ft:font="TestMORXTen.ttf"><svg version="1.1" viewBox="0 -200 3864 1200"><symbol id="MORX-10/1.A" overflow="visible"><path d="M459,221 L176,221 L91,0 L0,0 L279,717 L360,717 L638,0 L545,0 Z M352,517 Q345,537 335,568 Q325,599 318,624 Q303,564 287,517 L206,301 L432,301 Z" /></symbol><symbol id="MORX-10/1.B" overflow="visible"><path d="M301,714 Q439,714 505,673 Q572,632 572,537 Q572,474 537,432 Q502,391 436,379 L436,374 Q596,347 596,203 Q596,106 530,53 Q464,0 348,0 L97,0 L97,714 Z M319,410 Q407,410 443,438 Q479,467 479,527 Q479,585 437,611 Q396,637 305,637 L187,637 L187,410 Z M187,76 L331,76 Q421,76 460,111 Q500,146 500,210 Q500,270 459,302 Q418,335 324,335 L187,335 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-10/1.A" /><use x="638" y="0" xlink:href="#MORX-10/1.B" /><use x="1288" y="0" xlink:href="#MORX-10/1.A" /><use x="1926" y="0" xlink:href="#MORX-10/1.B" /><use x="2576" y="0" xlink:href="#MORX-10/1.B" /><use x="3226" y="0" xlink:href="#MORX-10/1.A" /></svg></td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="MORX-10/1"/>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="MORX-10/1"/>
+  </tr>
+</table>
+</body>
+</html>
+
+
