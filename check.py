@@ -103,7 +103,7 @@ class ConformanceChecker:
         report.find("./body/h2").text = self.datestr + ' · ' + self.engine
         summary = report.find("./body//*[@id='SummaryText']")
         fails = [k for k, v in self.conformance.items() if k and not v]
-        fails = sorted(set([t.split('/')[0] for t in fails]))
+        fails = sorted(set([t.split('/')[0] for t in fails]), key=sortkey)
         if len(fails) == 0:
             summary.text = 'All tests have passed.'
         else:
@@ -127,7 +127,7 @@ class ConformanceChecker:
                     internalStyle.text = sheetfile.read().decode('utf-8')
                 head.remove(sheet)
 
-        for filename, doc in sorted(self.reports.items()):
+        for filename, doc in sorted(self.reports.items(), key=sortkey):
             for e in doc.findall(".//*[@class='observed']"):
                 e.append(self.observed.get(e.attrib[FONTTEST_ID]))
             for e in doc.findall(".//*[@class='conformance']"):
@@ -143,6 +143,12 @@ class ConformanceChecker:
             xml = etree.tostring(report, encoding='utf-8')
             xml = xml.replace(b'svg:', b'')  # work around browser bugs
             outfile.write(xml)
+
+
+def sortkey(s):
+    """'(tests/GVAR-10B.html, _)' --> 'tests/GVAR-0000000010B.html'"""
+    return re.sub(r'\d+', lambda match: '%09d' % int(match.group(0)), s[0])
+
 
 
 def build(engine):
