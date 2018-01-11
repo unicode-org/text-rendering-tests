@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ft="https://github.com/OpenType/fonttest"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+<body>
+<h3 id="MORX-11">MORX–11: “End of Text” Rearrangement with MarkLast Flag</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXEleven.ttf">font</a> for this test case has
+  an <a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html"
+  >AAT Extended Glyph Metamorphosis Table</a>
+  with a single <em>Rearrangement Subtable</em>. Its fine-state machine
+  contains one single state with the following transitions:
+</div>
+
+<ul class="desc">
+  <li>For glyph <em>A</em>, the machine sets both <em>start</em>
+  and <em>end</em> of the <em>marked glyph sequence</em> to the current
+  glyph position.</li>
+
+  <li>For “end of text”, the machine changes the <em>end</em> of the
+  <em>marked glyph sequence</em> to the current position and
+  executes a rearrangement action of type 2, which moves the
+  last marked glyph to the front of the marked sequence.</li>
+
+  <li>For any other glyphs, the machine performs no action.</li>
+</ul>
+
+<div class="desc">
+  The input string for this test case is <em>BABBAABX</em>.  If your
+  rendering system correctly implements <em>Apple Advanced
+  Typography,</em> the finite-state machine should have marked the
+  last <em>A</em> (the third-last glyph in the input string) before
+  taking the final end-of-text transition. When processing
+  end-of-text, your implementation should first extend the <em>marked
+  glyph sequence</em> to the trailing <em>ABX</em>, and then perform a
+  rearrangement for moving <em>X</em> to the front of the marked
+  sequence. See also <a href="https://github.com/devongovett/fontkit/issues/145">fontkit bug 145</a>.
+</div>
+
+<table>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="MORX-11/1" ft:render="BABBAABX"
+        ft:font="TestMORXEleven.ttf"><svg version="1.1" viewBox="0 -200 5100 1200"><symbol id="MORX-11/1.B" overflow="visible"><path d="M301,714 Q439,714 505,673 Q572,632 572,537 Q572,474 537,432 Q502,391 436,379 L436,374 Q596,347 596,203 Q596,106 530,53 Q464,0 348,0 L97,0 L97,714 Z M319,410 Q407,410 443,438 Q479,467 479,527 Q479,585 437,611 Q396,637 305,637 L187,637 L187,410 Z M187,76 L331,76 Q421,76 460,111 Q500,146 500,210 Q500,270 459,302 Q418,335 324,335 L187,335 Z" /></symbol><symbol id="MORX-11/1.A" overflow="visible"><path d="M459,221 L176,221 L91,0 L0,0 L279,717 L360,717 L638,0 L545,0 Z M352,517 Q345,537 335,568 Q325,599 318,624 Q303,564 287,517 L206,301 L432,301 Z" /></symbol><symbol id="MORX-11/1.X" overflow="visible"><path d="M480,0 L291,310 L99,0 L4,0 L241,372 L19,714 L119,714 L294,434 L470,714 L565,714 L344,374 L582,0 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-11/1.B" /><use x="650" y="0" xlink:href="#MORX-11/1.A" /><use x="1288" y="0" xlink:href="#MORX-11/1.B" /><use x="1938" y="0" xlink:href="#MORX-11/1.B" /><use x="2588" y="0" xlink:href="#MORX-11/1.A" /><use x="3226" y="0" xlink:href="#MORX-11/1.X" /><use x="3812" y="0" xlink:href="#MORX-11/1.A" /><use x="4450" y="0" xlink:href="#MORX-11/1.B" /></svg></td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="MORX-11/1"/>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="MORX-11/1"/>
+  </tr>
+</table>
+</body>
+</html>
+
