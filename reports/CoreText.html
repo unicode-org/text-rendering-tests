@@ -3408,9 +3408,9 @@ look increasingly distorted.
     This transition carries both the <em>DontAdvance</em> and
     <em>MarkLast</em> flags. No rearrangement action is performed.</li>
 
-    <li>in state 1, loops back to state 1. This transition carries
+    <li>in state 1, the machine loops back to state 1.
     This transition carries the <em>DontAdvance</em> flag,
-    and executes a rearrangement of type 2 <em>(xD ⇒ Dx)</em>.</li>
+    and it executes a rearrangement of type 2 <em>(xD ⇒ Dx)</em>.</li>
   </ul>
 
   <li>For any other glyphs and “end of text”, the machine performs
@@ -3427,7 +3427,7 @@ look increasingly distorted.
 <ul class="desc">
   <li>For the input string <em>ABCDE</em>, your implementation should
   change the marked glyph sequence as follows: <em>A</em> → <em>AB</em>
-  → <em>ABC</em> → <em>ABCDE</em> → <em>ABCDE</em> → <em>EABCD</em>
+  → <em>ABC</em> → <em>ABCD</em> → <em>ABCDE</em> → <em>EABCD</em>
   → <em>DEABC</em> → <em>CDEAB</em> → <em>BCDEA</em>.</li>
 
   <li>For the input string <em>ABBBCCCDDDBCDCE</em>, your
