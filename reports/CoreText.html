@@ -32,9 +32,9 @@ svg {height:2.5em;transform:scaleY(-1)}
 </style></head>
 <body>
 <h1>Text Rendering Test Report</h1>
-<h2>January 12, 2018 · CoreText</h2>
+<h2>January 13, 2018 · CoreText</h2>
 <h3>Overview</h3>
-<div class="desc" id="SummaryText">Some tests have failed. For details, see <a href="#CFF2-1">CFF2-1</a>, <a href="#GVAR-9">GVAR-9</a>, <a href="#GPOS-5">GPOS-5</a>, <a href="#HVAR-1">HVAR-1</a>, <a href="#MORX-4">MORX-4</a>, <a href="#SHARAN-1">SHARAN-1</a>, and <a href="#SHBALI-1">SHBALI-1</a>.</div>
+<div class="desc" id="SummaryText">Some tests have failed. For details, see <a href="#CFF2-1">CFF2-1</a>, <a href="#GVAR-9">GVAR-9</a>, <a href="#GPOS-5">GPOS-5</a>, <a href="#HVAR-1">HVAR-1</a>, <a href="#MORX-4">MORX-4</a>, <a href="#MORX-14">MORX-14</a>, <a href="#SHARAN-1">SHARAN-1</a>, and <a href="#SHBALI-1">SHBALI-1</a>.</div>
 <h3 id="AVAR-1">AVAR–1: Weight Flattening</h3>
 
 <div class="desc">
@@ -3418,26 +3418,49 @@ look increasingly distorted.
 </ul>
 
 <div class="desc">
-  The input string for this test case is <em>ABCDE</em>. If your
-  rendering system correctly implements <em>Apple Advanced
-  Typography,</em> the finite-state machine should loop multiple
-  times through state 1, rearranging the marked glyphs
-  as follows: <em>ABCDE</em> → <em>EABCD</em> → <em>DEABC</em>
-  → <em>CDEAB</em> → <em>BCDEA</em>.
+  If your rendering system correctly implements <em>Apple Advanced
+  Typography,</em> the finite-state machine should loop multiple times
+  through state 1, repeatedly rearranging the marked glyphs in every
+  iteration.
 </div>
+
+<ul class="desc">
+  <li>For the input string <em>ABCDE</em>, your implementation should
+  change the marked glyph sequence as follows: <em>A</em> → <em>AB</em>
+  → <em>ABC</em> → <em>ABCDE</em> → <em>ABCDE</em> → <em>EABCD</em>
+  → <em>DEABC</em> → <em>CDEAB</em> → <em>BCDEA</em>.</li>
+
+  <li>For the input string <em>ABBBCCCDDDBCDCE</em>, your
+  implementation should change the marked glyph changes as
+  follows: <em>A</em> → <em>AB</em> → <em>ABB</em> → [...]
+  → <em>ABBBCCCDDDBCDCE</em> → <em>EABBBCCCDDDBCDC</em>
+  → <em>CEABBBCCCDDDBCD</em> → <em>DCEABBBCCCDDDBC</em>
+  → <em>CDCEABBBCCCDDDB</em> → <em>BCDCEABBBCCCDDD</em>
+  → <em>DBCDCEABBBCCCDD</em> → [...] → <em>BCCCDDDBCDCEABB</em>
+  → <em>BBCCCDDDBCDCEAB</em> → <em>BBBCCCDDDBCDCEA</em>.</li>
+</ul>
 
 <table>
   <tr>
+    <th />
+    <th style="text-align:center">ABCDE</th>
+    <th style="text-align:center">ABBBCCCDDDBCDCE</th>
+  </tr>
+  <tr>
     <th>Expected</th>
     <td class="expected" ns0:font="TestMORXFourteen.ttf" ns0:id="MORX-14/1" ns0:render="ABCDE"><svg version="1.1" viewBox="0 -200 3091 1200"><symbol id="MORX-14/1.B" overflow="visible"><path d="M301,714 Q439,714 505,673 Q572,632 572,537 Q572,474 537,432 Q502,391 436,379 L436,374 Q596,347 596,203 Q596,106 530,53 Q464,0 348,0 L97,0 L97,714 Z M319,410 Q407,410 443,438 Q479,467 479,527 Q479,585 437,611 Q396,637 305,637 L187,637 L187,410 Z M187,76 L331,76 Q421,76 460,111 Q500,146 500,210 Q500,270 459,302 Q418,335 324,335 L187,335 Z" /></symbol><symbol id="MORX-14/1.C" overflow="visible"><path d="M392,645 Q277,645 211,568 Q145,491 145,357 Q145,221 207,145 Q270,69 391,69 Q468,69 562,97 L562,19 Q522,4 479,-3 Q436,-10 378,-10 Q217,-10 133,87 Q50,185 50,358 Q50,467 90,549 Q130,632 207,678 Q285,724 393,724 Q448,724 498,713 Q549,702 590,682 L554,606 Q468,645 392,645 Z" /></symbol><symbol id="MORX-14/1.D" overflow="visible"><path d="M669,364 Q669,185 571,92 Q474,0 296,0 L97,0 L97,714 L317,714 Q481,714 575,623 Q669,533 669,364 Z M574,361 Q574,501 505,569 Q436,637 304,637 L187,637 L187,77 L284,77 Q429,77 501,148 Q574,220 574,361 Z" /></symbol><symbol id="MORX-14/1.E" overflow="visible"><path d="M97,0 L97,714 L496,714 L496,635 L187,635 L187,412 L478,412 L478,334 L187,334 L187,79 L496,79 L496,0 Z" /></symbol><symbol id="MORX-14/1.A" overflow="visible"><path d="M459,221 L176,221 L91,0 L0,0 L279,717 L360,717 L638,0 L545,0 Z M352,517 Q345,537 335,568 Q325,599 318,624 Q303,564 287,517 L206,301 L432,301 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-14/1.B" /><use x="626" y="0" xlink:href="#MORX-14/1.C" /><use x="1222" y="0" xlink:href="#MORX-14/1.D" /><use x="1896" y="0" xlink:href="#MORX-14/1.E" /><use x="2452" y="0" xlink:href="#MORX-14/1.A" /></svg></td>
+
+    <td class="expected" ns0:font="TestMORXFourteen.ttf" ns0:id="MORX-14/2" ns0:render="ABBBCCCDDDBCDCE"><svg version="1.1" viewBox="0 -200 9375 1200"><symbol id="MORX-14/2.B" overflow="visible"><path d="M301,714 Q439,714 505,673 Q572,632 572,537 Q572,474 537,432 Q502,391 436,379 L436,374 Q596,347 596,203 Q596,106 530,53 Q464,0 348,0 L97,0 L97,714 Z M319,410 Q407,410 443,438 Q479,467 479,527 Q479,585 437,611 Q396,637 305,637 L187,637 L187,410 Z M187,76 L331,76 Q421,76 460,111 Q500,146 500,210 Q500,270 459,302 Q418,335 324,335 L187,335 Z" /></symbol><symbol id="MORX-14/2.C" overflow="visible"><path d="M392,645 Q277,645 211,568 Q145,491 145,357 Q145,221 207,145 Q270,69 391,69 Q468,69 562,97 L562,19 Q522,4 479,-3 Q436,-10 378,-10 Q217,-10 133,87 Q50,185 50,358 Q50,467 90,549 Q130,632 207,678 Q285,724 393,724 Q448,724 498,713 Q549,702 590,682 L554,606 Q468,645 392,645 Z" /></symbol><symbol id="MORX-14/2.D" overflow="visible"><path d="M669,364 Q669,185 571,92 Q474,0 296,0 L97,0 L97,714 L317,714 Q481,714 575,623 Q669,533 669,364 Z M574,361 Q574,501 505,569 Q436,637 304,637 L187,637 L187,77 L284,77 Q429,77 501,148 Q574,220 574,361 Z" /></symbol><symbol id="MORX-14/2.E" overflow="visible"><path d="M97,0 L97,714 L496,714 L496,635 L187,635 L187,412 L478,412 L478,334 L187,334 L187,79 L496,79 L496,0 Z" /></symbol><symbol id="MORX-14/2.A" overflow="visible"><path d="M459,221 L176,221 L91,0 L0,0 L279,717 L360,717 L638,0 L545,0 Z M352,517 Q345,537 335,568 Q325,599 318,624 Q303,564 287,517 L206,301 L432,301 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-14/2.B" /><use x="626" y="0" xlink:href="#MORX-14/2.B" /><use x="1252" y="0" xlink:href="#MORX-14/2.B" /><use x="1878" y="0" xlink:href="#MORX-14/2.C" /><use x="2474" y="0" xlink:href="#MORX-14/2.C" /><use x="3070" y="0" xlink:href="#MORX-14/2.C" /><use x="3666" y="0" xlink:href="#MORX-14/2.D" /><use x="4340" y="0" xlink:href="#MORX-14/2.D" /><use x="5014" y="0" xlink:href="#MORX-14/2.D" /><use x="5688" y="0" xlink:href="#MORX-14/2.B" /><use x="6314" y="0" xlink:href="#MORX-14/2.C" /><use x="6910" y="0" xlink:href="#MORX-14/2.D" /><use x="7584" y="0" xlink:href="#MORX-14/2.C" /><use x="8180" y="0" xlink:href="#MORX-14/2.E" /><use x="8736" y="0" xlink:href="#MORX-14/2.A" /></svg></td>
   </tr>
   <tr>
     <th>Observed</th>
     <td class="observed" ns0:id="MORX-14/1"><svg version="1.1" viewBox="0 -200 3091 1200"><symbol id="OBSERVED/MORX-14/1.B" overflow="visible"><path d="M301,714 Q439,714 505,673 Q572,632 572,537 Q572,474 537,432 Q502,391 436,379 L436,374 Q596,347 596,203 Q596,106 530,53 Q464,0 348,0 L97,0 L97,714 Z M319,410 Q407,410 443,438 Q479,467 479,527 Q479,585 437,611 Q396,637 305,637 L187,637 L187,410 Z M187,76 L331,76 Q421,76 460,111 Q500,146 500,210 Q500,270 459,302 Q418,335 324,335 L187,335 Z" /></symbol><symbol id="OBSERVED/MORX-14/1.C" overflow="visible"><path d="M392,645 Q277,645 211,568 Q145,491 145,357 Q145,221 207,145 Q270,69 391,69 Q468,69 562,97 L562,19 Q522,4 479,-3 Q436,-10 378,-10 Q217,-10 133,87 Q50,185 50,358 Q50,467 90,549 Q130,632 207,678 Q285,724 393,724 Q448,724 498,713 Q549,702 590,682 L554,606 Q468,645 392,645 Z" /></symbol><symbol id="OBSERVED/MORX-14/1.D" overflow="visible"><path d="M669,364 Q669,185 571,92 Q474,0 296,0 L97,0 L97,714 L317,714 Q481,714 575,623 Q669,533 669,364 Z M574,361 Q574,501 505,569 Q436,637 304,637 L187,637 L187,77 L284,77 Q429,77 501,148 Q574,220 574,361 Z" /></symbol><symbol id="OBSERVED/MORX-14/1.E" overflow="visible"><path d="M97,0 L97,714 L496,714 L496,635 L187,635 L187,412 L478,412 L478,334 L187,334 L187,79 L496,79 L496,0 Z" /></symbol><symbol id="OBSERVED/MORX-14/1.A" overflow="visible"><path d="M459,221 L176,221 L91,0 L0,0 L279,717 L360,717 L638,0 L545,0 Z M352,517 Q345,537 335,568 Q325,599 318,624 Q303,564 287,517 L206,301 L432,301 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/MORX-14/1.B" /><use x="626" y="0" xlink:href="#OBSERVED/MORX-14/1.C" /><use x="1222" y="0" xlink:href="#OBSERVED/MORX-14/1.D" /><use x="1896" y="0" xlink:href="#OBSERVED/MORX-14/1.E" /><use x="2452" y="0" xlink:href="#OBSERVED/MORX-14/1.A" /></svg></td>
+    <td class="observed" ns0:id="MORX-14/2"><svg version="1.1" viewBox="0 -200 9375 1200"><symbol id="OBSERVED/MORX-14/2.D" overflow="visible"><path d="M669,364 Q669,185 571,92 Q474,0 296,0 L97,0 L97,714 L317,714 Q481,714 575,623 Q669,533 669,364 Z M574,361 Q574,501 505,569 Q436,637 304,637 L187,637 L187,77 L284,77 Q429,77 501,148 Q574,220 574,361 Z" /></symbol><symbol id="OBSERVED/MORX-14/2.B" overflow="visible"><path d="M301,714 Q439,714 505,673 Q572,632 572,537 Q572,474 537,432 Q502,391 436,379 L436,374 Q596,347 596,203 Q596,106 530,53 Q464,0 348,0 L97,0 L97,714 Z M319,410 Q407,410 443,438 Q479,467 479,527 Q479,585 437,611 Q396,637 305,637 L187,637 L187,410 Z M187,76 L331,76 Q421,76 460,111 Q500,146 500,210 Q500,270 459,302 Q418,335 324,335 L187,335 Z" /></symbol><symbol id="OBSERVED/MORX-14/2.C" overflow="visible"><path d="M392,645 Q277,645 211,568 Q145,491 145,357 Q145,221 207,145 Q270,69 391,69 Q468,69 562,97 L562,19 Q522,4 479,-3 Q436,-10 378,-10 Q217,-10 133,87 Q50,185 50,358 Q50,467 90,549 Q130,632 207,678 Q285,724 393,724 Q448,724 498,713 Q549,702 590,682 L554,606 Q468,645 392,645 Z" /></symbol><symbol id="OBSERVED/MORX-14/2.E" overflow="visible"><path d="M97,0 L97,714 L496,714 L496,635 L187,635 L187,412 L478,412 L478,334 L187,334 L187,79 L496,79 L496,0 Z" /></symbol><symbol id="OBSERVED/MORX-14/2.A" overflow="visible"><path d="M459,221 L176,221 L91,0 L0,0 L279,717 L360,717 L638,0 L545,0 Z M352,517 Q345,537 335,568 Q325,599 318,624 Q303,564 287,517 L206,301 L432,301 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/MORX-14/2.D" /><use x="674" y="0" xlink:href="#OBSERVED/MORX-14/2.B" /><use x="1300" y="0" xlink:href="#OBSERVED/MORX-14/2.C" /><use x="1896" y="0" xlink:href="#OBSERVED/MORX-14/2.D" /><use x="2570" y="0" xlink:href="#OBSERVED/MORX-14/2.C" /><use x="3166" y="0" xlink:href="#OBSERVED/MORX-14/2.E" /><use x="3722" y="0" xlink:href="#OBSERVED/MORX-14/2.A" /><use x="4361" y="0" xlink:href="#OBSERVED/MORX-14/2.B" /><use x="4987" y="0" xlink:href="#OBSERVED/MORX-14/2.B" /><use x="5613" y="0" xlink:href="#OBSERVED/MORX-14/2.B" /><use x="6239" y="0" xlink:href="#OBSERVED/MORX-14/2.C" /><use x="6835" y="0" xlink:href="#OBSERVED/MORX-14/2.C" /><use x="7431" y="0" xlink:href="#OBSERVED/MORX-14/2.C" /><use x="8027" y="0" xlink:href="#OBSERVED/MORX-14/2.D" /><use x="8701" y="0" xlink:href="#OBSERVED/MORX-14/2.D" /></svg></td>
   </tr>
   <tr>
     <th class="conformance-header">Conformance</th>
     <td class="conformance-pass" ns0:id="MORX-14/1">✓</td>
+    <td class="conformance-fail" ns0:id="MORX-14/2">✖</td>
   </tr>
 </table>
 <h3 id="SHARAN-1">SHARAN–1: Nasta‘līq</h3>
