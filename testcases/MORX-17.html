@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ft="https://github.com/OpenType/fonttest"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+<body>
+<h3 id="MORX-17">MORX-17: Rearrangement with DontAdvance at End of Text</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXSeventeen.ttf">font</a> for this test case has
+  an <a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html"
+  >AAT Extended Glyph Metamorphosis Table</a>
+  with a single <em>Rearrangement Subtable</em>. Its fine-state machine
+  contains a single state with the following transitions:
+</div>
+
+<ul class="desc">
+  <li>For glyph <em>A</em>, the transition carries the
+  <em>MarkFirst</em> flag. No rearrangement action is performed.</li>
+
+  <li>For glyph <em>B</em>, the transition carries the
+  <em>MarkLast</em> flag. No rearrangement action is performed.</li>
+
+  <li>For <em>End of text</em>, the transition carries the
+  <em>DontAdvance</em> flag and performs a rearrangement action
+  of type 1 <em>(Ax ⇒ xA).</em></li>
+
+  <li>For any other glyphs, the machine performs no action.</li>
+</ul>
+
+<div class="desc">
+  The input string for this test case is <em>AB</em>.
+  If your rendering system correctly implements <em>Apple Advanced
+  Typography,</em> the <em>A</em> glyph should be rearranged to the
+  end of the rendered string when your implementation executes the
+  rearrangement for the End-of-text transition. Despite the presence
+  of the <em>DontAdvance</em> flag, the result should be <em>BA</em>.
+  See also <a href="https://github.com/devongovett/fontkit/issues/147">fontkit
+  bug 147</a>.
+</div>
+
+<table>
+  <tr>
+    <th></th>
+    <th style="text-align:center">AB</th>
+  </tr>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="MORX-17/1" ft:render="AB"
+        ft:font="TestMORXSeventeen.ttf"><svg version="1.1" viewBox="0 -200 1265 1200"><symbol id="MORX-17/1.B" overflow="visible"><path d="M301,714 Q439,714 505,673 Q572,632 572,537 Q572,474 537,432 Q502,391 436,379 L436,374 Q596,347 596,203 Q596,106 530,53 Q464,0 348,0 L97,0 L97,714 Z M319,410 Q407,410 443,438 Q479,467 479,527 Q479,585 437,611 Q396,637 305,637 L187,637 L187,410 Z M187,76 L331,76 Q421,76 460,111 Q500,146 500,210 Q500,270 459,302 Q418,335 324,335 L187,335 Z" /></symbol><symbol id="MORX-17/1.A" overflow="visible"><path d="M459,221 L176,221 L91,0 L0,0 L279,717 L360,717 L638,0 L545,0 Z M352,517 Q345,537 335,568 Q325,599 318,624 Q303,564 287,517 L206,301 L432,301 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-17/1.B" /><use x="626" y="0" xlink:href="#MORX-17/1.A" /></svg></td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="MORX-17/1"/>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="MORX-17/1"/>
+  </tr>
+</table>
+</body>
+</html>
