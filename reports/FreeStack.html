@@ -34,7 +34,7 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h1>Text Rendering Test Report</h1>
 <h2>January 19, 2018 · FreeStack</h2>
 <h3>Overview</h3>
-<div class="desc" id="SummaryText">Some tests have failed. For details, see <a href="#CMAP-3">CMAP-3</a>, <a href="#CMAP-1">CMAP-1</a>, <a href="#MORX-6">MORX-6</a>, <a href="#MORX-9">MORX-9</a>, <a href="#MORX-8">MORX-8</a>, <a href="#MORX-2">MORX-2</a>, <a href="#MORX-1">MORX-1</a>, <a href="#MORX-7">MORX-7</a>, <a href="#MORX-4">MORX-4</a>, <a href="#MORX-13">MORX-13</a>, <a href="#MORX-12">MORX-12</a>, <a href="#MORX-11">MORX-11</a>, <a href="#MORX-17">MORX-17</a>, <a href="#MORX-16">MORX-16</a>, <a href="#MORX-14">MORX-14</a>, <a href="#MORX-10">MORX-10</a>, and <a href="#MORX-18">MORX-18</a>.</div>
+<div class="desc" id="SummaryText">Some tests have failed. For details, see <a href="#CMAP-3">CMAP-3</a>, <a href="#CMAP-1">CMAP-1</a>, <a href="#MORX-6">MORX-6</a>, <a href="#MORX-9">MORX-9</a>, <a href="#MORX-8">MORX-8</a>, <a href="#MORX-2">MORX-2</a>, <a href="#MORX-1">MORX-1</a>, <a href="#MORX-7">MORX-7</a>, <a href="#MORX-4">MORX-4</a>, <a href="#MORX-13">MORX-13</a>, <a href="#MORX-12">MORX-12</a>, <a href="#MORX-11">MORX-11</a>, <a href="#MORX-17">MORX-17</a>, <a href="#MORX-16">MORX-16</a>, <a href="#MORX-14">MORX-14</a>, <a href="#MORX-10">MORX-10</a>, <a href="#MORX-19">MORX-19</a>, and <a href="#MORX-18">MORX-18</a>.</div>
 <h3 id="AVAR-1">AVAR–1: Weight Flattening</h3>
 
 <div class="desc">
@@ -3627,6 +3627,36 @@ look increasingly distorted.
     <td class="conformance-fail" ns0:id="MORX-18/2">✖</td>
     <td class="conformance-fail" ns0:id="MORX-18/3">✖</td>
     <td class="conformance-pass" ns0:id="MORX-18/4">✓</td>
+  </tr>
+</table>
+<h3 id="MORX-19">MORX-19: Contextual Glyph Substitution without Marking</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXEighteen.ttf">font</a> for this test
+  case is the same as with <a href="#MORX-18">MORX–18</a>. In this
+  test, we do not render the <em>B</em> letter, so there are no marked
+  glyphs.  If your rendering system correctly implements <em>Apple
+  Advanced Typography,</em> it should implicitly mark the first letter
+  of the rendered string, so the output should look as expected.
+  See also <a href="https://github.com/devongovett/fontkit/issues/150">Fontkit bug 150</a>.
+</div>
+
+<table>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ns0:font="TestMORXEighteen.ttf" ns0:id="MORX-19/1" ns0:render="ACDE"><svg version="1.1" viewBox="0 -200 3152 1200"><symbol id="MORX-19/1.A.alt" overflow="visible"><path d="M500,-55 Q388,-55 293,0 Q199,56 143,150 Q88,245 88,357 Q88,469 143,563 Q199,658 293,713 Q388,769 500,769 Q612,769 706,713 Q801,658 856,563 Q912,469 912,357 Q912,245 856,150 Q801,56 706,0 Q612,-55 500,-55 Z M500,1 Q597,1 678,49 Q760,97 808,178 Q856,260 856,357 Q856,454 808,535 Q760,617 678,665 Q597,713 500,713 Q403,713 321,665 Q240,617 192,535 Q144,454 144,357 Q144,260 192,178 Q240,97 321,49 Q403,1 500,1 Z M474,574 L531,574 L702,145 L634,145 L582,275 L420,275 L369,145 L301,145 Z M563,329 L518,451 Q504,490 504,511 L500,511 Q500,483 487,451 L442,329 Z" /></symbol><symbol id="MORX-19/1.C" overflow="visible"><path d="M392,645 Q277,645 211,568 Q145,491 145,357 Q145,221 207,145 Q270,69 391,69 Q468,69 562,97 L562,19 Q522,4 479,-3 Q436,-10 378,-10 Q217,-10 133,87 Q50,185 50,358 Q50,467 90,549 Q130,632 207,678 Q285,724 393,724 Q448,724 498,713 Q549,702 590,682 L554,606 Q468,645 392,645 Z" /></symbol><symbol id="MORX-19/1.D.alt1" overflow="visible"><path d="M500,-55 Q388,-55 293,0 Q199,56 143,150 Q88,245 88,357 Q88,469 143,563 Q199,658 293,713 Q388,769 500,769 Q612,769 706,713 Q801,658 856,563 Q912,469 912,357 Q912,245 856,150 Q801,56 706,0 Q612,-55 500,-55 Z M479,145 Q590,145 650,201 Q711,257 711,365 Q711,467 652,520 Q594,574 491,574 L350,574 L350,145 Z M419,521 L483,521 Q640,521 640,363 Q640,198 471,198 L419,198 Z" /></symbol><symbol id="MORX-19/1.E" overflow="visible"><path d="M97,0 L97,714 L496,714 L496,635 L187,635 L187,412 L478,412 L478,334 L187,334 L187,79 L496,79 L496,0 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-19/1.A.alt" /><use x="1000" y="0" xlink:href="#MORX-19/1.C" /><use x="1596" y="0" xlink:href="#MORX-19/1.D.alt1" /><use x="2596" y="0" xlink:href="#MORX-19/1.E" /></svg></td>
+
+    <td class="expected" ns0:font="TestMORXEighteen.ttf" ns0:id="MORX-19/2" ns0:render="D"><svg version="1.1" viewBox="0 -200 1000 1200"><symbol id="MORX-19/2.D.alt" overflow="visible"><path d="M500,-55 Q388,-55 293,0 Q199,56 143,150 Q88,245 88,357 Q88,469 143,563 Q199,658 293,713 Q388,769 500,769 Q612,769 706,713 Q801,658 856,563 Q912,469 912,357 Q912,245 856,150 Q801,56 706,0 Q612,-55 500,-55 Z M500,1 Q597,1 678,49 Q760,97 808,178 Q856,260 856,357 Q856,454 808,535 Q760,617 678,665 Q597,713 500,713 Q403,713 321,665 Q240,617 192,535 Q144,454 144,357 Q144,260 192,178 Q240,97 321,49 Q403,1 500,1 Z M350,574 L491,574 Q594,574 652,520 Q711,467 711,365 Q711,257 650,201 Q590,145 479,145 L350,145 Z M471,198 Q640,198 640,363 Q640,521 483,521 L419,521 L419,198 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-19/2.D.alt" /></svg></td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ns0:id="MORX-19/1"><svg version="1.1" viewBox="0 -200 2465 1200"><symbol id="OBSERVED/MORX-19/1.A" overflow="visible"><path d="M459,221 L176,221 L91,0 L0,0 L279,717 L360,717 L638,0 L545,0 Z M352,517 Q345,537 335,568 Q325,599 318,624 Q303,564 287,517 L206,301 L432,301 Z" /></symbol><symbol id="OBSERVED/MORX-19/1.C" overflow="visible"><path d="M392,645 Q277,645 211,568 Q145,491 145,357 Q145,221 207,145 Q270,69 391,69 Q468,69 562,97 L562,19 Q522,4 479,-3 Q436,-10 378,-10 Q217,-10 133,87 Q50,185 50,358 Q50,467 90,549 Q130,632 207,678 Q285,724 393,724 Q448,724 498,713 Q549,702 590,682 L554,606 Q468,645 392,645 Z" /></symbol><symbol id="OBSERVED/MORX-19/1.D" overflow="visible"><path d="M669,364 Q669,185 571,92 Q474,0 296,0 L97,0 L97,714 L317,714 Q481,714 575,623 Q669,533 669,364 Z M574,361 Q574,501 505,569 Q436,637 304,637 L187,637 L187,77 L284,77 Q429,77 501,148 Q574,220 574,361 Z" /></symbol><symbol id="OBSERVED/MORX-19/1.E" overflow="visible"><path d="M97,0 L97,714 L496,714 L496,635 L187,635 L187,412 L478,412 L478,334 L187,334 L187,79 L496,79 L496,0 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/MORX-19/1.A" /><use x="639" y="0" xlink:href="#OBSERVED/MORX-19/1.C" /><use x="1235" y="0" xlink:href="#OBSERVED/MORX-19/1.D" /><use x="1909" y="0" xlink:href="#OBSERVED/MORX-19/1.E" /></svg></td>
+    <td class="observed" ns0:id="MORX-19/2"><svg version="1.1" viewBox="0 -200 674 1200"><symbol id="OBSERVED/MORX-19/2.D" overflow="visible"><path d="M669,364 Q669,185 571,92 Q474,0 296,0 L97,0 L97,714 L317,714 Q481,714 575,623 Q669,533 669,364 Z M574,361 Q574,501 505,569 Q436,637 304,637 L187,637 L187,77 L284,77 Q429,77 501,148 Q574,220 574,361 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/MORX-19/2.D" /></svg></td>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance-fail" ns0:id="MORX-19/1">✖</td>
+    <td class="conformance-fail" ns0:id="MORX-19/2">✖</td>
   </tr>
 </table>
 <h3 id="SHARAN-1">SHARAN–1: Nasta‘līq</h3>
