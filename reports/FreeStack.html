@@ -32,9 +32,9 @@ svg {height:2.5em;transform:scaleY(-1)}
 </style></head>
 <body>
 <h1>Text Rendering Test Report</h1>
-<h2>January 23, 2018 · FreeStack</h2>
+<h2>January 29, 2018 · FreeStack</h2>
 <h3>Overview</h3>
-<div class="desc" id="SummaryText">Some tests have failed. For details, see <a href="#CMAP-3">CMAP-3</a>, <a href="#CMAP-1">CMAP-1</a>, <a href="#MORX-6">MORX-6</a>, <a href="#MORX-9">MORX-9</a>, <a href="#MORX-8">MORX-8</a>, <a href="#MORX-2">MORX-2</a>, <a href="#MORX-1">MORX-1</a>, <a href="#MORX-7">MORX-7</a>, <a href="#MORX-4">MORX-4</a>, <a href="#MORX-13">MORX-13</a>, <a href="#MORX-12">MORX-12</a>, <a href="#MORX-11">MORX-11</a>, <a href="#MORX-17">MORX-17</a>, <a href="#MORX-16">MORX-16</a>, <a href="#MORX-14">MORX-14</a>, <a href="#MORX-22">MORX-22</a>, <a href="#MORX-10">MORX-10</a>, <a href="#MORX-19">MORX-19</a>, <a href="#MORX-18">MORX-18</a>, <a href="#MORX-20">MORX-20</a>, and <a href="#MORX-21">MORX-21</a>.</div>
+<div class="desc" id="SummaryText">Some tests have failed. For details, see <a href="#CMAP-3">CMAP-3</a>, <a href="#CMAP-1">CMAP-1</a>, <a href="#MORX-9">MORX-9</a>, <a href="#MORX-8">MORX-8</a>, <a href="#MORX-2">MORX-2</a>, <a href="#MORX-1">MORX-1</a>, <a href="#MORX-7">MORX-7</a>, <a href="#MORX-6">MORX-6</a>, <a href="#MORX-4">MORX-4</a>, <a href="#MORX-13">MORX-13</a>, <a href="#MORX-12">MORX-12</a>, <a href="#MORX-11">MORX-11</a>, <a href="#MORX-10">MORX-10</a>, <a href="#MORX-17">MORX-17</a>, <a href="#MORX-16">MORX-16</a>, <a href="#MORX-14">MORX-14</a>, <a href="#MORX-19">MORX-19</a>, <a href="#MORX-18">MORX-18</a>, <a href="#MORX-22">MORX-22</a>, <a href="#MORX-23">MORX-23</a>, <a href="#MORX-20">MORX-20</a>, and <a href="#MORX-21">MORX-21</a>.</div>
 <h3 id="AVAR-1">AVAR–1: Weight Flattening</h3>
 
 <div class="desc">
@@ -3835,6 +3835,46 @@ look increasingly distorted.
   <tr>
     <th class="conformance-header">Conformance</th>
     <td class="conformance-fail" ns0:id="MORX-22/1">✖</td>
+  </tr>
+</table>
+<h3 id="MORX-23">MORX-23: Contextual Glyph Substitution with CurrentIndex and DontAdvance</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXTwentythree.ttf">font</a> for this test case has
+  an <a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html">AAT Extended Glyph Metamorphosis Table</a>
+  with a single <em>Contextual Glyph Substitution Subtable</em>.
+  Its fine-state machine contains one state. For glyphs
+  glyphs <em>A</em>, <em>B</em>, <em>C</em>, and <em>D</em>,
+  the machine executes the per-glyph substitution #0
+  on <em>CurrentIndex</em> on a transition that is also marked
+  with the <em>DontAdvance</em> flag. The glyph substitution
+  replaces <em>A</em> by <em>B</em>, <em>B</em> by <em>C</em>,
+  <em>C</em> by <em>D</em>, and <em>D</em> by <em>E</em>.
+</div>
+
+<div class="desc">
+  The input string for this test is <em>ABCDE</em>. If your rendering
+  system correctly implements <em>Apple Advanced Typography,</em> the
+  finite-state machine should loop for each glyph in state 0 until it
+  gets rewritten to <em>E</em>.  The final result should be <em>EEEEE</em>.
+</div>
+
+<table>
+  <tr>
+  <tr>
+    <th />
+    <th style="text-align:center">ABCDE</th>
+  </tr>
+    <th>Expected</th>
+    <td class="expected" ns0:font="TestMORXTwentythree.ttf" ns0:id="MORX-23/1" ns0:render="ABCDE"><svg version="1.1" viewBox="0 -200 2780 1200"><symbol id="MORX-23/1.E" overflow="visible"><path d="M97,0 L97,714 L496,714 L496,635 L187,635 L187,412 L478,412 L478,334 L187,334 L187,79 L496,79 L496,0 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-23/1.E" /><use x="556" y="0" xlink:href="#MORX-23/1.E" /><use x="1112" y="0" xlink:href="#MORX-23/1.E" /><use x="1668" y="0" xlink:href="#MORX-23/1.E" /><use x="2224" y="0" xlink:href="#MORX-23/1.E" /></svg></td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ns0:id="MORX-23/1"><svg version="1.1" viewBox="0 -200 3091 1200"><symbol id="OBSERVED/MORX-23/1.A" overflow="visible"><path d="M459,221 L176,221 L91,0 L0,0 L279,717 L360,717 L638,0 L545,0 Z M352,517 Q345,537 335,568 Q325,599 318,624 Q303,564 287,517 L206,301 L432,301 Z" /></symbol><symbol id="OBSERVED/MORX-23/1.B" overflow="visible"><path d="M301,714 Q439,714 505,673 Q572,632 572,537 Q572,474 537,432 Q502,391 436,379 L436,374 Q596,347 596,203 Q596,106 530,53 Q464,0 348,0 L97,0 L97,714 Z M319,410 Q407,410 443,438 Q479,467 479,527 Q479,585 437,611 Q396,637 305,637 L187,637 L187,410 Z M187,76 L331,76 Q421,76 460,111 Q500,146 500,210 Q500,270 459,302 Q418,335 324,335 L187,335 Z" /></symbol><symbol id="OBSERVED/MORX-23/1.C" overflow="visible"><path d="M392,645 Q277,645 211,568 Q145,491 145,357 Q145,221 207,145 Q270,69 391,69 Q468,69 562,97 L562,19 Q522,4 479,-3 Q436,-10 378,-10 Q217,-10 133,87 Q50,185 50,358 Q50,467 90,549 Q130,632 207,678 Q285,724 393,724 Q448,724 498,713 Q549,702 590,682 L554,606 Q468,645 392,645 Z" /></symbol><symbol id="OBSERVED/MORX-23/1.D" overflow="visible"><path d="M669,364 Q669,185 571,92 Q474,0 296,0 L97,0 L97,714 L317,714 Q481,714 575,623 Q669,533 669,364 Z M574,361 Q574,501 505,569 Q436,637 304,637 L187,637 L187,77 L284,77 Q429,77 501,148 Q574,220 574,361 Z" /></symbol><symbol id="OBSERVED/MORX-23/1.E" overflow="visible"><path d="M97,0 L97,714 L496,714 L496,635 L187,635 L187,412 L478,412 L478,334 L187,334 L187,79 L496,79 L496,0 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/MORX-23/1.A" /><use x="639" y="0" xlink:href="#OBSERVED/MORX-23/1.B" /><use x="1265" y="0" xlink:href="#OBSERVED/MORX-23/1.C" /><use x="1861" y="0" xlink:href="#OBSERVED/MORX-23/1.D" /><use x="2535" y="0" xlink:href="#OBSERVED/MORX-23/1.E" /></svg></td>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance-fail" ns0:id="MORX-23/1">✖</td>
   </tr>
 </table>
 <h3 id="SHARAN-1">SHARAN–1: Nasta‘līq</h3>

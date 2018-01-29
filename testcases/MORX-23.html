@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ft="https://github.com/OpenType/fonttest"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+<body>
+<h3 id="MORX-23">MORX-23: Contextual Glyph Substitution with CurrentIndex and DontAdvance</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXTwentythree.ttf">font</a> for this test case has
+  an <a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html"
+  >AAT Extended Glyph Metamorphosis Table</a>
+  with a single <em>Contextual Glyph Substitution Subtable</em>.
+  Its fine-state machine contains one state. For glyphs
+  glyphs <em>A</em>, <em>B</em>, <em>C</em>, and <em>D</em>,
+  the machine executes the per-glyph substitution #0
+  on <em>CurrentIndex</em> on a transition that is also marked
+  with the <em>DontAdvance</em> flag. The glyph substitution
+  replaces <em>A</em> by <em>B</em>, <em>B</em> by <em>C</em>,
+  <em>C</em> by <em>D</em>, and <em>D</em> by <em>E</em>.
+</div>
+
+<div class="desc">
+  The input string for this test is <em>ABCDE</em>. If your rendering
+  system correctly implements <em>Apple Advanced Typography,</em> the
+  finite-state machine should loop for each glyph in state 0 until it
+  gets rewritten to <em>E</em>.  The final result should be <em>EEEEE</em>.
+</div>
+
+<table>
+  <tr>
+  <tr>
+    <th></th>
+    <th style="text-align:center">ABCDE</th>
+  </tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="MORX-23/1" ft:render="ABCDE"
+        ft:font="TestMORXTwentythree.ttf"><svg version="1.1" viewBox="0 -200 2780 1200"><symbol id="MORX-23/1.E" overflow="visible"><path d="M97,0 L97,714 L496,714 L496,635 L187,635 L187,412 L478,412 L478,334 L187,334 L187,79 L496,79 L496,0 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-23/1.E" /><use x="556" y="0" xlink:href="#MORX-23/1.E" /><use x="1112" y="0" xlink:href="#MORX-23/1.E" /><use x="1668" y="0" xlink:href="#MORX-23/1.E" /><use x="2224" y="0" xlink:href="#MORX-23/1.E" /></svg></td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="MORX-23/1"/>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="MORX-23/1"/>
+  </tr>
+</table>
+</body>
+</html>
