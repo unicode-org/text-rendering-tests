@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ft="https://github.com/OpenType/fonttest"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+<body>
+<h3 id="MORX-28">MORX-28: Ligature Substitution with Unmarked Glyphs</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXTwentyeight.ttf">font</a> for this
+  test case has
+  an <a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html"
+  >AAT Extended Glyph Metamorphosis Table</a> with a
+  single <em>Ligature Subtable</em> to substitute <em>AED</em> by a ligature.
+  The glyphs <em>x</em> and <em>y</em> do not change the current
+  state of the finite-state machine, and their transitions also
+  do not carry the <em>SetMark</em> flag. If your implementation
+  is correct, it should form the ligature in spite of the presence
+  of <em>x</em> and <em>y</em>.
+</div>
+
+<table>
+  <tr>
+  <tr>
+    <th></th>
+    <th style="text-align:center">AED</th>
+    <th style="text-align:center">AxED</th>
+    <th style="text-align:center">AEyD</th>
+    <th style="text-align:center">AxEyD</th>
+    <th style="text-align:center">AxxxEyyyyD</th>
+  </tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="MORX-28/1" ft:render="AED"
+        ft:font="TestMORXTwentyeight.ttf"><svg version="1.1" viewBox="0 -200 1394 1200"><symbol id="MORX-28/1.A_E_D" overflow="visible"><path d="M338,714 L1037,714 Q1201,714 1295,623 Q1389,533 1389,364 Q1389,185 1291,92 Q1194,0 1016,0 L449,0 L449,221 L199,221 L92,0 L-1,0 Z M1004,77 Q1149,77 1221,148 Q1294,220 1294,361 Q1294,501 1225,569 Q1156,637 1024,637 L907,637 L907,77 Z M817,79 L817,635 L539,635 L539,412 L762,412 L762,334 L539,334 L539,79 Z M449,301 L449,634 L391,634 L234,301 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-28/1.A_E_D" /></svg></td>
+
+    <td class="expected" ft:id="MORX-28/2" ft:render="AxED"
+        ft:font="TestMORXTwentyeight.ttf"><svg version="1.1" viewBox="0 -200 1923 1200"><symbol id="MORX-28/2.A_E_D" overflow="visible"><path d="M338,714 L1037,714 Q1201,714 1295,623 Q1389,533 1389,364 Q1389,185 1291,92 Q1194,0 1016,0 L449,0 L449,221 L199,221 L92,0 L-1,0 Z M1004,77 Q1149,77 1221,148 Q1294,220 1294,361 Q1294,501 1225,569 Q1156,637 1024,637 L907,637 L907,77 Z M817,79 L817,635 L539,635 L539,412 L762,412 L762,334 L539,334 L539,79 Z M449,301 L449,634 L391,634 L234,301 Z" /></symbol><symbol id="MORX-28/2.x" overflow="visible"><path d="M27,536 L127,536 L265,334 L402,536 L501,536 L316,274 L511,0 L411,0 L265,214 L117,0 L18,0 L212,274 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-28/2.A_E_D" /><use x="1394" y="0" xlink:href="#MORX-28/2.x" /></svg></td>
+
+    <td class="expected" ft:id="MORX-28/3" ft:render="AEyD"
+        ft:font="TestMORXTwentyeight.ttf"><svg version="1.1" viewBox="0 -200 1904 1200"><symbol id="MORX-28/3.A_E_D" overflow="visible"><path d="M338,714 L1037,714 Q1201,714 1295,623 Q1389,533 1389,364 Q1389,185 1291,92 Q1194,0 1016,0 L449,0 L449,221 L199,221 L92,0 L-1,0 Z M1004,77 Q1149,77 1221,148 Q1294,220 1294,361 Q1294,501 1225,569 Q1156,637 1024,637 L907,637 L907,77 Z M817,79 L817,635 L539,635 L539,412 L762,412 L762,334 L539,334 L539,79 Z M449,301 L449,634 L391,634 L234,301 Z" /></symbol><symbol id="MORX-28/3.y" overflow="visible"><path d="M95,536 L211,231 Q247,133 256,85 L260,85 Q271,131 306,232 L415,536 L510,536 L279,-74 Q248,-156 203,-198 Q158,-240 84,-240 Q45,-240 11,-232 L11,-162 Q39,-168 70,-168 Q153,-168 189,-73 L217,-2 L1,536 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-28/3.A_E_D" /><use x="1394" y="0" xlink:href="#MORX-28/3.y" /></svg></td>
+
+    <td class="expected" ft:id="MORX-28/4" ft:render="AxEyD"
+        ft:font="TestMORXTwentyeight.ttf"><svg version="1.1" viewBox="0 -200 2433 1200"><symbol id="MORX-28/4.A_E_D" overflow="visible"><path d="M338,714 L1037,714 Q1201,714 1295,623 Q1389,533 1389,364 Q1389,185 1291,92 Q1194,0 1016,0 L449,0 L449,221 L199,221 L92,0 L-1,0 Z M1004,77 Q1149,77 1221,148 Q1294,220 1294,361 Q1294,501 1225,569 Q1156,637 1024,637 L907,637 L907,77 Z M817,79 L817,635 L539,635 L539,412 L762,412 L762,334 L539,334 L539,79 Z M449,301 L449,634 L391,634 L234,301 Z" /></symbol><symbol id="MORX-28/4.x" overflow="visible"><path d="M27,536 L127,536 L265,334 L402,536 L501,536 L316,274 L511,0 L411,0 L265,214 L117,0 L18,0 L212,274 Z" /></symbol><symbol id="MORX-28/4.y" overflow="visible"><path d="M95,536 L211,231 Q247,133 256,85 L260,85 Q271,131 306,232 L415,536 L510,536 L279,-74 Q248,-156 203,-198 Q158,-240 84,-240 Q45,-240 11,-232 L11,-162 Q39,-168 70,-168 Q153,-168 189,-73 L217,-2 L1,536 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-28/4.A_E_D" /><use x="1394" y="0" xlink:href="#MORX-28/4.x" /><use x="1923" y="0" xlink:href="#MORX-28/4.y" /></svg></td>
+
+    <td class="expected" ft:id="MORX-28/5" ft:render="AxxxEyyyD"
+        ft:font="TestMORXTwentyeight.ttf"><svg version="1.1" viewBox="0 -200 4511 1200"><symbol id="MORX-28/5.A_E_D" overflow="visible"><path d="M338,714 L1037,714 Q1201,714 1295,623 Q1389,533 1389,364 Q1389,185 1291,92 Q1194,0 1016,0 L449,0 L449,221 L199,221 L92,0 L-1,0 Z M1004,77 Q1149,77 1221,148 Q1294,220 1294,361 Q1294,501 1225,569 Q1156,637 1024,637 L907,637 L907,77 Z M817,79 L817,635 L539,635 L539,412 L762,412 L762,334 L539,334 L539,79 Z M449,301 L449,634 L391,634 L234,301 Z" /></symbol><symbol id="MORX-28/5.x" overflow="visible"><path d="M27,536 L127,536 L265,334 L402,536 L501,536 L316,274 L511,0 L411,0 L265,214 L117,0 L18,0 L212,274 Z" /></symbol><symbol id="MORX-28/5.y" overflow="visible"><path d="M95,536 L211,231 Q247,133 256,85 L260,85 Q271,131 306,232 L415,536 L510,536 L279,-74 Q248,-156 203,-198 Q158,-240 84,-240 Q45,-240 11,-232 L11,-162 Q39,-168 70,-168 Q153,-168 189,-73 L217,-2 L1,536 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-28/5.A_E_D" /><use x="1394" y="0" xlink:href="#MORX-28/5.x" /><use x="1923" y="0" xlink:href="#MORX-28/5.x" /><use x="2452" y="0" xlink:href="#MORX-28/5.x" /><use x="2981" y="0" xlink:href="#MORX-28/5.y" /><use x="3491" y="0" xlink:href="#MORX-28/5.y" /><use x="4001" y="0" xlink:href="#MORX-28/5.y" /></svg></td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="MORX-28/1"/>
+    <td class="observed" ft:id="MORX-28/2"/>
+    <td class="observed" ft:id="MORX-28/3"/>
+    <td class="observed" ft:id="MORX-28/4"/>
+    <td class="observed" ft:id="MORX-28/5"/>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="MORX-28/1"/>
+    <td class="conformance" ft:id="MORX-28/2"/>
+    <td class="conformance" ft:id="MORX-28/3"/>
+    <td class="conformance" ft:id="MORX-28/4"/>
+    <td class="conformance" ft:id="MORX-28/5"/>
+  </tr>
+</table>
+</body>
+</html>
