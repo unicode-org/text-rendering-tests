@@ -32,7 +32,7 @@ svg {height:2.5em;transform:scaleY(-1)}
 </style></head>
 <body>
 <h1>Text Rendering Test Report</h1>
-<h2>February 8, 2018 · CoreText</h2>
+<h2>February 12, 2018 · CoreText</h2>
 <h3>Overview</h3>
 <div class="desc" id="SummaryText">Some tests have failed. For details, see <a href="#CFF2-1">CFF2-1</a>, <a href="#GVAR-9">GVAR-9</a>, <a href="#GPOS-5">GPOS-5</a>, <a href="#HVAR-1">HVAR-1</a>, <a href="#MORX-4">MORX-4</a>, <a href="#MORX-14">MORX-14</a>, <a href="#SHARAN-1">SHARAN-1</a>, and <a href="#SHBALI-1">SHBALI-1</a>.</div>
 <h3 id="AVAR-1">AVAR–1: Weight Flattening</h3>
@@ -3983,6 +3983,44 @@ look increasingly distorted.
     <th class="conformance-header">Conformance</th>
     <td class="conformance-pass" ns0:id="MORX-26/1">✓</td>
     <td class="conformance-pass" ns0:id="MORX-26/2">✓</td>
+  </tr>
+</table>
+<h3 id="MORX-27">MORX-27: Ligature Substitution</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXTwentyseven.ttf">font</a> for this
+  test case has
+  an <a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html">AAT Extended Glyph Metamorphosis Table</a> with a
+  single <em>Ligature Subtable</em> to sustitute the
+  strings <em>AEB</em>, <em>AEC</em> and <em>AED</em> by ligatures.
+</div>
+
+<table>
+  <tr>
+  <tr>
+    <th />
+    <th style="text-align:center">AEB</th>
+    <th style="text-align:center">AEC</th>
+    <th style="text-align:center">AED</th>
+  </tr>
+    <th>Expected</th>
+    <td class="expected" ns0:font="TestMORXTwentyseven.ttf" ns0:id="MORX-27/1" ns0:render="AEB"><svg version="1.1" viewBox="0 -200 1346 1200"><symbol id="MORX-27/1.A_E_B" overflow="visible"><path d="M1156,374 Q1316,347 1316,203 Q1316,106 1250,53 Q1184,0 1068,0 L449,0 L449,221 L199,221 L92,0 L-1,0 L338,714 L1021,714 Q1159,714 1225,673 Q1292,632 1292,537 Q1292,474 1257,432 Q1222,391 1156,379 Z M907,410 L1039,410 Q1127,410 1163,438 Q1199,467 1199,527 Q1199,585 1157,611 Q1116,637 1025,637 L907,637 Z M817,79 L817,635 L539,635 L539,412 L742,412 L742,334 L539,334 L539,79 Z M449,634 L391,634 L234,301 L449,301 Z M1051,76 Q1141,76 1180,111 Q1220,146 1220,210 Q1220,270 1179,302 Q1138,335 1044,335 L907,335 L907,76 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-27/1.A_E_B" /></svg></td>
+
+    <td class="expected" ns0:font="TestMORXTwentyseven.ttf" ns0:id="MORX-27/2" ns0:render="AEC"><svg version="1.1" viewBox="0 -200 1326 1200"><symbol id="MORX-27/2.A_E_C" overflow="visible"><path d="M875,357 Q875,221 937,145 Q1000,69 1121,69 Q1198,69 1292,97 L1292,19 Q1252,4 1209,-3 Q1166,-10 1108,-10 Q1001,-10 927,35 L927,0 L449,0 L449,221 L199,221 L92,0 L-1,0 L338,714 L927,714 L927,672 Q1009,724 1123,724 Q1178,724 1228,713 Q1279,702 1320,682 L1284,606 Q1198,645 1122,645 Q1007,645 941,568 Q875,491 875,357 Z M539,79 L871,79 Q780,174 780,358 Q780,444 806,515 Q832,586 881,635 L539,635 L539,412 L732,412 L732,334 L539,334 Z M449,634 L391,634 L234,301 L449,301 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-27/2.A_E_C" /></svg></td>
+
+    <td class="expected" ns0:font="TestMORXTwentyseven.ttf" ns0:id="MORX-27/3" ns0:render="AED"><svg version="1.1" viewBox="0 -200 1394 1200"><symbol id="MORX-27/3.A_E_D" overflow="visible"><path d="M338,714 L1037,714 Q1201,714 1295,623 Q1389,533 1389,364 Q1389,185 1291,92 Q1194,0 1016,0 L449,0 L449,221 L199,221 L92,0 L-1,0 Z M1004,77 Q1149,77 1221,148 Q1294,220 1294,361 Q1294,501 1225,569 Q1156,637 1024,637 L907,637 L907,77 Z M817,79 L817,635 L539,635 L539,412 L762,412 L762,334 L539,334 L539,79 Z M449,301 L449,634 L391,634 L234,301 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-27/3.A_E_D" /></svg></td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ns0:id="MORX-27/1"><svg version="1.1" viewBox="0 -200 1346 1200"><symbol id="OBSERVED/MORX-27/1.A_E_B" overflow="visible"><path d="M1156,374 Q1316,347 1316,203 Q1316,106 1250,53 Q1184,0 1068,0 L449,0 L449,221 L199,221 L92,0 L-1,0 L338,714 L1021,714 Q1159,714 1225,673 Q1292,632 1292,537 Q1292,474 1257,432 Q1222,391 1156,379 Z M907,410 L1039,410 Q1127,410 1163,438 Q1199,467 1199,527 Q1199,585 1157,611 Q1116,637 1025,637 L907,637 Z M817,79 L817,635 L539,635 L539,412 L742,412 L742,334 L539,334 L539,79 Z M449,634 L391,634 L234,301 L449,301 Z M1051,76 Q1141,76 1180,111 Q1220,146 1220,210 Q1220,270 1179,302 Q1138,335 1044,335 L907,335 L907,76 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/MORX-27/1.A_E_B" /></svg></td>
+    <td class="observed" ns0:id="MORX-27/2"><svg version="1.1" viewBox="0 -200 1326 1200"><symbol id="OBSERVED/MORX-27/2.A_E_C" overflow="visible"><path d="M875,357 Q875,221 937,145 Q1000,69 1121,69 Q1198,69 1292,97 L1292,19 Q1252,4 1209,-3 Q1166,-10 1108,-10 Q1001,-10 927,35 L927,0 L449,0 L449,221 L199,221 L92,0 L-1,0 L338,714 L927,714 L927,672 Q1009,724 1123,724 Q1178,724 1228,713 Q1279,702 1320,682 L1284,606 Q1198,645 1122,645 Q1007,645 941,568 Q875,491 875,357 Z M539,79 L871,79 Q780,174 780,358 Q780,444 806,515 Q832,586 881,635 L539,635 L539,412 L732,412 L732,334 L539,334 Z M449,634 L391,634 L234,301 L449,301 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/MORX-27/2.A_E_C" /></svg></td>
+    <td class="observed" ns0:id="MORX-27/3"><svg version="1.1" viewBox="0 -200 1394 1200"><symbol id="OBSERVED/MORX-27/3.A_E_D" overflow="visible"><path d="M338,714 L1037,714 Q1201,714 1295,623 Q1389,533 1389,364 Q1389,185 1291,92 Q1194,0 1016,0 L449,0 L449,221 L199,221 L92,0 L-1,0 Z M1004,77 Q1149,77 1221,148 Q1294,220 1294,361 Q1294,501 1225,569 Q1156,637 1024,637 L907,637 L907,77 Z M817,79 L817,635 L539,635 L539,412 L762,412 L762,334 L539,334 L539,79 Z M449,301 L449,634 L391,634 L234,301 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/MORX-27/3.A_E_D" /></svg></td>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance-pass" ns0:id="MORX-27/1">✓</td>
+    <td class="conformance-pass" ns0:id="MORX-27/2">✓</td>
+    <td class="conformance-pass" ns0:id="MORX-27/3">✓</td>
   </tr>
 </table>
 <h3 id="SHARAN-1">SHARAN–1: Nasta‘līq</h3>

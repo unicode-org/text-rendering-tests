@@ -32,9 +32,9 @@ svg {height:2.5em;transform:scaleY(-1)}
 </style></head>
 <body>
 <h1>Text Rendering Test Report</h1>
-<h2>February 8, 2018 · FreeStack</h2>
+<h2>February 12, 2018 · FreeStack</h2>
 <h3>Overview</h3>
-<div class="desc" id="SummaryText">Some tests have failed. For details, see <a href="#CMAP-3">CMAP-3</a>, <a href="#CMAP-1">CMAP-1</a>, <a href="#MORX-9">MORX-9</a>, <a href="#MORX-8">MORX-8</a>, <a href="#MORX-2">MORX-2</a>, <a href="#MORX-1">MORX-1</a>, <a href="#MORX-7">MORX-7</a>, <a href="#MORX-6">MORX-6</a>, <a href="#MORX-4">MORX-4</a>, <a href="#MORX-13">MORX-13</a>, <a href="#MORX-12">MORX-12</a>, <a href="#MORX-11">MORX-11</a>, <a href="#MORX-10">MORX-10</a>, <a href="#MORX-17">MORX-17</a>, <a href="#MORX-16">MORX-16</a>, <a href="#MORX-14">MORX-14</a>, <a href="#MORX-19">MORX-19</a>, <a href="#MORX-18">MORX-18</a>, <a href="#MORX-22">MORX-22</a>, <a href="#MORX-23">MORX-23</a>, <a href="#MORX-20">MORX-20</a>, <a href="#MORX-21">MORX-21</a>, <a href="#MORX-26">MORX-26</a>, and <a href="#MORX-25">MORX-25</a>.</div>
+<div class="desc" id="SummaryText">Some tests have failed. For details, see <a href="#CMAP-3">CMAP-3</a>, <a href="#CMAP-1">CMAP-1</a>, <a href="#MORX-9">MORX-9</a>, <a href="#MORX-8">MORX-8</a>, <a href="#MORX-2">MORX-2</a>, <a href="#MORX-1">MORX-1</a>, <a href="#MORX-7">MORX-7</a>, <a href="#MORX-6">MORX-6</a>, <a href="#MORX-4">MORX-4</a>, <a href="#MORX-13">MORX-13</a>, <a href="#MORX-12">MORX-12</a>, <a href="#MORX-11">MORX-11</a>, <a href="#MORX-10">MORX-10</a>, <a href="#MORX-17">MORX-17</a>, <a href="#MORX-16">MORX-16</a>, <a href="#MORX-14">MORX-14</a>, <a href="#MORX-19">MORX-19</a>, <a href="#MORX-18">MORX-18</a>, <a href="#MORX-22">MORX-22</a>, <a href="#MORX-23">MORX-23</a>, <a href="#MORX-20">MORX-20</a>, <a href="#MORX-21">MORX-21</a>, <a href="#MORX-26">MORX-26</a>, <a href="#MORX-27">MORX-27</a>, and <a href="#MORX-25">MORX-25</a>.</div>
 <h3 id="AVAR-1">AVAR–1: Weight Flattening</h3>
 
 <div class="desc">
@@ -3983,6 +3983,44 @@ look increasingly distorted.
     <th class="conformance-header">Conformance</th>
     <td class="conformance-pass" ns0:id="MORX-26/1">✓</td>
     <td class="conformance-fail" ns0:id="MORX-26/2">✖</td>
+  </tr>
+</table>
+<h3 id="MORX-27">MORX-27: Ligature Substitution</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXTwentyseven.ttf">font</a> for this
+  test case has
+  an <a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html">AAT Extended Glyph Metamorphosis Table</a> with a
+  single <em>Ligature Subtable</em> to sustitute the
+  strings <em>AEB</em>, <em>AEC</em> and <em>AED</em> by ligatures.
+</div>
+
+<table>
+  <tr>
+  <tr>
+    <th />
+    <th style="text-align:center">AEB</th>
+    <th style="text-align:center">AEC</th>
+    <th style="text-align:center">AED</th>
+  </tr>
+    <th>Expected</th>
+    <td class="expected" ns0:font="TestMORXTwentyseven.ttf" ns0:id="MORX-27/1" ns0:render="AEB"><svg version="1.1" viewBox="0 -200 1346 1200"><symbol id="MORX-27/1.A_E_B" overflow="visible"><path d="M1156,374 Q1316,347 1316,203 Q1316,106 1250,53 Q1184,0 1068,0 L449,0 L449,221 L199,221 L92,0 L-1,0 L338,714 L1021,714 Q1159,714 1225,673 Q1292,632 1292,537 Q1292,474 1257,432 Q1222,391 1156,379 Z M907,410 L1039,410 Q1127,410 1163,438 Q1199,467 1199,527 Q1199,585 1157,611 Q1116,637 1025,637 L907,637 Z M817,79 L817,635 L539,635 L539,412 L742,412 L742,334 L539,334 L539,79 Z M449,634 L391,634 L234,301 L449,301 Z M1051,76 Q1141,76 1180,111 Q1220,146 1220,210 Q1220,270 1179,302 Q1138,335 1044,335 L907,335 L907,76 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-27/1.A_E_B" /></svg></td>
+
+    <td class="expected" ns0:font="TestMORXTwentyseven.ttf" ns0:id="MORX-27/2" ns0:render="AEC"><svg version="1.1" viewBox="0 -200 1326 1200"><symbol id="MORX-27/2.A_E_C" overflow="visible"><path d="M875,357 Q875,221 937,145 Q1000,69 1121,69 Q1198,69 1292,97 L1292,19 Q1252,4 1209,-3 Q1166,-10 1108,-10 Q1001,-10 927,35 L927,0 L449,0 L449,221 L199,221 L92,0 L-1,0 L338,714 L927,714 L927,672 Q1009,724 1123,724 Q1178,724 1228,713 Q1279,702 1320,682 L1284,606 Q1198,645 1122,645 Q1007,645 941,568 Q875,491 875,357 Z M539,79 L871,79 Q780,174 780,358 Q780,444 806,515 Q832,586 881,635 L539,635 L539,412 L732,412 L732,334 L539,334 Z M449,634 L391,634 L234,301 L449,301 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-27/2.A_E_C" /></svg></td>
+
+    <td class="expected" ns0:font="TestMORXTwentyseven.ttf" ns0:id="MORX-27/3" ns0:render="AED"><svg version="1.1" viewBox="0 -200 1394 1200"><symbol id="MORX-27/3.A_E_D" overflow="visible"><path d="M338,714 L1037,714 Q1201,714 1295,623 Q1389,533 1389,364 Q1389,185 1291,92 Q1194,0 1016,0 L449,0 L449,221 L199,221 L92,0 L-1,0 Z M1004,77 Q1149,77 1221,148 Q1294,220 1294,361 Q1294,501 1225,569 Q1156,637 1024,637 L907,637 L907,77 Z M817,79 L817,635 L539,635 L539,412 L762,412 L762,334 L539,334 L539,79 Z M449,301 L449,634 L391,634 L234,301 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-27/3.A_E_D" /></svg></td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ns0:id="MORX-27/1"><svg version="1.1" viewBox="0 -200 1820 1200"><symbol id="OBSERVED/MORX-27/1.A" overflow="visible"><path d="M459,221 L176,221 L91,0 L0,0 L279,717 L360,717 L638,0 L545,0 Z M352,517 Q345,537 335,568 Q325,599 318,624 Q303,564 287,517 L206,301 L432,301 Z" /></symbol><symbol id="OBSERVED/MORX-27/1.E" overflow="visible"><path d="M97,0 L97,714 L496,714 L496,635 L187,635 L187,412 L478,412 L478,334 L187,334 L187,79 L496,79 L496,0 Z" /></symbol><symbol id="OBSERVED/MORX-27/1.B" overflow="visible"><path d="M301,714 Q439,714 505,673 Q572,632 572,537 Q572,474 537,432 Q502,391 436,379 L436,374 Q596,347 596,203 Q596,106 530,53 Q464,0 348,0 L97,0 L97,714 Z M319,410 Q407,410 443,438 Q479,467 479,527 Q479,585 437,611 Q396,637 305,637 L187,637 L187,410 Z M187,76 L331,76 Q421,76 460,111 Q500,146 500,210 Q500,270 459,302 Q418,335 324,335 L187,335 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/MORX-27/1.A" /><use x="638" y="0" xlink:href="#OBSERVED/MORX-27/1.E" /><use x="1194" y="0" xlink:href="#OBSERVED/MORX-27/1.B" /></svg></td>
+    <td class="observed" ns0:id="MORX-27/2"><svg version="1.1" viewBox="0 -200 1790 1200"><symbol id="OBSERVED/MORX-27/2.A" overflow="visible"><path d="M459,221 L176,221 L91,0 L0,0 L279,717 L360,717 L638,0 L545,0 Z M352,517 Q345,537 335,568 Q325,599 318,624 Q303,564 287,517 L206,301 L432,301 Z" /></symbol><symbol id="OBSERVED/MORX-27/2.E" overflow="visible"><path d="M97,0 L97,714 L496,714 L496,635 L187,635 L187,412 L478,412 L478,334 L187,334 L187,79 L496,79 L496,0 Z" /></symbol><symbol id="OBSERVED/MORX-27/2.C" overflow="visible"><path d="M392,645 Q277,645 211,568 Q145,491 145,357 Q145,221 207,145 Q270,69 391,69 Q468,69 562,97 L562,19 Q522,4 479,-3 Q436,-10 378,-10 Q217,-10 133,87 Q50,185 50,358 Q50,467 90,549 Q130,632 207,678 Q285,724 393,724 Q448,724 498,713 Q549,702 590,682 L554,606 Q468,645 392,645 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/MORX-27/2.A" /><use x="638" y="0" xlink:href="#OBSERVED/MORX-27/2.E" /><use x="1194" y="0" xlink:href="#OBSERVED/MORX-27/2.C" /></svg></td>
+    <td class="observed" ns0:id="MORX-27/3"><svg version="1.1" viewBox="0 -200 1868 1200"><symbol id="OBSERVED/MORX-27/3.A" overflow="visible"><path d="M459,221 L176,221 L91,0 L0,0 L279,717 L360,717 L638,0 L545,0 Z M352,517 Q345,537 335,568 Q325,599 318,624 Q303,564 287,517 L206,301 L432,301 Z" /></symbol><symbol id="OBSERVED/MORX-27/3.E" overflow="visible"><path d="M97,0 L97,714 L496,714 L496,635 L187,635 L187,412 L478,412 L478,334 L187,334 L187,79 L496,79 L496,0 Z" /></symbol><symbol id="OBSERVED/MORX-27/3.D" overflow="visible"><path d="M669,364 Q669,185 571,92 Q474,0 296,0 L97,0 L97,714 L317,714 Q481,714 575,623 Q669,533 669,364 Z M574,361 Q574,501 505,569 Q436,637 304,637 L187,637 L187,77 L284,77 Q429,77 501,148 Q574,220 574,361 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/MORX-27/3.A" /><use x="638" y="0" xlink:href="#OBSERVED/MORX-27/3.E" /><use x="1194" y="0" xlink:href="#OBSERVED/MORX-27/3.D" /></svg></td>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance-fail" ns0:id="MORX-27/1">✖</td>
+    <td class="conformance-fail" ns0:id="MORX-27/2">✖</td>
+    <td class="conformance-fail" ns0:id="MORX-27/3">✖</td>
   </tr>
 </table>
 <h3 id="SHARAN-1">SHARAN–1: Nasta‘līq</h3>
