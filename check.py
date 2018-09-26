@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from __future__ import unicode_literals
+from __future__ import print_function, unicode_literals
 import argparse, datetime, itertools, os, re, subprocess, time
 import xml.etree.ElementTree as etree
 import svgutil
@@ -80,7 +80,7 @@ class ConformanceChecker:
                 group = '/'.join(groups[:i])
                 self.conformance[group] = (ok and
                                            self.conformance.get(group, True))
-        print "%s %s" % ("PASS" if all_ok else "FAIL", testfile)
+        print("%s %s" % ("PASS" if all_ok else "FAIL", testfile))
 
     def normalize_svg(self, svg):
         strip_path = lambda p: re.sub(r'\s+', ' ', p).strip()
