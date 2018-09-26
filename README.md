@@ -2,7 +2,7 @@
 
 # Text rendering tests
 
-This is a test suite for text rendering. It is not easy to correctly
+This is a test suite for text rendering engines. It is not easy to correctly
 display text, so we founded this project to help implementations to
 get this right.
 
