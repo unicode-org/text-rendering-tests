@@ -24,6 +24,7 @@
                 'HAVE_UNISTD_H',
 	    ],
             'sources': [
+                'harfbuzz/src/hb-aat-layout.cc',
                 'harfbuzz/src/hb-blob.cc',
                 'harfbuzz/src/hb-buffer-serialize.cc',
                 'harfbuzz/src/hb-buffer.cc',
