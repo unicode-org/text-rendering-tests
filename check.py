@@ -103,7 +103,8 @@ class ConformanceChecker:
         report.find("./body/h2").text = self.datestr + ' · ' + self.engine
         summary = report.find("./body//*[@id='SummaryText']")
         fails = [k for k, v in self.conformance.items() if k and not v]
-        fails = sorted(set([t.split('/')[0] for t in fails]), key=sortkey)
+        fails = sorted(set([t.split('/')[0] for t in fails]),
+                       key=lambda k: sortkey((k + '/1', None)))
         if len(fails) == 0:
             summary.text = 'All tests have passed.'
         else:
