@@ -16,7 +16,8 @@
 # limitations under the License.
 
 from __future__ import print_function, unicode_literals
-import argparse, datetime, itertools, os, re, subprocess, threading, time
+import argparse, datetime, itertools, os, re, signal, subprocess
+import threading, time
 import xml.etree.ElementTree as etree
 import svgutil
 
@@ -62,18 +63,22 @@ class ConformanceChecker:
             if render: command.append('--render=' + render)
             if variation: command.append('--variation=' + variation)
             status, observed, _stderr = run_command(command, timeout_sec=3)
-            if status != 0:
-                observed = '<error/>'
-            observed = re.sub(r'>\s+<', '><', observed)
-            observed = observed.replace(
-                'xmlns="http://www.w3.org/2000/svg"', '')
-            observed_svg = etree.fromstring(observed)
-            self.normalize_svg(observed_svg)
-            ok = svgutil.is_similar(expected_svg, observed_svg, maxDelta=1.0)
+            if status == 0:
+                observed = re.sub(r'>\s+<', '><', observed)
+                observed = observed.replace(
+                    'xmlns="http://www.w3.org/2000/svg"', '')
+                observed_svg = etree.fromstring(observed)
+                self.normalize_svg(observed_svg)
+                ok = svgutil.is_similar(expected_svg, observed_svg,
+                                        maxDelta=1.0)
+                self.add_prefix_to_svg_ids(observed_svg, 'OBSERVED')
+                self.observed[testcase] = observed_svg
+            else:
+                self.observed[testcase] = etree.fromstring(
+                    '<div>&#x2053;</div>')
+                ok = False
             all_ok = all_ok and ok
             self.conformance[testcase] = ok
-            self.add_prefix_to_svg_ids(observed_svg, 'OBSERVED')
-            self.observed[testcase] = observed_svg
             groups = testcase.split('/')
             for i in range(len(groups)):
                 group = '/'.join(groups[:i])
