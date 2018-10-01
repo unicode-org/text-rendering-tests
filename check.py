@@ -16,7 +16,7 @@
 # limitations under the License.
 
 from __future__ import print_function, unicode_literals
-import argparse, datetime, itertools, os, re, subprocess, time
+import argparse, datetime, itertools, os, re, subprocess, threading, time
 import xml.etree.ElementTree as etree
 import svgutil
 
@@ -61,9 +61,8 @@ class ConformanceChecker:
                        '--testcase=' + testcase, '--engine=' + self.engine]
             if render: command.append('--render=' + render)
             if variation: command.append('--variation=' + variation)
-            try:
-                observed = subprocess.check_output(command)
-            except subprocess.CalledProcessError:
+            status, observed, _stderr = run_command(command, timeout_sec=3)
+            if status != 0:
                 observed = '<error/>'
             observed = re.sub(r'>\s+<', '><', observed)
             observed = observed.replace(
@@ -150,6 +149,17 @@ def sortkey(s):
     """'(tests/GVAR-10B.html, _)' --> 'tests/GVAR-0000000010B.html'"""
     return re.sub(r'\d+', lambda match: '%09d' % int(match.group(0)), s[0])
 
+
+def run_command(cmd, timeout_sec):
+    child = subprocess.Popen(cmd, stdout=subprocess.PIPE,
+                             stderr=subprocess.PIPE)
+    timer = threading.Timer(timeout_sec, child.kill)
+    try:
+        timer.start()
+        stdout, stderr = child.communicate()
+    finally:
+        timer.cancel()
+    return child.returncode, stdout, stderr
 
 
 def build(engine):
