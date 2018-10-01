@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ft="https://github.com/OpenType/fonttest"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+<body>
+<h3 id="MORX-33">MORX-33: Twice the Fun</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXThirtythree.ttf">font</a> for this
+  test case has
+  an <a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html"
+  >AAT Extended Glyph Metamorphosis Table</a>
+  with a single <em>Glyph Insertion Subtable</em>. When consuming
+  glyph <em>‘h’</em> in state 0, its finite-state machine transitions
+  to state 1.  When consuming
+  glyph <em>‘a’</em> in state 1, its finite-state machine transitions
+  back to state 0 while also inserting the string <em>“ha”</em>.
+  If your implementation is correct, every <em>ha</em> in the input
+  should get rendered twice.
+</div>
+
+<table>
+  <tr>
+    <td> </td>
+    <td><em>ha</em></td>
+    <td><em>haha</em></td>
+    <td><em>ah</em></td>
+  </tr>
+
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="MORX-33/1" ft:render="ha"
+        ft:font="TestMORXThirtythree.ttf"><svg version="1.1" viewBox="0 -200 2358 1200"><symbol id="MORX-33/1.h" overflow="visible"><path d="M173,537 Q173,497 168,462 L174,462 Q200,503 244,524 Q289,545 341,545 Q438,545 487,498 Q537,452 537,349 L537,0 L450,0 L450,343 Q450,472 330,472 Q240,472 206,421 Q173,371 173,277 L173,0 L85,0 L85,760 L173,760 Z" /></symbol><symbol id="MORX-33/1.a" overflow="visible"><path d="M288,545 Q386,545 433,502 Q480,459 480,365 L480,0 L416,0 L399,76 L395,76 Q360,32 321,11 Q282,-10 215,-10 Q142,-10 94,28 Q46,67 46,149 Q46,229 109,272 Q172,316 303,320 L394,323 L394,355 Q394,422 365,448 Q336,474 283,474 Q241,474 203,461 Q165,449 132,433 L105,499 Q140,518 188,531 Q236,545 288,545 Z M314,259 Q214,255 175,227 Q137,199 137,148 Q137,103 164,82 Q192,61 235,61 Q302,61 347,98 Q393,136 393,214 L393,262 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-33/1.h" /><use x="618" y="0" xlink:href="#MORX-33/1.a" /><use x="1179" y="0" xlink:href="#MORX-33/1.h" /><use x="1797" y="0" xlink:href="#MORX-33/1.a" /></svg></td>
+
+    <td class="expected" ft:id="MORX-33/2" ft:render="haha"
+        ft:font="TestMORXThirtythree.ttf"><svg version="1.1" viewBox="0 -200 4716 1200"><symbol id="MORX-33/2.h" overflow="visible"><path d="M173,537 Q173,497 168,462 L174,462 Q200,503 244,524 Q289,545 341,545 Q438,545 487,498 Q537,452 537,349 L537,0 L450,0 L450,343 Q450,472 330,472 Q240,472 206,421 Q173,371 173,277 L173,0 L85,0 L85,760 L173,760 Z" /></symbol><symbol id="MORX-33/2.a" overflow="visible"><path d="M288,545 Q386,545 433,502 Q480,459 480,365 L480,0 L416,0 L399,76 L395,76 Q360,32 321,11 Q282,-10 215,-10 Q142,-10 94,28 Q46,67 46,149 Q46,229 109,272 Q172,316 303,320 L394,323 L394,355 Q394,422 365,448 Q336,474 283,474 Q241,474 203,461 Q165,449 132,433 L105,499 Q140,518 188,531 Q236,545 288,545 Z M314,259 Q214,255 175,227 Q137,199 137,148 Q137,103 164,82 Q192,61 235,61 Q302,61 347,98 Q393,136 393,214 L393,262 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-33/2.h" /><use x="618" y="0" xlink:href="#MORX-33/2.a" /><use x="1179" y="0" xlink:href="#MORX-33/2.h" /><use x="1797" y="0" xlink:href="#MORX-33/2.a" /><use x="2358" y="0" xlink:href="#MORX-33/2.h" /><use x="2976" y="0" xlink:href="#MORX-33/2.a" /><use x="3537" y="0" xlink:href="#MORX-33/2.h" /><use x="4155" y="0" xlink:href="#MORX-33/2.a" /></svg></td>
+
+    <td class="expected" ft:id="MORX-33/3" ft:render="ah"
+        ft:font="TestMORXThirtythree.ttf"><svg version="1.1" viewBox="0 -200 1179 1200"><symbol id="MORX-33/3.a" overflow="visible"><path d="M288,545 Q386,545 433,502 Q480,459 480,365 L480,0 L416,0 L399,76 L395,76 Q360,32 321,11 Q282,-10 215,-10 Q142,-10 94,28 Q46,67 46,149 Q46,229 109,272 Q172,316 303,320 L394,323 L394,355 Q394,422 365,448 Q336,474 283,474 Q241,474 203,461 Q165,449 132,433 L105,499 Q140,518 188,531 Q236,545 288,545 Z M314,259 Q214,255 175,227 Q137,199 137,148 Q137,103 164,82 Q192,61 235,61 Q302,61 347,98 Q393,136 393,214 L393,262 Z" /></symbol><symbol id="MORX-33/3.h" overflow="visible"><path d="M173,537 Q173,497 168,462 L174,462 Q200,503 244,524 Q289,545 341,545 Q438,545 487,498 Q537,452 537,349 L537,0 L450,0 L450,343 Q450,472 330,472 Q240,472 206,421 Q173,371 173,277 L173,0 L85,0 L85,760 L173,760 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-33/3.a" /><use x="561" y="0" xlink:href="#MORX-33/3.h" /></svg></td>
+  </tr>
+
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="MORX-33/1"/>
+    <td class="observed" ft:id="MORX-33/2"/>
+    <td class="observed" ft:id="MORX-33/3"/>
+  </tr>
+
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="MORX-33/1"/>
+    <td class="conformance" ft:id="MORX-33/2"/>
+    <td class="conformance" ft:id="MORX-33/3"/>
+  </tr>
+
+</table>
+</body>
+</html>
