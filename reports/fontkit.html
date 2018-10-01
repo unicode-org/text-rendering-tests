@@ -34,7 +34,7 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h1>Text Rendering Test Report</h1>
 <h2>October 1, 2018 · fontkit</h2>
 <h3>Overview</h3>
-<div class="desc" id="SummaryText">Some tests have failed. For details, see <a href="#MORX-3">MORX-3</a>, <a href="#MORX-5">MORX-5</a>, <a href="#MORX-10">MORX-10</a>, <a href="#MORX-11">MORX-11</a>, <a href="#MORX-17">MORX-17</a>, <a href="#MORX-19">MORX-19</a>, <a href="#MORX-20">MORX-20</a>, <a href="#MORX-29">MORX-29</a>, <a href="#MORX-30">MORX-30</a>, <a href="#MORX-31">MORX-31</a>, <a href="#MORX-32">MORX-32</a>, and <a href="#MORX-33">MORX-33</a>.</div>
+<div class="desc" id="SummaryText">Some tests have failed. For details, see <a href="#MORX-3">MORX-3</a>, <a href="#MORX-5">MORX-5</a>, <a href="#MORX-10">MORX-10</a>, <a href="#MORX-11">MORX-11</a>, <a href="#MORX-17">MORX-17</a>, <a href="#MORX-19">MORX-19</a>, <a href="#MORX-20">MORX-20</a>, <a href="#MORX-29">MORX-29</a>, <a href="#MORX-30">MORX-30</a>, <a href="#MORX-31">MORX-31</a>, <a href="#MORX-32">MORX-32</a>, <a href="#MORX-33">MORX-33</a>, and <a href="#MORX-34">MORX-34</a>.</div>
 <h3 id="AVAR-1">AVAR–1: Weight Flattening</h3>
 
 <div class="desc">
@@ -4473,6 +4473,33 @@ look increasingly distorted.
     <td class="conformance-fail" ns0:id="MORX-33/1">✖</td>
     <td class="conformance-fail" ns0:id="MORX-33/2">✖</td>
     <td class="conformance-pass" ns0:id="MORX-33/3">✓</td>
+  </tr>
+
+</table>
+<h3 id="MORX-34">MORX-34: Inserting a Billion Laughs</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXThirtyfour.ttf">font</a> for this
+  test case is an AAT version of the
+  <a href="https://en.wikipedia.org/wiki/Billion_laughs_attack">Billion
+  laughs attack</a>. It contains
+  an <a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html">AAT Extended Glyph Metamorphosis Table</a> with nine
+  identical <em>Glyph Insertion Subtables</em> whose embedded
+  finite-state machine inserts the
+  string <em>hahahahahahahahahaha</em> for every <em>a</em> in the
+  input string.  If the input is “ha” (one single laugh), the first
+  subtable rewrites it to 10 laughs. The second subtable rewrites 10
+  to 100 laughs; the third goes from 100 to 1000; the fourth from 1000
+  to 10,000.  After executing the ninth subtable, the final result
+  will be a billion laughs, but this will take a very long time (and
+  large amounts of memory) to compute. Your implementation should
+  neither crash nor hang under attack.
+</div>
+
+<table>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance-fail" ns0:font="TestMORXThirtyfour.ttf" ns0:id="MORX-34/1" ns0:render="ha">✖</td>
   </tr>
 
 </table>

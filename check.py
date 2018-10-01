@@ -47,21 +47,26 @@ class ConformanceChecker:
         now = datetime.datetime.now()
         return '%s %d, %d' % (time.strftime("%B"), now.day, now.year)
 
+    def make_command(self, e):
+        testcase = e.attrib[FONTTEST_ID]
+        font = os.path.join('fonts', e.attrib[FONTTEST_FONT])
+        render = e.attrib.get(FONTTEST_RENDER)
+        variation = e.attrib.get(FONTTEST_VARIATION)
+        command = [self.command, '--font=' + font,
+                   '--testcase=' + testcase, '--engine=' + self.engine]
+        if render: command.append('--render=' + render)
+        if variation: command.append('--variation=' + variation)
+        return command
+
     def check(self, testfile):
-        all_ok = True
         doc = etree.parse(testfile).getroot()
         self.reports[testfile] = doc
+        all_ok = True
         for e in doc.findall(".//*[@class='expected']"):
             testcase = e.attrib[FONTTEST_ID]
-            font = os.path.join('fonts', e.attrib[FONTTEST_FONT])
-            render = e.attrib.get(FONTTEST_RENDER)
-            variation = e.attrib.get(FONTTEST_VARIATION)
             expected_svg = e.find('svg')
             self.normalize_svg(expected_svg)
-            command = [self.command, '--font=' + font,
-                       '--testcase=' + testcase, '--engine=' + self.engine]
-            if render: command.append('--render=' + render)
-            if variation: command.append('--variation=' + variation)
+            command = self.make_command(e)
             status, observed, _stderr = run_command(command, timeout_sec=3)
             if status == 0:
                 observed = re.sub(r'>\s+<', '><', observed)
@@ -77,14 +82,22 @@ class ConformanceChecker:
                 self.observed[testcase] = etree.fromstring(
                     '<div>&#x2053;</div>')
                 ok = False
-            all_ok = all_ok and ok
             self.conformance[testcase] = ok
+            if not ok: all_ok = False
+            print('%s %s' % ('PASS' if ok else 'FAIL', testcase))
+        for e in doc.findall(".//*[@class='should-not-crash']"):
+            testcase = e.attrib[FONTTEST_ID]
+            command = self.make_command(e)
+            status, _observed, _stderr = run_command(command, timeout_sec=3)
+            ok = self.conformance[testcase] = (status == 0)
+            if not ok: all_ok = False
+            print('%s %s' % ('PASS' if ok else 'FAIL', testcase))
+        for testcase, ok in list(self.conformance.items()):
             groups = testcase.split('/')
             for i in range(len(groups)):
                 group = '/'.join(groups[:i])
                 self.conformance[group] = (ok and
                                            self.conformance.get(group, True))
-        print("%s %s" % ("PASS" if all_ok else "FAIL", testfile))
 
     def normalize_svg(self, svg):
         strip_path = lambda p: re.sub(r'\s+', ' ', p).strip()
@@ -107,8 +120,7 @@ class ConformanceChecker:
         report.find("./body/h2").text = self.datestr + ' · ' + self.engine
         summary = report.find("./body//*[@id='SummaryText']")
         fails = [k for k, v in self.conformance.items() if k and not v]
-        fails = sorted(set([t.split('/')[0] for t in fails]),
-                       key=lambda k: sortkey((k + '/1', None)))
+        fails = sorted(set([t.split('/')[0] for t in fails]), key=sortkey)
         if len(fails) == 0:
             summary.text = 'All tests have passed.'
         else:
@@ -132,10 +144,13 @@ class ConformanceChecker:
                     internalStyle.text = sheetfile.read().decode('utf-8')
                 head.remove(sheet)
 
-        for filename, doc in sorted(self.reports.items(), key=sortkey):
+        for filename in sorted(self.reports.keys(), key=sortkey):
+            doc = self.reports[filename]
             for e in doc.findall(".//*[@class='observed']"):
                 e.append(self.observed.get(e.attrib[FONTTEST_ID]))
-            for e in doc.findall(".//*[@class='conformance']"):
+            conf = (list(doc.findall(".//*[@class='conformance']")) +
+                    list(doc.findall(".//*[@class='should-not-crash']")))
+            for e in conf:
                 if self.conformance.get(e.attrib[FONTTEST_ID]):
                     e.text, e.attrib['class'] = '✓', 'conformance-pass'
                 else:
@@ -151,8 +166,8 @@ class ConformanceChecker:
 
 
 def sortkey(s):
-    """'(tests/GVAR-10B.html, _)' --> 'tests/GVAR-0000000010B.html'"""
-    return re.sub(r'\d+', lambda match: '%09d' % int(match.group(0)), s[0])
+    """'tests/GVAR-10B.html' --> 'tests/GVAR-0000000010B.html'"""
+    return re.sub(r'\d+', lambda match: '%09d' % int(match.group(0)), s)
 
 
 def run_command(cmd, timeout_sec):
@@ -188,7 +203,7 @@ def main():
     args = parser.parse_args()
     build(engine=args.engine)
     checker = ConformanceChecker(engine=args.engine)
-    for filename in os.listdir('testcases'):
+    for filename in sorted(os.listdir('testcases'), key=sortkey):
         if (filename == 'index.html'
                 or not filename.endswith('.html')):
             continue
