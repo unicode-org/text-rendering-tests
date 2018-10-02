@@ -3886,14 +3886,16 @@ look increasingly distorted.
   rendering engine under test. The font’s finite-state transducer
   substitutes glyph <em>A</em> by <em>B</em>, <em>B</em> by <em>C</em>,
   <em>C</em> by <em>D</em>, <em>D</em> by <em>E</em>,
-  and <em>E</em> by <em>A</em>. The transition is marked with
-  the <em>DontAdvance</em> flag.
+  and <em>E</em> by <em>A</em>. These transitions are all marked with
+  the <em>DontAdvance</em> flag, so the machine never makes progress.
 </div>
 
 <div class="desc">
   If your rendering system is immune to this attack, it will detect
   getting stuck (for example, by imposing an upper limit on the number
   of transitions taken by the finite-state machine), and give up quickly.
+  See <a href="https://github.com/foliojs/fontkit/issues/175">fontkit
+  bug 175</a>.
 </div>
 
 <table>
