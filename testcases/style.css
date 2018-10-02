@@ -14,14 +14,26 @@ h2 {
 h3 {
   font-size:160%;
   font-weight:400; text-align:left; font-style:italic; 
-  margin-top:1em;
+  margin-top:1.5em;
   margin-left:1em;
   margin-bottom:.5em;
 }
-table {margin-top:1.5em;margin-left:3em;text-align:center;font-size:80%}
-th {text-align:left;font-weight:400;font-style:italic}
-th.conformance-header {padding-right:2em;line-height:2.5em}
+table {
+  margin: 1.5em 3.4em;
+  padding: 0;
+  text-align: center;
+  font-size: 80%;
+}
+th {
+  text-align: left;
+  font-weight: 400;
+  font-style: italic;
+  margin: 0;
+  padding: 0 0.5em;
+}
+th.conformance-header {line-height:2.5em}
+td {margin:0; padding:0 0.5em}
 td.conformance-pass {color:#3c7;font-size:150%}
 td.conformance-fail {color:#c33;font-size:150%}
-th.conformance {padding-right:1.5em;line-height:2.5em}
+th.conformance {line-height:2.5em}
 svg {height:2.5em;transform:scaleY(-1)}
