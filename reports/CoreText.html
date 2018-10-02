@@ -50,7 +50,7 @@ svg {height:2.5em;transform:scaleY(-1)}
   This report was generated on <span id="Date">October 2, 2018</span> by running
   <a href="https://github.com/unicode-org/text-rendering-tests">Unicode’s test suite for text rendering engines</a> with
   <span id="EngineVersion">macOS 10.13.6 and CoreText 10.13</span>.
-  <span id="SummaryText">Some tests have failed. For details, see <a href="#CFF2-1">CFF2-1</a>, <a href="#GPOS-5">GPOS-5</a>, <a href="#GVAR-9">GVAR-9</a>, <a href="#HVAR-1">HVAR-1</a>, <a href="#MORX-14">MORX-14</a>, <a href="#MORX-23">MORX-23</a>, <a href="#MORX-31">MORX-31</a>, <a href="#MORX-33">MORX-33</a>, <a href="#MORX-34">MORX-34</a>, <a href="#SHARAN-1">SHARAN-1</a>, and <a href="#SHBALI-1">SHBALI-1</a>.</span>
+  <span id="SummaryText">Some tests have failed. For details, see <a href="#CFF2-1">CFF2-1</a>, <a href="#GPOS-5">GPOS-5</a>, <a href="#GSUB-3">GSUB-3</a>, <a href="#GVAR-9">GVAR-9</a>, <a href="#HVAR-1">HVAR-1</a>, <a href="#MORX-14">MORX-14</a>, <a href="#MORX-23">MORX-23</a>, <a href="#MORX-31">MORX-31</a>, <a href="#MORX-33">MORX-33</a>, <a href="#MORX-34">MORX-34</a>, <a href="#SHARAN-1">SHARAN-1</a>, and <a href="#SHBALI-1">SHBALI-1</a>.</span>
 </div>
 <h3 id="AVAR-1">AVAR–1: Weight Flattening</h3>
 
@@ -1264,6 +1264,35 @@ svg {height:2.5em;transform:scaleY(-1)}
     <td class="conformance-pass" ns0:id="GSUB-2/9">✓</td>
     <td class="conformance-pass" ns0:id="GSUB-2/10">✓</td>
     <td class="conformance-pass" ns0:id="GSUB-2/11">✓</td>
+  </tr>
+
+</table>
+<h3 id="GSUB-3">GSUB-3: Substituting a Billion Laughs</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestGSUBThree.ttf">font</a> for this
+  test case is an OpenType version of the
+  <a href="https://en.wikipedia.org/wiki/Billion_laughs_attack">Billion
+  laughs attack</a>. Its <em>GSUB</em> table contains a sequence of
+  nine identical lookups. Each lookup replaces the glyph <em>o</em> by
+  the string <em>olo</em>, provided that the <em>o</em> is surrounded
+  (both preceded and followed) by an <em>l</em>. The first lookup
+  thus expands one single laugh <em>(lol)</em> into ten. The second lookup
+  gives 100 laughs; the third 1000; the fourth 10,000; the fifth
+  100,000; and so forth.
+  After executing the ninth lookup, the final result would be
+  a billion laughs, but this takes a very long time (and
+  large amounts of memory) to compute. If your implementation
+  is immune to this attack, it should neither crash nor hang
+  when rendering <em>lol</em> with this font. Instead, your
+  implementation should stop executing once its internal
+  buffer has reached a size limit.
+</div>
+
+<table>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance-fail" ns0:font="TestGSUBThree.ttf" ns0:id="GSUB-3/1" ns0:render="lol">✖</td>
   </tr>
 
 </table>
