@@ -43,6 +43,19 @@ class ConformanceChecker:
         self.conformance = {}  # testcase -> True|False
         self.observed = {}  # testcase --> SVG ElementTree
 
+    def get_version(self):
+        if self.engine in {'CoreText', 'FreeStack'}:
+            return subprocess.check_output([self.command, '--version',
+                                            '--engine=' + self.engine])
+        if self.engine in ('OpenType.js', 'fontkit'):
+            npm_version = subprocess.check_output(['npm', '--version'])
+            node_version = subprocess.check_output(['node', '--version'])
+            node_version = node_version.replace('v', '')
+            engine_version = subprocess.check_output(
+                ['npm', 'info', self.engine.lower(), 'version'])
+            return '%s/%s NPM/%s Node/%s' % (
+                self.engine, engine_version, npm_version, node_version)
+
     def make_datestr(self):
         now = datetime.datetime.now()
         return '%s %d, %d' % (time.strftime("%B"), now.day, now.year)
@@ -115,9 +128,19 @@ class ConformanceChecker:
             assert use.attrib[href][0] == '#', use.attrib[href]
             use.attrib[href] = '#%s/%s' % (prefix, use.attrib[href][1:])
 
+    def prettify_version_string(self, version):
+        libs = [x.replace('/', ' ') for x in version.split()]
+        if len(libs) <= 2:
+          return ' and '.join(libs)
+        else:
+          return ', '.join(libs[:-1]) + ' and ' + libs[-1]
+
     def write_report(self, path):
         report = etree.parse('testcases/index.html').getroot()
-        report.find("./body/h2").text = self.datestr + ' · ' + self.engine
+        report.find("./body//*[@id='Engine']").text = self.engine
+        report.find("./body//*[@id='Date']").text = self.datestr
+        report.find("./body//*[@id='EngineVersion']").text = \
+            self.prettify_version_string(self.get_version())
         summary = report.find("./body//*[@id='SummaryText']")
         fails = [k for k, v in self.conformance.items() if k and not v]
         fails = sorted(set([t.split('/')[0] for t in fails]), key=sortkey)

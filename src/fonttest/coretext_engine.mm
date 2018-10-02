@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 
-#include <stdio.h>
+#include <iostream>
+#include <sstream>
+#include <string>
 
 #include <CoreFoundation/CoreFoundation.h>
 #include <CoreGraphics/CoreGraphics.h>
@@ -36,6 +38,80 @@ CoreTextEngine::~CoreTextEngine() {
 std::string CoreTextEngine::GetName() const {
   return "CoreText";
 }
+
+std::string CoreTextEngine::GetVersion() const {
+  std::stringstream result;
+
+  result << "macOS/";
+  NSProcessInfo *pInfo = [NSProcessInfo processInfo];
+  result << pInfo.operatingSystemVersion.majorVersion
+	 << '.' << pInfo.operatingSystemVersion.minorVersion
+	 << '.' << pInfo.operatingSystemVersion.patchVersion
+         << ' ';
+  [pInfo release];
+
+  const UInt32 ctVersion = CTGetCoreTextVersion();
+  switch (ctVersion) {
+  case kCTVersionNumber10_5:
+    result << "CoreText/10.5";
+    break;
+
+  case kCTVersionNumber10_5_2:
+    result << "CoreText/10.5.2";
+    break;
+
+  case kCTVersionNumber10_5_3:
+    result << "CoreText/10.5.3";
+    break;
+
+  case kCTVersionNumber10_5_5:
+    result << "CoreText/10.5.5";
+    break;
+
+  case kCTVersionNumber10_6:
+    result << "CoreText/10.6";
+    break;
+
+  case kCTVersionNumber10_7:
+    result << "CoreText/10.7";
+    break;
+
+  case kCTVersionNumber10_8:
+    result << "CoreText/10.8";
+    break;
+
+  case kCTVersionNumber10_9:
+    result << "CoreText/10.9";
+    break;
+
+  case kCTVersionNumber10_10:
+    result << "CoreText/10.10";
+    break;
+
+  case kCTVersionNumber10_11:
+    result << "CoreText/10.11";
+    break;
+
+  case kCTVersionNumber10_12:
+    result << "CoreText/10.12";
+    break;
+
+  case kCTVersionNumber10_13:
+    result << "CoreText/10.13";
+    break;
+
+  // case kCTVersionNumber10_14:
+  //   result << "CoreText/10.14";
+  //   break;
+
+  default:
+    result << "CoreText/0x" << std::hex << ctVersion;
+    break;
+  }
+
+  return result.str();
+}
+
 
 Font* CoreTextEngine::LoadFont(const std::string& path, int faceIndex) {
   // Before MacOS 10.12, CoreText did not support variations on fonts

@@ -34,6 +34,7 @@ class FreeStackEngine : public FontEngine {
   FreeStackEngine();
   ~FreeStackEngine();
   virtual std::string GetName() const;
+  virtual std::string GetVersion() const;
   virtual Font* LoadFont(const std::string& path, int faceIndex);
 
   // Renders a line of text into an SVG document.

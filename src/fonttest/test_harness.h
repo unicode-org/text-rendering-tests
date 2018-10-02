@@ -35,6 +35,7 @@ class TestHarness {
   void Run();
 
  private:
+  bool HasOption(const std::string& flag) const;
   const std::string GetOption(const std::string& flag) const;
   void PrintUsageAndExit();
 

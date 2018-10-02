@@ -13,6 +13,12 @@
  * limitations under the License.
  */
 
+#include <iostream>
+#include <sstream>
+
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
 #include "fonttest/font_engine.h"
 #include "fonttest/freestack_engine.h"
 #include "fonttest/freestack_font.h"
@@ -20,6 +26,7 @@
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
+#include <hb.h>
 
 namespace fonttest {
 
@@ -32,7 +39,19 @@ FreeStackEngine::~FreeStackEngine() {
 }
 
 std::string FreeStackEngine::GetName() const {
-  return "FreeType/HarfBuzz";
+  return "FreeStack";
+}
+
+std::string FreeStackEngine::GetVersion() const {
+  std::stringstream result;
+
+  result << "HarfBuzz/" << hb_version_string() << ' ';
+
+  FT_Int ftMajor, ftMinor, ftPatch;
+  FT_Library_Version(freeTypeLibrary_, &ftMajor, &ftMinor, &ftPatch);
+  result << "FreeType/" << ftMajor << '.' << ftMinor << '.' << ftPatch;
+
+  return result.str();
 }
 
 Font* FreeStackEngine::LoadFont(

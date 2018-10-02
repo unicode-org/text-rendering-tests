@@ -76,6 +76,11 @@ TestHarness::~TestHarness() {
 }
 
 void TestHarness::Run() {
+  if (HasOption("--version")) {
+    std::cout << engine_->GetVersion() << std::endl;
+    return;
+  }
+
   FontVariation fontVariation;
   const std::string testcase = GetOption("--testcase=");
   const std::string variationSpec = GetOption("--variation=");
@@ -87,6 +92,15 @@ void TestHarness::Run() {
   engine_->RenderSVG(text, textLanguage, font_.get(), fontSize, fontVariation,
                      testcase, &svg);
   std::cout << svg;
+}
+
+bool TestHarness::HasOption(const std::string& flag) const {
+  for (auto iter = options_.begin(); iter != options_.end(); ++iter) {
+    if (iter->find(flag) == 0) {
+      return true;
+    }
+  }
+  return false;
 }
 
 const std::string TestHarness::GetOption(const std::string& flag) const {

@@ -27,6 +27,7 @@ class FontEngine {
  public:
   static FontEngine* Create(const std::string& engineName);
   virtual std::string GetName() const = 0;
+  virtual std::string GetVersion() const = 0;
   virtual Font* LoadFont(const std::string& path, int faceIndex) = 0;
 
   // Renders a line of text into an SVG document.
