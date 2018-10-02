@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ft="https://github.com/OpenType/fonttest"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+<body>
+<h3 id="MORX-24">MORX-24: Contextual Glyph Subsitution Forever</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXTwentyfour.ttf">font</a> for this
+  test case attempts to run a denial-of-service attack on the
+  rendering engine under test. The font’s finite-state transducer
+  substitutes glyph <em>A</em> by <em>B</em>, <em>B</em> by <em>C</em>,
+  <em>C</em> by <em>D</em>, <em>D</em> by <em>E</em>,
+  and <em>E</em> by <em>A</em>. The transition is marked with
+  the <em>DontAdvance</em> flag.
+</div>
+
+<div class="desc">
+  If your rendering system is immune to this attack, it will detect
+  getting stuck (for example, by imposing an upper limit on the number
+  of transitions taken by the finite-state machine), and give up quickly.
+</div>
+
+<table>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="should-not-crash" ft:id="MORX-24/1" ft:render="ABCDE"
+        ft:font="TestMORXTwentyfour.ttf"/>
+  </tr>
+</table>
+
+</body>
+</html>

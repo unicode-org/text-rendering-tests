@@ -32,7 +32,7 @@ svg {height:2.5em;transform:scaleY(-1)}
 </style></head>
 <body>
 <h1>Text Rendering Test Report</h1>
-<h2>October 1, 2018 · CoreText</h2>
+<h2>October 2, 2018 · CoreText</h2>
 <h3>Overview</h3>
 <div class="desc" id="SummaryText">Some tests have failed. For details, see <a href="#CFF2-1">CFF2-1</a>, <a href="#GPOS-5">GPOS-5</a>, <a href="#GVAR-9">GVAR-9</a>, <a href="#HVAR-1">HVAR-1</a>, <a href="#MORX-14">MORX-14</a>, <a href="#MORX-23">MORX-23</a>, <a href="#MORX-31">MORX-31</a>, <a href="#MORX-33">MORX-33</a>, <a href="#MORX-34">MORX-34</a>, <a href="#SHARAN-1">SHARAN-1</a>, and <a href="#SHBALI-1">SHBALI-1</a>.</div>
 <h3 id="AVAR-1">AVAR–1: Weight Flattening</h3>
@@ -3878,6 +3878,31 @@ look increasingly distorted.
     <td class="conformance-fail" ns0:id="MORX-23/1">✖</td>
   </tr>
 </table>
+<h3 id="MORX-24">MORX-24: Contextual Glyph Subsitution Forever</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXTwentyfour.ttf">font</a> for this
+  test case attempts to run a denial-of-service attack on the
+  rendering engine under test. The font’s finite-state transducer
+  substitutes glyph <em>A</em> by <em>B</em>, <em>B</em> by <em>C</em>,
+  <em>C</em> by <em>D</em>, <em>D</em> by <em>E</em>,
+  and <em>E</em> by <em>A</em>. The transition is marked with
+  the <em>DontAdvance</em> flag.
+</div>
+
+<div class="desc">
+  If your rendering system is immune to this attack, it will detect
+  getting stuck (for example, by imposing an upper limit on the number
+  of transitions taken by the finite-state machine), and give up quickly.
+</div>
+
+<table>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance-pass" ns0:font="TestMORXTwentyfour.ttf" ns0:id="MORX-24/1" ns0:render="ABCDE">✓</td>
+  </tr>
+</table>
+
 <h3 id="MORX-25">MORX-25: State Machine for Contextual Glyph Substitution</h3>
 
 <div class="desc">
