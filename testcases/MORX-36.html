@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ft="https://github.com/OpenType/fonttest"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+<body>
+<h3 id="MORX-36">MORX-36: Insertion forever</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXThirtysix.ttf">font</a> for this test case has
+  an <a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html"
+  >AAT Extended Glyph Metamorphosis Table</a>
+  with a single <em>Glyph Insertion Subtable</em>. Its finite-state machine
+  contains three states (0, 1 and 2) with the following transitions:
+</div>
+
+<ul class="desc">
+
+  <li>
+    In state 0, the machine moves to state 1 for any glyph in
+    {<em>A, B, C, D</em>} while inserting <em>B</em> after
+    the current position. This transition carries the
+    <em>DontAdvance</em> flag.
+  </li>
+
+  <li>
+    In state 1, the machine moves to state 2 for any glyph in
+    {<em>A, B, C, D</em>} while inserting <em>C</em> after
+    the current position. This transition carries the
+    <em>DontAdvance</em> flag.
+  </li>
+
+  <li>
+    In state 2, the machine moves to state 0 for any glyph in
+    {<em>A, B, C, D</em>} while inserting <em>D</em> after
+    the current position. This transition carries the
+    <em>DontAdvance</em> flag.
+  </li>
+
+  <li>Otherwise, the machine performs no action.</li>
+</ul>
+
+<div class="desc">
+  The input string for this test case is <em>A</em>.
+  Your implementation should not hang (run without time limit)
+  nor crash while rendering this input, even though the font is
+  trying to trick the rendering engine into an infinite loop.
+</div>
+
+
+<table>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="should-not-crash" ft:id="MORX-36/1" ft:render="A"
+        ft:font="TestMORXThirtysix.ttf"/>
+  </tr>
+</table>
+</body>
+</html>

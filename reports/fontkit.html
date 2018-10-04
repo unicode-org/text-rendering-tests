@@ -50,7 +50,7 @@ svg {height:2.5em;transform:scaleY(-1)}
   This report was generated on <span id="Date">October 4, 2018</span> by running
   <a href="https://github.com/unicode-org/text-rendering-tests">Unicode’s test suite for text rendering engines</a> with
   <span id="EngineVersion">fontkit 1.7.7, NPM 6.4.1 and Node 10.11.0</span>.
-  <span id="SummaryText">Some tests have failed. For details, see <a href="#GSUB-3">GSUB-3</a>, <a href="#MORX-3">MORX-3</a>, <a href="#MORX-5">MORX-5</a>, <a href="#MORX-10">MORX-10</a>, <a href="#MORX-11">MORX-11</a>, <a href="#MORX-17">MORX-17</a>, <a href="#MORX-19">MORX-19</a>, <a href="#MORX-20">MORX-20</a>, <a href="#MORX-24">MORX-24</a>, <a href="#MORX-29">MORX-29</a>, <a href="#MORX-30">MORX-30</a>, <a href="#MORX-31">MORX-31</a>, <a href="#MORX-33">MORX-33</a>, <a href="#MORX-34">MORX-34</a>, and <a href="#MORX-35">MORX-35</a>.</span>
+  <span id="SummaryText">Some tests have failed. For details, see <a href="#GSUB-3">GSUB-3</a>, <a href="#MORX-3">MORX-3</a>, <a href="#MORX-5">MORX-5</a>, <a href="#MORX-10">MORX-10</a>, <a href="#MORX-11">MORX-11</a>, <a href="#MORX-17">MORX-17</a>, <a href="#MORX-19">MORX-19</a>, <a href="#MORX-20">MORX-20</a>, <a href="#MORX-24">MORX-24</a>, <a href="#MORX-29">MORX-29</a>, <a href="#MORX-30">MORX-30</a>, <a href="#MORX-31">MORX-31</a>, <a href="#MORX-33">MORX-33</a>, <a href="#MORX-34">MORX-34</a>, <a href="#MORX-35">MORX-35</a>, and <a href="#MORX-36">MORX-36</a>.</span>
 </div>
 <h3 id="AVAR-1">AVAR–1: Weight Flattening</h3>
 
@@ -4625,6 +4625,55 @@ look increasingly distorted.
   <tr>
     <th class="conformance-header">Conformance</th>
     <td class="conformance-fail" ns0:id="MORX-35/1">✖</td>
+  </tr>
+</table>
+<h3 id="MORX-36">MORX-36: Insertion forever</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXThirtysix.ttf">font</a> for this test case has
+  an <a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html">AAT Extended Glyph Metamorphosis Table</a>
+  with a single <em>Glyph Insertion Subtable</em>. Its finite-state machine
+  contains theww states (0, 1 and 2) with the following transitions:
+</div>
+
+<ul class="desc">
+
+  <li>
+    In state 0, the machine moves to state 1 for any glyph in
+    {<em>A, B, C, D</em>} while inserting <em>B</em> after
+    the current position. This transition carries the
+    <em>DontAdvance</em> flag.
+  </li>
+
+  <li>
+    In state 1, the machine moves to state 2 for any glyph in
+    {<em>A, B, C, D</em>} while inserting <em>C</em> after
+    the current position. This transition carries the
+    <em>DontAdvance</em> flag.
+  </li>
+
+  <li>
+    In state 2, the machine moves to state 0 for any glyph in
+    {<em>A, B, C, D</em>} while inserting <em>D</em> after
+    the current position. This transition carries the
+    <em>DontAdvance</em> flag.
+  </li>
+
+  <li>Otherwise, the machine performs no action.</li>
+</ul>
+
+<div class="desc">
+  The input string for this test case is <em>A</em>.
+  Your implementation should not hang (run without time limit)
+  nor crash while rendering this input, even though the font is
+  trying to trick the rendering engine into an infinite loop.
+</div>
+
+
+<table>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance-fail" ns0:font="TestMORXThirtysix.ttf" ns0:id="MORX-36/1" ns0:render="A">✖</td>
   </tr>
 </table>
 <h3 id="SHARAN-1">SHARAN–1: Nasta‘līq</h3>
