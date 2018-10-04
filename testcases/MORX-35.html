@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ft="https://github.com/OpenType/fonttest"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+<body>
+<h3 id="MORX-35">MORX-35: Insertion with DontAdvance</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXThirtyfive.ttf">font</a> for this test case has
+  an <a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html"
+  >AAT Extended Glyph Metamorphosis Table</a>
+  with a single <em>Glyph Insertion Subtable</em>. Its finite-state machine
+  contains two states (0 and 1) with the following transitions:
+</div>
+
+<ul class="desc">
+  <li>For glyph <em>A</em></li>
+  <ul class="desc">
+    <li>in state 0, the machine moves to state 1 while inserting
+    <em>C</em> after the current position.
+    This transition carries the <em>DontAdvance</em> flag.</li>
+
+    <li>in state 1, the machine moves to state 0 while inserting
+    <em>B</em> after the current position.
+    This transition carries no flags.</li>
+  </ul>
+
+  <li>For glyphs <em>B</em> and <em>C,</em> the machine stays
+  in its current state while inserting <em>E</em> to the right of
+  the current position.  This transition carries no flags.</li>
+
+  <li>For any other glyphs and “end of text”, the machine performs
+  no action.</li>
+</ul>
+
+<div class="desc">
+  The input string for this test case is <em>A</em>.
+  If your rendering system correctly implements <em>Apple Advanced
+  Typography,</em> the result should be <em>ABC</em>.
+</div>
+
+
+<table>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="MORX-35/1" ft:render="A"
+        ft:font="TestMORXThirtyfive.ttf"><svg version="1.1" viewBox="0 -200 1861 1200"><symbol id="MORX-35/1.A" overflow="visible"><path d="M459,221 L176,221 L91,0 L0,0 L279,717 L360,717 L638,0 L545,0 Z M352,517 Q345,537 335,568 Q325,599 318,624 Q303,564 287,517 L206,301 L432,301 Z" /></symbol><symbol id="MORX-35/1.B" overflow="visible"><path d="M301,714 Q439,714 505,673 Q572,632 572,537 Q572,474 537,432 Q502,391 436,379 L436,374 Q596,347 596,203 Q596,106 530,53 Q464,0 348,0 L97,0 L97,714 Z M319,410 Q407,410 443,438 Q479,467 479,527 Q479,585 437,611 Q396,637 305,637 L187,637 L187,410 Z M187,76 L331,76 Q421,76 460,111 Q500,146 500,210 Q500,270 459,302 Q418,335 324,335 L187,335 Z" /></symbol><symbol id="MORX-35/1.C" overflow="visible"><path d="M392,645 Q277,645 211,568 Q145,491 145,357 Q145,221 207,145 Q270,69 391,69 Q468,69 562,97 L562,19 Q522,4 479,-3 Q436,-10 378,-10 Q217,-10 133,87 Q50,185 50,358 Q50,467 90,549 Q130,632 207,678 Q285,724 393,724 Q448,724 498,713 Q549,702 590,682 L554,606 Q468,645 392,645 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-35/1.A" /><use x="639" y="0" xlink:href="#MORX-35/1.B" /><use x="1265" y="0" xlink:href="#MORX-35/1.C" /></svg></td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="MORX-35/1"/>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="MORX-35/1"/>
+  </tr>
+</table>
+</body>
+</html>
