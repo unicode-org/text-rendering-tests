@@ -27,6 +27,7 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include <hb.h>
+#include <fribidi-config.h>
 
 namespace fonttest {
 
@@ -50,6 +51,9 @@ std::string FreeStackEngine::GetVersion() const {
   FT_Int ftMajor, ftMinor, ftPatch;
   FT_Library_Version(freeTypeLibrary_, &ftMajor, &ftMinor, &ftPatch);
   result << "FreeType/" << ftMajor << '.' << ftMinor << '.' << ftPatch;
+
+  result << " FriBidi/" << FRIBIDI_MAJOR_VERSION << '.'
+	 << FRIBIDI_MINOR_VERSION << '.' << FRIBIDI_MICRO_VERSION;
 
   return result.str();
 }
