@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ft="https://github.com/OpenType/fonttest"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+<body>
+<h3 id="MORX-39">MORX-39: Processing in Reverse Layout/Physical Order</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestMORXThirtyeight.ttf">font</a> for this test case
+  is similar to <a href="#MORX-37">MORX-37</a>, but
+  bits 28 and 30 of the subtable’s <em>Coverage Flags</em>
+  request processing in <em>Reverse Layout/Physical Order</em>.
+</div>
+
+<table>
+  <tr>
+    <th></th>
+    <th style="text-align:center">AB</th>
+    <th style="text-align:center">BA</th>
+    <th style="text-align:center;font-style:normal">אב</th>
+    <th style="text-align:center;font-style:normal">בא</th>
+  </tr>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="MORX-39/1" ft:render="AB"
+        ft:font="TestMORXThirtynine.ttf"><svg version="1.1" viewBox="0 -200 1289 1200"><symbol id="MORX-39/1.A" overflow="visible"><path d="M352,517 Q349,525 342,546 Q335,567 328,589 Q322,612 318,624 Q310,593 301,563 Q293,534 287,517 L206,301 L432,301 Z M459,221 L176,221 L91,0 L0,0 L279,717 L360,717 L638,0 L545,0 Z" /></symbol><symbol id="MORX-39/1.B" overflow="visible"><path d="M301,714 Q434,714 503,674 Q572,634 572,537 Q572,474 537,432 Q502,391 436,379 L436,374 Q481,366 517,347 Q554,328 575,293 Q596,258 596,203 Q596,106 529,53 Q463,0 348,0 L97,0 L97,714 Z M319,410 Q410,410 444,439 Q479,469 479,527 Q479,586 437,611 Q396,637 305,637 L187,637 L187,410 Z M187,76 L331,76 Q426,76 463,113 Q500,150 500,210 Q500,266 461,300 Q423,335 324,335 L187,335 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-39/1.A" /><use x="639" y="0" xlink:href="#MORX-39/1.B" /></svg></td>
+
+    <td class="expected" ft:id="MORX-39/2" ft:render="BA"
+        ft:font="TestMORXThirtynine.ttf"><svg version="1.1" viewBox="0 -200 2000 1200"><symbol id="MORX-39/2.B.alt" overflow="visible"><path d="M500,-55 Q414,-55 339,-23 Q265,9 208,65 Q152,122 120,197 Q88,272 88,357 Q88,442 120,516 Q152,591 208,648 Q265,705 339,737 Q414,769 500,769 Q586,769 660,737 Q735,705 791,648 Q848,591 880,516 Q912,442 912,357 Q912,272 880,197 Q848,122 791,65 Q735,9 660,-23 Q586,-55 500,-55 Z M525,159 Q596,159 635,190 Q675,221 675,275 Q675,321 652,341 Q629,361 598,368 L598,369 Q626,376 646,397 Q666,418 666,457 Q666,506 629,530 Q592,555 508,555 L373,555 L373,159 Z M470,482 L507,482 Q567,482 567,443 Q567,425 554,413 Q542,401 511,401 L470,401 Z M470,330 L515,330 Q548,330 561,316 Q575,302 575,282 Q575,261 561,247 Q548,234 516,234 L470,234 Z" /></symbol><symbol id="MORX-39/2.A.alt" overflow="visible"><path d="M500,-55 Q414,-55 339,-23 Q265,9 208,65 Q152,122 120,197 Q88,272 88,357 Q88,442 120,516 Q152,591 208,648 Q265,705 339,737 Q414,769 500,769 Q586,769 660,737 Q735,705 791,648 Q848,591 880,516 Q912,442 912,357 Q912,272 880,197 Q848,122 791,65 Q735,9 660,-23 Q586,-55 500,-55 Z M485,400 Q491,419 498,449 Q505,479 507,497 Q506,499 506,502 L507,502 Q507,502 507,501 Q507,501 507,497 Q508,485 512,466 Q517,447 522,429 Q527,411 530,400 L552,323 L463,323 Z M414,159 L441,244 L573,244 L600,159 L705,159 L567,557 L446,557 L308,159 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-39/2.B.alt" /><use x="1000" y="0" xlink:href="#MORX-39/2.A.alt" /></svg></td>
+
+    <td class="expected" ft:id="MORX-39/3" ft:render="אב"
+        ft:font="TestMORXThirtynine.ttf"><svg version="1.1" viewBox="0 -200 2000 1200"><symbol id="MORX-39/3.uni05D1.alt" overflow="visible"><path d="M500,-55 Q414,-55 339,-23 Q265,9 208,65 Q152,122 120,197 Q88,272 88,357 Q88,442 120,516 Q152,591 208,648 Q265,705 339,737 Q414,769 500,769 Q586,769 660,737 Q735,705 791,648 Q848,591 880,516 Q912,442 912,357 Q912,272 880,197 Q848,122 791,65 Q735,9 660,-23 Q586,-55 500,-55 Z M702,159 L702,242 L650,242 L650,416 Q650,554 499,554 L343,554 L343,471 L495,471 Q526,471 539,456 Q552,441 552,405 L552,242 L343,242 L343,159 Z" /></symbol><symbol id="MORX-39/3.uni05D0.alt" overflow="visible"><path d="M500,-55 Q414,-55 339,-23 Q265,9 208,65 Q152,122 120,197 Q88,272 88,357 Q88,442 120,516 Q152,591 208,648 Q265,705 339,737 Q414,769 500,769 Q586,769 660,737 Q735,705 791,648 Q848,591 880,516 Q912,442 912,357 Q912,272 880,197 Q848,122 791,65 Q735,9 660,-23 Q586,-55 500,-55 Z M415,159 L415,274 Q415,336 438,366 L583,159 L697,159 L599,288 Q638,309 656,353 Q675,397 675,453 L675,556 L577,556 L577,449 Q577,416 571,391 Q565,367 553,353 L413,556 L300,556 L390,433 Q353,412 334,368 Q316,324 316,270 L316,159 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-39/3.uni05D1.alt" /><use x="1000" y="0" xlink:href="#MORX-39/3.uni05D0.alt" /></svg></td>
+
+    <td class="expected" ft:id="MORX-39/4" ft:render="בא"
+        ft:font="TestMORXThirtynine.ttf"><svg version="1.1" viewBox="0 -200 1148 1200"><symbol id="MORX-39/4.uni05D0" overflow="visible"><path d="M56,158 Q56,253 88,314 Q120,375 177,405 L50,592 L156,592 L379,261 Q452,305 452,440 L452,592 L542,592 L542,446 Q542,351 510,290 Q478,230 421,199 L556,0 L450,0 L219,343 Q146,298 146,164 L146,0 L56,0 Z" /></symbol><symbol id="MORX-39/4.uni05D1" overflow="visible"><path d="M30,83 L349,83 L349,385 Q349,455 318,482 Q287,509 232,509 L30,509 L30,592 L238,592 Q340,592 389,547 Q439,502 439,403 L439,83 L517,83 L517,0 L30,0 Z" /></symbol><use x="0" y="0" xlink:href="#MORX-39/4.uni05D0" /><use x="606" y="0" xlink:href="#MORX-39/4.uni05D1" /></svg></td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="MORX-39/1"/>
+    <td class="observed" ft:id="MORX-39/2"/>
+    <td class="observed" ft:id="MORX-39/3"/>
+    <td class="observed" ft:id="MORX-39/4"/>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="MORX-39/1"/>
+    <td class="conformance" ft:id="MORX-39/2"/>
+    <td class="conformance" ft:id="MORX-39/3"/>
+    <td class="conformance" ft:id="MORX-39/4"/>
+  </tr>
+</table>
+</body>
+</html>
