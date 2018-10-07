@@ -52,7 +52,6 @@
                 'harfbuzz/src/hb-ot-shape-complex-khmer.cc',
                 'harfbuzz/src/hb-ot-shape-complex-myanmar.cc',
                 'harfbuzz/src/hb-ot-shape-complex-thai.cc',
-                'harfbuzz/src/hb-ot-shape-complex-tibetan.cc',
                 'harfbuzz/src/hb-ot-shape-complex-use-table.cc',
                 'harfbuzz/src/hb-ot-shape-complex-use.cc',
                 'harfbuzz/src/hb-ot-shape-fallback.cc',
