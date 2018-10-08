@@ -15,6 +15,7 @@
                 'fribidi/lib/fribidi-arabic.c',
                 'fribidi/lib/fribidi-bidi-types.c',
                 'fribidi/lib/fribidi-bidi.c',
+                'fribidi/lib/fribidi-brackets.c',
                 'fribidi/lib/fribidi-deprecated.c',
                 'fribidi/lib/fribidi-joining-types.c',
                 'fribidi/lib/fribidi-joining.c',
@@ -104,6 +105,36 @@
 	    'defines': ['HAVE_CONFIG_H'],
             'sources': [
                 'fribidi/gen.tab/gen-joining-type-tab.c',
+                'fribidi/gen.tab/packtab.c',
+            ],
+            'include_dirs': [
+                'fribidi/lib',
+                'generated',
+                'include',
+                'internal_config',
+            ],
+        },
+        {
+            'target_name': 'gen-brackets-tab',
+            'type': 'executable',
+	    'defines': ['HAVE_CONFIG_H'],
+            'sources': [
+                'fribidi/gen.tab/gen-brackets-tab.c',
+                'fribidi/gen.tab/packtab.c',
+            ],
+            'include_dirs': [
+                'fribidi/lib',
+                'generated',
+                'include',
+                'internal_config',
+            ],
+        },
+        {
+            'target_name': 'gen-brackets-type-tab',
+            'type': 'executable',
+	    'defines': ['HAVE_CONFIG_H'],
+            'sources': [
+                'fribidi/gen.tab/gen-brackets-type-tab.c',
                 'fribidi/gen.tab/packtab.c',
             ],
             'include_dirs': [
