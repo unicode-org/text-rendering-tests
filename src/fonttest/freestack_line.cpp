@@ -33,6 +33,7 @@ FreeStackLine::FreeStackLine(
   if (!line_ ||
       !raqm_set_text_utf8(line_, text.c_str(), text.length()) ||
       !raqm_set_language(line_, textLanguage.c_str(), 0, text.length()) ||
+      !raqm_set_invisible_glyph(line_, -1) ||
       !raqm_set_freetype_face(line_, font)) {
     std::cerr << "could not create Raqm line" << std::endl;
     exit(1);
