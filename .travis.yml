@@ -9,6 +9,9 @@ addons:
   apt:
     packages:
       - ninja-build
+  homebrew:
+    packages:
+      - ninja
 
 compiler:
   - clang
