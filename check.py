@@ -209,10 +209,26 @@ def build(engine):
     if engine == 'OpenType.js' or engine == 'fontkit':
         subprocess.check_call(['npm', 'install'])
     else:
+        gn = build_gn_tool()
+        # TODO: Replace deprecated gyp with gn
         subprocess.check_call(
             './src/third_party/gyp/gyp -f make --depth . '
             '--generator-output build  src/fonttest/fonttest.gyp'.split())
         subprocess.check_call(['make', '-s', '--directory', 'build'])
+
+
+def build_gn_tool():
+    gn_dir = os.path.join('build', 'gn')
+    if not os.path.exists(gn_dir):
+        os.makedirs(gn_dir)
+    gn_tool_path = os.path.join(gn_dir, 'gn')
+    if not os.path.exists(gn_tool_path):
+        subprocess.check_call(['./src/third_party/gn/build/gen.py',
+                               '--out-path=' + os.path.abspath(gn_dir)],
+                              cwd=os.getcwd())
+        subprocess.check_call(['ninja', '-C', gn_dir])
+        assert os.path.exists(gn_tool_path), gn_tool_path
+    return gn_tool_path
 
 
 def main():

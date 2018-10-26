@@ -5,6 +5,11 @@ os:
   - linux
   - osx
 
+addons:
+  apt:
+    packages:
+      - ninja-build
+
 compiler:
   - clang
 
