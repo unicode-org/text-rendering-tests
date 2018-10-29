@@ -42,4 +42,7 @@ FontEngine* FontEngine::Create(const std::string& engineName) {
   return NULL;
 }
 
+FontEngine::~FontEngine() {
+}
+
 }  // namespace fonttest

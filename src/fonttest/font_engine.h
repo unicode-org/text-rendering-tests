@@ -25,6 +25,7 @@ typedef std::map<std::string, double> FontVariation;  // "WGHT" -> 400.0
 
 class FontEngine {
  public:
+  virtual ~FontEngine();
   static FontEngine* Create(const std::string& engineName);
   virtual std::string GetName() const = 0;
   virtual std::string GetVersion() const = 0;
