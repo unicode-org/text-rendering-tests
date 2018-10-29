@@ -90,13 +90,16 @@ static void RewriteCIDToGID(char* glyphName) {
 }
 
 static std::string GetGlyphName(CGFontRef font, CGGlyph glyph) {
-  CFStringRef cfGlyphName = CGFontCopyGlyphNameForGlyph(font, glyph);
   char glyphName[512];
-  if (!CFStringGetCString(cfGlyphName, glyphName, sizeof(glyphName),
+  CFStringRef cfGlyphName = CGFontCopyGlyphNameForGlyph(font, glyph);
+  if (!cfGlyphName ||
+      !CFStringGetCString(cfGlyphName, glyphName, sizeof(glyphName),
                           kCFStringEncodingUTF8)) {
     snprintf(glyphName, sizeof(glyphName), "gid%u", glyph);
   }
-  CFRelease(cfGlyphName);
+  if (cfGlyphName) {
+    CFRelease(cfGlyphName);
+  }
   RewriteCIDToGID(glyphName);
   return std::string(glyphName);
 }
@@ -138,6 +141,9 @@ bool CoreTextLine::RenderSVG(const std::string& idPrefix, std::string* svg) {
       if (glyphNames.find(glyphs[i]) != glyphNames.end()) {
         continue;
       }
+      if (glyphs[i] == 65535) {
+        continue;
+      }
       std::string glyphName = GetGlyphName(cgFont, glyphs[i]);
       glyphNames[glyphs[i]] = glyphName;
       symbols.append("  <symbol id=\"");
@@ -152,6 +158,9 @@ bool CoreTextLine::RenderSVG(const std::string& idPrefix, std::string* svg) {
     }
 
     for (CFIndex i = 0; i < numGlyphs; ++i) {
+      if (glyphs[i] == 65535) {
+        continue;
+      }
       char buffer[1024];
       snprintf(buffer, sizeof(buffer),
                "  <use xlink:href=\"#%s.%s\" x=\"%ld\" y=\"%ld\"/>\n",

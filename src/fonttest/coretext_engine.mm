@@ -100,9 +100,9 @@ std::string CoreTextEngine::GetVersion() const {
     result << "CoreText/10.13";
     break;
 
-  // case kCTVersionNumber10_14:
-  //   result << "CoreText/10.14";
-  //   break;
+  case kCTVersionNumber10_14:
+    result << "CoreText/10.14";
+    break;
 
   default:
     result << "CoreText/0x" << std::hex << ctVersion;
