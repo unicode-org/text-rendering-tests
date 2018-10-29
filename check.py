@@ -209,7 +209,7 @@ def build(engine):
     if engine == 'OpenType.js' or engine == 'fontkit':
         subprocess.check_call(['npm', 'install'])
     else:
-        subprocess.check_call(['cmake', '-GNinja', '-S', 'src', '-B', 'build'])
+        subprocess.check_call(['cmake', '-GNinja', '-Bbuild', 'src'])
         subprocess.check_call(['ninja', '-C', 'build'])
 
 
