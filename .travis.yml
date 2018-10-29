@@ -8,9 +8,11 @@ os:
 addons:
   apt:
     packages:
+      - cmake
       - ninja-build
   homebrew:
     packages:
+      - cmake
       - ninja
 
 compiler:
