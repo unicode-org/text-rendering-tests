@@ -95,6 +95,7 @@ target_link_libraries(harfbuzz freetype)
 
 target_compile_definitions(harfbuzz
     PRIVATE HAVE_FREETYPE HAVE_OT HAVE_UCDN
+        HAVE_FT_GET_VAR_BLEND_COORDINATES
         HAVE_INTEL_ATOMIC_PRIMITIVES
         $<IF:${HAVE_ATEXIT},HAVE_ATEXIT,>
         $<IF:${HAVE_GETPAGESIZE},HAVE_GETPAGESIZE,>
