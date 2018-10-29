@@ -26,15 +26,28 @@ target_include_directories(fonttest
     PRIVATE ..
 )
 
+set(compile_definitions)
+if(APPLE)
+    list(APPEND compile_definitions HAVE_CORETEXT)
+    include(CheckCSourceCompiles)
+    check_c_source_compiles("
+        #include <CoreText/CoreText.h>
+        int main(int a, char** b) { return (int) kCTVersionNumber10_14; }
+        " HAVE_CORETEXT_10_14)
+    if(DEFINED HAVE_CORETEXT_10_14 AND HAVE_CORETEXT_10_14)
+        list(APPEND compile_definitions HAVE_CORETEXT_10_14)
+    endif()
+endif()
+
 target_compile_definitions(fonttest
-    PRIVATE $<IF:${APPLE},HAVE_CORETEXT,>
+    PRIVATE ${compile_definitions}
 )
 
 if(APPLE)
   find_library(Foundation Foundation)
   find_library(CoreGraphics CoreGraphics)
   find_library(CoreText CoreText)
-endif()
+endif(APPLE)
 
 target_link_libraries(fonttest
     freetype harfbuzz raqm
