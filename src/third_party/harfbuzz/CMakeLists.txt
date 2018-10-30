@@ -7,6 +7,7 @@ include(CheckSymbolExists)
 
 add_library(harfbuzz STATIC
     harfbuzz/src/hb-aat-layout.cc
+    harfbuzz/src/hb-aat-map.cc
     harfbuzz/src/hb-blob.cc
     harfbuzz/src/hb-buffer-serialize.cc
     harfbuzz/src/hb-buffer.cc
@@ -21,10 +22,15 @@ add_library(harfbuzz STATIC
     # harfbuzz/src/hb-gobject-structs.cc
     # harfbuzz/src/hb-graphite2.cc
     # harfbuzz/src/hb-icu.cc
+    harfbuzz/src/hb-map.cc
+    harfbuzz/src/hb-ot-color.cc
     harfbuzz/src/hb-ot-face.cc
     harfbuzz/src/hb-ot-font.cc
     harfbuzz/src/hb-ot-layout.cc
     harfbuzz/src/hb-ot-map.cc
+    harfbuzz/src/hb-ot-math.cc
+    harfbuzz/src/hb-ot-name-language.cc
+    harfbuzz/src/hb-ot-name.cc
     harfbuzz/src/hb-ot-shape-complex-arabic.cc
     harfbuzz/src/hb-ot-shape-complex-default.cc
     harfbuzz/src/hb-ot-shape-complex-hangul.cc
@@ -36,6 +42,7 @@ add_library(harfbuzz STATIC
     harfbuzz/src/hb-ot-shape-complex-thai.cc
     harfbuzz/src/hb-ot-shape-complex-use-table.cc
     harfbuzz/src/hb-ot-shape-complex-use.cc
+    harfbuzz/src/hb-ot-shape-complex-vowel-constraints.cc
     harfbuzz/src/hb-ot-shape-fallback.cc
     harfbuzz/src/hb-ot-shape-normalize.cc
     harfbuzz/src/hb-ot-shape.cc
