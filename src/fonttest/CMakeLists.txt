@@ -50,7 +50,7 @@ if(APPLE)
 endif(APPLE)
 
 target_link_libraries(fonttest
-    freetype harfbuzz raqm
+    freetype harfbuzz raqm sheenbidi sheenfigure
     $<IF:${APPLE},${Foundation},>
     $<IF:${APPLE},${CoreGraphics},>
     $<IF:${APPLE},${CoreText},>
