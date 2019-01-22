@@ -23,6 +23,8 @@ add_library(harfbuzz STATIC
     # harfbuzz/src/hb-graphite2.cc
     # harfbuzz/src/hb-icu.cc
     harfbuzz/src/hb-map.cc
+    harfbuzz/src/hb-ot-cff1-table.cc
+    harfbuzz/src/hb-ot-cff2-table.cc
     harfbuzz/src/hb-ot-color.cc
     harfbuzz/src/hb-ot-face.cc
     harfbuzz/src/hb-ot-font.cc
