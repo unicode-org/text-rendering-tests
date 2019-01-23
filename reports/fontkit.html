@@ -47,7 +47,7 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h2 />
 <h3>Overview</h3>
 <div class="desc">
-  This report was generated on <span id="Date">November 9, 2018</span> by running
+  This report was generated on <span id="Date">January 23, 2019</span> by running
   <a href="https://github.com/unicode-org/text-rendering-tests">Unicode’s test suite for text rendering engines</a> with
   <span id="EngineVersion">fontkit 1.7.7, NPM 6.4.1 and Node 10.11.0</span>.
   <span id="SummaryText">Some tests have failed. For details, see <a href="#GSUB-3">GSUB-3</a>, <a href="#GVAR-9">GVAR-9</a>, <a href="#MORX-3">MORX-3</a>, <a href="#MORX-5">MORX-5</a>, <a href="#MORX-10">MORX-10</a>, <a href="#MORX-11">MORX-11</a>, <a href="#MORX-17">MORX-17</a>, <a href="#MORX-19">MORX-19</a>, <a href="#MORX-20">MORX-20</a>, <a href="#MORX-24">MORX-24</a>, <a href="#MORX-29">MORX-29</a>, <a href="#MORX-30">MORX-30</a>, <a href="#MORX-31">MORX-31</a>, <a href="#MORX-33">MORX-33</a>, <a href="#MORX-34">MORX-34</a>, <a href="#MORX-35">MORX-35</a>, <a href="#MORX-36">MORX-36</a>, <a href="#MORX-38">MORX-38</a>, <a href="#MORX-40">MORX-40</a>, and <a href="#MORX-41">MORX-41</a>.</span>
@@ -1291,10 +1291,14 @@ svg {height:2.5em;transform:scaleY(-1)}
 
 <table>
   <tr>
-    <th class="conformance-header">Conformance</th>
-    <td class="conformance-fail" ns0:font="TestGSUBThree.ttf" ns0:id="GSUB-3/1" ns0:render="lol">✖</td>
+    <th>Expected</th>
+    <td class="expected-no-crash" ns0:font="TestGSUBThree.ttf" ns0:id="GSUB-3/1" ns0:render="lol">Shouldn’t crash</td>
   </tr>
 
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance-fail" ns0:id="GSUB-3/1">✖</td>
+  </tr>
 </table>
 <h3 id="GVAR-1">GVAR–1: Sharing All Points</h3>
 
@@ -3958,9 +3962,15 @@ Finally, see also the <a href="https://unicode.org/mailman/private/opentype-layo
 
 <table>
   <tr>
-    <th class="conformance-header">Conformance</th>
-    <td class="conformance-fail" ns0:font="TestMORXTwentyfour.ttf" ns0:id="MORX-24/1" ns0:render="ABCDE">✖</td>
+    <th>Expected</th>
+    <td class="expected-no-crash" ns0:font="TestMORXTwentyfour.ttf" ns0:id="MORX-24/1" ns0:render="ABCDE">Shouldn’t crash</td>
   </tr>
+
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance-fail" ns0:id="MORX-24/1">✖</td>
+  </tr>
+
 </table>
 
 <h3 id="MORX-25">MORX-25: State Machine for Contextual Glyph Substitution</h3>
@@ -4586,10 +4596,13 @@ Finally, see also the <a href="https://unicode.org/mailman/private/opentype-layo
 
 <table>
   <tr>
-    <th class="conformance-header">Conformance</th>
-    <td class="conformance-fail" ns0:font="TestMORXThirtyfour.ttf" ns0:id="MORX-34/1" ns0:render="ha">✖</td>
+    <th>Expected</th>
+    <td class="expected-no-crash" ns0:font="TestMORXThirtyfour.ttf" ns0:id="MORX-34/1" ns0:render="ha">Shouldn’t crash</td>
   </tr>
-
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance-fail" ns0:id="MORX-34/1">✖</td>
+  </tr>
 </table>
 <h3 id="MORX-35">MORX-35: Insertion with DontAdvance</h3>
 
@@ -4693,8 +4706,12 @@ Finally, see also the <a href="https://unicode.org/mailman/private/opentype-layo
 
 <table>
   <tr>
+    <th>Expected</th>
+    <td class="expected-no-crash" ns0:font="TestMORXThirtysix.ttf" ns0:id="MORX-36/1" ns0:render="A">Shouldn’t crash</td>
+  </tr>
+  <tr>
     <th class="conformance-header">Conformance</th>
-    <td class="conformance-fail" ns0:font="TestMORXThirtysix.ttf" ns0:id="MORX-36/1" ns0:render="A">✖</td>
+    <td class="conformance-fail" ns0:id="MORX-36/1">✖</td>
   </tr>
 </table>
 <h3 id="MORX-37">MORX-37: Processing in Layout/Physical Order</h3>

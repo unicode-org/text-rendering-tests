@@ -85,9 +85,10 @@ class ConformanceChecker:
             self.observed[testcase] = observed
             self.conformance[testcase] = ok
             print('%s %s' % ('PASS' if ok else 'FAIL', testcase))
-        for e in doc.findall(".//*[@class='should-not-crash']"):
+        for e in doc.findall(".//*[@class='expected-no-crash']"):
             testcase = e.attrib[FONTTEST_ID]
             ok, observed = self.render(e)
+            self.add_prefix_to_svg_ids(observed, 'OBSERVED')
             self.observed[testcase] = observed
             self.conformance[testcase] = ok
             print('%s %s' % ('PASS' if ok else 'FAIL', testcase))
@@ -170,9 +171,7 @@ class ConformanceChecker:
             doc = self.reports[filename]
             for e in doc.findall(".//*[@class='observed']"):
                 e.append(self.observed.get(e.attrib[FONTTEST_ID]))
-            conf = (list(doc.findall(".//*[@class='conformance']")) +
-                    list(doc.findall(".//*[@class='should-not-crash']")))
-            for e in conf:
+            for e in doc.findall(".//*[@class='conformance']"):
                 if self.conformance.get(e.attrib[FONTTEST_ID]):
                     e.text, e.attrib['class'] = '✓', 'conformance-pass'
                 else:
