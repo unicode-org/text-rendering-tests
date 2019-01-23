@@ -74,36 +74,22 @@ class ConformanceChecker:
     def check(self, testfile):
         doc = etree.parse(testfile).getroot()
         self.reports[testfile] = doc
-        all_ok = True
         for e in doc.findall(".//*[@class='expected']"):
             testcase = e.attrib[FONTTEST_ID]
-            expected_svg = e.find('svg')
-            self.normalize_svg(expected_svg)
-            command = self.make_command(e)
-            status, observed, _stderr = run_command(command, timeout_sec=3)
-            if status == 0:
-                observed = re.sub(r'>\s+<', '><', observed)
-                observed = observed.replace(
-                    'xmlns="http://www.w3.org/2000/svg"', '')
-                observed_svg = etree.fromstring(observed)
-                self.normalize_svg(observed_svg)
-                ok = svgutil.is_similar(expected_svg, observed_svg,
-                                        maxDelta=1.0)
-                self.add_prefix_to_svg_ids(observed_svg, 'OBSERVED')
-                self.observed[testcase] = observed_svg
-            else:
-                self.observed[testcase] = etree.fromstring(
-                    '<div>&#x2053;</div>')
-                ok = False
+            ok, observed = self.render(e)
+            if ok:
+                expected_svg = e.find('svg')
+                self.normalize_svg(expected_svg)
+                ok = svgutil.is_similar(expected_svg, observed, maxDelta=1.0)
+                self.add_prefix_to_svg_ids(observed, 'OBSERVED')
+            self.observed[testcase] = observed
             self.conformance[testcase] = ok
-            if not ok: all_ok = False
             print('%s %s' % ('PASS' if ok else 'FAIL', testcase))
         for e in doc.findall(".//*[@class='should-not-crash']"):
             testcase = e.attrib[FONTTEST_ID]
-            command = self.make_command(e)
-            status, _observed, _stderr = run_command(command, timeout_sec=3)
-            ok = self.conformance[testcase] = (status == 0)
-            if not ok: all_ok = False
+            ok, observed = self.render(e)
+            self.observed[testcase] = observed
+            self.conformance[testcase] = ok
             print('%s %s' % ('PASS' if ok else 'FAIL', testcase))
         for testcase, ok in list(self.conformance.items()):
             groups = testcase.split('/')
@@ -111,6 +97,19 @@ class ConformanceChecker:
                 group = '/'.join(groups[:i])
                 self.conformance[group] = (ok and
                                            self.conformance.get(group, True))
+
+    def render(self, e):
+        command = self.make_command(e)
+        status, observed, _stderr = run_command(command, timeout_sec=3)
+        if status == 0:
+            observed = re.sub(r'>\s+<', '><', observed)
+            observed = observed.replace(
+                'xmlns="http://www.w3.org/2000/svg"', '')
+            observed_svg = etree.fromstring(observed)
+            self.normalize_svg(observed_svg)
+            return (True, observed_svg)
+        else:
+            return (False, etree.fromstring('<div>&#x2053;</div>'))
 
     def normalize_svg(self, svg):
         strip_path = lambda p: re.sub(r'\s+', ' ', p).strip()
