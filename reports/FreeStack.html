@@ -50,7 +50,7 @@ svg {height:2.5em;transform:scaleY(-1)}
   This report was generated on <span id="Date">February 26, 2019</span> by running
   <a href="https://github.com/unicode-org/text-rendering-tests">Unicode’s test suite for text rendering engines</a> with
   <span id="EngineVersion">HarfBuzz 2.3.1, FreeType 2.9.1 and FriBidi 1.0.1</span>.
-  <span id="SummaryText">Some tests have failed. For details, see <a href="#CMAP-3">CMAP-3</a>, <a href="#SHKNDA-3">SHKNDA-3</a>, <a href="#SHLANA-1">SHLANA-1</a>, <a href="#SHLANA-2">SHLANA-2</a>, and <a href="#SHLANA-3">SHLANA-3</a>.</span>
+  <span id="SummaryText">Some tests have failed. For details, see <a href="#CMAP-3">CMAP-3</a>, <a href="#SHKNDA-3">SHKNDA-3</a>, <a href="#SHLANA-1">SHLANA-1</a>, <a href="#SHLANA-2">SHLANA-2</a>, <a href="#SHLANA-3">SHLANA-3</a>, and <a href="#SHLANA-4">SHLANA-4</a>.</span>
 </div>
 <h3 id="AVAR-1">AVAR–1: Weight Flattening</h3>
 
@@ -6542,6 +6542,59 @@ Finally, see also the <a href="https://unicode.org/mailman/private/opentype-layo
     <td class="conformance-pass" ns0:id="SHLANA-3/11">✓</td>
     <td class="conformance-fail" ns0:id="SHLANA-3/12">✖</td>
     <td class="conformance-pass" ns0:id="SHLANA-3/13">✓</td>
+  </tr>
+
+
+</table>
+<h3 id="SHLANA-4">SHLANA–4: Tai Tham Sign Mai Lang Kai</h3>
+
+<div class="desc">
+  The <a href="https://en.wikipedia.org/wiki/Tai_Tham_script">Tai
+  Tham</a> codepoint U+1A58 TAI THAM SIGN MAI LANG KAI is challenging
+  due to its wide range of behaviours. It can behave as a spacing
+  final character (as in modern Tai Khün fonts) to a repha-like
+  character, the old-fashioned behaviour seen in Tai Khün, Thailand
+  and Laos. The <a href="https://www.worldcat.org/search?qt=worldcat_org_all&amp;q=ISBN+974-8359-03-4">MFL dictionary</a> shows an intermediate behaviour, where
+  marks above the following base consonant cause it to be positioned
+  within the previous syllable. This is the style employed by the
+  <a href="../fonts/TestShapeLana.ttf">test font</a>, which has
+  been contributed by
+  <a href="http://www.wrdingham.co.uk/">Richard Wordingham</a> and
+  whose
+  <a href="http://www.wrdingham.co.uk/lanna/renderer_test.htm#mai_kang_lai">browser test page for Tai Tham rendering</a> gives more
+  background.
+</div>
+
+<table>
+  <tr>
+    <th />
+    <td><br />‘all’<br />/taŋ laːi/</td>
+    <td>Nominative of<br />Pali ‹saṅgha›<br />‹saṅgho›</td>
+    <td><br />‘ray’<br />/raŋ siː/</td>
+  </tr>
+
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ns0:font="TestShapeLana.ttf" ns0:id="SHLANA-4/1" ns0:render="ᨴᩘ᩠ᩃᩣ᩠ᨿ"><svg version="1.1" viewBox="0 -914 1637 2105"><symbol id="SHLANA-4/1.uni1A34" overflow="visible"><path d="M92,546 L182,546 L182,89 L458,89 L458,277 L320,277 L320,367 L458,367 L458,457 L320,457 L320,546 L548,546 L548,0 L92,0 Z" /></symbol><symbol id="SHLANA-4/1.uni1A58" overflow="visible"><path d="M-405,634 L-405,724 L-274,724 L-274,922 L-274,1012 Q-274,1083 -167,1083 L-113,1083 Q-5,1083 -5,976 L-5,904 L160,904 L160,814 L-185,814 L-185,634 Z M-185,904 L-95,904 L-95,994 L-185,994 Z" /></symbol><symbol id="SHLANA-4/1.uni1A601A43" overflow="visible"><path d="M-470,-97 L-99,-97 L-99,-457 L92,-457 L92,546 L182,546 L182,-546 L-188,-546 L-188,-187 L-380,-187 L-380,-546 L-470,-546 Z" /></symbol><symbol id="SHLANA-4/1.uni1A63" overflow="visible"><path d="M92,546 L320,546 Q548,546 548,273 Q548,0 320,0 L92,0 L92,89 L320,89 Q458,89 458,273 Q458,457 320,457 L92,457 Z" /></symbol><symbol id="SHLANA-4/1.uni1A601A3F" overflow="visible"><path d="M-315,-97 L-226,-97 L-226,-277 L92,-277 L92,546 L182,546 L182,-367 L-315,-367 Z" /></symbol><use x="0" y="0" xlink:href="#SHLANA-4/1.uni1A34" /><use x="592" y="0" xlink:href="#SHLANA-4/1.uni1A58" /><use x="592" y="0" xlink:href="#SHLANA-4/1.uni1A601A43" /><use x="818" y="0" xlink:href="#SHLANA-4/1.uni1A63" /><use x="1410" y="0" xlink:href="#SHLANA-4/1.uni1A601A3F" /></svg></td>
+
+    <td class="expected" ns0:font="TestShapeLana.ttf" ns0:id="SHLANA-4/2" ns0:render="ᩈᩘᨥᩮᩣ"><svg version="1.1" viewBox="0 -914 2709 2105"><symbol id="SHLANA-4/2.uni1A48" overflow="visible"><path d="M92,89 L230,89 L230,457 L92,457 L92,546 L320,546 L320,89 L458,89 L458,457 L410,457 L410,546 L548,546 L548,0 L92,0 Z" /></symbol><symbol id="SHLANA-4/2.uni1A6E" overflow="visible"><path d="M320,0 Q92,0 92,273 Q92,546 320,546 L548,546 L548,457 L320,457 Q182,457 182,273 Q182,89 320,89 L548,89 L548,0 Z" /></symbol><symbol id="SHLANA-4/2.uni1A25" overflow="visible"><path d="M92,546 L451,546 L451,277 Q451,187 361,187 L182,187 L182,89 L580,89 L580,546 L670,546 L670,89 L798,89 L798,546 L888,546 L888,0 L92,0 L92,277 L361,277 L361,457 L92,457 Z" /></symbol><symbol id="SHLANA-4/2.uni1A58" overflow="visible"><path d="M-405,634 L-405,724 L-274,724 L-274,922 L-274,1012 Q-274,1083 -167,1083 L-113,1083 Q-5,1083 -5,976 L-5,904 L160,904 L160,814 L-185,814 L-185,634 Z M-185,904 L-95,904 L-95,994 L-185,994 Z" /></symbol><symbol id="SHLANA-4/2.uni1A63" overflow="visible"><path d="M92,546 L320,546 Q548,546 548,273 Q548,0 320,0 L92,0 L92,89 L320,89 Q458,89 458,273 Q458,457 320,457 L92,457 Z" /></symbol><use x="0" y="0" xlink:href="#SHLANA-4/2.uni1A48" /><use x="592" y="0" xlink:href="#SHLANA-4/2.uni1A6E" /><use x="1184" y="0" xlink:href="#SHLANA-4/2.uni1A25" /><use x="1945" y="0" xlink:href="#SHLANA-4/2.uni1A58" /><use x="2117" y="0" xlink:href="#SHLANA-4/2.uni1A63" /></svg></td>
+
+    <td class="expected" ns0:font="TestShapeLana.ttf" ns0:id="SHLANA-4/3" ns0:render="ᩁᩘᩈᩦ"><svg version="1.1" viewBox="0 -914 1184 2105"><symbol id="SHLANA-4/3.uni1A41" overflow="visible"><path d="M92,0 L92,89 L361,89 L361,156 L92,156 L92,546 L182,546 L548,388 L548,287 L182,446 L182,246 L451,246 L451,0 Z" /></symbol><symbol id="SHLANA-4/3.uni1A58" overflow="visible"><path d="M-405,634 L-405,724 L-274,724 L-274,922 L-274,1012 Q-274,1083 -167,1083 L-113,1083 Q-5,1083 -5,976 L-5,904 L160,904 L160,814 L-185,814 L-185,634 Z M-185,904 L-95,904 L-95,994 L-185,994 Z" /></symbol><symbol id="SHLANA-4/3.uni1A48" overflow="visible"><path d="M92,89 L230,89 L230,457 L92,457 L92,546 L320,546 L320,89 L458,89 L458,457 L410,457 L410,546 L548,546 L548,0 L92,0 Z" /></symbol><symbol id="SHLANA-4/3.uni1A66" overflow="visible"><path d="M-493,634 L-493,904 L-167,904 L-167,634 L-228,634 L-228,814 L-403,814 L-403,724 L-313,724 L-313,634 Z M-107,634 L-107,904 L-48,904 L-48,634 Z" /></symbol><use x="0" y="0" xlink:href="#SHLANA-4/3.uni1A41" /><use x="592" y="0" xlink:href="#SHLANA-4/3.uni1A58" /><use x="592" y="0" xlink:href="#SHLANA-4/3.uni1A48" /><use x="1184" y="0" xlink:href="#SHLANA-4/3.uni1A66" /></svg></td>
+
+  </tr>
+
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ns0:id="SHLANA-4/1"><svg version="1.1" viewBox="0 -914 2820 2105"><symbol id="OBSERVED/SHLANA-4/1.uni1A34" overflow="visible"><path d="M92,546 L182,546 L182,89 L458,89 L458,277 L320,277 L320,367 L458,367 L458,457 L320,457 L320,546 L548,546 L548,0 L92,0 Z" /></symbol><symbol id="OBSERVED/SHLANA-4/1.uni1A58" overflow="visible"><path d="M-405,634 L-405,724 L-274,724 L-274,922 L-274,1012 Q-274,1083 -167,1083 L-113,1083 Q-5,1083 -5,976 L-5,904 L160,904 L160,814 L-185,814 L-185,634 Z M-185,904 L-95,904 L-95,994 L-185,994 Z" /></symbol><symbol id="OBSERVED/SHLANA-4/1.uni25CC" overflow="visible"><path d="M459,318 L548,318 L548,228 L459,228 Z M367,477 L457,477 L457,387 L367,387 Z M184,477 L274,477 L274,387 L184,387 Z M92,318 L182,318 L182,228 L92,228 Z M184,159 L273,159 L273,69 L184,69 Z M367,159 L457,159 L457,69 L367,69 Z" /></symbol><symbol id="OBSERVED/SHLANA-4/1.uni1A601A43" overflow="visible"><path d="M-470,-97 L-99,-97 L-99,-457 L92,-457 L92,546 L182,546 L182,-546 L-188,-546 L-188,-187 L-380,-187 L-380,-546 L-470,-546 Z" /></symbol><symbol id="OBSERVED/SHLANA-4/1.uni1A63" overflow="visible"><path d="M92,546 L320,546 Q548,546 548,273 Q548,0 320,0 L92,0 L92,89 L320,89 Q458,89 458,273 Q458,457 320,457 L92,457 Z" /></symbol><symbol id="OBSERVED/SHLANA-4/1.uni1A601A3F" overflow="visible"><path d="M-315,-97 L-226,-97 L-226,-277 L92,-277 L92,546 L182,546 L182,-367 L-315,-367 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/SHLANA-4/1.uni1A34" /><use x="592" y="0" xlink:href="#OBSERVED/SHLANA-4/1.uni1A58" /><use x="592" y="0" xlink:href="#OBSERVED/SHLANA-4/1.uni25CC" /><use x="1184" y="0" xlink:href="#OBSERVED/SHLANA-4/1.uni1A601A43" /><use x="1410" y="0" xlink:href="#OBSERVED/SHLANA-4/1.uni1A63" /><use x="2002" y="0" xlink:href="#OBSERVED/SHLANA-4/1.uni25CC" /><use x="2594" y="0" xlink:href="#OBSERVED/SHLANA-4/1.uni1A601A3F" /></svg></td>
+    <td class="observed" ns0:id="SHLANA-4/2"><svg version="1.1" viewBox="0 -914 2709 2105"><symbol id="OBSERVED/SHLANA-4/2.uni1A48" overflow="visible"><path d="M92,89 L230,89 L230,457 L92,457 L92,546 L320,546 L320,89 L458,89 L458,457 L410,457 L410,546 L548,546 L548,0 L92,0 Z" /></symbol><symbol id="OBSERVED/SHLANA-4/2.uni1A6E" overflow="visible"><path d="M320,0 Q92,0 92,273 Q92,546 320,546 L548,546 L548,457 L320,457 Q182,457 182,273 Q182,89 320,89 L548,89 L548,0 Z" /></symbol><symbol id="OBSERVED/SHLANA-4/2.uni1A25" overflow="visible"><path d="M92,546 L451,546 L451,277 Q451,187 361,187 L182,187 L182,89 L580,89 L580,546 L670,546 L670,89 L798,89 L798,546 L888,546 L888,0 L92,0 L92,277 L361,277 L361,457 L92,457 Z" /></symbol><symbol id="OBSERVED/SHLANA-4/2.uni1A58" overflow="visible"><path d="M-405,634 L-405,724 L-274,724 L-274,922 L-274,1012 Q-274,1083 -167,1083 L-113,1083 Q-5,1083 -5,976 L-5,904 L160,904 L160,814 L-185,814 L-185,634 Z M-185,904 L-95,904 L-95,994 L-185,994 Z" /></symbol><symbol id="OBSERVED/SHLANA-4/2.uni1A63" overflow="visible"><path d="M92,546 L320,546 Q548,546 548,273 Q548,0 320,0 L92,0 L92,89 L320,89 Q458,89 458,273 Q458,457 320,457 L92,457 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/SHLANA-4/2.uni1A48" /><use x="592" y="0" xlink:href="#OBSERVED/SHLANA-4/2.uni1A6E" /><use x="1184" y="0" xlink:href="#OBSERVED/SHLANA-4/2.uni1A25" /><use x="1945" y="0" xlink:href="#OBSERVED/SHLANA-4/2.uni1A58" /><use x="2117" y="0" xlink:href="#OBSERVED/SHLANA-4/2.uni1A63" /></svg></td>
+    <td class="observed" ns0:id="SHLANA-4/3"><svg version="1.1" viewBox="0 -914 1184 2105"><symbol id="OBSERVED/SHLANA-4/3.uni1A41" overflow="visible"><path d="M92,0 L92,89 L361,89 L361,156 L92,156 L92,546 L182,546 L548,388 L548,287 L182,446 L182,246 L451,246 L451,0 Z" /></symbol><symbol id="OBSERVED/SHLANA-4/3.uni1A58" overflow="visible"><path d="M-405,634 L-405,724 L-274,724 L-274,922 L-274,1012 Q-274,1083 -167,1083 L-113,1083 Q-5,1083 -5,976 L-5,904 L160,904 L160,814 L-185,814 L-185,634 Z M-185,904 L-95,904 L-95,994 L-185,994 Z" /></symbol><symbol id="OBSERVED/SHLANA-4/3.uni1A48" overflow="visible"><path d="M92,89 L230,89 L230,457 L92,457 L92,546 L320,546 L320,89 L458,89 L458,457 L410,457 L410,546 L548,546 L548,0 L92,0 Z" /></symbol><symbol id="OBSERVED/SHLANA-4/3.uni1A66" overflow="visible"><path d="M-493,634 L-493,904 L-167,904 L-167,634 L-228,634 L-228,814 L-403,814 L-403,724 L-313,724 L-313,634 Z M-107,634 L-107,904 L-48,904 L-48,634 Z" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/SHLANA-4/3.uni1A41" /><use x="592" y="0" xlink:href="#OBSERVED/SHLANA-4/3.uni1A58" /><use x="592" y="0" xlink:href="#OBSERVED/SHLANA-4/3.uni1A48" /><use x="1184" y="0" xlink:href="#OBSERVED/SHLANA-4/3.uni1A66" /></svg></td>
+  </tr>
+
+  <tr>
+    <th>Conformance</th>
+    <td class="conformance-fail" ns0:id="SHLANA-4/1">✖</td>
+    <td class="conformance-pass" ns0:id="SHLANA-4/2">✓</td>
+    <td class="conformance-pass" ns0:id="SHLANA-4/3">✓</td>
   </tr>
 
 
