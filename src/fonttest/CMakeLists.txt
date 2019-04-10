@@ -9,6 +9,8 @@ add_executable(fonttest
     freestack_font.cpp
     freestack_line.cpp
     freestack_path.cpp
+    tehreerstack_engine.cpp
+    tehreerstack_line.cpp
     test_harness.cpp
     $<IF:${APPLE},coretext_engine.mm,>
     $<IF:${APPLE},coretext_font.mm,>
