@@ -44,7 +44,7 @@ class ConformanceChecker:
         self.observed = {}  # testcase --> SVG ElementTree
 
     def get_version(self):
-        if self.engine in {'CoreText', 'FreeStack'}:
+        if self.engine in {'CoreText', 'FreeStack', 'TehreerStack'}:
             return subprocess.check_output([self.command, '--version',
                                             '--engine=' + self.engine])
         if self.engine in ('OpenType.js', 'fontkit'):
@@ -219,7 +219,7 @@ def main():
     etree.register_namespace('xlink', 'http://www.w3.org/1999/xlink')
     parser = argparse.ArgumentParser()
     parser.add_argument('--engine',
-                        choices=['FreeStack', 'CoreText', 'DirectWrite', 'OpenType.js', 'fontkit'],
+                        choices=['FreeStack', 'TehreerStack', 'CoreText', 'DirectWrite', 'OpenType.js', 'fontkit'],
                         default='FreeStack')
     parser.add_argument('--output', help='path to report file being written')
     args = parser.parse_args()
