@@ -9,6 +9,8 @@ add_executable(fonttest
     freestack_font.cpp
     freestack_line.cpp
     freestack_path.cpp
+    tehreerstack_engine.cpp
+    tehreerstack_line.cpp
     test_harness.cpp
     $<IF:${APPLE},coretext_engine.mm,>
     $<IF:${APPLE},coretext_font.mm,>
@@ -50,7 +52,7 @@ if(APPLE)
 endif(APPLE)
 
 target_link_libraries(fonttest
-    freetype harfbuzz raqm
+    freetype harfbuzz raqm sheenbidi sheenfigure
     $<IF:${APPLE},${Foundation},>
     $<IF:${APPLE},${CoreGraphics},>
     $<IF:${APPLE},${CoreText},>
