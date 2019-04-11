@@ -10,3 +10,9 @@
 [submodule "src/third_party/raqm/libraqm"]
 	path = src/third_party/raqm/libraqm
 	url = https://github.com/HOST-Oman/libraqm.git
+[submodule "src/third_party/sheenbidi/sheenbidi"]
+	path = src/third_party/sheenbidi/sheenbidi
+	url = https://github.com/Tehreer/SheenBidi.git
+[submodule "src/third_party/sheenfigure/sheenfigure"]
+	path = src/third_party/sheenfigure/sheenfigure
+	url = https://github.com/Tehreer/SheenFigure.git

@@ -15,6 +15,7 @@
 
 #include "fonttest/font_engine.h"
 #include "fonttest/freestack_engine.h"
+#include "fonttest/tehreerstack_engine.h"
 
 #ifdef HAVE_CORETEXT
 #  include "fonttest/coretext_engine.h"
@@ -25,6 +26,10 @@ namespace fonttest {
 FontEngine* FontEngine::Create(const std::string& engineName) {
   if (engineName == "FreeStack") {
     return new FreeStackEngine();
+  }
+
+  if (engineName == "TehreerStack") {
+    return new TehreerStackEngine();
   }
 
 #ifdef HAVE_CORETEXT

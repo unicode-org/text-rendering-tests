@@ -9,7 +9,7 @@ get this right.
 ```bash
 $ git clone --recursive https://github.com/unicode-org/text-rendering-tests.git
 $ cd text-rendering-tests
-$ for engine in CoreText FreeStack fontkit OpenType.js ; do python check.py --engine=$engine --output=reports/$engine.html  ; done
+$ for engine in CoreText FreeStack TehreerStack fontkit OpenType.js ; do python check.py --engine=$engine --output=reports/$engine.html  ; done
 ```
 
 
@@ -28,6 +28,12 @@ are used by Linux, Android, ChromeOS, and many other systems.
 * With `--engine=CoreText`, the tests are run on Apple’s CoreText.
 This option will work only if you run the test suite on MacOS X.
 — [Test report for CoreText](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/CoreText.html).
+
+* With `--engine=TehreerStack`, the tests are run on an open-source
+text rendering stack consisting of [FreeType](https://www.freetype.org/),
+[SheenBidi](https://github.com/Tehreer/SheenBidi), and
+[SheenFigure](https://github.com/Tehreer/SheenFigure).
+— [Test report for TehreerStack](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/TehreerStack.html).
 
 * With `--engine=fontkit`, the tests are run on
 [fontkit](http://github.com/devongovett/fontkit), a JavaScript font engine.
