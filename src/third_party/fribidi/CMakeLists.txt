@@ -36,11 +36,11 @@ check_type_size(wchar_t SIZEOF_WCHAR_T)
 
 target_compile_definitions(fribidi
     PRIVATE HAVE_STRINGIZE
-        $<IF:${HAVE_STDLIB_H},HAVE_STDLIB_H,>
-        $<IF:${HAVE_STRING_H},HAVE_STRING_H,>
-        $<IF:${HAVE_STRINGS_H},HAVE_STRINGS_H,>
-        $<IF:${HAVE_WCHAR_H},HAVE_WCHAR_H,>
-        $<IF:${HAVE_SYS_TIMES_H},HAVE_SYS_TIMES_H,>
+        $<IF:$<BOOL:${HAVE_STDLIB_H}>,HAVE_STDLIB_H,>
+        $<IF:$<BOOL:${HAVE_STRING_H}>,HAVE_STRING_H,>
+        $<IF:$<BOOL:${HAVE_STRINGS_H}>,HAVE_STRINGS_H,>
+        $<IF:$<BOOL:${HAVE_WCHAR_H}>,HAVE_WCHAR_H,>
+        $<IF:$<BOOL:${HAVE_SYS_TIMES_H}>,HAVE_SYS_TIMES_H,>
 )
 
 target_include_directories(fribidi SYSTEM

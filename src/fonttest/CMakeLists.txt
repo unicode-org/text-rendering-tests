@@ -12,10 +12,10 @@ add_executable(fonttest
     tehreerstack_engine.cpp
     tehreerstack_line.cpp
     test_harness.cpp
-    $<IF:${APPLE},coretext_engine.mm,>
-    $<IF:${APPLE},coretext_font.mm,>
-    $<IF:${APPLE},coretext_line.mm,>
-    $<IF:${APPLE},coretext_path.mm,>
+    $<IF:$<BOOL:${APPLE}>,coretext_engine.mm,>
+    $<IF:$<BOOL:${APPLE}>,coretext_font.mm,>
+    $<IF:$<BOOL:${APPLE}>,coretext_line.mm,>
+    $<IF:$<BOOL:${APPLE}>,coretext_path.mm,>
 )
 
 set_target_properties(fonttest PROPERTIES
@@ -53,7 +53,7 @@ endif(APPLE)
 
 target_link_libraries(fonttest
     freetype harfbuzz raqm sheenbidi sheenfigure
-    $<IF:${APPLE},${Foundation},>
-    $<IF:${APPLE},${CoreGraphics},>
-    $<IF:${APPLE},${CoreText},>
+    $<IF:$<BOOL:${APPLE}>,${Foundation},>
+    $<IF:$<BOOL:${APPLE}>,${CoreGraphics},>
+    $<IF:$<BOOL:${APPLE}>,${CoreText},>
 )
