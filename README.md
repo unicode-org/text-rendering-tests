@@ -7,6 +7,7 @@ display text, so we founded this project to help implementations to
 get this right.
 
 ```bash
+$ brew intall cmake ninja npm
 $ git clone --recursive https://github.com/unicode-org/text-rendering-tests.git
 $ cd text-rendering-tests
 $ for engine in CoreText FreeStack TehreerStack fontkit OpenType.js ; do python check.py --engine=$engine --output=reports/$engine.html  ; done
@@ -15,7 +16,7 @@ $ for engine in CoreText FreeStack TehreerStack fontkit OpenType.js ; do python 
 
 ## Supported Platforms
 
-Currently, the test suite supports four OpenType implementations:
+Currently, the test suite supports five OpenType implementations:
 
 * With `--engine=FreeStack`, the tests are run on the free/libre
 open-source text rendering stack with [FreeType](https://www.freetype.org/),
