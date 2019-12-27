@@ -15,7 +15,7 @@ add_library(harfbuzz STATIC
     # harfbuzz/src/hb-coretext.cc
     # harfbuzz/src/hb-directwrite.cc
     harfbuzz/src/hb-face.cc
-    # harfbuzz/src/hb-fallback-shape.cc
+    harfbuzz/src/hb-fallback-shape.cc
     harfbuzz/src/hb-font.cc
     harfbuzz/src/hb-ft.cc
     # harfbuzz/src/hb-glib.cc
@@ -23,6 +23,7 @@ add_library(harfbuzz STATIC
     # harfbuzz/src/hb-graphite2.cc
     # harfbuzz/src/hb-icu.cc
     harfbuzz/src/hb-map.cc
+    harfbuzz/src/hb-number.cc
     harfbuzz/src/hb-ot-cff1-table.cc
     harfbuzz/src/hb-ot-cff2-table.cc
     harfbuzz/src/hb-ot-color.cc
@@ -31,7 +32,7 @@ add_library(harfbuzz STATIC
     harfbuzz/src/hb-ot-layout.cc
     harfbuzz/src/hb-ot-map.cc
     harfbuzz/src/hb-ot-math.cc
-    harfbuzz/src/hb-ot-name-language.cc
+    harfbuzz/src/hb-ot-metrics.cc
     harfbuzz/src/hb-ot-name.cc
     harfbuzz/src/hb-ot-shape-complex-arabic.cc
     harfbuzz/src/hb-ot-shape-complex-default.cc
@@ -55,8 +56,7 @@ add_library(harfbuzz STATIC
     harfbuzz/src/hb-shape.cc
     harfbuzz/src/hb-shaper.cc
     harfbuzz/src/hb-static.cc
-    harfbuzz/src/hb-ucdn.cc
-    harfbuzz/src/hb-ucdn/ucdn.c
+    harfbuzz/src/hb-ucd.cc
     harfbuzz/src/hb-unicode.cc
     # harfbuzz/src/hb-uniscribe.cc
     # harfbuzz/src/hb-warning.cc
