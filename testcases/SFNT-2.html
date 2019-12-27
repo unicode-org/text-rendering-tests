@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html
+    xmlns:ft="https://github.com/OpenType/fonttest"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn|Vollkorn:i"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<h3 id="SFNT-2">SFNT–2: OpenType with TrueType Outlines</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestSFNTTwo.ttf">font</a> for this test case,
+  contributed by <a href="http://www.simon-cozens.org/">Simon
+  Cozens</a>, contains glyphs outlines in both <em>CFF</em>
+  and <em>glyf</em> format.  Because
+  the <a href="https://docs.microsoft.com/en-us/typography/opentype/spec/otff#organization-of-an-opentype-font"
+  >Offset Table</a> uses an <em>sfntVersion</em> of 0x00010000, your
+  rendering engine should take the glyph outlines from
+  the <em>glyf</em> table. If you see <em>glyf</em> below the
+  characters <em>A</em> and <em>B</em>, your rendering engine makes
+  correct use of the <em>sfntVersion</em> field.
+</div>
+
+<table>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="SFNT-2/1"
+        ft:render="A" ft:font="TestSFNTTwo.ttf"><svg version="1.1" viewBox="0 -200 609 1200"><symbol id="SFNT-2/1.A" overflow="visible"><path d="M206,220 L132,0 L5,0 L241,700 L368,700 L604,0 L477,0 L403,220 Z M305,512 L237,310 L372,310 Z M424,-49 L424,-43 Q424,-29 427,-26 Q433,-20 439,-20 Q442,-20 445,-21 Q449,-22 454,-23 L458,-11 Q454,-10 449,-8 Q444,-7 439,-7 Q424,-7 415,-16 Q407,-25 407,-43 L407,-48 L391,-54 L391,-61 L407,-61 L407,-145 L424,-145 L424,-61 L447,-61 L447,-49 Z M265,-10 L265,-145 L281,-145 L281,-10 Z M218,-148 Q218,-162 212,-168 Q206,-175 193,-175 Q170,-175 157,-167 L157,-182 Q172,-188 192,-188 Q214,-188 225,-178 Q235,-167 235,-146 L235,-49 L222,-49 L220,-61 L218,-61 Q209,-47 190,-47 Q170,-47 160,-60 Q149,-73 149,-97 Q149,-122 160,-133 Q170,-146 190,-146 Q210,-146 218,-132 L219,-132 L218,-144 Z M330,-158 Q326,-168 322,-170 Q314,-176 309,-176 Q306,-176 298,-174 L298,-186 Q306,-188 311,-188 Q327,-188 332,-182 Q340,-172 346,-158 L389,-49 L371,-49 L350,-103 L347,-117 Q346,-121 344,-124 Q343,-127 343,-130 Q334,-103 334,-103 L313,-49 L297,-49 L335,-145 Z M192,-133 Q181,-133 173,-124 Q166,-116 166,-97 Q166,-81 173,-69 Q179,-60 192,-60 Q207,-60 213,-68 Q219,-79 219,-97 L219,-100 Q219,-109 218,-116 Q217,-123 213,-126 Q204,-133 192,-133 Z" /></symbol><use x="0" y="0" xlink:href="#SFNT-2/1.A" /></svg></td>
+    <td class="expected" ft:id="SFNT-2/2"
+        ft:render="B" ft:font="TestSFNTTwo.ttf"><svg version="1.1" viewBox="0 -200 600 1200"><symbol id="SFNT-2/2.B" overflow="visible"><path d="M175,0 L74,0 L74,700 Q118,699 192,699 Q256,699 282,699 Q309,700 315,700 Q410,700 466,654 Q523,608 523,527 Q523,496 509,461 Q496,427 465,401 Q434,375 387,369 Q459,358 507,314 Q556,271 556,187 Q556,125 526,82 Q497,40 448,20 Q400,0 344,0 Z M296,424 Q350,424 383,446 Q416,468 416,517 Q416,566 372,586 Q328,606 286,606 L186,606 L186,424 Z M318,100 Q379,100 412,124 Q446,149 446,207 Q446,266 394,288 Q343,310 271,310 L186,310 L186,100 Z M424,-49 L424,-43 Q424,-29 427,-26 Q433,-20 439,-20 Q442,-20 445,-21 Q449,-22 454,-23 L458,-11 Q454,-10 449,-8 Q444,-7 439,-7 Q424,-7 415,-16 Q407,-25 407,-43 L407,-48 L391,-54 L391,-61 L407,-61 L407,-145 L424,-145 L424,-61 L447,-61 L447,-49 Z M265,-10 L265,-145 L281,-145 L281,-10 Z M218,-148 Q218,-162 212,-168 Q206,-175 193,-175 Q170,-175 157,-167 L157,-182 Q172,-188 192,-188 Q214,-188 225,-178 Q235,-167 235,-146 L235,-49 L222,-49 L220,-61 L218,-61 Q209,-47 190,-47 Q170,-47 160,-60 Q149,-73 149,-97 Q149,-122 160,-133 Q170,-146 190,-146 Q210,-146 218,-132 L219,-132 L218,-144 Z M330,-158 Q326,-168 322,-170 Q314,-176 309,-176 Q306,-176 298,-174 L298,-186 Q306,-188 311,-188 Q327,-188 332,-182 Q340,-172 346,-158 L389,-49 L371,-49 L350,-103 L347,-117 Q346,-121 344,-124 Q343,-127 343,-130 Q334,-103 334,-103 L313,-49 L297,-49 L335,-145 Z M192,-133 Q181,-133 173,-124 Q166,-116 166,-97 Q166,-81 173,-69 Q179,-60 192,-60 Q207,-60 213,-68 Q219,-79 219,-97 L219,-100 Q219,-109 218,-116 Q217,-123 213,-126 Q204,-133 192,-133 Z" /></symbol><use x="0" y="0" xlink:href="#SFNT-2/2.B" /></svg></td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="SFNT-2/1"/>
+    <td class="observed" ft:id="SFNT-2/2"/>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="SFNT-2/1"/>
+    <td class="conformance" ft:id="SFNT-2/2"/>
+  </tr>
+
+</table>
+
+</body>
+</html>

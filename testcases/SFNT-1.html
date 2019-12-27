@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html
+    xmlns:ft="https://github.com/OpenType/fonttest"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vollkorn|Vollkorn:i"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<h3 id="SFNT-1">SFNT–1: OpenType with PostScript Outlines</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestSFNTOne.otf">font</a> for this test case,
+  contributed by <a href="http://www.simon-cozens.org/">Simon
+  Cozens</a>, contains glyphs outlines in both <em>CFF</em>
+  and <em>glyf</em> format.  Because
+  the <a href="https://docs.microsoft.com/en-us/typography/opentype/spec/otff#organization-of-an-opentype-font"
+  >Offset Table</a> uses an <em>sfntVersion</em> of
+  0x4F54544F (‘OTTO’), your rendering engine should take the glyph
+  outlines from the <em>CFF</em> table. If you see <em>CFF</em> below
+  the characters <em>A</em> and <em>B</em>, your rendering engine
+  makes correct use of the <em>sfntVersion</em> field.
+</div>
+
+<table>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="SFNT-1/1"
+        ft:render="A" ft:font="TestSFNTOne.otf"><svg version="1.1" viewBox="0 -200 609 1200"><symbol id="SFNT-1/1.A" overflow="visible"><path d="M477,0 L604,0 L368,700 L241,700 L5,0 L132,0 L206,220 L403,220 Z M237,310 L305,512 L372,310 Z M204,-32 C167,-32 154,-56 154,-93 C154,-131 168,-152 204,-152 C216,-152 227,-152 242,-146 L242,-163 C229,-170 228,-166 201,-169 C155,-174 134,-137 134,-90 C134,-49 158,-15 207,-15 C221,-15 236,-18 248,-23 L239,-41 C227,-35 216,-32 204,-32 Z M291,-166 L274,-166 L274,-18 L358,-18 L358,-35 L291,-35 L291,-87 L352,-87 L352,-102 L291,-102 Z M402,-166 L382,-166 L382,-18 L466,-18 L466,-35 L402,-35 L402,-87 L463,-87 L463,-102 L402,-102 Z" /></symbol><use x="0" y="0" xlink:href="#SFNT-1/1.A" /></svg></td>
+    <td class="expected" ft:id="SFNT-1/2"
+        ft:render="B" ft:font="TestSFNTOne.otf"><svg version="1.1" viewBox="0 -200 600 1200"><symbol id="SFNT-1/2.B" overflow="visible"><path d="M344,0 C451,0 556,56 556,187 C556,309 469,356 387,369 C489,381 523,472 523,527 C523,636 440,700 315,700 C300,700 207,698 74,700 L74,0 C179,-1 275,0 344,0 Z M186,424 L186,606 L286,606 C320,606 416,593 416,517 C416,447 361,424 296,424 Z M186,100 L186,310 L271,310 C345,310 446,295 446,207 C446,126 393,100 318,100 Z M204,-32 C167,-32 154,-56 154,-93 C154,-131 168,-152 204,-152 C216,-152 227,-152 242,-146 L242,-163 C229,-170 228,-166 201,-169 C155,-174 134,-137 134,-90 C134,-49 158,-15 207,-15 C221,-15 236,-18 248,-23 L239,-41 C227,-35 216,-32 204,-32 Z M291,-166 L274,-166 L274,-18 L358,-18 L358,-35 L291,-35 L291,-87 L352,-87 L352,-102 L291,-102 Z M402,-166 L382,-166 L382,-18 L466,-18 L466,-35 L402,-35 L402,-87 L463,-87 L463,-102 L402,-102 Z" /></symbol><use x="0" y="0" xlink:href="#SFNT-1/2.B" /></svg></td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="SFNT-1/1"/>
+    <td class="observed" ft:id="SFNT-1/2"/>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="SFNT-1/1"/>
+    <td class="conformance" ft:id="SFNT-1/2"/>
+  </tr>
+
+</table>
+
+</body>
+</html>
