@@ -7,7 +7,7 @@ display text, so we founded this project to help implementations to
 get this right.
 
 ```bash
-$ brew intall cmake ninja npm
+$ brew install cmake ninja npm
 $ git clone --recursive https://github.com/unicode-org/text-rendering-tests.git
 $ cd text-rendering-tests
 $ for engine in CoreText FreeStack TehreerStack fontkit OpenType.js ; do python check.py --engine=$engine --output=reports/$engine.html  ; done
