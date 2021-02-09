@@ -47,7 +47,7 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h2 />
 <h3>Overview</h3>
 <div class="desc">
-  This report was generated on <span id="Date">December 27, 2019</span> by running
+  This report was generated on <span id="Date">February 9, 2021</span> by running
   <a href="https://github.com/unicode-org/text-rendering-tests">Unicode’s test suite for text rendering engines</a> with
   <span id="EngineVersion">HarfBuzz 2.6.4, FreeType 2.10.1 and FriBidi 1.0.1</span>.
   <span id="SummaryText">Some tests have failed. For details, see <a href="#CMAP-3">CMAP-3</a>, <a href="#SHKNDA-3">SHKNDA-3</a>, <a href="#SHLANA-1">SHLANA-1</a>, <a href="#SHLANA-2">SHLANA-2</a>, <a href="#SHLANA-3">SHLANA-3</a>, <a href="#SHLANA-4">SHLANA-4</a>, <a href="#SHLANA-5">SHLANA-5</a>, <a href="#SHLANA-6">SHLANA-6</a>, <a href="#SHLANA-7">SHLANA-7</a>, <a href="#SHLANA-8">SHLANA-8</a>, <a href="#SHLANA-9">SHLANA-9</a>, and <a href="#SHLANA-10">SHLANA-10</a>.</span>
@@ -552,7 +552,12 @@ svg {height:2.5em;transform:scaleY(-1)}
   to <a href="https://en.wikipedia.org/wiki/Mac_OS_9">MacOS 9</a>; the
   combination of encoding 0 and language 18 indicates
   the <a href="https://en.wikipedia.org/wiki/MacTurkish_encoding">MacOS
-  Turkish character encoding</a>.  Although Apple has deprecated the
+  Turkish character encoding</a>. (The QuickDraw graphics system of
+  the classic Macintosh had used code 17 for the Turkish language; as described
+  by section ”The ‘cmap’ table and language codes” in the
+  <a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6cmap.html">Apple TrueType specification</a>, Macintosh language codes in
+  the ‘cmap’ table are 1 higher than the QuickDraw language code).
+  Although Apple has deprecated the
   Macintosh encodings in favor of Unicode in 2002, present-day
   renderers may still encounter such fonts. For example, users
   sometimes want to open electronic documents that were created a long
@@ -1270,23 +1275,22 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h3 id="GSUB-3">GSUB-3: Substituting a Billion Laughs</h3>
 
 <div class="desc">
-  The <a href="../fonts/TestGSUBThree.ttf">font</a> for this
-  test case is an OpenType version of the
-  <a href="https://en.wikipedia.org/wiki/Billion_laughs_attack">Billion
+  The <a href="../fonts/TestGSUBThree.ttf">font</a> for this test case
+  is an OpenType version of the <a href="https://en.wikipedia.org/wiki/Billion_laughs_attack">Billion
   laughs attack</a>. Its <em>GSUB</em> table contains a sequence of
   nine identical lookups. Each lookup replaces the glyph <em>o</em> by
-  the string <em>olo</em>, provided that the <em>o</em> is surrounded
-  (both preceded and followed) by an <em>l</em>. The first lookup
-  thus expands one single laugh <em>(lol)</em> into ten. The second lookup
-  gives 100 laughs; the third 1000; the fourth 10,000; the fifth
-  100,000; and so forth.
-  After executing the ninth lookup, the final result would be
-  a billion laughs, but this takes a very long time (and
-  large amounts of memory) to compute. If your implementation
-  is immune to this attack, it should neither crash nor hang
-  when rendering <em>lol</em> with this font. Instead, your
-  implementation should stop executing once its internal
-  buffer has reached a size limit.
+  the string <em>olololololololololo</em>, provided that the
+  <em>o</em> is surrounded (both preceded and followed) by an
+  <em>l</em>. The first lookup thus expands one single laugh
+  <em>(lol)</em> into ten. The second lookup gives 100 laughs; the
+  third 1000; the fourth 10,000; the fifth 100,000; and so forth.
+  After executing the ninth lookup, the final result would be a
+  billion laughs, but this takes a very long time (and large amounts
+  of memory) to compute. If your implementation is immune to this
+  attack, it should neither crash nor hang when rendering <em>lol</em>
+  with this font. Instead, your implementation should stop executing
+  once its internal buffer has reached a size limit. See also <a href="https://github.com/foliojs/fontkit/issues/221">fontkit
+  bug 221</a>.
 </div>
 
 <table>

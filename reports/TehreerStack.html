@@ -47,7 +47,7 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h2 />
 <h3>Overview</h3>
 <div class="desc">
-  This report was generated on <span id="Date">December 27, 2019</span> by running
+  This report was generated on <span id="Date">February 9, 2021</span> by running
   <a href="https://github.com/unicode-org/text-rendering-tests">Unicode’s test suite for text rendering engines</a> with
   <span id="EngineVersion">FreeType 2.10.1, SheenBidi 2.0 and SheenFigure 1.5</span>.
   <span id="SummaryText">Some tests have failed. For details, see <a href="#CFF2-1">CFF2-1</a>, <a href="#CMAP-1">CMAP-1</a>, <a href="#CMAP-2">CMAP-2</a>, <a href="#CMAP-3">CMAP-3</a>, <a href="#GSUB-3">GSUB-3</a>, <a href="#KERN-1">KERN-1</a>, <a href="#KERN-2">KERN-2</a>, <a href="#MORX-1">MORX-1</a>, <a href="#MORX-2">MORX-2</a>, <a href="#MORX-4">MORX-4</a>, <a href="#MORX-6">MORX-6</a>, <a href="#MORX-7">MORX-7</a>, <a href="#MORX-8">MORX-8</a>, <a href="#MORX-9">MORX-9</a>, <a href="#MORX-10">MORX-10</a>, <a href="#MORX-11">MORX-11</a>, <a href="#MORX-12">MORX-12</a>, <a href="#MORX-13">MORX-13</a>, <a href="#MORX-14">MORX-14</a>, <a href="#MORX-16">MORX-16</a>, <a href="#MORX-17">MORX-17</a>, <a href="#MORX-18">MORX-18</a>, <a href="#MORX-19">MORX-19</a>, <a href="#MORX-20">MORX-20</a>, <a href="#MORX-21">MORX-21</a>, <a href="#MORX-22">MORX-22</a>, <a href="#MORX-23">MORX-23</a>, <a href="#MORX-25">MORX-25</a>, <a href="#MORX-26">MORX-26</a>, <a href="#MORX-27">MORX-27</a>, <a href="#MORX-28">MORX-28</a>, <a href="#MORX-29">MORX-29</a>, <a href="#MORX-30">MORX-30</a>, <a href="#MORX-31">MORX-31</a>, <a href="#MORX-32">MORX-32</a>, <a href="#MORX-33">MORX-33</a>, <a href="#MORX-35">MORX-35</a>, <a href="#MORX-37">MORX-37</a>, <a href="#MORX-38">MORX-38</a>, <a href="#MORX-39">MORX-39</a>, <a href="#MORX-40">MORX-40</a>, <a href="#MORX-41">MORX-41</a>, <a href="#SHBALI-1">SHBALI-1</a>, <a href="#SHBALI-2">SHBALI-2</a>, <a href="#SHKNDA-1">SHKNDA-1</a>, <a href="#SHKNDA-2">SHKNDA-2</a>, <a href="#SHKNDA-3">SHKNDA-3</a>, <a href="#SHLANA-1">SHLANA-1</a>, <a href="#SHLANA-2">SHLANA-2</a>, <a href="#SHLANA-3">SHLANA-3</a>, <a href="#SHLANA-4">SHLANA-4</a>, <a href="#SHLANA-5">SHLANA-5</a>, <a href="#SHLANA-6">SHLANA-6</a>, <a href="#SHLANA-7">SHLANA-7</a>, <a href="#SHLANA-8">SHLANA-8</a>, <a href="#SHLANA-9">SHLANA-9</a>, and <a href="#SHLANA-10">SHLANA-10</a>.</span>
@@ -552,7 +552,12 @@ svg {height:2.5em;transform:scaleY(-1)}
   to <a href="https://en.wikipedia.org/wiki/Mac_OS_9">MacOS 9</a>; the
   combination of encoding 0 and language 18 indicates
   the <a href="https://en.wikipedia.org/wiki/MacTurkish_encoding">MacOS
-  Turkish character encoding</a>.  Although Apple has deprecated the
+  Turkish character encoding</a>. (The QuickDraw graphics system of
+  the classic Macintosh had used code 17 for the Turkish language; as described
+  by section ”The ‘cmap’ table and language codes” in the
+  <a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6cmap.html">Apple TrueType specification</a>, Macintosh language codes in
+  the ‘cmap’ table are 1 higher than the QuickDraw language code).
+  Although Apple has deprecated the
   Macintosh encodings in favor of Unicode in 2002, present-day
   renderers may still encounter such fonts. For example, users
   sometimes want to open electronic documents that were created a long
@@ -1270,23 +1275,22 @@ svg {height:2.5em;transform:scaleY(-1)}
 <h3 id="GSUB-3">GSUB-3: Substituting a Billion Laughs</h3>
 
 <div class="desc">
-  The <a href="../fonts/TestGSUBThree.ttf">font</a> for this
-  test case is an OpenType version of the
-  <a href="https://en.wikipedia.org/wiki/Billion_laughs_attack">Billion
+  The <a href="../fonts/TestGSUBThree.ttf">font</a> for this test case
+  is an OpenType version of the <a href="https://en.wikipedia.org/wiki/Billion_laughs_attack">Billion
   laughs attack</a>. Its <em>GSUB</em> table contains a sequence of
   nine identical lookups. Each lookup replaces the glyph <em>o</em> by
-  the string <em>olo</em>, provided that the <em>o</em> is surrounded
-  (both preceded and followed) by an <em>l</em>. The first lookup
-  thus expands one single laugh <em>(lol)</em> into ten. The second lookup
-  gives 100 laughs; the third 1000; the fourth 10,000; the fifth
-  100,000; and so forth.
-  After executing the ninth lookup, the final result would be
-  a billion laughs, but this takes a very long time (and
-  large amounts of memory) to compute. If your implementation
-  is immune to this attack, it should neither crash nor hang
-  when rendering <em>lol</em> with this font. Instead, your
-  implementation should stop executing once its internal
-  buffer has reached a size limit.
+  the string <em>olololololololololo</em>, provided that the
+  <em>o</em> is surrounded (both preceded and followed) by an
+  <em>l</em>. The first lookup thus expands one single laugh
+  <em>(lol)</em> into ten. The second lookup gives 100 laughs; the
+  third 1000; the fourth 10,000; the fifth 100,000; and so forth.
+  After executing the ninth lookup, the final result would be a
+  billion laughs, but this takes a very long time (and large amounts
+  of memory) to compute. If your implementation is immune to this
+  attack, it should neither crash nor hang when rendering <em>lol</em>
+  with this font. Instead, your implementation should stop executing
+  once its internal buffer has reached a size limit. See also <a href="https://github.com/foliojs/fontkit/issues/221">fontkit
+  bug 221</a>.
 </div>
 
 <table>
