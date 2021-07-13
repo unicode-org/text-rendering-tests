@@ -36,6 +36,8 @@ class ConformanceChecker:
             self.command = 'node_modules/opentype.js/bin/test-render'
         elif self.engine == 'fontkit':
             self.command = 'src/third_party/fontkit/render'
+        elif self.engine == 'Allsorts':
+            self.command = 'src/third_party/allsorts/allsorts-tools/target/release/allsorts'
         else:
             self.command = 'build/fonttest/fonttest'
         self.datestr = self.make_datestr()
@@ -44,7 +46,7 @@ class ConformanceChecker:
         self.observed = {}  # testcase --> SVG ElementTree
 
     def get_version(self):
-        if self.engine in {'CoreText', 'FreeStack', 'TehreerStack'}:
+        if self.engine in {'CoreText', 'FreeStack', 'TehreerStack', 'Allsorts'}:
             return subprocess.check_output([self.command, '--version',
                                             '--engine=' + self.engine])
         if self.engine in ('OpenType.js', 'fontkit'):
@@ -206,6 +208,8 @@ def run_command(cmd, timeout_sec):
 def build(engine):
     if engine == 'OpenType.js' or engine == 'fontkit':
         subprocess.check_call(['npm', 'install'])
+    elif engine == 'Allsorts':
+        subprocess.check_call(['cargo', 'build', '--release', '--manifest-path', 'src/third_party/allsorts/allsorts-tools/Cargo.toml'])
     else:
         if not os.path.exists('build'): os.mkdir('build')
         subprocess.check_call(['cmake', '-GNinja', '../src'], cwd='build')
@@ -217,7 +221,7 @@ def main():
     etree.register_namespace('xlink', 'http://www.w3.org/1999/xlink')
     parser = argparse.ArgumentParser()
     parser.add_argument('--engine',
-                        choices=['FreeStack', 'TehreerStack', 'CoreText', 'DirectWrite', 'OpenType.js', 'fontkit'],
+                        choices=['FreeStack', 'TehreerStack', 'CoreText', 'DirectWrite', 'OpenType.js', 'fontkit', 'Allsorts'],
                         default='FreeStack')
     parser.add_argument('--output', help='path to report file being written')
     args = parser.parse_args()
