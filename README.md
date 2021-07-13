@@ -7,10 +7,10 @@ display text, so we founded this project to help implementations to
 get this right.
 
 ```bash
-$ brew install cmake ninja npm
+$ brew install cmake ninja npm rust
 $ git clone --recursive https://github.com/unicode-org/text-rendering-tests.git
 $ cd text-rendering-tests
-$ for engine in CoreText FreeStack TehreerStack fontkit OpenType.js ; do python check.py --engine=$engine --output=reports/$engine.html  ; done
+$ for engine in CoreText FreeStack TehreerStack fontkit OpenType.js Allsorts ; do python check.py --engine=$engine --output=reports/$engine.html ; done
 ```
 
 
@@ -42,6 +42,10 @@ text rendering stack consisting of [FreeType](https://www.freetype.org/),
 
 * With `--engine=OpenType.js`, the tests are run using [OpenType.js](https://github.com/nodebox/opentype.js), another JavaScript font engine.
 — [Test report for OpenType.js](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/OpenType.js.html).
+
+* With `--engine=Allsorts`, the tests are run using [Allsorts](https://github.com/yeslogic/allsorts),
+  a parsing and shaping engine implemented in [Rust](https://www.rust-lang.org/).
+— [Test report for Allsorts](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/Allsorts.html).
 
 It’s trivial to test other implementations; simply write a small
 wrapper tool. For the [Go font
