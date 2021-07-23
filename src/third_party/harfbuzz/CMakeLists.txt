@@ -43,7 +43,7 @@ add_library(harfbuzz STATIC
     harfbuzz/src/hb-ot-shape-complex-khmer.cc
     harfbuzz/src/hb-ot-shape-complex-myanmar.cc
     harfbuzz/src/hb-ot-shape-complex-thai.cc
-    harfbuzz/src/hb-ot-shape-complex-use-table.cc
+    harfbuzz/src/hb-ot-shape-complex-syllabic.cc
     harfbuzz/src/hb-ot-shape-complex-use.cc
     harfbuzz/src/hb-ot-shape-complex-vowel-constraints.cc
     harfbuzz/src/hb-ot-shape-fallback.cc
@@ -85,6 +85,7 @@ check_include_file(sys/mman.h HAVE_SYS_MMAN_H)
 check_include_file(sys/stat.h HAVE_SYS_STAT_H)
 check_include_file(sys/types.h HAVE_SYS_TYPES_H)
 check_include_file(unistd.h HAVE_UNISTD_H)
+check_include_file(pthread.h HAVE_PTHREAD)
 
 include(CheckSymbolExists)
 check_symbol_exists(atexit stdlib.h HAVE_ATEXIT)
@@ -116,4 +117,5 @@ target_compile_definitions(harfbuzz
         $<IF:$<BOOL:${HAVE_SYS_STAT_H}>,HAVE_SYS_STAT_H,>
         $<IF:$<BOOL:${HAVE_SYS_TYPES_H}>,HAVE_SYS_TYPES_H,>
         $<IF:$<BOOL:${HAVE_UNISTD_H}>,HAVE_UNISTD_H,>
+        $<IF:$<BOOL:${HAVE_PTHREAD}>,HAVE_PTHREAD,>
 )
