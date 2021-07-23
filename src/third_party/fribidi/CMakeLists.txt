@@ -3,13 +3,13 @@ cmake_minimum_required(VERSION 3.0)
 project(fribidi)
 
 add_library(fribidi STATIC
-    fribidi/charset/fribidi-char-sets-cap-rtl.c
-    fribidi/charset/fribidi-char-sets-cp1255.c
-    fribidi/charset/fribidi-char-sets-cp1256.c
-    fribidi/charset/fribidi-char-sets-iso8859-6.c
-    fribidi/charset/fribidi-char-sets-iso8859-8.c
-    fribidi/charset/fribidi-char-sets-utf8.c
-    fribidi/charset/fribidi-char-sets.c
+    fribidi/lib/fribidi-char-sets-cap-rtl.c
+    fribidi/lib/fribidi-char-sets-cp1255.c
+    fribidi/lib/fribidi-char-sets-cp1256.c
+    fribidi/lib/fribidi-char-sets-iso8859-6.c
+    fribidi/lib/fribidi-char-sets-iso8859-8.c
+    fribidi/lib/fribidi-char-sets-utf8.c
+    fribidi/lib/fribidi-char-sets.c
     fribidi/lib/fribidi-arabic.c
     fribidi/lib/fribidi-bidi-types.c
     fribidi/lib/fribidi-bidi.c
