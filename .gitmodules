@@ -16,3 +16,6 @@
 [submodule "src/third_party/sheenfigure/sheenfigure"]
 	path = src/third_party/sheenfigure/sheenfigure
 	url = https://github.com/Tehreer/SheenFigure.git
+[submodule "src/third_party/allsorts/allsorts-tools"]
+	path = src/third_party/allsorts/allsorts-tools
+	url = https://github.com/yeslogic/allsorts-tools
