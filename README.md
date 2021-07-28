@@ -16,7 +16,7 @@ $ for engine in CoreText FreeStack TehreerStack fontkit OpenType.js Allsorts ; d
 
 ## Supported Platforms
 
-Currently, the test suite supports five OpenType implementations:
+Currently, the test suite supports six OpenType implementations:
 
 * With `--engine=FreeStack`, the tests are run on the free/libre
 open-source text rendering stack with [FreeType](https://www.freetype.org/),
