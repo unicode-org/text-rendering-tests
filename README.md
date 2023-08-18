@@ -70,11 +70,10 @@ rendering matches the observed result.  Currently, “matching” is
 implemented by iterating over SVG paths, allowing for maximally 1 font
 design unit of difference.
 
+### Copyright & Licenses
 
-## Contributing
+Copyright © ZZZZ-2023 Unicode, Inc. Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the United States and other countries.
 
-Your contributions are very welcome; simply send pull requests via
-GitHub.  A bot will ask you (on the GitHub review thread) to accept
-[Unicode’s Contributor License Agreement](unicode_cla.pdf) by clicking
-on a web form. Alternatively, if you prefer paper, you can also send a
-signed paper copy of the agreement to Unicode.
+The project is released under [LICENSE](./LICENSE).
+
+A CLA is required to contribute to this project - please refer to the [CONTRIBUTING.md](https://github.com/unicode-org/.github/blob/main/.github/CONTRIBUTING.md) file (or start a Pull Request) for more information.
