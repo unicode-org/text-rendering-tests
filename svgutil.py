@@ -26,14 +26,13 @@ def is_similar(a, b, maxDelta):
         return False
     for name, valueA in a.attrib.items():
         valueB = b.attrib.get(name)
-        if name in ('d', 'viewBox', 'x', 'y'):
+        if name in ("d", "viewBox", "x", "y"):
             if not is_similar_path(valueA, valueB, maxDelta):
                 return False
         else:
             if valueA != valueB:
                 return False
-    for childA, childB in \
-            itertools.izip_longest(a.getchildren(), b.getchildren()):
+    for childA, childB in itertools.izip_longest(a.getchildren(), b.getchildren()):
         if not is_similar(childA, childB, maxDelta):
             return False
     return True
@@ -41,7 +40,7 @@ def is_similar(a, b, maxDelta):
 
 def is_similar_path(a, b, maxDelta):
     for itemA, itemB in itertools.izip_longest(simplified_path(a), simplified_path(b)):
-        if (itemA is None or itemB is None):
+        if itemA is None or itemB is None:
             return False
         try:
             if abs(float(itemA) - float(itemB)) > maxDelta:
@@ -54,32 +53,32 @@ def is_similar_path(a, b, maxDelta):
 
 # http://codereview.stackexchange.com/a/88051
 def parse_path(path_data):
-    digit_exp = '0123456789eE'
-    comma_wsp = ', \t\n\r\f\v'
-    drawto_command = 'MmZzLlHhVvCcSsQqTtAa'
-    sign = '+-'
-    exponent = 'eE'
+    digit_exp = "0123456789eE"
+    comma_wsp = ", \t\n\r\f\v"
+    drawto_command = "MmZzLlHhVvCcSsQqTtAa"
+    sign = "+-"
+    exponent = "eE"
     float = False
-    entity = ''
+    entity = ""
     for char in path_data:
         if char in digit_exp:
             entity += char
         elif char in comma_wsp and entity:
             yield entity
             float = False
-            entity = ''
+            entity = ""
         elif char in drawto_command:
             if entity:
                 yield entity
                 float = False
-                entity = ''
+                entity = ""
             yield char
-        elif char == '.':
+        elif char == ".":
             if float:
                 yield entity
-                entity = '.'
+                entity = "."
             else:
-                entity += '.'
+                entity += "."
                 float = True
         elif char in sign:
             if entity and entity[-1] not in exponent:
@@ -109,12 +108,12 @@ class simplified_path:
         # Buffer the current subpath.
         for entity in self.path:
             self.subpath.append(entity)
-            if entity in 'Zz':
+            if entity in "Zz":
                 only_moves = True
                 for subentity in iter(self.subpath):
-                    if subentity in 'MmZz':
+                    if subentity in "MmZz":
                         pass
-                    elif subentity in 'LlHhVvCcSsQqTtAa':
+                    elif subentity in "LlHhVvCcSsQqTtAa":
                         only_moves = False
                         break
                 if only_moves:
