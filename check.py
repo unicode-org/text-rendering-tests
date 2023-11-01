@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 #
 # Copyright 2016 Unicode Inc. All rights reserved.
@@ -14,8 +14,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-from __future__ import print_function, unicode_literals
 
 import argparse
 import datetime
@@ -59,14 +57,14 @@ class ConformanceChecker:
         if self.engine in {"CoreText", "FreeStack", "TehreerStack", "Allsorts"}:
             return subprocess.check_output(
                 [self.command, "--version", "--engine=" + self.engine]
-            )
+            ).decode("utf-8")
         if self.engine in ("OpenType.js", "fontkit"):
-            npm_version = subprocess.check_output(["npm", "--version"])
+            npm_version = subprocess.check_output(["npm", "--version"]).decode("utf-8")
             node_version = subprocess.check_output(["node", "--version"])
-            node_version = node_version.replace("v", "")
+            node_version = node_version.decode("utf-8").replace("v", "")
             engine_version = subprocess.check_output(
                 ["npm", "info", self.engine.lower(), "version"]
-            )
+            ).decode("utf-8")
             return "%s/%s NPM/%s Node/%s" % (
                 self.engine,
                 engine_version,
@@ -125,6 +123,7 @@ class ConformanceChecker:
     def render(self, e):
         command = self.make_command(e)
         status, observed, _stderr = run_command(command, timeout_sec=3)
+        observed = observed.decode("utf-8")
         if status == 0:
             observed = re.sub(r">\s+<", "><", observed)
             observed = observed.replace('xmlns="http://www.w3.org/2000/svg"', "")
@@ -187,7 +186,7 @@ class ConformanceChecker:
             if href and "://" not in href:
                 internalStyle = etree.SubElement(head, "style")
                 with open(os.path.join("testcases", href), "r") as sheetfile:
-                    internalStyle.text = sheetfile.read().decode("utf-8")
+                    internalStyle.text = sheetfile.read()
                 head.remove(sheet)
 
         for filename in sorted(self.reports.keys(), key=sortkey):
@@ -203,7 +202,7 @@ class ConformanceChecker:
             for subElement in doc.find("body"):
                 report.find("body").append(subElement)
 
-        with open(path, "w") as outfile:
+        with open(path, "wb") as outfile:
             xml = etree.tostring(report, encoding="utf-8")
             xml = xml.replace(b"svg:", b"")  # work around browser bugs
             outfile.write(xml)
