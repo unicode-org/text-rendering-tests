@@ -28,6 +28,7 @@
 #include FT_FREETYPE_H
 #include <hb.h>
 #include <fribidi-config.h>
+#include <raqm.h>
 
 namespace fonttest {
 
@@ -54,6 +55,9 @@ std::string FreeStackEngine::GetVersion() const {
 
   result << " FriBidi/" << FRIBIDI_MAJOR_VERSION << '.'
 	 << FRIBIDI_MINOR_VERSION << '.' << FRIBIDI_MICRO_VERSION;
+
+  result << " Raqm/" << RAQM_VERSION_MAJOR << '.'
+	 << RAQM_VERSION_MINOR << '.' << RAQM_VERSION_MICRO;
 
   return result.str();
 }

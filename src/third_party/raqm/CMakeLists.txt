@@ -36,6 +36,7 @@ target_compile_definitions(raqm
 
 target_include_directories(raqm SYSTEM
     PUBLIC libraqm/src
+    PUBLIC generated
 )
 
 target_link_libraries(raqm fribidi harfbuzz)
