@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 #
 # Copyright 2016 Unicode Inc. All rights reserved.
@@ -15,8 +15,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from __future__ import unicode_literals
-
 import itertools
 
 
@@ -33,14 +31,14 @@ def is_similar(a, b, maxDelta):
         else:
             if valueA != valueB:
                 return False
-    for childA, childB in itertools.izip_longest(a.getchildren(), b.getchildren()):
+    for childA, childB in itertools.zip_longest(a, b):
         if not is_similar(childA, childB, maxDelta):
             return False
     return True
 
 
 def is_similar_path(a, b, maxDelta):
-    for itemA, itemB in itertools.izip_longest(simplified_path(a), simplified_path(b)):
+    for itemA, itemB in itertools.zip_longest(simplified_path(a), simplified_path(b)):
         if itemA is None or itemB is None:
             return False
         try:
@@ -101,7 +99,7 @@ class simplified_path:
     def __iter__(self):
         return self
 
-    def next(self):
+    def __next__(self):
         # Exhaust the current subpath before proceeding.
         if len(self.subpath):
             return self.subpath.pop(0)

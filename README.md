@@ -10,7 +10,7 @@ get this right.
 $ brew install cmake ninja npm rust
 $ git clone --recursive https://github.com/unicode-org/text-rendering-tests.git
 $ cd text-rendering-tests
-$ for engine in CoreText FreeStack TehreerStack fontkit OpenType.js Allsorts ; do python check.py --engine=$engine --output=reports/$engine.html ; done
+$ for engine in CoreText FreeStack TehreerStack fontkit OpenType.js Allsorts ; do python3 check.py --engine=$engine --output=reports/$engine.html ; done
 ```
 
 
