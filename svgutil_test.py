@@ -22,25 +22,33 @@ import unittest
 import svgutil
 
 
-SVG_A = etree.fromstring('''
+SVG_A = etree.fromstring(
+    """
     <svg viewBox="0 -292 518 1360">
         <g><path d="M 83,424 Q 56,458 56,517 Z"/></g>
-    </svg>''')
+    </svg>"""
+)
 
-SVG_B = etree.fromstring('''
+SVG_B = etree.fromstring(
+    """
     <svg viewBox="0 -292 520 1360">
         <g><path d="M 83,424 Q 56,458 56,517 Z"/></g>
-    </svg>''')
+    </svg>"""
+)
 
-SVG_C = etree.fromstring('''
+SVG_C = etree.fromstring(
+    """
     <svg viewBox="0 -292 518 1360">
         <g><path d="M 83,424 Q 56,458 57.7,517 Z"/></g>
-    </svg>''')
+    </svg>"""
+)
 
-SVG_D = etree.fromstring('''
+SVG_D = etree.fromstring(
+    """
     <svg viewBox="0 -292 518 1360">
         <g><path d="M 42,237 0,0 Z M 83,424 Q 56,458 56,517 Z M 37,0 Z"/></g>
-    </svg>''')
+    </svg>"""
+)
 
 
 class TestSVGHandling(unittest.TestCase):
@@ -54,14 +62,14 @@ class TestSVGHandling(unittest.TestCase):
         self.assertTrue(svgutil.is_similar(SVG_D, SVG_A, maxDelta=0.0))
 
     def test_is_similar_path(self):
-        self.assertTrue(svgutil.is_similar_path('M1,2 L3,4', 'M1,2 L4,4', 1))
-        self.assertFalse(svgutil.is_similar_path('M1,2 L3,4', 'M1,2 L1,4', 1))
+        self.assertTrue(svgutil.is_similar_path("M1,2 L3,4", "M1,2 L4,4", 1))
+        self.assertFalse(svgutil.is_similar_path("M1,2 L3,4", "M1,2 L1,4", 1))
 
     def test_parse_path(self):
         self.assertEqual(
-          ' '.join(svgutil.parse_path('M 83.7,424 Q56,458Z')),
-          'M 83.7 424 Q 56 458 Z')
+            " ".join(svgutil.parse_path("M 83.7,424 Q56,458Z")), "M 83.7 424 Q 56 458 Z"
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
