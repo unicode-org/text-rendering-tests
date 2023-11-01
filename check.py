@@ -16,11 +16,19 @@
 # limitations under the License.
 
 from __future__ import print_function, unicode_literals
-import argparse, datetime, itertools, os, re, signal, subprocess
-import threading, time
-import xml.etree.ElementTree as etree
-import svgutil
 
+import argparse
+import datetime
+import itertools
+import os
+import re
+import signal
+import subprocess
+import threading
+import time
+import xml.etree.ElementTree as etree
+
+import svgutil
 
 FONTTEST_NAMESPACE = "{https://github.com/OpenType/fonttest}"
 FONTTEST_ID = FONTTEST_NAMESPACE + "id"
