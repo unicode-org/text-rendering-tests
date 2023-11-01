@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/unicode-org/text-rendering-tests.svg)](https://travis-ci.org/unicode-org/text-rendering-tests)
-
 # Text rendering tests
 
 This is a test suite for text rendering engines. It is not easy to correctly
