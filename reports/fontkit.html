@@ -50,7 +50,7 @@ svg {height:2.5em;transform:scaleY(-1)}
   This report was generated on <span id="Date">November 1, 2023</span> by running
   <a href="https://github.com/unicode-org/text-rendering-tests">Unicode’s test suite for text rendering engines</a> with
   <span id="EngineVersion">fontkit 2.0.2, NPM 10.2.0 and Node 21.1.0</span>.
-  <span id="SummaryText">Some tests have failed. For details, see <a href="#GSUB-3">GSUB-3</a>, <a href="#GVAR-9">GVAR-9</a>, <a href="#MORX-3">MORX-3</a>, <a href="#MORX-5">MORX-5</a>, <a href="#MORX-10">MORX-10</a>, <a href="#MORX-11">MORX-11</a>, <a href="#MORX-17">MORX-17</a>, <a href="#MORX-19">MORX-19</a>, <a href="#MORX-20">MORX-20</a>, <a href="#MORX-24">MORX-24</a>, <a href="#MORX-29">MORX-29</a>, <a href="#MORX-30">MORX-30</a>, <a href="#MORX-31">MORX-31</a>, <a href="#MORX-32">MORX-32</a>, <a href="#MORX-33">MORX-33</a>, <a href="#MORX-34">MORX-34</a>, <a href="#MORX-35">MORX-35</a>, <a href="#MORX-36">MORX-36</a>, <a href="#MORX-38">MORX-38</a>, <a href="#MORX-40">MORX-40</a>, <a href="#MORX-41">MORX-41</a>, <a href="#SFNT-1">SFNT-1</a>, <a href="#SHLANA-1">SHLANA-1</a>, <a href="#SHLANA-2">SHLANA-2</a>, <a href="#SHLANA-3">SHLANA-3</a>, <a href="#SHLANA-4">SHLANA-4</a>, <a href="#SHLANA-5">SHLANA-5</a>, <a href="#SHLANA-6">SHLANA-6</a>, <a href="#SHLANA-7">SHLANA-7</a>, <a href="#SHLANA-8">SHLANA-8</a>, <a href="#SHLANA-9">SHLANA-9</a>, and <a href="#SHLANA-10">SHLANA-10</a>.</span>
+  <span id="SummaryText">Some tests have failed. For details, see <a href="#CFF-3">CFF-3</a>, <a href="#GSUB-3">GSUB-3</a>, <a href="#GVAR-9">GVAR-9</a>, <a href="#MORX-3">MORX-3</a>, <a href="#MORX-5">MORX-5</a>, <a href="#MORX-10">MORX-10</a>, <a href="#MORX-11">MORX-11</a>, <a href="#MORX-17">MORX-17</a>, <a href="#MORX-19">MORX-19</a>, <a href="#MORX-20">MORX-20</a>, <a href="#MORX-24">MORX-24</a>, <a href="#MORX-29">MORX-29</a>, <a href="#MORX-30">MORX-30</a>, <a href="#MORX-31">MORX-31</a>, <a href="#MORX-32">MORX-32</a>, <a href="#MORX-33">MORX-33</a>, <a href="#MORX-34">MORX-34</a>, <a href="#MORX-35">MORX-35</a>, <a href="#MORX-36">MORX-36</a>, <a href="#MORX-38">MORX-38</a>, <a href="#MORX-40">MORX-40</a>, <a href="#MORX-41">MORX-41</a>, <a href="#SFNT-1">SFNT-1</a>, <a href="#SHLANA-1">SHLANA-1</a>, <a href="#SHLANA-2">SHLANA-2</a>, <a href="#SHLANA-3">SHLANA-3</a>, <a href="#SHLANA-4">SHLANA-4</a>, <a href="#SHLANA-5">SHLANA-5</a>, <a href="#SHLANA-6">SHLANA-6</a>, <a href="#SHLANA-7">SHLANA-7</a>, <a href="#SHLANA-8">SHLANA-8</a>, <a href="#SHLANA-9">SHLANA-9</a>, and <a href="#SHLANA-10">SHLANA-10</a>.</span>
 </div>
 <h3 id="AVAR-1">AVAR–1: Weight Flattening</h3>
 
@@ -375,7 +375,52 @@ svg {height:2.5em;transform:scaleY(-1)}
 
 </table>
 
-<h3 id="CFF2-1">CFF2–1: Variations</h3>
+<h3 id="CFF-3">CFF–3: Endchar With Five Arguments</h3>
+    <div class="desc">
+  In the <a href="../fonts/TestCFFThree.otf">font for this test case</a>,
+  the glyphs <em>Agrave</em> and <em>Udieresis</em> pass five arguments
+  to the <em>endchar</em> command.
+  For a description of this particular variant of the <em>endchar</em>
+  operator, see
+  <a href="https://adobe-type-tools.github.io/font-tech-notes/pdfs/5177.Type2.pdf#page=35">Adobe PostScript Technical Note #5177</a>, Appendix C,
+  at the bottom of page 35. See also <a href="https://github.com/opentypejs/opentype.js/issues/117">OpenType.js bug 117</a> and <a href="https://github.com/foliojs/fontkit/issues/322">fontkit bug 322</a>.
+    </div>
+    <div class="desc">
+  If the implementation under test works correctly, you should see
+  the glyphs <em>À</em> and <em>Ü</em>.
+</div>
+    <table>
+      <tr>
+        <th>Expected</th>
+        <td class="expected" ns0:id="CFF-3/1" ns0:render="À" ns0:font="TestCFFThree.otf">
+          <svg version="1.1" viewBox="0 -273 544 1257">
+            <symbol id="CFF-3/1.Agrave" overflow="visible">
+              <path d="M203,367 C227,440 248,512 268,588 L272,588 C293,512 314,440 338,367 L369,267 L172,267 Z M3,0 L88,0 L151,200 L390,200 L452,0 L541,0 L319,656 L225,656 Z M300,653 L342,694 L201,861 L143,806 Z" />
+            </symbol>
+            <use xlink:href="#CFF-3/1.Agrave" x="0" y="0" />
+          </svg>
+        </td>
+        <td class="expected" ns0:id="CFF-3/2" ns0:render="Ü" ns0:font="TestCFFThree.otf">
+          <svg version="1.1" viewBox="0 -273 645 1257">
+            <symbol id="CFF-3/2.Udieresis" overflow="visible">
+              <path d="M323,-12 C457,-12 558,60 558,271 L558,656 L478,656 L478,269 C478,111 410,61 323,61 C237,61 170,111 170,269 L170,656 L87,656 L87,271 C87,60 189,-12 323,-12 Z M220,727 C248,727 269,749 269,777 C269,805 248,827 220,827 C191,827 170,805 170,777 C170,749 191,727 220,727 Z M412,727 C441,727 462,749 462,777 C462,805 441,827 412,827 C384,827 363,805 363,777 C363,749 384,727 412,727 Z" />
+            </symbol>
+            <use xlink:href="#CFF-3/2.Udieresis" x="0" y="0" />
+          </svg>
+        </td>
+      </tr>
+      <tr>
+        <th>Observed</th>
+        <td class="observed" ns0:id="CFF-3/1"><svg version="1.1" viewBox="0 -273 544 1257"><symbol id="OBSERVED/CFF-3/1.Agrave" overflow="visible"><path d="" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/CFF-3/1.Agrave" /></svg></td>
+        <td class="observed" ns0:id="CFF-3/2"><svg version="1.1" viewBox="0 -273 645 1257"><symbol id="OBSERVED/CFF-3/2.Udieresis" overflow="visible"><path d="" /></symbol><use x="0" y="0" xlink:href="#OBSERVED/CFF-3/2.Udieresis" /></svg></td>
+      </tr>
+      <tr>
+        <th class="conformance-header">Conformance</th>
+        <td class="conformance-fail" ns0:id="CFF-3/1">✖</td>
+        <td class="conformance-fail" ns0:id="CFF-3/2">✖</td>
+      </tr>
+    </table>
+  <h3 id="CFF2-1">CFF2–1: Variations</h3>
 
 <div class="desc">
   The <a href="../fonts/AdobeVFPrototype-Subset.otf">font</a> for this test
