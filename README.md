@@ -61,7 +61,7 @@ rendering parameters together with the expected result.
 
 For each test case, the `check.py` script parses the HTML snippet to
 extract the rendering parameters. Then, it runs a sub-process (written
-in C++, Objective C or JavaScript depending on the tested
+in C++, Objective C, Rust or JavaScript depending on the tested
 implementation) that writes the observed rendering in SVG format to
 Standard Output. Finally, the script checks whether the expected
 rendering matches the observed result.  Currently, “matching” is
