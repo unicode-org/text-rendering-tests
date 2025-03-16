@@ -286,6 +286,12 @@ fn main() -> Result<(), Box<dyn Error>> {
                         || script == Script::Inherited
                     {
                         script = prev_script;
+                    } else if prev_script == Script::Common
+                        || prev_script == Script::Unknown
+                        || prev_script == Script::Inherited
+                    {
+                        // Treat starting characters' script as the first "real" script encountered
+                        prev_script = script;
                     }
                     if level != prev_level || script != prev_script {
                         if !run.is_empty() {
