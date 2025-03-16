@@ -186,6 +186,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             let mut outline_refs = Vec::new();
 
             let mut advance = 0.0;
+            let mut advance_width = 0.0;
 
             let maybe_floor = |n: f32| {
                 if floor_coords { n.floor() } else { n }
@@ -210,6 +211,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                         .size(ppem)
                         .direction(direction)
                         .script(script)
+                        .insert_dotted_circles(true)
                         .build();
 
                     shaper.add_str(&text);
@@ -273,6 +275,9 @@ fn main() -> Result<(), Box<dyn Error>> {
 
                         outline_refs.push((symbol_href, advance, glyph.x, glyph.y));
                         advance += glyph.advance;
+                        if !glyph.info.is_mark() {
+                            advance_width = advance;
+                        }
                     }
                 };
 
@@ -324,7 +329,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 let viewbox = [
                     0.0,
                     maybe_floor(-metrics.descent * metrics_scale),
-                    maybe_floor(advance),
+                    maybe_floor(advance_width),
                     maybe_floor((metrics.ascent + metrics.descent) * metrics_scale),
                 ];
 
