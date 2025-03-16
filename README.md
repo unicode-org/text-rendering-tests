@@ -14,7 +14,7 @@ $ for engine in CoreText FreeStack TehreerStack fontkit OpenType.js Allsorts ; d
 
 ## Supported Platforms
 
-Currently, the test suite supports six OpenType implementations:
+Currently, the test suite supports seven OpenType implementations:
 
 * With `--engine=FreeStack`, the tests are run on the free/libre
 open-source text rendering stack with [FreeType](https://www.freetype.org/),
@@ -45,12 +45,21 @@ text rendering stack consisting of [FreeType](https://www.freetype.org/),
   a parsing and shaping engine implemented in [Rust](https://www.rust-lang.org/).
 — [Test report for Allsorts](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/Allsorts.html).
 
-It’s trivial to test other implementations; simply write a small
-wrapper tool. For the [Go font
+* With `--engine=Swash`, the tests are run using [Swash](https://github.com/dfrg/swash),
+  a parsing, shaping, and scaling/rendering engine also implemented in [Rust](https://www.rust-lang.org/).
+— [Test report for Swash](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/Swash.html).
+
+It’s trivial to test other implementations; simply write a small wrapper
+tool:
+
+- For the [Go font
 library](https://godoc.org/golang.org/x/image/font/sfnt), see
-[here](https://github.com/golang/go/issues/20208). For the [Rust font
-library](https://github.com/google/font-rs), see
-[here](https://github.com/google/font-rs/issues/17).
+[here](https://github.com/golang/go/issues/20208).
+
+- For the [Rust font library](https://github.com/google/font-rs), see
+[here](https://github.com/google/font-rs/issues/17). You may be able to
+reuse (or factor out) the argument parsing and SVG-writing parts of the
+[Swash test harness](./src/fonttest-swash-harness/) as a starting point.
 
 
 ## Test Cases
