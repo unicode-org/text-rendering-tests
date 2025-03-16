@@ -46,6 +46,10 @@ class ConformanceChecker:
             self.command = (
                 "src/third_party/allsorts/allsorts-tools/target/release/allsorts"
             )
+        elif self.engine == "Swash":
+            self.command = (
+                "src/fonttest-swash-harness/target/release/fonttest-swash-harness"
+            )
         else:
             self.command = "build/fonttest/fonttest"
         self.datestr = self.make_datestr()
@@ -54,7 +58,7 @@ class ConformanceChecker:
         self.observed = {}  # testcase --> SVG ElementTree
 
     def get_version(self):
-        if self.engine in {"CoreText", "FreeStack", "TehreerStack", "Allsorts"}:
+        if self.engine in {"CoreText", "FreeStack", "TehreerStack", "Allsorts", "Swash"}:
             return subprocess.check_output(
                 [self.command, "--version", "--engine=" + self.engine]
             ).decode("utf-8")
@@ -237,6 +241,16 @@ def build(engine):
                 "src/third_party/allsorts/allsorts-tools/Cargo.toml",
             ]
         )
+    elif engine == "Swash":
+        subprocess.check_call(
+            [
+                "cargo",
+                "build",
+                "--release",
+                "--manifest-path",
+                "src/fonttest-swash-harness/Cargo.toml",
+            ]
+        )
     else:
         if not os.path.exists("build"):
             os.mkdir("build")
@@ -258,6 +272,7 @@ def main():
             "OpenType.js",
             "fontkit",
             "Allsorts",
+            "Swash"
         ],
         default="FreeStack",
     )
