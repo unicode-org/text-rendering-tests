@@ -5,7 +5,7 @@ edition = "2024"
 
 [dependencies]
 # If you update swash, be sure to update the version number in src/main.rs as well!
-swash = "=0.2.1"
+swash = { path = "../third_party/swash/swash" }
 lexopt = "0.3"
 quick-xml = "0.37"
 ttf-parser = "0.25"
