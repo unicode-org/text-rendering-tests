@@ -9,3 +9,4 @@ swash = { path = "../third_party/swash/swash" }
 lexopt = "0.3"
 quick-xml = "0.37"
 ttf-parser = "0.25"
+unicode-bidi = "0.3"
