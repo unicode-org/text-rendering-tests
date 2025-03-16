@@ -12,10 +12,12 @@ use lexopt::prelude::*;
 use swash::{
     FontRef, Setting,
     scale::{ScaleContext, outline::Outline},
-    shape::ShapeContext,
+    shape::{Direction, ShapeContext},
     tag_from_str_lossy,
+    text::Script,
     zeno::{Command, PathData, Vector},
 };
+use unicode_bidi::{BidiInfo, Level};
 
 #[derive(Debug)]
 enum Args {
@@ -171,35 +173,65 @@ fn main() -> Result<(), Box<dyn Error>> {
             let ttfp_face = ttf_parser::Face::parse(&font_data, 0)?;
 
             let mut context = ShapeContext::new();
-            let mut shaper = context
+
+            let mut scale_ctx = ScaleContext::new();
+            let mut scaler = scale_ctx
                 .builder(font_ref)
                 .variations(variations.iter().copied())
                 .size(ppem)
                 .build();
 
+            let mut symbols = Vec::new();
+            let mut scaled_glyphs = HashMap::<u16, Option<String>>::new();
+            let mut outline_refs = Vec::new();
+
+            let mut advance = 0.0;
+
+            let maybe_floor = |n: f32| {
+                if floor_coords { n.floor() } else { n }
+            };
+
             if let Some(render) = render {
-                shaper.add_str(render.to_str().ok_or("test case is invalid UTF-8")?);
+                let render = render.to_str().ok_or("test case is invalid UTF-8")?;
+                let bidi_info = BidiInfo::new(render, None);
+                let mut run = String::new();
+                let mut prev_level = Level::ltr();
+                let mut prev_script = Script::Common;
 
-                let mut scale_ctx = ScaleContext::new();
-                let mut scaler = scale_ctx
-                    .builder(font_ref)
-                    .variations(variations.iter().copied())
-                    .size(ppem)
-                    .build();
-                let metrics = shaper.metrics();
+                let mut shape_run = |text: String, is_rtl, script| {
+                    let direction = if is_rtl {
+                        Direction::RightToLeft
+                    } else {
+                        Direction::LeftToRight
+                    };
+                    let mut shaper = context
+                        .builder(font_ref)
+                        .variations(variations.iter().copied())
+                        .size(ppem)
+                        .direction(direction)
+                        .script(script)
+                        .build();
 
-                let mut symbols = Vec::new();
-                let mut scaled_glyphs = HashMap::<u16, Option<String>>::new();
-                let mut outline_refs = Vec::new();
+                    shaper.add_str(&text);
 
-                let mut advance = 0.0;
-
-                let maybe_floor = |n: f32| {
-                    if floor_coords { n.floor() } else { n }
-                };
-
-                shaper.shape_with(|cluster| {
-                    for glyph in cluster.glyphs {
+                    let mut run_advance = 0.0;
+                    let mut glyphs = Vec::new();
+                    shaper.shape_with(|cluster| {
+                        if is_rtl {
+                            for glyph in cluster.glyphs.iter().rev() {
+                                glyphs.push(glyph.clone());
+                            }
+                        } else {
+                            for glyph in cluster.glyphs {
+                                glyphs.push(glyph.clone());
+                            }
+                        }
+                        run_advance += cluster.advance();
+                    });
+                    if is_rtl {
+                        glyphs.reverse();
+                    }
+                    for glyph in glyphs {
                         let symbol_href = scaled_glyphs
                             .entry(glyph.id)
                             .or_insert_with(|| {
@@ -242,7 +274,38 @@ fn main() -> Result<(), Box<dyn Error>> {
                         outline_refs.push((symbol_href, advance, glyph.x, glyph.y));
                         advance += glyph.advance;
                     }
-                });
+                };
+
+                for ((properties, _boundary), (byte_index, character)) in
+                    swash::text::analyze(render.chars()).zip(render.char_indices())
+                {
+                    let level = bidi_info.levels[byte_index];
+                    let mut script = properties.script();
+                    if script == Script::Common
+                        || script == Script::Unknown
+                        || script == Script::Inherited
+                    {
+                        script = prev_script;
+                    }
+                    if level != prev_level || script != prev_script {
+                        if !run.is_empty() {
+                            shape_run(std::mem::take(&mut run), prev_level.is_rtl(), prev_script);
+                        }
+                        prev_level = level;
+                        prev_script = script;
+                    }
+                    run.push(character);
+                }
+                if !run.is_empty() {
+                    shape_run(std::mem::take(&mut run), prev_level.is_rtl(), prev_script);
+                }
+
+                let default_shaper = context
+                    .builder(font_ref)
+                    .variations(variations.iter().copied())
+                    .size(ppem)
+                    .build();
+                let metrics = default_shaper.metrics();
 
                 let mut svg_out =
                     quick_xml::Writer::new_with_indent(Cursor::new(Vec::<u8>::new()), b' ', 4);
