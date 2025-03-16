@@ -239,7 +239,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                             continue;
                         };
 
-                        outline_refs.push((symbol_href, maybe_floor(advance)));
+                        outline_refs.push((symbol_href, advance, glyph.x, glyph.y));
                         advance += glyph.advance;
                     }
                 });
@@ -286,12 +286,12 @@ fn main() -> Result<(), Box<dyn Error>> {
                                 })?;
                         }
 
-                        for (glyph_id, x) in &outline_refs {
+                        for (glyph_id, advance, x, y) in &outline_refs {
                             w.create_element("use")
                                 .with_attributes([
                                     ("xlink:href", glyph_id.as_str()),
-                                    ("x", x.to_string().as_str()),
-                                    ("y", "0"),
+                                    ("x", maybe_floor(x + advance).to_string().as_str()),
+                                    ("y", maybe_floor(*y).to_string().as_str()),
                                 ])
                                 .write_empty()?;
                         }
