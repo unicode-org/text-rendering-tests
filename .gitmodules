@@ -19,3 +19,6 @@
 [submodule "src/third_party/allsorts/allsorts-tools"]
 	path = src/third_party/allsorts/allsorts-tools
 	url = https://github.com/yeslogic/allsorts-tools
+[submodule "src/third_party/swash/swash"]
+	path = src/third_party/swash/swash
+	url = https://github.com/dfrg/swash
