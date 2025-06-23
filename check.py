@@ -17,10 +17,8 @@
 
 import argparse
 import datetime
-import itertools
 import os
 import re
-import signal
 import subprocess
 import threading
 import time
