@@ -252,7 +252,7 @@ def build(engine):
     else:
         if not os.path.exists("build"):
             os.mkdir("build")
-        subprocess.check_call(["cmake", "-GNinja", "../src"], cwd="build")
+        subprocess.check_call(["cmake", "-GNinja", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5", "../src"], cwd="build")
         subprocess.check_call(["ninja", "-C", "build"])
 
 
