@@ -137,8 +137,22 @@ class ConformanceChecker:
 
     def normalize_svg(self, svg):
         strip_path = lambda p: re.sub(r"\s+", " ", p).strip()
-        for path in svg.findall(".//path[@d]"):
+        for symbol in svg.findall(".//path[@d]/.."):
+            path = symbol.find("./path[@d]")
             path.attrib["d"] = strip_path(path.attrib["d"])
+
+            # drop empty paths
+            if path.attrib["d"] == "":
+                symbol_id = symbol.attrib["id"]
+                # remove use elements pointing to the symbol
+                href = "{http://www.w3.org/1999/xlink}href"
+                dropped_use = False
+                for use in svg.findall(".//use[@%s='#%s']" % (href, symbol_id)):
+                    dropped_use = True
+                    svg.remove(use)
+                assert dropped_use, "No use elements found for symbol '%s'" % symbol_id
+                # remove the symbol
+                svg.remove(symbol)
 
     def add_prefix_to_svg_ids(self, svg, prefix):
         # The 'id' attribute needs to be globally unique in the HTML document,
