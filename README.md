@@ -22,32 +22,32 @@ open-source text rendering stack with [FreeType](https://www.freetype.org/),
 [FriBidi](https://www.fribidi.org/),
 and [Raqm](https://github.com/HOST-Oman/libraqm). These libraries
 are used by Linux, Android, ChromeOS, and many other systems.
-— [Test report for FreeStack](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/FreeStack.html).
+— [Test report for FreeStack](https://raw.githack.com/unicode-org/text-rendering-tests/main/reports/FreeStack.html).
 
 * With `--engine=CoreText`, the tests are run on Apple’s CoreText.
 This option will work only if you run the test suite on MacOS X.
-— [Test report for CoreText](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/CoreText.html).
+— [Test report for CoreText](https://raw.githack.com/unicode-org/text-rendering-tests/main/reports/CoreText.html).
 
 * With `--engine=TehreerStack`, the tests are run on an open-source
 text rendering stack consisting of [FreeType](https://www.freetype.org/),
 [SheenBidi](https://github.com/Tehreer/SheenBidi), and
 [SheenFigure](https://github.com/Tehreer/SheenFigure).
-— [Test report for TehreerStack](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/TehreerStack.html).
+— [Test report for TehreerStack](https://raw.githack.com/unicode-org/text-rendering-tests/main/reports/TehreerStack.html).
 
 * With `--engine=fontkit`, the tests are run on
 [fontkit](http://github.com/devongovett/fontkit), a JavaScript font engine.
-— [Test report for fontkit](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/fontkit.html).
+— [Test report for fontkit](https://raw.githack.com/unicode-org/text-rendering-tests/main/reports/fontkit.html).
 
 * With `--engine=OpenType.js`, the tests are run using [OpenType.js](https://github.com/nodebox/opentype.js), another JavaScript font engine.
-— [Test report for OpenType.js](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/OpenType.js.html).
+— [Test report for OpenType.js](https://raw.githack.com/unicode-org/text-rendering-tests/main/reports/OpenType.js.html).
 
 * With `--engine=Allsorts`, the tests are run using [Allsorts](https://github.com/yeslogic/allsorts),
   a parsing and shaping engine implemented in [Rust](https://www.rust-lang.org/).
-— [Test report for Allsorts](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/Allsorts.html).
+— [Test report for Allsorts](https://raw.githack.com/unicode-org/text-rendering-tests/main/reports/Allsorts.html).
 
 * With `--engine=Swash`, the tests are run using [Swash](https://github.com/dfrg/swash),
   a parsing, shaping, and scaling/rendering engine also implemented in [Rust](https://www.rust-lang.org/).
-— [Test report for Swash](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/Swash.html).
+— [Test report for Swash](https://raw.githack.com/unicode-org/text-rendering-tests/main/reports/Swash.html).
 
 It’s trivial to test other implementations; simply write a small wrapper
 tool:
