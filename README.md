@@ -49,6 +49,10 @@ text rendering stack consisting of [FreeType](https://www.freetype.org/),
   a parsing, shaping, and scaling/rendering engine also implemented in [Rust](https://www.rust-lang.org/).
 — [Test report for Swash](https://rawgit.com/unicode-org/text-rendering-tests/master/reports/Swash.html).
 
+* With `--engine=daegun`, the tests are run using [daegun](https://github.com/silly-tae/daegun),
+  a parsing, shaping, layout and rendering engine also implemented in [Rust](https://www.rust-lang.org/).
+— [Test report for daegun](https://raw.githack.com/unicode-org/text-rendering-tests/main/reports/daegun.html).
+
 It’s trivial to test other implementations; simply write a small wrapper
 tool:
 
