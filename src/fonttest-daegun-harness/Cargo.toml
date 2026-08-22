@@ -1,0 +1,12 @@
+[package]
+name = "fonttest-daegun-harness"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# If you update daegun, update DAEGUN_VERSION in src/main.rs as well.
+daegun = "1.1.6"
+
+[[bin]]
+name = "fonttest-daegun-harness"
+path = "src/main.rs"
