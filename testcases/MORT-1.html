@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ft="https://github.com/OpenType/fonttest"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+<body>
+<h3 id="MORT-1">MORT-1: Glyph Metamorphosis Subtable Types</h3>
+
+<div class="desc">
+  The <a href="../fonts/TestAATMort.ttf">font</a> for this test case
+  contains an obsolete AAT <em>mort</em> table with rearrangement,
+  contextual substitution, ligature, non-contextual substitution, and
+  insertion subtables. In order, they rearrange <em>AB</em> to <em>BA</em>,
+  replace <em>C</em> with <em>D</em>, form the <em>EF</em> ligature shown as
+  <em>1</em>, replace <em>G</em> with <em>H</em>, and insert <em>Y</em> after
+  <em>X</em>. The font is produced from the MORX-42 fixture by the suite's
+  <a href="../generate_aat_morph_fonts.py">morx-to-mort converter</a>.
+</div>
+
+<table>
+  <tr>
+    <th>Expected</th>
+    <td class="expected" ft:id="MORT-1/1" ft:render="ABCEFGX"
+        ft:font="TestAATMort.ttf"><svg version="1.1" viewBox="0 -200 5830 1200"><symbol id="MORT-1/1.B" overflow="visible"><path d="M151,-28 Q30,-28 30,94 L30,620 Q30,742 151,742 L678,742 Q800,742 800,620 L800,94 Q800,-28 678,-28 Z M439,163 Q508,163 547,193 Q587,224 587,277 Q587,319 567,339 Q548,359 518,366 L518,369 Q544,376 561,397 Q579,419 579,454 Q579,502 542,526 Q506,550 424,550 L289,550 L289,163 Z M393,472 L423,472 Q472,472 472,439 Q472,422 461,412 Q450,402 425,402 L393,402 Z M393,326 L429,326 Q455,326 467,314 Q479,303 479,285 Q479,244 430,244 L393,244 Z" /></symbol><symbol id="MORT-1/1.A" overflow="visible"><path d="M151,-28 Q30,-28 30,94 L30,620 Q30,742 151,742 L678,742 Q800,742 800,620 L800,94 Q800,-28 678,-28 Z M333,163 L353,236 L479,236 L498,163 L613,163 L485,552 L345,552 L218,163 Z M391,386 Q409,454 415,491 Q419,468 434,411 L440,386 L457,322 L375,322 Z" /></symbol><symbol id="MORT-1/1.D" overflow="visible"><path d="M151,-28 Q30,-28 30,94 L30,620 Q30,742 151,742 L678,742 Q800,742 800,620 L800,94 Q800,-28 678,-28 Z M398,163 Q493,163 547,215 Q602,267 602,365 Q602,455 551,502 Q500,550 406,550 L271,550 L271,163 Z M377,466 L407,466 Q450,466 471,440 Q492,415 492,362 Q492,304 470,276 Q448,249 400,249 L377,249 Z" /></symbol><symbol id="MORT-1/1.one" overflow="visible"><path d="M171,-28 Q50,-28 50,94 L50,620 Q50,742 171,742 L698,742 Q820,742 820,620 L820,94 Q820,-28 698,-28 Z M507,181 L507,532 L423,532 L302,434 L351,374 Q359,380 371,388 Q384,397 391,405 Q403,419 413,429 Q412,403 412,355 L412,181 Z" /></symbol><symbol id="MORT-1/1.H" overflow="visible"><path d="M151,-28 Q30,-28 30,94 L30,620 Q30,742 151,742 L678,742 Q800,742 800,620 L800,94 Q800,-28 678,-28 Z M354,163 L354,321 L476,321 L476,163 L582,163 L582,550 L476,550 L476,407 L354,407 L354,550 L248,550 L248,163 Z" /></symbol><symbol id="MORT-1/1.X" overflow="visible"><path d="M151,-28 Q30,-28 30,94 L30,620 Q30,742 151,742 L678,742 Q800,742 800,620 L800,94 Q800,-28 678,-28 Z M339,163 L414,285 L490,163 L610,163 L479,354 L602,550 L482,550 L414,431 L345,550 L229,550 L349,362 L221,163 Z" /></symbol><symbol id="MORT-1/1.Y" overflow="visible"><path d="M151,-28 Q30,-28 30,94 L30,620 Q30,742 151,742 L678,742 Q800,742 800,620 L800,94 Q800,-28 678,-28 Z M468,163 L468,315 L596,550 L482,550 L415,407 L348,550 L234,550 L362,311 L362,163 Z" /></symbol><use x="0" y="0" xlink:href="#MORT-1/1.B" /><use x="830" y="0" xlink:href="#MORT-1/1.A" /><use x="1660" y="0" xlink:href="#MORT-1/1.D" /><use x="2490" y="0" xlink:href="#MORT-1/1.one" /><use x="3340" y="0" xlink:href="#MORT-1/1.H" /><use x="4170" y="0" xlink:href="#MORT-1/1.X" /><use x="5000" y="0" xlink:href="#MORT-1/1.Y" /></svg></td>
+  </tr>
+  <tr>
+    <th>Observed</th>
+    <td class="observed" ft:id="MORT-1/1"/>
+  </tr>
+  <tr>
+    <th class="conformance-header">Conformance</th>
+    <td class="conformance" ft:id="MORT-1/1"/>
+  </tr>
+</table>
+</body>
+</html>

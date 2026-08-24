@@ -81,6 +81,18 @@ rendering matches the observed result.  Currently, “matching” is
 implemented by iterating over SVG paths, allowing for maximally 1 font
 design unit of difference.
 
+### AAT morph table fixtures
+
+[`generate_aat_morph_fonts.py`](generate_aat_morph_fonts.py) regenerates the
+paired `mort` and `morx` fixtures used by MORT-1 and MORX-42. It can also
+convert another font's version 2.0 `morx` table to the older `mort` format:
+
+```bash
+python3 generate_aat_morph_fonts.py --convert input.ttf output.ttf
+```
+
+The converter requires [fontTools](https://github.com/fonttools/fonttools).
+
 ### Copyright & Licenses
 
 Copyright © 2016-2024 Unicode, Inc. Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the United States and other countries.
